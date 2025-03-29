@@ -1,6 +1,7 @@
 const map = L.map('map').setView([33.3, 131.6], 9);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors'
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap & CartoDB',
+  subdomains: 'abcd'
 }).addTo(map);
 
 const csvFile = "data/all_routes.csv";
@@ -93,7 +94,13 @@ function updateMap() {
             fillOpacity: 1.0
           }).addTo(map);
 
-          marker.bindPopup(`<b>${row.start}</b><br>→ ${row.end}<br>${row.time}秒 / ${row.distance}m`);
+          marker.bindPopup(`
+            <b>${row.start}</b><br>
+            → ${row.end}<br>
+            ${row.time}秒 / ${row.distance}m<br>
+            <small style="color: gray;">📅 ${row.arrival_date}</small>
+          `);
+          
           markers.push(marker);
         }
       } catch (e) {
