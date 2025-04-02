@@ -20,7 +20,6 @@ Papa.parse(csvFile, {
 
     results.data.forEach(row => {
       const date = row.arrival_date?.trim();
-      // ✅ 空文字 or undefined の場合はスキップ
       if (!date) return;
 
       if (!grouped[date]) grouped[date] = [];
@@ -29,29 +28,77 @@ Papa.parse(csvFile, {
 
     allDataByDate = grouped;
 
-    const dates = Object.keys(allDataByDate);
+    // ✅ 年ごとにグループ化
+    const groupedByYear = {};
+    Object.keys(allDataByDate).forEach((date, idx) => {
+      const year = date.split("-")[0];
+      if (!groupedByYear[year]) groupedByYear[year] = [];
+      groupedByYear[year].push(date);
 
-    dates.forEach((date, idx) => {
       const color = colorList[idx % colorList.length];
       dateColors[date] = color;
+    });
 
-      const label = document.createElement("label");
-      label.className = "date-checkbox";
+    // ✅ 年→日付 のチェックボックス構造生成
+    Object.entries(groupedByYear).forEach(([year, dates]) => {
+      const yearLabel = document.createElement("label");
+      yearLabel.className = "year-checkbox";
 
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.value = date;
-      checkbox.checked = true;
-      checkbox.addEventListener("change", updateMap);
+      const yearCheckbox = document.createElement("input");
+      yearCheckbox.type = "checkbox";
+      yearCheckbox.checked = true;
+      yearCheckbox.dataset.level = "year";
 
-      label.appendChild(checkbox);
-      label.append(" " + date);
-      checkboxesDiv.appendChild(label);
+      yearLabel.appendChild(yearCheckbox);
+      yearLabel.append(" " + year);
+      checkboxesDiv.appendChild(yearLabel);
+
+      const dateListDiv = document.createElement("div");
+      dateListDiv.style.marginLeft = "1em";
+
+      dates.forEach(date => {
+        const dateLabel = document.createElement("label");
+        dateLabel.className = "date-checkbox";
+
+        const dateCheckbox = document.createElement("input");
+        dateCheckbox.type = "checkbox";
+        dateCheckbox.value = date;
+        dateCheckbox.checked = true;
+        dateCheckbox.dataset.level = "date";
+        dateCheckbox.addEventListener("change", updateMap);
+
+        dateLabel.appendChild(dateCheckbox);
+        dateLabel.append(" " + date);
+        dateListDiv.appendChild(dateLabel);
+      });
+
+      // 親（年）と子（日付）連動処理
+      yearCheckbox.addEventListener("change", () => {
+        const checked = yearCheckbox.checked;
+        dateListDiv.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+          cb.checked = checked;
+        });
+        updateMap();
+      });
+
+      // 子→親の indeterminate 処理
+      const childCheckboxes = dateListDiv.querySelectorAll('input[type="checkbox"]');
+      childCheckboxes.forEach(cb => {
+        cb.addEventListener("change", () => {
+          const allChecked = Array.from(childCheckboxes).every(c => c.checked);
+          const anyChecked = Array.from(childCheckboxes).some(c => c.checked);
+          yearCheckbox.checked = allChecked;
+          yearCheckbox.indeterminate = !allChecked && anyChecked;
+        });
+      });
+
+      checkboxesDiv.appendChild(dateListDiv);
     });
 
     updateMap();
   }
 });
+
 
 function updateMap() {
   markers.forEach(m => map.removeLayer(m));
@@ -61,7 +108,8 @@ function updateMap() {
 
   const selectedDates = Array.from(
     document.querySelectorAll('input[type="checkbox"]:checked')
-  ).map(cb => cb.value);
+  ).map(cb => cb.value)
+  .filter(date => allDataByDate[date]);;
 
   let allCoords = [];
 
@@ -78,6 +126,7 @@ function updateMap() {
             weight: 5,
             opacity: 1
           }).addTo(map);
+          polylines.push(outline);
           
           // 本体（上側の細い青線など）
           const mainLine = L.polyline(coords.map(([lng, lat]) => [lat, lng]), {
@@ -85,6 +134,7 @@ function updateMap() {
             weight: 3,
             opacity: 1
           }).addTo(map);
+          polylines.push(mainLine);
 
           const startCoord = coords[0];
           const marker = L.circleMarker([startCoord[1], startCoord[0]], {
@@ -117,6 +167,7 @@ function updateMap() {
 document.getElementById("selectAll").addEventListener("click", () => {
   document.querySelectorAll('#checkboxes input[type="checkbox"]').forEach(cb => {
     cb.checked = true;
+    cb.indeterminate = false;
   });
   updateMap();
 });
@@ -124,6 +175,7 @@ document.getElementById("selectAll").addEventListener("click", () => {
 document.getElementById("clearAll").addEventListener("click", () => {
   document.querySelectorAll('#checkboxes input[type="checkbox"]').forEach(cb => {
     cb.checked = false;
+    cb.indeterminate = false;
   });
   updateMap();
 });
