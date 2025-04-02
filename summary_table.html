@@ -7,7 +7,7 @@
   <style>
     table {
       border-collapse: collapse;
-      width: 300%;
+      width: 400%;
       /* ✅ 幅をウィンドウ幅に追従させる */
       table-layout: auto;
       /* or fixed（内容に合わせて選べる） */
@@ -33,29 +33,32 @@
     }
 
     .note-wrapper {
-  max-height: 20em;
-  overflow: hidden;
-  position: relative;
-}
-.note-wrapper.expanded {
-  max-height: none;
-}
-.note-fade {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2em;
-  background: linear-gradient(to bottom, transparent, white);
-  pointer-events: none;
-}
+      max-height: 20em;
+      overflow: hidden;
+      position: relative;
+    }
 
-.note-content {
-  max-height: 8em; /* 約5行分 */
-  overflow: hidden;
-  white-space: normal;
-  word-break: break-word;
-}
+    .note-wrapper.expanded {
+      max-height: none;
+    }
+
+    .note-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2em;
+      background: linear-gradient(to bottom, transparent, white);
+      pointer-events: none;
+    }
+
+    .note-content {
+      max-height: 15em;
+      /* 約5行分 */
+      overflow: hidden;
+      white-space: normal;
+      word-break: break-word;
+    }
 
     .note-content:hover {
       overflow: auto;
@@ -99,10 +102,10 @@
         <col style="width: 6ch;"> <!-- cost_other -->
         <col style="width: 8ch;"> <!-- cost_total -->
         <!-- その他 -->
-        <col style="width: 16ch;"> <!-- material -->
-        <col style="width: 16ch;"> <!-- reference -->
-        <col style="width: 16ch;"> <!-- advertiser -->
-        <col style="width: 20ch;"> <!-- topics -->
+        <col style="width: 60ch;"> <!-- material -->
+        <col style="width: 60ch;"> <!-- reference -->
+        <col style="width: 20ch;"> <!-- advertiser -->
+        <col style="width: 60ch;"> <!-- topics -->
       </colgroup>
       <thead>
         <tr>
