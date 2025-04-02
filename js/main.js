@@ -1,4 +1,4 @@
-const map = L.map('map').setView([33.3, 131.6], 9);
+const map = L.map('map').setView([37, 138], 6);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; OpenStreetMap & CartoDB',
   subdomains: 'abcd'
@@ -123,7 +123,7 @@ function updateMap() {
         if (coords.length > 0) {
           const outline = L.polyline(coords.map(([lng, lat]) => [lat, lng]), {
             color: "black",
-            weight: 5,
+            weight: 3,
             opacity: 1
           }).addTo(map);
           polylines.push(outline);
@@ -131,14 +131,14 @@ function updateMap() {
           // 本体（上側の細い青線など）
           const mainLine = L.polyline(coords.map(([lng, lat]) => [lat, lng]), {
             color: color,  // 青や日付ごとの色
-            weight: 3,
+            weight: 2,
             opacity: 1
           }).addTo(map);
           polylines.push(mainLine);
 
           const startCoord = coords[0];
           const marker = L.circleMarker([startCoord[1], startCoord[0]], {
-            radius: 6,
+            radius: 4,
             color: 'black',
             fillColor: color,
             fillOpacity: 1.0

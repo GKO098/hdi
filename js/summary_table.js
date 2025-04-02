@@ -258,6 +258,9 @@ function sortTripsBy(data, key) {
       } else if (key === "date") {
         valA = new Date(a.date);
         valB = new Date(b.date);
+      } else if (key === "id") {
+        valA = parseInt(a.id, 10);
+        valB = parseInt(b.id, 10);
       } else {
         valA = a[key] ?? "";
         valB = b[key] ?? "";
