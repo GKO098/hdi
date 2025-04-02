@@ -116,54 +116,55 @@ function renderTable(data) {
         cell = td;
       } else if (key.startsWith("cost_") || key === "distance") {
         const td = document.createElement("td");
+        td.classList.add("right");
         const value = parseFloat(trip[key]) || 0;
         if (key === "cost_total") {
-          td.innerHTML = `<strong>${value}</strong>`;
+          td.innerHTML = `<strong>${formatValue(value)}</strong>`;
           totalCost_total += value;
         } else if (key === "cost_meal") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_meal += value;
         } else if (key === "cost_toll_road") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_toll_road += value;
         } else if (key === "cost_fuel") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_fuel += value;
         } else if (key === "cost_rental_car") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_rental_car += value;
         } else if (key === "cost_entrance_fee") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_entrance_fee += value;
         } else if (key === "cost_parking") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_parking += value;
         } else if (key === "cost_hotel") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_hotel += value;
         } else if (key === "cost_plane") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_plane += value;
         } else if (key === "cost_train") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_train += value;
         } else if (key === "cost_bus") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_bus += value;
         } else if (key === "cost_ship") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_ship += value;
         } else if (key === "cost_equipment") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_equipment += value;
         } else if (key === "cost_other") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_other += value;
         } else if (key === "cost_total") {
-          td.innerHTML = `${value}`;
+          td.innerHTML = `${formatValue(value)}`;
           totalCost_total += value;
         } else if (key === "distance") {
-          td.textContent = value.toFixed(1);
+          td.textContent = formatValue(value);
           totalDistance += value;
         } else {
           td.textContent = value.toFixed(0);
@@ -181,33 +182,33 @@ function renderTable(data) {
     tbody.appendChild(tr);
   });
   document.getElementById("total-distance").textContent =
-    totalDistance.toFixed(1) + " km";
+    totalDistance.toFixed(1);
   document.getElementById("total-cost_meal").textContent =
-    totalCost_meal.toFixed(1) + "円";
+    totalCost_meal.toFixed(1);
   document.getElementById("total-cost_toll_road").textContent =
-    totalCost_toll_road.toFixed(1) + "円";
+    totalCost_toll_road.toFixed(1);
   document.getElementById("total-cost_fuel").textContent =
-    totalCost_fuel.toFixed(1) + "円";
+    totalCost_fuel.toFixed(1);
   document.getElementById("total-cost_rental_car").textContent =
-    totalCost_rental_car.toFixed(1) + "円";
+    totalCost_rental_car.toFixed(1);
   document.getElementById("total-cost_entrance_fee").textContent =
-    totalCost_entrance_fee.toFixed(1) + "円";
+    totalCost_entrance_fee.toFixed(1);
   document.getElementById("total-cost_parking").textContent =
-    totalCost_parking.toFixed(1) + "円";
+    totalCost_parking.toFixed(1);
   document.getElementById("total-cost_hotel").textContent =
-    totalCost_hotel.toFixed(1) + "円";
+    totalCost_hotel.toFixed(1);
   document.getElementById("total-cost_plane").textContent =
-    totalCost_plane.toFixed(1) + "円";
+    totalCost_plane.toFixed(1);
   document.getElementById("total-cost_train").textContent =
-    totalCost_train.toFixed(1) + "円";
+    totalCost_train.toFixed(1);
   document.getElementById("total-cost_bus").textContent =
-    totalCost_bus.toFixed(1) + "円";
+    totalCost_bus.toFixed(1);
   document.getElementById("total-cost_ship").textContent =
-    totalCost_ship.toFixed(1) + "円";
+    totalCost_ship.toFixed(1);
   document.getElementById("total-cost_equipment").textContent =
-    totalCost_equipment.toFixed(1) + "円";
+    totalCost_equipment.toFixed(1);
   document.getElementById("total-cost_other").textContent =
-    totalCost_other.toFixed(1) + "円";
+    totalCost_other.toFixed(1);
   document.getElementById("total-cost_total").innerHTML =
     "<strong>" + totalCost_total.toFixed(1) + "円</strong>";
   // ソートアイコン初期化
@@ -306,3 +307,7 @@ function createCollapsibleCell(text) {
   td.appendChild(wrapper);
   return td;
 }
+function formatValue(val) {
+    return Number.isInteger(val) ? val.toString() : val.toFixed(1);
+  }
+  

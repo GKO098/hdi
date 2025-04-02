@@ -75,6 +75,10 @@
     th.sorted-desc::after {
       content: " 🔽";
     }
+    td.right {
+  text-align: right;
+}
+
   </style>
 
 </head>
@@ -115,10 +119,10 @@
         <col style="width: 6ch;"> <!-- cost_other -->
         <col style="width: 8ch;"> <!-- cost_total -->
         <!-- その他 -->
-        <col style="width: 60ch;"> <!-- material -->
+        <col style="width: 50ch;"> <!-- material -->
         <col style="width: 60ch;"> <!-- reference -->
         <col style="width: 20ch;"> <!-- advertiser -->
-        <col style="width: 60ch;"> <!-- topics -->
+        <col style="width: 40ch;"> <!-- topics -->
       </colgroup>
       <thead>
         <tr>
@@ -156,28 +160,28 @@
           <th>広告者</th>
           <th>話題</th>
         </tr>
+        <tr>
+          <td><strong>合計</strong></td>
+          <td colspan="13"></td>
+          <td id="total-distance" style="text-align: right;"></td>
+          <td id="total-cost_meal" style="text-align: right;"></td>
+          <td id="total-cost_toll_road" style="text-align: right;"></td>
+          <td id="total-cost_fuel" style="text-align: right;"></td>
+          <td id="total-cost_rental_car" style="text-align: right;"></td>
+          <td id="total-cost_entrance_fee" style="text-align: right;"></td>
+          <td id="total-cost_parking" style="text-align: right;"></td>
+          <td id="total-cost_hotel" style="text-align: right;"></td>
+          <td id="total-cost_plane" style="text-align: right;"></td>
+          <td id="total-cost_train" style="text-align: right;"></td>
+          <td id="total-cost_bus" style="text-align: right;"></td>
+          <td id="total-cost_ship" style="text-align: right;"></td>
+          <td id="total-cost_equipment" style="text-align: right;"></td>
+          <td id="total-cost_other" style="text-align: right;"></td>
+          <td id="total-cost_total" style="text-align: right;"></td>
+          <td colspan="4"><strong></strong></td>
+        </tr>
       </thead>
       <tbody></tbody>
-      <tfoot>
-        <tr>
-          <td colspan="14"><strong>合計</strong></td>
-          <td id="total-distance"></td>
-          <td id="total-cost_meal"></td>
-          <td id="total-cost_toll_road"></td>
-          <td id="total-cost_fuel"></td>
-          <td id="total-cost_rental_car"></td>
-          <td id="total-cost_entrance_fee"></td>
-          <td id="total-cost_parking"></td>
-          <td id="total-cost_hotel"></td>
-          <td id="total-cost_plane"></td>
-          <td id="total-cost_train"></td>
-          <td id="total-cost_bus"></td>
-          <td id="total-cost_ship"></td>
-          <td id="total-cost_equipment"></td>
-          <td id="total-cost_other"></td>
-          <td id="total-cost_total"></td>
-        </tr>
-      </tfoot>
     </table>
   </div>
   <script src="js/summary_table.js" defer></script>
