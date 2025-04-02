@@ -36,69 +36,95 @@ function renderTable(data) {
   let totalCost = 0;
   let totalDistance = 0;
 
+  const collapsibleKeys = [
+    "material",
+    "reference",
+    "advertiser",
+    "topics",
+    "places",
+  ];
+  const keys = [
+    "date",
+    "car_model",
+    "weather",
+    "upload_date",
+    "video_title",
+    "niconico",
+    "youtube",
+    "series",
+    "summary",
+    "itinerary",
+    "event",
+    "participants",
+    "places",
+    "distance",
+    "cost_meal",
+    "cost_toll_road",
+    "cost_fuel",
+    "cost_rental_car",
+    "cost_entrance_fee",
+    "cost_parking",
+    "cost_hotel",
+    "cost_plane",
+    "cost_train",
+    "cost_bus",
+    "cost_ship",
+    "cost_equipment",
+    "cost_other",
+    "cost_total",
+    "material",
+    "reference",
+    "advertiser",
+    "topics",
+  ];
+
   data.forEach((trip) => {
     const tr = document.createElement("tr");
 
-    const noteWrapper = document.createElement("div");
-    noteWrapper.className = "note-wrapper";
+    keys.forEach((key) => {
+      let cell;
 
-    const noteContent = document.createElement("div");
-    noteContent.className = "note-content";
-    noteContent.innerHTML = (trip.note || "").replace(/\r?\n/g, "<br>");
+      if (collapsibleKeys.includes(key)) {
+        cell = createCollapsibleCell(trip[key]);
+      } else if (key === "niconico" || key === "youtube") {
+        const td = document.createElement("td");
+        td.innerHTML = getEmbedHTML(trip[key]);
+        cell = td;
+      } else if (
+        key.startsWith("cost_") ||
+        key === "cost_total" ||
+        key === "distance"
+      ) {
+        const td = document.createElement("td");
+        const value = parseFloat(trip[key]) || 0;
 
-    const noteTd = document.createElement("td");
-    noteTd.appendChild(noteContent);
-    tr.appendChild(noteTd); // ← テーブル行に追加
+        if (key === "cost_total") {
+          td.innerHTML = `<strong>${value.toLocaleString()}</strong>`;
+          totalCost += value;
+        } else if (key === "distance") {
+          td.textContent = value.toFixed(1);
+          totalDistance += value;
+        } else {
+          td.textContent = value.toFixed(0);
+        }
 
-    noteTd.innerHTML = "";
-    noteTd.appendChild(noteWrapper);
+        cell = td;
+      } else {
+        const td = document.createElement("td");
+        td.textContent = trip[key] || "";
+        cell = td;
+      }
 
-    tr.innerHTML = `
-      <td>${trip.date}</td>
-      <td>${trip.car_model}</td>
-      <td>${trip.weather}</td>
-      <td>${trip.upload_date}</td>
-      <td>${trip.video_title}</td>
-      <td>${getEmbedHTML(trip.niconico)}</td>
-      <td>${getEmbedHTML(trip.youtube)}</td>
-      <td>${trip.series}</td>
-      <td>${trip.summary}</td>
-      <td>${trip.itinerary}</td>
-      <td>${trip.event}</td>
-      <td>${trip.participants}</td>
-      <td>${trip.places}</td>
-      <td>${(parseFloat(trip.distance) || 0).toFixed(1)}</td>
-      <td>${(parseFloat(trip.cost_meal) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_toll_road) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_fuel) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_rental_car) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_entrance_fee) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_parking) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_hotel) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_plane) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_train) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_bus) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_ship) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_equipment) || 0).toFixed(0)}</td>
-      <td>${(parseFloat(trip.cost_other) || 0).toFixed(0)}</td>
-      <td><strong>${(
-        parseFloat(trip.cost_total) || 0
-      ).toLocaleString()}</strong></td>
-      <td>${trip.material}</td>
-      <td>${trip.reference}</td>
-      <td>${trip.advertiser}</td>
-      <td>${trip.topics}</td>`;
+      tr.appendChild(cell);
+    });
 
     tbody.appendChild(tr);
-
-    totalCost += parseFloat(trip.cost) || 0;
-    totalDistance += parseFloat(trip.distance) || 0;
   });
 
   document.getElementById("total-cost").textContent =
     totalCost.toFixed(1) + " 円";
   document.getElementById("total-distance").textContent =
-    totalDistance.toFixed(1) + " kZm";
+    totalDistance.toFixed(1) + " km";
 }
 
 // 🎥 埋め込み生成
@@ -163,4 +189,45 @@ function updateSortIcons(activeKey, asc) {
       th.classList.add(asc ? "sorted-asc" : "sorted-desc");
     }
   });
+}
+function escapeHtml(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function createCollapsibleCell(text) {
+  const td = document.createElement("td");
+  const wrapper = document.createElement("div");
+  wrapper.className = "note-wrapper";
+
+  const content = document.createElement("div");
+  content.className = "note-content";
+
+  // ✅ 改行を分割しつつ、空行は除去
+  const raw = (text || "").trim(); // ← 末尾・先頭の空行を削除
+  const lines = raw.split(/\r?\n/).filter((line) => line.trim() !== ""); // ← 空行は除外
+
+  const isOverflowing = lines.length > 5;
+
+  // 表示する行だけHTMLに変換
+  const visibleLines = isOverflowing ? lines.slice(0, 5) : lines;
+  content.innerHTML = visibleLines.map((line) => escapeHtml(line)).join("<br>");
+  wrapper.appendChild(content);
+
+  if (isOverflowing) {
+    const toggleBtn = document.createElement("button");
+    toggleBtn.className = "toggle-note-btn";
+    toggleBtn.textContent = "▼ もっと見る";
+
+    toggleBtn.addEventListener("click", () => {
+      const expanded = content.classList.toggle("expanded");
+      toggleBtn.textContent = expanded ? "▲ 閉じる" : "▼ もっと見る";
+      content.innerHTML = (expanded ? lines : lines.slice(0, 5))
+        .map((line) => escapeHtml(line))
+        .join("<br>");
+    });
+
+    wrapper.appendChild(toggleBtn);
+  }
+
+  td.appendChild(wrapper);
+  return td;
 }

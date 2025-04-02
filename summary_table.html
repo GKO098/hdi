@@ -13,7 +13,6 @@
       /* or fixed（内容に合わせて選べる） */
     }
 
-    th,
     td {
       border: 1px solid #ccc;
       padding: 0.5em;
@@ -58,45 +57,41 @@
     }
 
     .note-wrapper {
-      max-height: 7em;
-      /* 約5行分 */
-      overflow: hidden;
-      position: relative;
-      transition: max-height 0.3s ease;
-      white-space: normal;
-      word-break: break-word;
-      width: 20ch;
-      /* 横幅は20文字相当 */
-    }
+  max-height: 10em;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.3s ease;
+}
+.note-wrapper.expanded {
+  max-height: none;
+}
+.note-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2em;
+  background: linear-gradient(to bottom, transparent, white);
+  pointer-events: none;
+}
 
-    .note-wrapper.expanded {
-      max-height: none;
-    }
-
-    .note-fade {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2em;
-      background: linear-gradient(to bottom, transparent, white);
-      pointer-events: none;
-    }
-
-    .toggle-note-btn {
-      display: block;
-      margin-top: 0.3em;
-      color: #007bff;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-size: 0.9em;
-      padding: 0;
-    }
-
-    .note-content {
-      overflow: hidden;
-    }
+.note-content {
+  max-height: 8em; /* 約5行 */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.note-content.expanded {
+  max-height: none;
+}
+.toggle-note-btn {
+  display: block;
+  margin-top: 0.3em;
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 0.9em;
+}
 
     .note-content:hover {
       overflow: auto;
