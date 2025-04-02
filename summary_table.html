@@ -7,7 +7,7 @@
   <style>
     table {
       border-collapse: collapse;
-      width: 500%;
+      width: 300%;
       /* ✅ 幅をウィンドウ幅に追従させる */
       table-layout: auto;
       /* or fixed（内容に合わせて選べる） */
@@ -18,30 +18,6 @@
       padding: 0.5em;
       text-align: left;
       word-break: break-word;
-    }
-
-    th.sortable {
-      cursor: pointer;
-      position: relative;
-      user-select: none;
-    }
-
-    th.sortable::after {
-      content: ' ⇅';
-      font-size: 0.8em;
-      color: #aaa;
-      position: absolute;
-      right: 8px;
-    }
-
-    th.sortable.sorted-asc::after {
-      content: ' 🔼';
-      color: #000;
-    }
-
-    th.sortable.sorted-desc::after {
-      content: ' 🔽';
-      color: #000;
     }
 
     iframe {
@@ -57,10 +33,9 @@
     }
 
     .note-wrapper {
-  max-height: 10em;
+  max-height: 20em;
   overflow: hidden;
   position: relative;
-  transition: max-height 0.3s ease;
 }
 .note-wrapper.expanded {
   max-height: none;
@@ -76,21 +51,10 @@
 }
 
 .note-content {
-  max-height: 8em; /* 約5行 */
+  max-height: 8em; /* 約5行分 */
   overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-.note-content.expanded {
-  max-height: none;
-}
-.toggle-note-btn {
-  display: block;
-  margin-top: 0.3em;
-  background: none;
-  border: none;
-  color: #007bff;
-  cursor: pointer;
-  font-size: 0.9em;
+  white-space: normal;
+  word-break: break-word;
 }
 
     .note-content:hover {
@@ -105,20 +69,20 @@
   <div style="overflow-x: auto;">
     <table id="trip-table">
       <colgroup>
-        <col style="width: 7ch;"> <!-- 日付 -->
-        <col style="width: 10ch;"> <!-- 車種 -->
-        <col style="width: 6ch;"> <!-- 天気 -->
-        <col style="width: 10ch;"> <!-- アップロード日 -->
+        <col style="width: 6ch;"> <!-- 日付 -->
+        <col style="width: 5ch;"> <!-- 車種 -->
+        <col style="width: 2ch;"> <!-- 天気 -->
+        <col style="width: 6ch;"> <!-- アップロード日 -->
         <col style="width: 20ch;"> <!-- 動画タイトル -->
         <col style="width: 20ch;"> <!-- ニコニコ -->
         <col style="width: 20ch;"> <!-- YouTube -->
         <col style="width: 8ch;"> <!-- シリーズ -->
-        <col style="width: 20ch;"> <!-- 概要 -->
-        <col style="width: 16ch;"> <!-- 行程 -->
+        <col style="width: 10ch;"> <!-- 概要 -->
+        <col style="width: 6ch;"> <!-- 行程 -->
         <col style="width: 12ch;"> <!-- イベント -->
-        <col style="width: 10ch;"> <!-- 同行者 -->
+        <col style="width: 8ch;"> <!-- 同行者 -->
         <col style="width: 16ch;"> <!-- 訪問地 -->
-        <col style="width: 8ch;"> <!-- 距離 -->
+        <col style="width: 6ch;"> <!-- 距離 -->
         <!-- 以下、費用カラム -->
         <col style="width: 6ch;"> <!-- cost_meal -->
         <col style="width: 6ch;"> <!-- cost_toll_road -->
@@ -135,11 +99,10 @@
         <col style="width: 6ch;"> <!-- cost_other -->
         <col style="width: 8ch;"> <!-- cost_total -->
         <!-- その他 -->
-        <col style="width: 10ch;"> <!-- material -->
-        <col style="width: 10ch;"> <!-- reference -->
-        <col style="width: 10ch;"> <!-- advertiser -->
+        <col style="width: 16ch;"> <!-- material -->
+        <col style="width: 16ch;"> <!-- reference -->
+        <col style="width: 16ch;"> <!-- advertiser -->
         <col style="width: 20ch;"> <!-- topics -->
-        <col style="width: 20ch;"> <!-- 備考 -->
       </colgroup>
       <thead>
         <tr>
@@ -180,10 +143,22 @@
       <tbody></tbody>
       <tfoot>
         <tr>
-          <td colspan="2"><strong>合計</strong></td>
-          <td id="total-cost"></td>
+          <td colspan="13"><strong>合計</strong></td>
           <td id="total-distance"></td>
-          <td colspan="2"></td>
+          <td id="total-cost_meal"></td>
+          <td id="total-cost_toll_road"></td>
+          <td id="total-cost_fuel"></td>
+          <td id="total-cost_rental_car"></td>
+          <td id="total-cost_entrance_fee"></td>
+          <td id="total-cost_parking"></td>
+          <td id="total-cost_hotel"></td>
+          <td id="total-cost_plane"></td>
+          <td id="total-cost_train"></td>
+          <td id="total-cost_bus"></td>
+          <td id="total-cost_ship"></td>
+          <td id="total-cost_equipment"></td>
+          <td id="total-cost_other"></td>
+          <td id="total-cost_total"></td>
         </tr>
       </tfoot>
     </table>
