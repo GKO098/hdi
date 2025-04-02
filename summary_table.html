@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>旅の記録</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 500%;
+      /* ✅ 幅をウィンドウ幅に追従させる */
+      table-layout: auto;
+      /* or fixed（内容に合わせて選べる） */
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 0.5em;
+      text-align: left;
+      word-break: break-word;
+    }
+
+    th.sortable {
+      cursor: pointer;
+      position: relative;
+      user-select: none;
+    }
+
+    th.sortable::after {
+      content: ' ⇅';
+      font-size: 0.8em;
+      color: #aaa;
+      position: absolute;
+      right: 8px;
+    }
+
+    th.sortable.sorted-asc::after {
+      content: ' 🔼';
+      color: #000;
+    }
+
+    th.sortable.sorted-desc::after {
+      content: ' 🔽';
+      color: #000;
+    }
+
+    iframe {
+      width: 100%;
+      /* ✅ 動画も列幅にフィットさせる */
+      height: 200px;
+      border: none;
+    }
+
+    /* ✅ スマホ対策で横スクロール対応（オプション） */
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    .note-wrapper {
+      max-height: 7em;
+      /* 約5行分 */
+      overflow: hidden;
+      position: relative;
+      transition: max-height 0.3s ease;
+      white-space: normal;
+      word-break: break-word;
+      width: 20ch;
+      /* 横幅は20文字相当 */
+    }
+
+    .note-wrapper.expanded {
+      max-height: none;
+    }
+
+    .note-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2em;
+      background: linear-gradient(to bottom, transparent, white);
+      pointer-events: none;
+    }
+
+    .toggle-note-btn {
+      display: block;
+      margin-top: 0.3em;
+      color: #007bff;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 0.9em;
+      padding: 0;
+    }
+
+    .note-content {
+      overflow: hidden;
+    }
+
+    .note-content:hover {
+      overflow: auto;
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>旅の記録一覧</h1>
+  <div style="overflow-x: auto;">
+    <table id="trip-table">
+      <colgroup>
+        <col style="width: 7ch;"> <!-- 日付 -->
+        <col style="width: 10ch;"> <!-- 車種 -->
+        <col style="width: 6ch;"> <!-- 天気 -->
+        <col style="width: 10ch;"> <!-- アップロード日 -->
+        <col style="width: 20ch;"> <!-- 動画タイトル -->
+        <col style="width: 20ch;"> <!-- ニコニコ -->
+        <col style="width: 20ch;"> <!-- YouTube -->
+        <col style="width: 8ch;"> <!-- シリーズ -->
+        <col style="width: 20ch;"> <!-- 概要 -->
+        <col style="width: 16ch;"> <!-- 行程 -->
+        <col style="width: 12ch;"> <!-- イベント -->
+        <col style="width: 10ch;"> <!-- 同行者 -->
+        <col style="width: 16ch;"> <!-- 訪問地 -->
+        <col style="width: 8ch;"> <!-- 距離 -->
+        <!-- 以下、費用カラム -->
+        <col style="width: 6ch;"> <!-- cost_meal -->
+        <col style="width: 6ch;"> <!-- cost_toll_road -->
+        <col style="width: 6ch;"> <!-- cost_fuel -->
+        <col style="width: 6ch;"> <!-- cost_rental_car -->
+        <col style="width: 6ch;"> <!-- cost_entrance_fee -->
+        <col style="width: 6ch;"> <!-- cost_parking -->
+        <col style="width: 6ch;"> <!-- cost_hotel -->
+        <col style="width: 6ch;"> <!-- cost_plane -->
+        <col style="width: 6ch;"> <!-- cost_train -->
+        <col style="width: 6ch;"> <!-- cost_bus -->
+        <col style="width: 6ch;"> <!-- cost_ship -->
+        <col style="width: 6ch;"> <!-- cost_equipment -->
+        <col style="width: 6ch;"> <!-- cost_other -->
+        <col style="width: 8ch;"> <!-- cost_total -->
+        <!-- その他 -->
+        <col style="width: 10ch;"> <!-- material -->
+        <col style="width: 10ch;"> <!-- reference -->
+        <col style="width: 10ch;"> <!-- advertiser -->
+        <col style="width: 20ch;"> <!-- topics -->
+        <col style="width: 20ch;"> <!-- 備考 -->
+      </colgroup>
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>車種</th>
+          <th>天気</th>
+          <th>アップロード日</th>
+          <th>動画タイトル</th>
+          <th>ニコニコ</th>
+          <th>YouTube</th>
+          <th>シリーズ</th>
+          <th>概要欄</th>
+          <th>旅のしおり</th>
+          <th>イベント</th>
+          <th>参加者</th>
+          <th>訪問地</th>
+          <th>距離[km]</th>
+          <th>食費[円]</th>
+          <th>有料道路[円]</th>
+          <th>燃料[円]</th>
+          <th>レンタカー[円]</th>
+          <th>入場料[円]</th>
+          <th>駐車場[円]</th>
+          <th>宿泊費[円]</th>
+          <th>飛行機[円]</th>
+          <th>電車[円]</th>
+          <th>バス[円]</th>
+          <th>船[円]</th>
+          <th>機材[円]</th>
+          <th>その他[円]</th>
+          <th>合計費用[円]</th>
+          <th>素材</th>
+          <th>参考文献</th>
+          <th>広告者</th>
+          <th>話題</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2"><strong>合計</strong></td>
+          <td id="total-cost"></td>
+          <td id="total-distance"></td>
+          <td colspan="2"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <script src="js/summary_table.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</body>
+
+</html>
