@@ -113,10 +113,7 @@ function renderTable(data) {
           td.textContent = "";
         }
         cell = td;
-      } else if (
-        key.startsWith("cost_") ||
-        key === "distance"
-      ) {
+      } else if (key.startsWith("cost_") || key === "distance") {
         const td = document.createElement("td");
         const value = parseFloat(trip[key]) || 0;
         if (key === "cost_total") {
@@ -186,7 +183,7 @@ function renderTable(data) {
     totalDistance.toFixed(1) + " km";
   document.getElementById("total-cost_meal").textContent =
     totalCost_meal.toFixed(1) + "円";
-    console.log(totalCost_meal.toFixed(1) + "円");
+  console.log(totalCost_meal.toFixed(1) + "円");
   document.getElementById("total-cost_toll_road").textContent =
     totalCost_toll_road.toFixed(1) + "円";
   document.getElementById("total-cost_fuel").textContent =
@@ -212,14 +209,14 @@ function renderTable(data) {
   document.getElementById("total-cost_other").textContent =
     totalCost_other.toFixed(1) + "円";
   document.getElementById("total-cost_total").innerHTML =
-  "<strong>" + totalCost_total.toFixed(1) + "円</strong>";
-    // ソートアイコン初期化
+    "<strong>" + totalCost_total.toFixed(1) + "円</strong>";
+  // ソートアイコン初期化
   updateSortIcons(null, true);
 }
 
 // 🎥 埋め込み生成
 function getEmbedHTML(url) {
-  if (!url || typeof url !== "string") return "";
+  if (!url || typeof url !== "string") return "なし";
 
   if (url.includes("youtube.com")) {
     const videoId = url.includes("v=")
