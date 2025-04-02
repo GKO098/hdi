@@ -53,7 +53,7 @@
     }
 
     .note-content {
-      max-height: 15em;
+      max-height: 12em;
       /* 約5行分 */
       overflow: hidden;
       white-space: normal;
@@ -62,6 +62,18 @@
 
     .note-content:hover {
       overflow: auto;
+    }
+
+    th.sortable::after {
+      content: " ⇅";
+    }
+
+    th.sorted-asc::after {
+      content: " 🔼";
+    }
+
+    th.sorted-desc::after {
+      content: " 🔽";
     }
   </style>
 
@@ -72,13 +84,14 @@
   <div style="overflow-x: auto;">
     <table id="trip-table">
       <colgroup>
+        <col style="width: 4ch;"> <!-- id -->
         <col style="width: 6ch;"> <!-- 日付 -->
         <col style="width: 5ch;"> <!-- 車種 -->
         <col style="width: 2ch;"> <!-- 天気 -->
         <col style="width: 6ch;"> <!-- アップロード日 -->
         <col style="width: 20ch;"> <!-- 動画タイトル -->
         <col style="width: 20ch;"> <!-- ニコニコ -->
-        <col style="width: 20ch;"> <!-- YouTube -->
+        <col style="width: 6ch;"> <!-- YouTube -->
         <col style="width: 8ch;"> <!-- シリーズ -->
         <col style="width: 10ch;"> <!-- 概要 -->
         <col style="width: 6ch;"> <!-- 行程 -->
@@ -109,6 +122,7 @@
       </colgroup>
       <thead>
         <tr>
+          <th class="sortable" data-key="id">id</th>
           <th>日付</th>
           <th>車種</th>
           <th>天気</th>
@@ -122,21 +136,21 @@
           <th>イベント</th>
           <th>参加者</th>
           <th>訪問地</th>
-          <th>距離[km]</th>
-          <th>食費[円]</th>
-          <th>有料道路[円]</th>
-          <th>燃料[円]</th>
-          <th>レンタカー[円]</th>
-          <th>入場料[円]</th>
-          <th>駐車場[円]</th>
-          <th>宿泊費[円]</th>
-          <th>飛行機[円]</th>
-          <th>電車[円]</th>
-          <th>バス[円]</th>
-          <th>船[円]</th>
-          <th>機材[円]</th>
-          <th>その他[円]</th>
-          <th>合計費用[円]</th>
+          <th class="sortable" data-key="distance">距離[km]</th>
+          <th class="sortable" data-key="cost_meal">食費[円]</th>
+          <th class="sortable" data-key="cost_toll_road">有料道路[円]</th>
+          <th class="sortable" data-key="cost_fuel">燃料[円]</th>
+          <th class="sortable" data-key="cost_rental_car">レンタカー[円]</th>
+          <th class="sortable" data-key="cost_entrance_fee">入場料[円]</th>
+          <th class="sortable" data-key="cost_parking">駐車場[円]</th>
+          <th class="sortable" data-key="cost_hotel">宿泊費[円]</th>
+          <th class="sortable" data-key="cost_plane">飛行機[円]</th>
+          <th class="sortable" data-key="cost_train">電車[円]</th>
+          <th class="sortable" data-key="cost_bus">バス[円]</th>
+          <th class="sortable" data-key="cost_ship">船[円]</th>
+          <th class="sortable" data-key="cost_equipment">機材[円]</th>
+          <th class="sortable" data-key="cost_other">その他[円]</th>
+          <th class="sortable" data-key="cost_total">合計費用[円]</th>
           <th>素材</th>
           <th>参考文献</th>
           <th>広告者</th>
@@ -146,7 +160,7 @@
       <tbody></tbody>
       <tfoot>
         <tr>
-          <td colspan="13"><strong>合計</strong></td>
+          <td colspan="14"><strong>合計</strong></td>
           <td id="total-distance"></td>
           <td id="total-cost_meal"></td>
           <td id="total-cost_toll_road"></td>

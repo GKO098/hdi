@@ -1,15 +1,15 @@
-date,car_model,weather,upload_date,video_title,niconico,youtube,series,summary,itinerary,event,participants,places,distance,cost_meal,cost_toll_road,cost_fuel,cost_rental_car,cost_entrance_fee,cost_parking,cost_hotel,cost_plane,cost_train,cost_bus,cost_ship,cost_equipment,cost_other,cost_total,material,reference,advertiser,topics
-2020-11-22,スズキ　ワゴンR,,,,,,,,,,"春日部つむぎ
+id,date,car_model,weather,upload_date,video_title,niconico,youtube,series,summary,itinerary,event,participants,places,distance,cost_meal,cost_toll_road,cost_fuel,cost_rental_car,cost_entrance_fee,cost_parking,cost_hotel,cost_plane,cost_train,cost_bus,cost_ship,cost_equipment,cost_other,cost_total,material,reference,advertiser,topics
+1,2020-11-22,スズキ　ワゴンR,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","海ほたる
 ブロンコビリー
 桜ヶ岡公園",241,3342,4520,2442,8030,,,,,,,,,,18334,,,,
-2020-11-28,ミニ　クロスオーバ,,,,,,,,,,"春日部つむぎ
+2,2020-11-28,ミニ　クロスオーバ,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","さわやか
 百笑の湯
 伊豆市役所",314,5994,10160,5024,9790,1034,,,,,,,,330,32332,,,,
-2021-01-09,トヨタ　ヴィッツ,,,,,,,,,,"春日部つむぎ
+3,2021-01-09,トヨタ　ヴィッツ,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","膝折
 ムーミンバレーパーク
@@ -17,12 +17,12 @@ date,car_model,weather,upload_date,video_title,niconico,youtube,series,summary,i
 三峯神社
 グラッチェガーデンズ
 ",315,4186,4490,5040,5280,,500,,,,,,,330,19826,,,,
-2021-01-16,日産　ノート,,,,,,,,,,"春日部つむぎ
+4,2021-01-16,日産　ノート,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","Pasar守谷SA
 牛久大仏
 すたみな太郎",203,3651,5180,3248,5280,800,,,,,,,,330,18489,,,,
-2021-01-24,トヨタ　プリウス,,,,,,,,,,"春日部つむぎ
+5,2021-01-24,トヨタ　プリウス,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ
 笹谷
@@ -30,7 +30,7 @@ date,car_model,weather,upload_date,video_title,niconico,youtube,series,summary,i
 ドライブイン七輿
 こんにゃくパーク
 コロムビア",306,7010,6320,4896,7590,,,,,,,,,330,26146,,,,
-2021-01-30,MAZDA　デミオ,,,,,,,,,,"春日部つむぎ
+6,2021-01-30,MAZDA　デミオ,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","鎌倉長谷寺
 江ノ島
@@ -39,7 +39,7 @@ date,car_model,weather,upload_date,video_title,niconico,youtube,series,summary,i
 三浦半島
 横須賀
 横浜中華街",253,2320,4930,4048,5280,500,800,,,,,,,330,18208,,,,
-2021-02-06,スズキ　ソリオ,,,,,,,,,,"春日部つむぎ
+7,2021-02-06,スズキ　ソリオ,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","フライングガーデン
 日光東照宮
@@ -47,31 +47,31 @@ date,car_model,weather,upload_date,video_title,niconico,youtube,series,summary,i
 わたらせ渓谷
 丸美屋自販機コーナー
 出流原SA",428,1980,6100,6848,5280,,,,,,,,,330,20538,,,,
-2021-02-13,スズキ　スイフト,,,,,,,,,,"春日部つむぎ
+8,2021-02-13,スズキ　スイフト,,,,,,,,,,"春日部つむぎ
 ずんだもん","うまいもの館
 日原鍾乳洞
 鳩ノ巣釜めし
 道の駅八王子滝山
 ミッキー（八王子ナポリタン）
 辰巳PA",228,4595,3320,3648,5280,800,,,,,,,,330,17973,,,,
-2021-02-20,MAZDA　MAZDA2,,,,,,,,,,"春日部つむぎ
+9,2021-02-20,MAZDA　MAZDA2,,,,,,,,,,"春日部つむぎ
 ずんだもん","守谷SA
 谷田部東PA
 大洗海鮮市場（あんこう鍋）
 ひたちなか海浜公園
 宇都宮
 羽生PA",362,6528,8150,5792,5280,,,,,,,,,330,26080,,,,
-2021-03-20,ホンダ　フィット,,,,,,,,,,"春日部つむぎ
+10,2021-03-20,ホンダ　フィット,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","EXPASA談合坂
 ほうとう小作
 ほったらかし温泉
 どうし道",295,2100,5050,4720,5610,800,,,,,,,,330,18610,,,,
-2021-05-15,MAZDA　デミオ,,,,,,,,,,"春日部つむぎ
+11,2021-05-15,MAZDA　デミオ,,,,,,,,,,"春日部つむぎ
 ずんだもん","伊豆スカイライン
 石廊崎
 さわやか",436,5020,6350,6976,5500,,,,,,,,,330,24176,,,,
-2021-05-30,日産　ノート,,,,,,,,,,"春日部つむぎ
+12,2021-05-30,日産　ノート,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","海ほたる
 鋸山
@@ -82,7 +82,7 @@ date,car_model,weather,upload_date,video_title,niconico,youtube,series,summary,i
 海ほたる
 家系ラーメン
 高輪ゲートウェイ駅",300,3726,2490,4800,5500,1200,,,,,,,,330,18046,,,,
-2021-06-12,ホンダ　フィット,,,,,,,,,,"春日部つむぎ
+13,2021-06-12,ホンダ　フィット,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","ゴールドラッシュ
 恵比寿横丁
@@ -90,7 +90,7 @@ FamilyMart金沢八景駅
 セブンイレブン横浜ハンマーヘッド店
 ハンマーヘッド付近
 川崎マリエン",178,13119,2640,2848,5500,,,,,,,,,330,24437,,,,
-2021-06-27,トヨタ　ヤリス,,,,,,,,,,"春日部つむぎ
+14,2021-06-27,トヨタ　ヤリス,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","はな田
 ワイン王国
@@ -100,39 +100,39 @@ FamilyMart金沢八景駅
 トラットリア・パキーノ
 ほったらかし温泉
 山梨県笛吹川フルーツ公園",351,24160,6310,5616,6600,800,,,,,,,,1730,45216,,,,
-2021-07-03,トヨタ　カローラフィールダー,,,,,,,,,,"春日部つむぎ
+15,2021-07-03,トヨタ　カローラフィールダー,,,,,,,,,,"春日部つむぎ
 ずんだもん","談合坂SA
 霧ヶ峰
 白樺リゾート 池の平ファミリーランド
 山木綿
 スターバックス
 諏訪大社",469,9640,8810,7504,5500,,,,,,,,,330,31784,,,,
-2021-07-10,MAZDA　デミオ,,,,,,,,,,"春日部つむぎ
+16,2021-07-10,MAZDA　デミオ,,,,,,,,,,"春日部つむぎ
 ずんだもん
 冥鳴ひまり","コスタラティーナ
 古代蓮の里
 八幡山古墳
 鳥常
 山田うどんの駐車場",324,4210,8200,5184,5500,,,,,,,,,330,23424,,,,
-2021-07-18,ホンダ　フリード,,,,,,,,,,"春日部つむぎ
+17,2021-07-18,ホンダ　フリード,,,,,,,,,,"春日部つむぎ
 ずんだもん","山田太郎
 所沢航空記念公園
 令和神社",116,1000,1690,0,4290,,,,,,,,,330,7310,,,,
-2021-07-31,トヨタ　CH-R,,,,,,,,,,"春日部つむぎ
+18,2021-07-31,トヨタ　CH-R,,,,,,,,,,"春日部つむぎ
 ずんだもん","酒の駅
 ぬれ煎餅駅
 犬吠埼
 犬吠駅
 香取神宮
 国立競技場",309,4946,7700,4944,5500,,,,,,,,,330,23420,,,,
-2021-08-06,日産　ノート,,,,,,,,,,"春日部つむぎ
+19,2021-08-06,日産　ノート,,,,,,,,,,"春日部つむぎ
 ずんだもん","鎌倉
 鶴岡八幡宮
 鎌倉御代川
 朝比奈切通
 町田駅
 選手村",201,8250,3770,3216,5500,,,,,,,,,330,21066,,,,
-2021-08-22,MAZDA　MAZDA2,,,,,,,,,,"春日部つむぎ
+20,2021-08-22,MAZDA　MAZDA2,,,,,,,,,,"春日部つむぎ
 ずんだもん","佐野SA
 磐梯吾妻スカイライン
 猪苗代駅
@@ -142,7 +142,7 @@ FamilyMart金沢八景駅
 大内宿
 塔のへつり
 メヒコ",821,8005,15800,13136,6600,,,,,,,,,330,43871,,,,
-2021-09-12,ホンダ　フリード,,,,,,,,,,"春日部つむぎ
+21,2021-09-12,ホンダ　フリード,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","巾着田曼珠沙華
 高麗神社
@@ -151,18 +151,18 @@ FamilyMart金沢八景駅
 がってん寿司
 喜楽里別邸
 三芳PA",167,8110,2300,2672,5500,1890,,,,,,,,330,20802,,,,
-2021-09-25,トヨタ　ライズ,,,,,,,,,,"春日部つむぎ
+22,2021-09-25,トヨタ　ライズ,,,,,,,,,,"春日部つむぎ
 ずんだもん","ほうとう歩成
 ぷくぷく温泉
 奥多摩の道",315,4320,5080,5040,5500,1270,,,,,,,,330,21540,,,,
-2021-10-10,スズキ　ソリオ,,,,,,,,,,"春日部つむぎ
+23,2021-10-10,スズキ　ソリオ,,,,,,,,,,"春日部つむぎ
 ずんだもん","美野里SA
 栗の家
 小澤栗園
 水戸駅
 水戸芸術館のタワー
 ゆにろーず（にんたまラーメン）",324,4785,5960,5184,5500,,,,,,,,,330,21759,,,,
-2021-10-16,トヨタ　プリウス,,,,,,,,,,"春日部つむぎ
+24,2021-10-16,トヨタ　プリウス,,,,,,,,,,"春日部つむぎ
 ずんだもん","三芳PA
 道の駅おのこ
 きのこ茶屋
@@ -170,7 +170,7 @@ FamilyMart金沢八景駅
 ふくみそば
 検問
 国道17号",295,1715,5810,4720,5500,,,,,,,,,330,18075,,,,
-2021-10-23,日産　ノート,,,,,,,,,,"春日部つむぎ
+25,2021-10-23,日産　ノート,,,,,,,,,,"春日部つむぎ
 ずんだもん","みんなのグリル
 道の駅ごか
 三県境
@@ -178,21 +178,21 @@ FamilyMart金沢八景駅
 おがわ温泉
 高坂SA
 清川寺温泉",219,4353,970,3504,5500,1020,,,,,,,,330,15677,,,,
-2021-11-13,スズキ　ソリオ,,,,,,,,,,"春日部つむぎ
+26,2021-11-13,スズキ　ソリオ,,,,,,,,,,"春日部つむぎ
 ずんだもん","釜めしなかい
 奥多摩周遊道路入口
 とんでん
 イオン",224,5267,3980,3584,5500,,,,,,,,,330,18661,,,,
-2021-12-04,スズキ　スイフト,,,,,,,,,,"春日部つむぎ
+27,2021-12-04,スズキ　スイフト,,,,,,,,,,"春日部つむぎ
 ずんだもん","富士山四合目
 吉田うどん
 御殿場アウトレット
 ジョリーパスタ",322,3166,7080,5152,5500,,,,,,,,,90635,111533,,,,
-2022-01-15,ホンダ　CBR400R,,,,,,,,,,"春日部つむぎ
+28,2022-01-15,ホンダ　CBR400R,,,,,,,,,,"春日部つむぎ
 ずんだもん","柏の森オートバイ神社
 湯楽の里
 とんこつ屋台ラーメン貴生",63,1000,0,,0,,,,,,,,,0,1000,,,,
-2022-01-29,トヨタ　ヤリス,,,,,,,,,,"春日部つむぎ
+29,2022-01-29,トヨタ　ヤリス,,,,,,,,,,"春日部つむぎ
 ずんだもん","高坂SA
 小荒井製菓
 土合駅
@@ -201,7 +201,7 @@ FamilyMart金沢八景駅
 かみごはん
 大とろ牛乳
 赤城高原SA",378,11745,7400,6048,5500,,,,,,,,,335,31028,,,,
-2022-01-30,日産　ノート,,,,,,,,,,"春日部つむぎ
+30,2022-01-30,日産　ノート,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ
 笹谷","石川PA
@@ -209,7 +209,7 @@ FamilyMart金沢八景駅
 留浦浮橋
 奥多摩周遊道路
 藤野PA",185,2395,0,0,0,,,,,,,,,330,2725,,,,
-2022-02-05,トヨタ　86,,,,,,,,,,"春日部つむぎ
+31,2022-02-05,トヨタ　86,,,,,,,,,,"春日部つむぎ
 ずんだもん","ごま福堂
 近江屋長兵衛商店
 甘味茶房かすが（芋そうめん）
@@ -218,7 +218,7 @@ FamilyMart金沢八景駅
 食の駅　伊香保
 亀屋栄泉
 登利平（鶏めし）",346,5160,7970,6920,10900,,,,,,,,,0,30950,,,,
-2022-02-20,MAZDA　ロードスター,,,,,,,,,,"春日部つむぎ
+32,2022-02-20,MAZDA　ロードスター,,,,,,,,,,"春日部つむぎ
 ずんだもん","セルリアンタワー
 海老名SA
 足柄SA
@@ -226,7 +226,7 @@ FamilyMart金沢八景駅
 韮山反射炉
 さわやか
 海老名SA",307,3229,5200,6140,10900,,3600,,,,,,,3903,32972,,,,
-2022-04-17,トヨタ　ハリヤー,,,,,,,,,,"春日部つむぎ
+33,2022-04-17,トヨタ　ハリヤー,,,,,,,,,,"春日部つむぎ
 ずんだもん","岩下の新生姜
 大谷資料館
 ベルテラシェ大谷
@@ -234,7 +234,7 @@ FamilyMart金沢八景駅
 宇都宮みんみん
 さくらみくら便利店
 蓮田SA",314,4213,6440,6280,8410,800,100,,,,,,,5,26248,,,,
-2022-07-09,MAZDA　MAZDA2,,,,,,,,,,"春日部つむぎ
+34,2022-07-09,MAZDA　MAZDA2,,,,,,,,,,"春日部つむぎ
 ずんだもん","蓮田SA
 三毳不動尊
 道の駅みかも
@@ -245,14 +245,14 @@ FamilyMart金沢八景駅
 冠稲荷神社
 多々良沼
 川口ハイウェイオアシス",277,2868,5700,4432,5500,,,,,,,,,347,18847,,,,
-2022-11-06,スズキ　スイフト,,,,,,,,,,"春日部つむぎ
+35,2022-11-06,スズキ　スイフト,,,,,,,,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","夢庵
 石の卓球台
 川崎人道
 コディーズ
 ドンキホーテ",130,4709,1540,2080,5500,,1200,,,,,,,335,15364,,,,
-2022-12-24,日産 ノート,晴,2023-02-04,【VOICEVOX車載】ほなどっかいこか（おさしみ天国・理想郷・湘南平新展望台・ゴリラ公園）,https://www.nicovideo.jp/watch/sm41748590,https://www.youtube.com/watch?v=L1wrK-rK9EM&ab_channel=%E9%95%B7%E8%A2%96,ほなどっかいこか,"2022年12月24日、古いGoProをあげるから車載動画をやってみてと言われた春日部つむぎ（投稿主）。
+36,2022-12-24,日産 ノート,晴,2023-02-04,【VOICEVOX車載】ほなどっかいこか（おさしみ天国・理想郷・湘南平新展望台・ゴリラ公園）,https://www.nicovideo.jp/watch/sm41748590,https://www.youtube.com/watch?v=L1wrK-rK9EM&ab_channel=%E9%95%B7%E8%A2%96,ほなどっかいこか,"2022年12月24日、古いGoProをあげるから車載動画をやってみてと言われた春日部つむぎ（投稿主）。
 GoProを持ってきたずんだもんと無計画な旅を続け、埼玉にたどり着くのであった。",,,"春日部つむぎ
 ずんだもん","00:18 ライコランド出発
 02:30 おさしみ天国
@@ -323,7 +323,7 @@ GoProを持ってきたずんだもんと無計画な旅を続け、埼玉にた
 　ベッドは出かけりゃでかいほどいい話
 　東証が一部とかじゃなくプライムとかになった話
 　ぼっち・ざ・ろっくのアニメを見た方がいい"
-2023-01-29,トヨタ　アクア,晴,2023-02-13,【VOICEVOX車載】ほなどっかいこか（中華そば楓・八ヶ岳・まきばレストラン）,https://www.nicovideo.jp/watch/sm41789322,https://www.youtube.com/watch?v=elfs_rLM2P4&ab_channel=%E9%95%B7%E8%A2%96,ほなどっかいこか,"前回「いいカメラを買え」とずんだもんに言われた春日部つむぎ。
+37,2023-01-29,トヨタ　アクア,晴,2023-02-13,【VOICEVOX車載】ほなどっかいこか（中華そば楓・八ヶ岳・まきばレストラン）,https://www.nicovideo.jp/watch/sm41789322,https://www.youtube.com/watch?v=elfs_rLM2P4&ab_channel=%E9%95%B7%E8%A2%96,ほなどっかいこか,"前回「いいカメラを買え」とずんだもんに言われた春日部つむぎ。
 OSMO Action3を持って行くと、八ヶ岳に行くことになった。
 直前に計画を立てるも、全ての目的地で計画通りに行かず、
 上着を持ってきていないつむぎは氷点下の中、自撮り棒を振り回す。",,,"春日部つむぎ
@@ -383,7 +383,7 @@ iPhoneを買い換えたら充電持ちがめっちゃ良くなって嬉しい
 ドイツに行ってみたい・フランスにも行ってみたい。
 二度寝にさえ勝てないんだから、薬物の「一回だけ」があり得るわけない
 五所川原立ちねぷた（立佞武多）を見てみたい"
-2023-01-29,トヨタ　アクア,晴,2023-02-19,【VOICEVOX車載】ほなどっかいこか（清泉寮ジャージーハット・本栖湖・きゃべとんラーメン・海老名サービスエリア,https://www.nicovideo.jp/watch/sm41818312,https://www.youtube.com/watch?v=0isoSfXap6U&ab_channel=%E9%95%B7%E8%A2%96,ほなどっかいこか,"スタッドレス車を借りた甲斐があった春日部つむぎ。
+38,2023-01-29,トヨタ　アクア,晴,2023-02-19,【VOICEVOX車載】ほなどっかいこか（清泉寮ジャージーハット・本栖湖・きゃべとんラーメン・海老名サービスエリア,https://www.nicovideo.jp/watch/sm41818312,https://www.youtube.com/watch?v=0isoSfXap6U&ab_channel=%E9%95%B7%E8%A2%96,ほなどっかいこか,"スタッドレス車を借りた甲斐があった春日部つむぎ。
 冬なのにソフトクリームを食べるライダーずんだもん。
 富士山を見て富士宮やきそばを思いつき店に向かうが、
 静岡県でも車載主の呪いはふたりを襲い続ける。",,,"春日部つむぎ
@@ -434,7 +434,7 @@ iPhoneを買い換えたら充電持ちがめっちゃ良くなって嬉しい
 　斜め駐車の標識を見に行きたい
 　ジェットヘルメットとシステムヘルメット
 　数学ⅡBの軌跡や数列の話"
-2023-02-06,ホンダ　フィット,雨,2023-02-25,【VOICEVOX車載】ほな1人でどっかいこか　九州南部編1日目,https://www.nicovideo.jp/watch/sm41846386,https://www.youtube.com/watch?v=hwkurC0Twx0&ab_channel=%E9%95%B7%E8%A2%96,ほな1人でどっかいこか,"ANAのセールで鹿児島への券を買った春日部つむぎ、
+39,2023-02-06,ホンダ　フィット,雨,2023-02-25,【VOICEVOX車載】ほな1人でどっかいこか　九州南部編1日目,https://www.nicovideo.jp/watch/sm41846386,https://www.youtube.com/watch?v=hwkurC0Twx0&ab_channel=%E9%95%B7%E8%A2%96,ほな1人でどっかいこか,"ANAのセールで鹿児島への券を買った春日部つむぎ、
 今回はしっかり予定を組んで、雨でもめげずに進む。
 始発に乗る、徒歩は走る、だけどしっかり一時停止。
 人は何のために、あーしは何のために旅をする？",https://docs.google.com/document/d/13zTzzWJ2L_D8kyd9GteOPlZhHc3wOb6h38f44YN7BC0/edit?tab=t.0,,春日部つむぎ,"00:00　鹿児島空港・導入
@@ -515,7 +515,7 @@ iPhoneを買い換えたら充電持ちがめっちゃ良くなって嬉しい
 　こばっと さん
 　ｱｶﾐ さん
 　ひげ さん",
-2023-02-07,ホンダ　フィット,雨,2023-03-04,【VOICEVOX車載】ほな1人でどっかいこか　九州南部編2日目,https://www.nicovideo.jp/watch/sm41883274,https://www.youtube.com/watch?v=72gOB3vDJw8&t=798s&ab_channel=%E9%95%B7%E8%A2%96,ほな1人でどっかいこか,"九州南部に来て2日、寝起きがいいので即出発、
+40,2023-02-07,ホンダ　フィット,雨,2023-03-04,【VOICEVOX車載】ほな1人でどっかいこか　九州南部編2日目,https://www.nicovideo.jp/watch/sm41883274,https://www.youtube.com/watch?v=72gOB3vDJw8&t=798s&ab_channel=%E9%95%B7%E8%A2%96,ほな1人でどっかいこか,"九州南部に来て2日、寝起きがいいので即出発、
 映えのため、飯のため、そして知識のために行く。
 人の力と自然の力、そして春日部つむぎの力、
 そんな今日こそ快活CLUBに泊まれるのだろうか？",https://docs.google.com/document/d/13zTzzWJ2L_D8kyd9GteOPlZhHc3wOb6h38f44YN7BC0/edit?tab=t.0,,春日部つむぎ,"00:00　オープニング
@@ -595,7 +595,7 @@ the opening of a book　まつもとたくや　https://commons.nicovideo.jp/mat
 　DAIDAI さん
 　jko さん
 　ザコインベスター さん",
-2023-02-08,ホンダ　フィット,晴,2023-03-14,【VOICEVOX車載】ほな1人でどっかいこか　九州南部編3日目（最終日）,https://www.nicovideo.jp/watch/sm41928093,https://www.youtube.com/watch?v=GazoHxKmbw0&t=1027s&ab_channel=%E9%95%B7%E8%A2%96,ほな1人でどっかいこか,"九州南部の旅最終日。天気は晴れ。
+41,2023-02-08,ホンダ　フィット,晴,2023-03-14,【VOICEVOX車載】ほな1人でどっかいこか　九州南部編3日目（最終日）,https://www.nicovideo.jp/watch/sm41928093,https://www.youtube.com/watch?v=GazoHxKmbw0&t=1027s&ab_channel=%E9%95%B7%E8%A2%96,ほな1人でどっかいこか,"九州南部の旅最終日。天気は晴れ。
 今日も時間が許す限り場所を巡る。
 完璧な旅行は存在しないけれど、
 完璧を目指した計画と修正は続く。",https://docs.google.com/document/d/13zTzzWJ2L_D8kyd9GteOPlZhHc3wOb6h38f44YN7BC0/edit?tab=t.0,,春日部つむぎ,"00:00　オープニング
@@ -671,7 +671,7 @@ Remind　yuhei komatsu　https://dova-s.jp/bgm/play18094.html
 　湖面の青色色彩に関する五色沼と北海道美瑛町青い池の化学的類似性と相違性について
 　　http://www.sss.fukushima-u.ac.jp/bandai-asahi-project/2014032815.pdf
 　熊襲の穴 | 観光スポット | 【公式】鹿児島県観光サイト かごしまの旅
-　　https://www.kagoshima-kankou.com/guide/10134 ","広告者の方々：
+　　https://www.kagoshima-kankou.com/guide/10134","広告者の方々：
 　エンテー さん
 　sgt さん
 　かもなす さん
@@ -686,7 +686,7 @@ Remind　yuhei komatsu　https://dova-s.jp/bgm/play18094.html
 　こばっと さん
 　panra さん
 　ひげ さん",
-2023-02-26,MAZDA　MAZDA2,晴,2023-03-26,【VOICEVOX車載】ほなどっかいこか（島戸倉隧道・鋸山・アリランラーメン・九十九里浜・湯楽城・とんQ・国道356号・夏目漱石旧居跡）,https://www.nicovideo.jp/watch/sm41992552,,ほなどっかいこか,"天気が良い。それは旅に行く理由。
+42,2023-02-26,MAZDA　MAZDA2,晴,2023-03-26,【VOICEVOX車載】ほなどっかいこか（島戸倉隧道・鋸山・アリランラーメン・九十九里浜・湯楽城・とんQ・国道356号・夏目漱石旧居跡）,https://www.nicovideo.jp/watch/sm41992552,,ほなどっかいこか,"天気が良い。それは旅に行く理由。
 階段がある。それは階段に登る理由。
 行ったことがない。それは店に入る理由。
 おいしそう。それはチャーシュー麺を頼む理由。",,,"春日部つむぎ
@@ -785,7 +785,7 @@ QRコードを発音できたらおもしろそう
 道ばたで吐いている人がいて一応警察に言った話
 しんちゃんやサザエさんの原作を読んでいる人少なそう
 SKY（株）の広告をやたら見るけど何やってるのか全然伝わってこない"
-2023-04-01,トヨタ　ヤリス,晴,2023-04-17,【VOICEVOX車載】ほなどっかいこか（長明寺・猿島・よこすかポートマーケット・鮮味楽）,https://www.nicovideo.jp/watch/sm42093704,,ほなどっかいこか,"受験からの解放、大学への束縛。
+43,2023-04-01,トヨタ　ヤリス,晴,2023-04-17,【VOICEVOX車載】ほなどっかいこか（長明寺・猿島・よこすかポートマーケット・鮮味楽）,https://www.nicovideo.jp/watch/sm42093704,,ほなどっかいこか,"受験からの解放、大学への束縛。
 大学で会ったフッ軽フォロワーに、
 行き先を決めながら走る無計画性を
 お見舞いするエイプリルフール。",,,"春日部つむぎ
@@ -890,7 +890,7 @@ Dior行った事ある。もしかして：ドトール
 ダズル迷彩みたいな模様の店舗があったけどなんで？
 闘牛が書かれた車庫があったけど何？　ランボルギーニ入ってる？
 踊り食いしてみたいような、怖いような"
-2023-04-29,BMW　M3?,晴,2023-05-14,【VOICEVOX車載】ほなみんなでどっかいこか（ぶどうの丘・フルーツ公園・ほったらかし温泉・浜の湯）,https://www.nicovideo.jp/watch/sm42220927,https://www.youtube.com/watch?v=UEterwkYGCU,ほなみんなでどっかいこか,"完璧な連休などといったものは存在しない、
+44,2023-04-29,BMW　M3?,晴,2023-05-14,【VOICEVOX車載】ほなみんなでどっかいこか（ぶどうの丘・フルーツ公園・ほったらかし温泉・浜の湯）,https://www.nicovideo.jp/watch/sm42220927,https://www.youtube.com/watch?v=UEterwkYGCU,ほなみんなでどっかいこか,"完璧な連休などといったものは存在しない、
 完璧な絶望が存在しないようにね。",,,"春日部つむぎ
 雨晴はう
 No.7
@@ -930,7 +930,7 @@ No.7
 
 効果音：
 　効果音ラボ　https://soundeffect-lab.info/
-　【逆転裁判】有罪・無罪【素材】　https://www.nicovideo.jp/watch/sm38271497 ","参考文献：
+　【逆転裁判】有罪・無罪【素材】　https://www.nicovideo.jp/watch/sm38271497","参考文献：
 　国土地理院地図Vector
 　　https://maps.gsi.go.jp/vector/#8.315/35.353013/137.609437
 　ゆるキャン△4話（アニメ）
@@ -945,7 +945,7 @@ No.7
 　　https://www.fukushihoken.metro.tokyo.lg.jp/
 　　tamakodaira/kansen/singatakoronauirusu/taityouhuryoujinotaiou.html 
 　広報誌「厚生労働」2021年９月号　新型コロナウイルス最前線
-　　https://www.mhlw.go.jp/stf/houdou_kouhou/kouhou_shuppan/magazine/202109_00005.html ","広告者の方々：
+　　https://www.mhlw.go.jp/stf/houdou_kouhou/kouhou_shuppan/magazine/202109_00005.html","広告者の方々：
 　sgt さん
 　エンテー さん
 　かもなす さん
@@ -977,7 +977,7 @@ BMWの航続距離すげー！
 サイドミラーの湾曲が視野を広げてていいね
 なでしこの成績が普通なの、ちょっと変じゃない？
 働いても使うと金は貯まらない（真理）"
-2023-06-17,日産　ノート,晴,2023-09-03,【VOICEVOX車載】ほなどっかいこか（出流原弁天池・唐沢山神社・岩舟駅・北浦和公園・セイコーマート）,https://www.nicovideo.jp/watch/sm42713039,https://www.youtube.com/watch?v=Bn-ggSS-wJA,ほなどっかいこか,名水！　豆腐！　そしてラーメン！,,,"春日部つむぎ
+45,2023-06-17,日産　ノート,晴,2023-09-03,【VOICEVOX車載】ほなどっかいこか（出流原弁天池・唐沢山神社・岩舟駅・北浦和公園・セイコーマート）,https://www.nicovideo.jp/watch/sm42713039,https://www.youtube.com/watch?v=Bn-ggSS-wJA,ほなどっかいこか,名水！　豆腐！　そしてラーメン！,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","00:37　新キャラ
 01:52　道の駅どまんなかたぬま
@@ -1048,7 +1048,7 @@ BMWの航続距離すげー！
 　あの三角形の店は…ヒマラヤ？　ハローマック跡地みたいな特集あったよね
 　みんな食費どうなってるの？　朝ごはん食べてる？　そんな食生活で人生楽しい？
 　深夜の上のはタクシーだらけで運転マナーがひどい！"
-2023-07-02,ホンダ　フィット,晴,2023-09-10,【VOICEVOX車載】ほなどっかいこか（長瀞岩畳・合角ダム・毘沙門水・道の駅はなぞの・焼肉きんぐ）,https://www.nicovideo.jp/watch/sm42744227,https://www.youtube.com/watch?v=jPDExBNpDP4,ほなどっかいこか,Twitterの終わり、生活の終わり,,,"春日部つむぎ
+46,2023-07-02,ホンダ　フィット,晴,2023-09-10,【VOICEVOX車載】ほなどっかいこか（長瀞岩畳・合角ダム・毘沙門水・道の駅はなぞの・焼肉きんぐ）,https://www.nicovideo.jp/watch/sm42744227,https://www.youtube.com/watch?v=jPDExBNpDP4,ほなどっかいこか,Twitterの終わり、生活の終わり,,,"春日部つむぎ
 ずんだもん
 中国うさぎ","00:31　ETCカード挿し忘れ
 01:24　長瀞岩畳
@@ -1094,7 +1094,7 @@ BMWの航続距離すげー！
 　あぶない！ 高速道路の逆走　NEXCO西日本
 
 　焼肉きんぐ 東松山店 | 焼肉きんぐ
-　　https://www.yakiniku-king.jp/shop/313 ","広告者の方々：
+　　https://www.yakiniku-king.jp/shop/313","広告者の方々：
 　sgt さん
 　エンテー さん
 　かもなす さん
@@ -1138,7 +1138,7 @@ BMWの航続距離すげー！
 　結婚する？って聞かれたことがある？
 　道行く人の記憶が消せるとしたらどんな質問をする？
 　他人が汗臭かったときにそれを伝える？　伝えられたい？"
-2023-07-23,スズキ　ソリオ,晴〜雨,2023-09-22,【VOICEVOX車載】ほなどっかいこか（きのこ茶屋・八ッ場ダム・殺生河原・日本国道最高地点・草津温泉・上里サービスエリア）,https://www.nicovideo.jp/watch/sm42795262,https://www.youtube.com/watch?v=n73S1OZSE4A&ab_channel=%E9%95%B7%E8%A2%96,ほなどっかいこか,"天気が良くても
+47,2023-07-23,スズキ　ソリオ,晴〜雨,2023-09-22,【VOICEVOX車載】ほなどっかいこか（きのこ茶屋・八ッ場ダム・殺生河原・日本国道最高地点・草津温泉・上里サービスエリア）,https://www.nicovideo.jp/watch/sm42795262,https://www.youtube.com/watch?v=n73S1OZSE4A&ab_channel=%E9%95%B7%E8%A2%96,ほなどっかいこか,"天気が良くても
 天気が悪くても
 空気が臭くても
 感情がある限り",,,"春日部つむぎ
@@ -1180,7 +1180,7 @@ BMWの航続距離すげー！
 　効果音ラボ　https://soundeffect-lab.info/
 
 動画：
-　頭文字D的なずんだもんBB　Gomibako　https://www.youtube.com/watch?v=WeXjgu81c3c ","参考文献：
+　頭文字D的なずんだもんBB　Gomibako　https://www.youtube.com/watch?v=WeXjgu81c3c","参考文献：
 　孤独のグルメ
 　　久住昌之　扶桑社
 　サケとマスの違い – 株式会社 永徳 
@@ -1265,7 +1265,7 @@ BMWの航続距離すげー！
 　う「飲食店で全然注文が通らない」つ「声が小さいのでは」
 　オーセンティックバーに行ってみた・行ってみたい
 　「えーと」は無駄なので言わない方がいい（過激派）"
-2023-09-09,トヨタ　ヤリス,晴,2023-10-12,【VOICEVOX車載】ほなどっかいこか（一ノ倉沢・道の駅川場田園プラザ・吹割の滝・赤城高原サービスエリア・セイコーマート）,https://www.nicovideo.jp/watch/sm42875891,https://www.youtube.com/watch?v=ud7X22kn5YY,ほなどっかいこか,"登っても登っても坂。
+48,2023-09-09,トヨタ　ヤリス,晴,2023-10-12,【VOICEVOX車載】ほなどっかいこか（一ノ倉沢・道の駅川場田園プラザ・吹割の滝・赤城高原サービスエリア・セイコーマート）,https://www.nicovideo.jp/watch/sm42875891,https://www.youtube.com/watch?v=ud7X22kn5YY,ほなどっかいこか,"登っても登っても坂。
 分け入っても分け入っても青い山。
 ",,日帰り旅行祭,"春日部つむぎ
 ずんだもん","01:39　一ノ倉沢
@@ -1296,7 +1296,7 @@ BMWの航続距離すげー！
 　効果音ラボ　https://soundeffect-lab.info/
 
 動画：
-　クーネルダンスずんだもんBB - ニコニコ動画 https://www.nicovideo.jp/watch/sm40406970 ","参考文献：
+　クーネルダンスずんだもんBB - ニコニコ動画 https://www.nicovideo.jp/watch/sm40406970","参考文献：
  【運転再開】谷川岳一ノ倉沢電気ガイドバス イベント情報 みなかみ町観光協会 みなかみパーフェクトガイド
 　　https://www.enjoy-minakami.jp/event.php?itemid=1861
 　賃貸物件の設備が故障した時の修理費用は誰が負担する？
@@ -1318,7 +1318,7 @@ BMWの航続距離すげー！
 　【21】タルタルのり弁当 | オリジン弁当 | オリジン東秀株式会社
 　　https://www.toshu.co.jp/origin_bento/area_east/detail15631.html 
 　TOYOTA Programming Contest 2023 Summer final - AtCoder 
-　　https://atcoder.jp/contests/toyota2023summer-final ","広告者の方々：
+　　https://atcoder.jp/contests/toyota2023summer-final","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -1380,7 +1380,7 @@ BMWの航続距離すげー！
 　最適化に興味があるならAtCoder Heuristic Contestでたらいいんじゃない？
 　ネガキャンってかっこ悪くない？
 　相手が言ったネタにいかにエレガントに返すかどうかという人生"
-2023-09-24,日産　ノート,晴,2023-10-12,【VOICEVOX車載】ほなどっかいこか（小澤栗園・石切山脈・飯田ダム・偕楽園・びっくりとんかつ・朝日峠・守谷サービスエリア）,https://www.nicovideo.jp/watch/sm42876037,https://www.youtube.com/watch?v=R4QuXBaPrkk,ほなどっかいこか,"夏期休暇が終わってしまう
+49,2023-09-24,日産　ノート,晴,2023-10-12,【VOICEVOX車載】ほなどっかいこか（小澤栗園・石切山脈・飯田ダム・偕楽園・びっくりとんかつ・朝日峠・守谷サービスエリア）,https://www.nicovideo.jp/watch/sm42876037,https://www.youtube.com/watch?v=R4QuXBaPrkk,ほなどっかいこか,"夏期休暇が終わってしまう
 秋を受け入れに栗を食べよう",,日帰り旅行祭,"春日部つむぎ
 ずんだもん","02:41　小澤栗園
 03:22　石切山脈
@@ -1416,7 +1416,7 @@ BMWの航続距離すげー！
 
 動画：
 　踊ってない夜を知らないずんだもんBB.oddloop - ニコニコ動画 
-　　https://www.nicovideo.jp/watch/sm40521213 ","参考文献：
+　　https://www.nicovideo.jp/watch/sm40521213","参考文献：
 　小澤栗園ホームページ
 　　http://kozawakurien.life.coocan.jp/
 　屋形船を料理で選ぶ｜東京の屋形船予約なら【屋形船の窓口】貸切・乗合プランあり
@@ -1452,7 +1452,7 @@ BMWの航続距離すげー！
 　History of Wavelet
 　　https://www.osaka-kyoiku.ac.jp/~ashino/topics/wavehist.html 
 　視覚野のモデル - Sideswipe
-　　https://kazoo04.hatenablog.com/entry/agi-ac-18 ","広告者の方々：
+　　https://kazoo04.hatenablog.com/entry/agi-ac-18","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -1535,7 +1535,7 @@ BMWの航続距離すげー！
 　べっこう柄の万年筆って厨二病的にかっこいいけど暴発しそうで怖い
 　最近霜降り明星のTikTokを見てて、でもなぞなぞを出してくれるだけでよい
 　カーナビで案内するとき、交差点の目印に何を選ぶべきだろうか"
-2023-10-04,トヨタ　ヤリス,晴,2023-10-20,【VOICEVOX車載】ほな1人でどっかいこか　肥前半島編1日目,https://www.nicovideo.jp/watch/sm42918278,https://www.youtube.com/watch?v=zESeXvhzr_U,ほな1人でどっかいこか,"旅のしおりを作っていたら肥前半島が晴れていた
+50,2023-10-04,トヨタ　ヤリス,晴,2023-10-20,【VOICEVOX車載】ほな1人でどっかいこか　肥前半島編1日目,https://www.nicovideo.jp/watch/sm42918278,https://www.youtube.com/watch?v=zESeXvhzr_U,ほな1人でどっかいこか,"旅のしおりを作っていたら肥前半島が晴れていた
 体力と時間を使って金のなさを克服…",https://docs.google.com/document/d/1VqFudoigLhYCtLB6vUGpCbTTgoqcA6rLHYFAyJ9przs/edit?tab=t.0,,春日部つむぎ,"00:00　オープニング
 02:10　てん新
 02:56　道の駅長崎街道鈴田峠
@@ -1630,7 +1630,7 @@ BMWの航続距離すげー！
 　ちゃんぽんの由来 | 中華料理 四海樓
 　　https://shikairou.com/origin-of-champon/ 
 　アクセス｜ 稲佐山公園WEB
-　　https://www.inasayama.com/access/#tab1 ","広告者の方々：
+　　https://www.inasayama.com/access/#tab1","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -1653,7 +1653,7 @@ BMWの航続距離すげー！
 　こばっと さん
 　tomo さん
 　ひげ さん",
-2023-10-05,トヨタ　ヤリス,晴,2023-10-27,【VOICEVOX車載】ほな1人でどっかいこか　肥前半島編2日目,https://www.nicovideo.jp/watch/sm42946281,https://www.youtube.com/watch?v=_b0DMx_1dVI,ほな1人でどっかいこか,"旅のせわしなさよ視聴者に届け
+51,2023-10-05,トヨタ　ヤリス,晴,2023-10-27,【VOICEVOX車載】ほな1人でどっかいこか　肥前半島編2日目,https://www.nicovideo.jp/watch/sm42946281,https://www.youtube.com/watch?v=_b0DMx_1dVI,ほな1人でどっかいこか,"旅のせわしなさよ視聴者に届け
 本日晴朗ナレドモ波高シ",https://docs.google.com/document/d/1VqFudoigLhYCtLB6vUGpCbTTgoqcA6rLHYFAyJ9przs/edit?tab=t.0,,春日部つむぎ,"00:00　西海の丘
 00:32　針尾送信所
 01:05　潮之目・観潮橋
@@ -1786,7 +1786,7 @@ BMWの航続距離すげー！
 　超芸術トマソン｜美術手帖
 　　https://bijutsutecho.com/artwiki/45 
 　ナイトウォーク 狐の嫁入り｜祐徳稲荷神社
-　　https://yutokusan-kitsunenoyomeiri.com/ ","広告者の方々：
+　　https://yutokusan-kitsunenoyomeiri.com/","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -1810,7 +1810,7 @@ BMWの航続距離すげー！
 　tomo さん
 　ひげ さん
 　keyblock さん",
-2023-10-06,トヨタ　ヤリス,晴,2023-11-04,【VOICEVOX車載】ほな1人でどっかいこか　肥前半島編3日目,https://www.nicovideo.jp/watch/sm42982546,https://www.youtube.com/watch?v=cdth7WPIwNo,ほな1人でどっかいこか,"一人旅はオープニングとエンディングのために行っているかも
+52,2023-10-06,トヨタ　ヤリス,晴,2023-11-04,【VOICEVOX車載】ほな1人でどっかいこか　肥前半島編3日目,https://www.nicovideo.jp/watch/sm42982546,https://www.youtube.com/watch?v=cdth7WPIwNo,ほな1人でどっかいこか,"一人旅はオープニングとエンディングのために行っているかも
 肥前半島の旅の終わり、そして…",https://docs.google.com/document/d/1VqFudoigLhYCtLB6vUGpCbTTgoqcA6rLHYFAyJ9przs/edit?tab=t.0,,春日部つむぎ,"00:00　祐徳稲荷神社
 00:34　大魚神社
 01:08　フルーツバス停
@@ -1920,7 +1920,7 @@ BMWの航続距離すげー！
 　大とろ角煮まんじゅう 【岩崎本舗】の長崎角煮まんじゅう
 　　https://0806.jp/item/category/ootoro/ 
 　ライフゲームの世界９ 最終回【複雑系】 - ニコニコ動画
-　　https://www.nicovideo.jp/watch/sm19566296 ","広告者の方々：
+　　https://www.nicovideo.jp/watch/sm19566296","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -1947,7 +1947,7 @@ BMWの航続距離すげー！
 　ひげ さん
 　keyblock さん
 　まくら さん",
-2023-10-07,トヨタ　アクア,晴,2023-12-09,【VOICEVOX車載】ほなどっかいこか（オギノパン・宮ヶ瀬ダム・旅館みはる・シャトレーゼ・SFC・海老名SA）,https://www.nicovideo.jp/watch/sm43126242,https://www.youtube.com/watch?v=Alp8WxBeLrY,ほなどっかいこか,水の大切さを体で学ぶことになる回,,ニコニコダム祭り,春日部つむぎ,"02:07　オギノパン
+53,2023-10-07,トヨタ　アクア,晴,2023-12-09,【VOICEVOX車載】ほなどっかいこか（オギノパン・宮ヶ瀬ダム・旅館みはる・シャトレーゼ・SFC・海老名SA）,https://www.nicovideo.jp/watch/sm43126242,https://www.youtube.com/watch?v=Alp8WxBeLrY,ほなどっかいこか,水の大切さを体で学ぶことになる回,,ニコニコダム祭り,春日部つむぎ,"02:07　オギノパン
 02:27　宮ヶ瀬ダム
 03:43　水とエネルギー館
 05:31　旅館みはる
@@ -2009,7 +2009,7 @@ BMWの航続距離すげー！
 　第4回「文字を美しく組むための設定」#InDesign
 　　https://blog.adobe.com/jp/publish/2019/07/19/cc-indesign-basics-04-typesetting 
 　物事を説明するのに重要な形容詞。順番も含めてちゃんと使いこなしましょう！ | オンライン英会話ならQQEnglish
-　　https://www.qqeng.com/blog2/study/column239.html ","広告者の方々：
+　　https://www.qqeng.com/blog2/study/column239.html","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -2072,7 +2072,7 @@ BMWの航続距離すげー！
 　パリコレの服を買ってすぐ壊れたらどうするのか？
 　ふんどしを一度くらい着てみたい…ところであの前の布って何？
 　シリアルを味噌汁の茶碗で食べるのは合わない気がする"
-2023-10-28,トヨタ　シエンタ,曇,2023-12-23,【VOICEVOX車載】ほなみんなでどっかいこか（能登半島）,https://www.nicovideo.jp/watch/sm43182117,https://www.youtube.com/watch?v=oFrNyjtxlo4,ほなみんなでどっかいこか,"旅のきっかけを探している
+54,2023-10-28,トヨタ　シエンタ,曇,2023-12-23,【VOICEVOX車載】ほなみんなでどっかいこか（能登半島）,https://www.nicovideo.jp/watch/sm43182117,https://www.youtube.com/watch?v=oFrNyjtxlo4,ほなみんなでどっかいこか,"旅のきっかけを探している
 カニが食べれる必要はなく
 カニが食べたいだけで十分",https://docs.google.com/document/d/1mJ442hNQ98wnXln4SNPXOq_7VxKQSUDlxEnDX0_c428/edit?tab=t.0,,"春日部つむぎ
 雨晴はう
@@ -2167,7 +2167,7 @@ No.7
 　フナクイムシ - Wikipedia
 　　https://ja.wikipedia.org/wiki/フナクイムシ
 　商品紹介 | 能登名物ひっぱり餅本舗安田屋
-　　https://hipparimoti.co.jp/products ","広告者の方々：
+　　https://hipparimoti.co.jp/products","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -2231,7 +2231,7 @@ No.7
 　画像現像沼はいいぞ( ◠‿◠ )
 　満寿形屋の鯖寿司が高いけどおいしい
 　eチケットのシステムが変わった？"
-2023-11-12,トヨタ　アクア,曇,2023-11-14,【VOICEVOX車載】ほなどっかいこか（麺庭つむぎ・熱川バナナワニ園・黒根岩風呂・かんのん浜ポットホール・城ヶ崎海岸・さわやか）,https://www.nicovideo.jp/watch/sm43023685,https://www.youtube.com/watch?v=NlNOlOuddmQ,ほなどっかいこか,"撮影から投稿までを誕生祭にこなすため、
+55,2023-11-12,トヨタ　アクア,曇,2023-11-14,【VOICEVOX車載】ほなどっかいこか（麺庭つむぎ・熱川バナナワニ園・黒根岩風呂・かんのん浜ポットホール・城ヶ崎海岸・さわやか）,https://www.nicovideo.jp/watch/sm43023685,https://www.youtube.com/watch?v=NlNOlOuddmQ,ほなどっかいこか,"撮影から投稿までを誕生祭にこなすため、
 急遽行われる2平日での編集。
 それも思いつきなので、今回も突然出発して下調べ不足。",,春日部つむぎ誕生祭2023,"春日部つむぎ
 ずんだもん","00:43　麺庭つむぎ
@@ -2265,7 +2265,7 @@ No.7
 　How German Sounds Compared To Other Languages || CopyCatChannel - YouTube 
 　　https://www.youtube.com/watch?v=-_xUIDRxdmc 
 　正露丸CM - YouTube
-　　https://www.youtube.com/watch?v=x6MK9pCWkG4 ","参考文献：
+　　https://www.youtube.com/watch?v=x6MK9pCWkG4","参考文献：
 　北海道コカ･コーラボトリング株式会社 ジョージア ミルクコーヒー　北海道限定製品 
 　　https://www.hokkaido.ccbc.co.jp/promotion/georgia_milkcoffee.html 
 　Fill & Flush - A Better Way to De-Plane
@@ -2307,7 +2307,7 @@ No.7
 　東海道新幹線の車内販売が終了へ！名物のアイスやコーヒー販売など今後のサービスについて紹介（LIMO） - Yahoo!ニュース
 　　https://news.yahoo.co.jp/articles/87cbd015b83ca7b333a776ac8be61a2a97b03d3f 
 　急な下痢、お腹のトラブルに正露丸クイックC｜大幸薬品株式会社
-　　https://www.seirogan.co.jp/seirogan/quickc/ ","広告者の方々：
+　　https://www.seirogan.co.jp/seirogan/quickc/","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -2385,7 +2385,7 @@ No.7
 　普段暇そうにしている、優秀なFirst responderになりたい
 　0120-1-365-24というハイフンの入れ方の工夫はいいね
 　LOOP走ってるのはみるけど、駐輪場はうまく溶け込んでるよね"
-2023-12-03,トヨタ　ライズ,晴,2024-01-15,【VOICEVOX車載】ほなどっかいこか（うな一・御前崎灯台・潮騒橋・岩谷隧道・合格駅・地名駅・お弁当どんどん・アピタ（天神屋）・足柄SA）,https://www.nicovideo.jp/watch/sm43273618,https://www.youtube.com/watch?v=Y6OmL6sKJHA,ほなどっかいこか,"寒くても上着は着ない季節がやってきた
+56,2023-12-03,トヨタ　ライズ,晴,2024-01-15,【VOICEVOX車載】ほなどっかいこか（うな一・御前崎灯台・潮騒橋・岩谷隧道・合格駅・地名駅・お弁当どんどん・アピタ（天神屋）・足柄SA）,https://www.nicovideo.jp/watch/sm43273618,https://www.youtube.com/watch?v=Y6OmL6sKJHA,ほなどっかいこか,"寒くても上着は着ない季節がやってきた
 節約のための豪遊
 豪遊のための節約",,,"春日部つむぎ
 ずんだもん","00:49　うな一
@@ -2441,7 +2441,7 @@ No.7
 　日本一短いトンネル｜ふるさと散歩道｜JAおおいがわ／大井川農業協同組合
 　　https://ooigawa.ja-shizuoka.or.jp/area/detail/55 
 　メニュー｜お弁当どんどん
-　　https://dondon.co.jp/menu/ ","広告者の方々：
+　　https://dondon.co.jp/menu/","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -2510,7 +2510,7 @@ No.7
 　トラックの大群の前を走ると追われてるみたいで楽しい
 　最近のONE PIECEの話
 　ラジオでも聴くか　つまらないことしか流れてこないな…"
-2023-12-10,日産　ノート,晴,2024-02-22,【VOICEVOX車載】ほなどっかいこか（醤遊王国・吉見百穴・吉見観音・鬼鎮神社・テルマー湯・ゴールデンタイガー・蓮田SA・スシロー）,https://www.nicovideo.jp/watch/sm43433550,https://www.youtube.com/watch?v=6RnPuPSNewU,ほなどっかいこか,"VOICEVOX0.61で
+57,2023-12-10,日産　ノート,晴,2024-02-22,【VOICEVOX車載】ほなどっかいこか（醤遊王国・吉見百穴・吉見観音・鬼鎮神社・テルマー湯・ゴールデンタイガー・蓮田SA・スシロー）,https://www.nicovideo.jp/watch/sm43433550,https://www.youtube.com/watch?v=6RnPuPSNewU,ほなどっかいこか,"VOICEVOX0.61で
 歌えるようになったつむぎ達
 息を吸う音が聞こえたら
 それに合わせて歌う瞬発性",,,"春日部つむぎ
@@ -2542,7 +2542,7 @@ No.7
 　また明日　MATSU　https://commons.nicovideo.jp/material/nc134822
 
 効果音：
-　効果音ラボ　https://soundeffect-lab.info/　","参考文献：
+　効果音ラボ　https://soundeffect-lab.info/","参考文献：
 　救急車が六千台走る地獄の街は機能するのか？【Cities:Skylines / シティーズスカイライン】 - YouTube 
 　　https://www.youtube.com/watch?v=W3C7aaS1xFg 
 　軽食 | 弓削多醤油（日本初の生しょうゆ・有機醤油の通販） 
@@ -2641,9 +2641,9 @@ No.7
 　つ「快活CLUBでごはん食べる？」ず「マクドナルド理論？」
 　ABARTH 124 spiderとかロータスエリーゼはどうか
 　足立区とか新宿区とかのマウント全然わからない。どっちでもいい"
-,,,2023-12-31,HONADOKKAIKOKA2023,https://www.nicovideo.jp/watch/sm43216679,https://www.youtube.com/watch?v=dHpsBCWZIIY,,"ほなどっかいこか
+58,,,,2023-12-31,HONADOKKAIKOKA2023,https://www.nicovideo.jp/watch/sm43216679,https://www.youtube.com/watch?v=dHpsBCWZIIY,,"ほなどっかいこか
 2023年のまとめ",,,,,,,,,,,,,,,,,,,,,,,
-2024-01-27,トヨタ　ヤリス,晴,2024-03-01,【VOICEVOX車載】ほなどっかいこか（小山屋食堂・川幅日本一・五千頭の龍が昇る聖天宮・・越谷レイクタウン・セイコーマート）,https://www.nicovideo.jp/watch/sm43471051,https://www.youtube.com/watch?v=FBuTLRDyWiM,ほなどっかいこか,"今年は辰年
+59,2024-01-27,トヨタ　ヤリス,晴,2024-03-01,【VOICEVOX車載】ほなどっかいこか（小山屋食堂・川幅日本一・五千頭の龍が昇る聖天宮・・越谷レイクタウン・セイコーマート）,https://www.nicovideo.jp/watch/sm43471051,https://www.youtube.com/watch?v=FBuTLRDyWiM,ほなどっかいこか,"今年は辰年
 今年は新札発行
 北海道に向けてジャケットを購入",,,"春日部つむぎ
 ずんだもん","02:08　小山屋食堂
@@ -2799,7 +2799,7 @@ No.7
 　ず「ヤー！　ヤー！　ヤー！　ヤー！　ヤー！」
 　混ぜそばだけがおいしくてラーメンもつけ麺もいまいちな店
 　四コマ漫画って値段的にコスパはいいけど、展開が忙しくて読むの疲れる"
-2024-01-30,日産　ノート,曇〜雪,2024-03-10,【VOICEVOX車載】ほな1人でどっかいこか（時速50キロメートル　第一話　宗谷抄）,https://www.nicovideo.jp/watch/sm43506396,https://www.youtube.com/watch?v=Aa99CsukYr4,ほな1人でどっかいこか,"自動車免許の取得と同時に少しずつ進めた
+60,2024-01-30,日産　ノート,曇〜雪,2024-03-10,【VOICEVOX車載】ほな1人でどっかいこか（時速50キロメートル　第一話　宗谷抄）,https://www.nicovideo.jp/watch/sm43506396,https://www.youtube.com/watch?v=Aa99CsukYr4,ほな1人でどっかいこか,"自動車免許の取得と同時に少しずつ進めた
 本土四極の踏破の日を描いた第1話「宗谷抄」",https://docs.google.com/document/d/1Jdyke88RVyR2pdk14lcOTQwpzzDmWfnWJHefdYdGLL8/edit?tab=t.0,,春日部つむぎ,"00:00　オープニング
 00:44　零のつく踏切たち（零番通り・秩父別零条通り・秩父別零丁目）
 02:21　道の駅おびら鰊番屋
@@ -2902,7 +2902,7 @@ No.7
 　XユーザーのRaybackさん: 「北海道来て思ったのが、 歩行者用信号赤→自動車用信号黄の時間が本州よりかなり短い気がする。」 / X 
 　　https://twitter.com/Lapitaz/status/1655869360093958144 
 　秒速5センチメートル「桜花抄」全セリフ - 新しいTERRAZINE 　
-　　https://terrazi.hateblo.jp/entry/20070402/p1 ","広告者の方々：
+　　https://terrazi.hateblo.jp/entry/20070402/p1","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -2951,7 +2951,7 @@ No.7
 　ざんせつ さん
 　敏度 さん
 　スイロ さん",
-2024-01-31,日産　ノート,曇,2024-03-20,【VOICEVOX車載】ほな1人でどっかいこか（時速50キロメートル　第二話　第三話）,https://www.nicovideo.jp/watch/sm43548126,https://www.youtube.com/watch?v=w_Ywhkdjicg,ほな1人でどっかいこか,"寒い場所にくると、胸の奥が、すこし、苦しくなる。
+61,2024-01-31,日産　ノート,曇,2024-03-20,【VOICEVOX車載】ほな1人でどっかいこか（時速50キロメートル　第二話　第三話）,https://www.nicovideo.jp/watch/sm43548126,https://www.youtube.com/watch?v=w_Ywhkdjicg,ほな1人でどっかいこか,"寒い場所にくると、胸の奥が、すこし、苦しくなる。
 除雪されていないエサヌカ線を、つむぎ視点から描く第2話「ホワイトナウト」。
 どれほどの速さで走れば、飛行機に間に合うのか。
 開いてない店に並んだつむぎは、いま……。北海道の平均時速を描いた表題作。",https://docs.google.com/document/d/1Jdyke88RVyR2pdk14lcOTQwpzzDmWfnWJHefdYdGLL8/edit?tab=t.0,,春日部つむぎ,"00:00　オープニング
@@ -3047,7 +3047,7 @@ No.7
 　蜂屋 五条創業店 （はちや） - 旭川/ラーメン | 食べログ
 　　https://tabelog.com/hokkaido/A0104/A010401/1000269/ 
 　旭川冬まつり公式サイト
-　　https://asahikawa-winterfes.jp/ ","広告者の方々：
+　　https://asahikawa-winterfes.jp/","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -3096,7 +3096,7 @@ No.7
 　ざんせつ さん
 　敏度 さん
 　スイロ さん",
-2024-02-05,MAZDA　CX-30 2000,雪・雨,,,,,,,https://docs.google.com/document/d/1bCIG6fM04MWNFufkehkz187kG9TOjhQAB5di1tvkoQw/edit?tab=t.0,,,,19,770,0,380,3325,0,0,2400,9700,635,0,0,0,137.5,17347.5,"画像：
+62,2024-02-05,MAZDA　CX-30 2000,雪・雨,,,,,,,https://docs.google.com/document/d/1bCIG6fM04MWNFufkehkz187kG9TOjhQAB5di1tvkoQw/edit?tab=t.0,,,,19,770,0,380,3325,0,0,2400,9700,635,0,0,0,137.5,17347.5,"画像：
 　春日部つむぎ立ち絵　春日部つむぎ公式　https://seiga.nicovideo.jp/seiga/im10842587
 　春日部つむぎ動画　春日部つむぎ公式　https://www.nicovideo.jp/watch/sm39656626
 　Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg 
@@ -3107,8 +3107,7 @@ No.7
 　VOICEVOX:春日部つむぎ
 
 音楽：
-　オーバーライド - 重音テトSV[吉田夜世]　https://www.nicovideo.jp/watch/sm43083649
-","参考文献：
+　オーバーライド - 重音テトSV[吉田夜世]　https://www.nicovideo.jp/watch/sm43083649","参考文献：
 　【MAZDA】CX-30｜電子取扱説明書｜DM
 　　https://www2.mazda.co.jp/carlife/owner/manual/cx-30/dm/edmu/contents/15030401.html 
 　店舗紹介 | 九州熊本豚骨 味千ラーメン
@@ -3120,7 +3119,7 @@ No.7
 　宿泊＆休憩プラン | 湯らっくす
 　　https://www.yulax.info/stay/ 
 　ドルメンX　髙木ユーナ　小学館",,
-2024-02-06,MAZDA　CX-30 2000,晴,,,,,,,https://docs.google.com/document/d/1bCIG6fM04MWNFufkehkz187kG9TOjhQAB5di1tvkoQw/edit?tab=t.0,,,,288,2360,0,5760,3325,100,0,9275,0,0,0,0,0,137.5,20957.5,"画像：
+63,2024-02-06,MAZDA　CX-30 2000,晴,,,,,,,https://docs.google.com/document/d/1bCIG6fM04MWNFufkehkz187kG9TOjhQAB5di1tvkoQw/edit?tab=t.0,,,,288,2360,0,5760,3325,100,0,9275,0,0,0,0,0,137.5,20957.5,"画像：
 　春日部つむぎ立ち絵　春日部つむぎ公式　https://seiga.nicovideo.jp/seiga/im10842587
 　春日部つむぎ動画　春日部つむぎ公式　https://www.nicovideo.jp/watch/sm39656626
 　Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg 
@@ -3137,7 +3136,7 @@ No.7
 　Stay Alone　TheScreenTones　孤独のグルメ劇中曲
 
 効果音：
-　効果音ラボ　https://soundeffect-lab.info/　","参考文献：
+　効果音ラボ　https://soundeffect-lab.info/","参考文献：
 　　みさとりっぷ（パンフレット）　美里町役場
 　初カキコ…ども…とは (ハツカキコドモとは) [単語記事] - ニコニコ大百科
 　　https://dic.nicovideo.jp/a/初カキコ…ども…
@@ -3192,8 +3191,8 @@ No.7
 　黒川温泉公式サイト｜熊本・阿蘇の温泉地
 　　https://www.kurokawaonsen.or.jp/ 
 　温泉｜【公式】純和風旅館 泉屋｜熊本県杖立温泉 創業140年の宿
-　　https://izumiyaryokan.co.jp/hotspring/ ",,
-2024-02-07,MAZDA　CX-30 2000,雨,,,,,,,https://docs.google.com/document/d/1bCIG6fM04MWNFufkehkz187kG9TOjhQAB5di1tvkoQw/edit?tab=t.0,,,,367,2820,0,7340,3325,0,100,9350,0,0,0,0,0,137.5,23072.5,"画像：
+　　https://izumiyaryokan.co.jp/hotspring/",,
+64,2024-02-07,MAZDA　CX-30 2000,雨,,,,,,,https://docs.google.com/document/d/1bCIG6fM04MWNFufkehkz187kG9TOjhQAB5di1tvkoQw/edit?tab=t.0,,,,367,2820,0,7340,3325,0,100,9350,0,0,0,0,0,137.5,23072.5,"画像：
 　春日部つむぎ立ち絵　春日部つむぎ公式　https://seiga.nicovideo.jp/seiga/im10842587
 　春日部つむぎ動画　春日部つむぎ公式　https://www.nicovideo.jp/watch/sm39656626
 　Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg 
@@ -3208,7 +3207,7 @@ No.7
 　また明日　MATSU　https://commons.nicovideo.jp/material/nc134822
 
 効果音：
-　効果音ラボ　https://soundeffect-lab.info/　","参考文献：
+　効果音ラボ　https://soundeffect-lab.info/","参考文献：
 　水資源機構 大山ダム管理所
 　　https://www.water.go.jp/chikugo/oyama/ 
 　日田市 - Wikipedia
@@ -3244,8 +3243,8 @@ No.7
 　うみなか八景 | 総合案内 | 海の中道海浜公園 | 福岡市東区にある自然豊かな国営公園 
 　　https://uminaka-park.jp/guide/photogenic_spot/ 
 　金印公園 | 福岡・博多の観光情報が満載！福岡市観光情報サイト よかなび 
-　　https://yokanavi.com/spot/26826/ ",,
-2024-02-08,MAZDA　CX-30 2000,晴,2024-04-20,【VOICEVOX車載】ほな1人でどっかいこか（味千ラーメン・湯らっくす・日本一の石段・通潤橋・小笹円形分水・幣立神宮・鶏炭火焼らくだ山・白川水源・大観峰・地図の源・金印公園・筑後川昇開橋・万田杭）,https://www.nicovideo.jp/watch/sm43684496,https://www.youtube.com/watch?v=0CpeIKGf2as,ほな1人でどっかいこか,"誰だこんな旅行プラン作ったのは
+　　https://yokanavi.com/spot/26826/",,
+65,2024-02-08,MAZDA　CX-30 2000,晴,2024-04-20,【VOICEVOX車載】ほな1人でどっかいこか（味千ラーメン・湯らっくす・日本一の石段・通潤橋・小笹円形分水・幣立神宮・鶏炭火焼らくだ山・白川水源・大観峰・地図の源・金印公園・筑後川昇開橋・万田杭）,https://www.nicovideo.jp/watch/sm43684496,https://www.youtube.com/watch?v=0CpeIKGf2as,ほな1人でどっかいこか,"誰だこんな旅行プラン作ったのは
 
 凛世、心臓が鳴っていたって？
 奇遇だね、あーしもです。",https://docs.google.com/document/d/1bCIG6fM04MWNFufkehkz187kG9TOjhQAB5di1tvkoQw/edit?tab=t.0,,春日部つむぎ,"00:00　オープニング
@@ -3314,7 +3313,7 @@ No.7
 　Love Is Blue　Jeff Beck
 
 効果音：
-　効果音ラボ　https://soundeffect-lab.info/　","参考文献：
+　効果音ラボ　https://soundeffect-lab.info/","参考文献：
 　バルーンのまち 佐賀市［佐賀市シティプロモーション］ 
 　　https://www.city.saga.lg.jp/promotion/main/2373.html 
 　インターネット百景｜さより飯+
@@ -3350,7 +3349,7 @@ No.7
 　どぅ どぅ らむぅれ どぅ - ニコニコ動画
 　　https://www.nicovideo.jp/watch/sm37787804 
 　Love Is Blue - Jeff Beck - YouTube
-　　https://www.youtube.com/watch?v=jaERrNGRjAs ","広告者の方々：
+　　https://www.youtube.com/watch?v=jaERrNGRjAs","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -3401,7 +3400,7 @@ No.7
 　スイロ さん
 　アークビショップ太郎 さん
 　なかじ さん",
-2024-02-11,トヨタ　ヤリス,晴,2024-05-09,【VOICEVOX車載】ほなどっかいこか（ガーナ料理の店アメイジンググレイスレストラン・あしがくぼの氷柱・三十槌の氷柱・どん亭）,https://www.nicovideo.jp/watch/sm43768261,https://www.youtube.com/watch?v=ZjRqyjNl1lc,ほなどっかいこか,"合法なのになぜかしないこと
+66,2024-02-11,トヨタ　ヤリス,晴,2024-05-09,【VOICEVOX車載】ほなどっかいこか（ガーナ料理の店アメイジンググレイスレストラン・あしがくぼの氷柱・三十槌の氷柱・どん亭）,https://www.nicovideo.jp/watch/sm43768261,https://www.youtube.com/watch?v=ZjRqyjNl1lc,ほなどっかいこか,"合法なのになぜかしないこと
 やらなくていいのにすること
 倫理観のない話をしながら
 広い車間で運転する旅",,,"春日部つむぎ
@@ -3430,7 +3429,7 @@ No.7
 　また明日　MATSU　https://commons.nicovideo.jp/material/nc134822
 
 効果音：
-　効果音ラボ　https://soundeffect-lab.info/　","参考文献：
+　効果音ラボ　https://soundeffect-lab.info/","参考文献：
 　離婚まで100日のプリン - レタスクラブ
 　　https://www.lettuceclub.net/news/serial/11890/ 
 　　https://twitter.com/Renta_PR_manga/status/1729061786157244580/
@@ -3581,7 +3580,7 @@ No.7
 　葬式の時に流して欲しい曲は何？
 　麻雀とかポーカーとかちゃんとやると覚えゲーになってしまう
 　フェアレディZってなんキョログラム級だっけ？"
-2024-04-13,ホンダ　フリード,晴,2024-05-19,【VOICEVOX車載】ほなどっかいこか（大陸食道・あしかがフラワーパーク・名草巨石群・らぁめん城ヶ崎・さくらみくら便利店）,https://www.nicovideo.jp/watch/sm43809870,https://www.youtube.com/watch?v=dZY3j98rNBI,ほなどっかいこか,"名は体を表そう。
+67,2024-04-13,ホンダ　フリード,晴,2024-05-19,【VOICEVOX車載】ほなどっかいこか（大陸食道・あしかがフラワーパーク・名草巨石群・らぁめん城ヶ崎・さくらみくら便利店）,https://www.nicovideo.jp/watch/sm43809870,https://www.youtube.com/watch?v=dZY3j98rNBI,ほなどっかいこか,"名は体を表そう。
 体は名を表そう。",,,"春日部つむぎ
 ずんだもん
 中国うさぎ","01:52　大陸食道
@@ -3651,7 +3650,7 @@ No.7
 　キッチンシンクを皿用スポンジで洗うのが汚いという感情の成立と国鉄型特急の不便な手洗い場の関係について
 　　https://anond.hatelabo.jp/20230505181001 
 　実はプロの現場でも衛生上の観点からシンクの衛生観念はアップデートされ.. 
-　　https://anond.hatelabo.jp/20230508002353 ","広告者の方々：
+　　https://anond.hatelabo.jp/20230508002353","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -3740,7 +3739,7 @@ No.7
 　個人がトイレを持っているのって空間の無駄づかいじゃない？
 　　落ち着きプレイスだから個人トイレが欲しいのだ
 　Kindleアプリがマシになった&最初のページに戻るボタンがなくなった"
-2024-04-27,ホンダ　フリード,晴,2024-06-01,【VOICEVOX車載】ほなどっかいこか（黒部アルペンルート（電気バス・ケーブルカー・ロープウェイ・トロリーバス・立山高原バス・ケーブルカー・富山地方鉄道）・すし玉・宇奈月温泉）,https://www.nicovideo.jp/watch/sm43861682,https://www.youtube.com/watch?v=E67q-qrFKto,ほなどっかいこか,"バスの揺れ。ダムの水。トロリーバスは走っていく。
+68,2024-04-27,ホンダ　フリード,晴,2024-06-01,【VOICEVOX車載】ほなどっかいこか（黒部アルペンルート（電気バス・ケーブルカー・ロープウェイ・トロリーバス・立山高原バス・ケーブルカー・富山地方鉄道）・すし玉・宇奈月温泉）,https://www.nicovideo.jp/watch/sm43861682,https://www.youtube.com/watch?v=E67q-qrFKto,ほなどっかいこか,"バスの揺れ。ダムの水。トロリーバスは走っていく。
 車窓の夕陽。海の恵み。つむぎたちも走っていく。
 
 2024年に日本から姿を消すトロリーバスに乗りに、
@@ -3809,7 +3808,7 @@ No.7
 　2018/11に運行終了した立山黒部アルペンルートの「トロリーバス」の記録番組（大町市ケーブルテレビ） - YouTube 
 　　https://www.youtube.com/watch?v=rfKYPdiD8IM 
 　オリジナル曲「Phuniaya(フニェーヤ)」ができました。 | Yuli Audio Craft
-　　http://yacft.com/オリジナル曲「Phuniaya(フニェーヤ)」ができました。/ ","広告者の方々：
+　　http://yacft.com/オリジナル曲「Phuniaya(フニェーヤ)」ができました。/","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -3883,7 +3882,7 @@ No.7
 　カエルの鳴き声で思い出す実家周辺の田んぼ
 　髪型を変える理由ってそんな深くないでしょ
 　家族の夕飯にラーメン食べるんだ？　なんか意外"
-2024-04-28,ホンダ　フリード,晴,2024-08-06,【VOICEVOX車載】ほなどっかいこか（宇奈月ダム・魚津埋没林博物館・米騒動発祥の地・吉宗・瑞龍寺・トヨタモビリティ富山 Ｇスクエア五福前駅）,https://www.nicovideo.jp/watch/sm43913795,https://www.youtube.com/watch?v=oghWDC9eu4c,ほなどっかいこか,"在来線は学生の味方、高速バスも学生の味方。
+69,2024-04-28,ホンダ　フリード,晴,2024-08-06,【VOICEVOX車載】ほなどっかいこか（宇奈月ダム・魚津埋没林博物館・米騒動発祥の地・吉宗・瑞龍寺・トヨタモビリティ富山 Ｇスクエア五福前駅）,https://www.nicovideo.jp/watch/sm43913795,https://www.youtube.com/watch?v=oghWDC9eu4c,ほなどっかいこか,"在来線は学生の味方、高速バスも学生の味方。
 その味方を裏切らないために、時間を守る",https://docs.google.com/document/d/1IFZpUbqc8VYPyF6M06ftuQfrNWa8GSFNbomRDX4D_Ks/edit?tab=t.0,,"春日部つむぎ
 中国うさぎ","00:02　宇奈月ダム
 00:19　宇奈月観光
@@ -3991,7 +3990,7 @@ No.7
 　銀座デリーのカシミールカレーが辛い
 　孤独のグルメに出てきた北千住のタイ料理屋に行った。知らずに
 　路面電車の真ん中の車両に車輪がない？"
-2024-06-04,トヨタ　ノア,曇,2024-09-07,【VOICEVOX車載】ほな1人でどっかいこか（道央編1日目）,https://www.nicovideo.jp/watch/sm44076335,https://www.youtube.com/watch?v=Xl95CcI74eE,ほな1人でどっかいこか,"試される大地
+70,2024-06-04,トヨタ　ノア,曇,2024-09-07,【VOICEVOX車載】ほな1人でどっかいこか（道央編1日目）,https://www.nicovideo.jp/watch/sm44076335,https://www.youtube.com/watch?v=Xl95CcI74eE,ほな1人でどっかいこか,"試される大地
 試すあーし",https://docs.google.com/document/d/1lIDdaDc6ZmWMfzgNhYena-gkYyH8MYQWeifQPjJUL1o/edit?tab=t.0,,春日部つむぎ,"00:00　オープニング
 02:37　予定作成
 05:28　出発（羽田空港）
@@ -4063,7 +4062,7 @@ No.7
 　　https://hokkaido-michinoeki.jp/michinoeki/988/ 
 　町民の夢をのせた新冠温泉レ・コードの湯　新冠町長
 　「１．【優駿浪漫街道（国道２３５号線）】沿いの歴史文化資源 巡覧！」（日高門別～新冠～静内～三石～浦河） - 日高振興局保健環境部環境生活課 
-　　https://www.hidaka.pref.hokkaido.lg.jp/hk/kks/yuusyun.html ","広告者の方々：
+　　https://www.hidaka.pref.hokkaido.lg.jp/hk/kks/yuusyun.html","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -4114,7 +4113,7 @@ No.7
 　スイロ さん
 　アークビショップ太郎 さん
 　なかじ さん",
-2024-06-05,トヨタ　ノア,曇〜雨,2024-09-25,【VOICEVOX車載】ほな1人でどっかいこか（道央編2日目）,https://www.nicovideo.jp/watch/sm44144883,https://www.youtube.com/watch?v=AnfTHZOytrY,ほな1人でどっかいこか,"旅をする時はね
+71,2024-06-05,トヨタ　ノア,曇〜雨,2024-09-25,【VOICEVOX車載】ほな1人でどっかいこか（道央編2日目）,https://www.nicovideo.jp/watch/sm44144883,https://www.youtube.com/watch?v=AnfTHZOytrY,ほな1人でどっかいこか,"旅をする時はね
 誰にも言われずとも不自由で
 なんというか追われてなきゃあダメなんだ
 独りで静かで強かで……",https://docs.google.com/document/d/1lIDdaDc6ZmWMfzgNhYena-gkYyH8MYQWeifQPjJUL1o/edit?tab=t.0,,春日部つむぎ,"00:00　プレート境界
@@ -4280,7 +4279,7 @@ No.7
 　大黒湯 （DAIKOKUYU） - 旭川市3条通/銭湯・入浴施設 [ライナーウェブ]
 　　https://www.liner.jp/spot/3366/ 
 　道の駅紹介｜道の駅あさひかわ
-　　http://www.asahikawa-jibasan.com/station/ ","広告者の方々：
+　　http://www.asahikawa-jibasan.com/station/","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -4331,7 +4330,7 @@ No.7
 　スイロ さん
 　アークビショップ太郎 さん
 　なかじ さん",
-2024-06-06,トヨタ　ノア,雨〜晴〜曇,2024-10-06,【VOICEVOX車載】ほな1人でどっかいこか（道央編3日目）,https://www.nicovideo.jp/watch/sm44184904,https://www.youtube.com/watch?v=sQ3IXO_RuHE,ほな1人でどっかいこか,"走れ、走れ。
+72,2024-06-06,トヨタ　ノア,雨〜晴〜曇,2024-10-06,【VOICEVOX車載】ほな1人でどっかいこか（道央編3日目）,https://www.nicovideo.jp/watch/sm44184904,https://www.youtube.com/watch?v=sQ3IXO_RuHE,ほな1人でどっかいこか,"走れ、走れ。
 間に合うことの大切さ",https://docs.google.com/document/d/1lIDdaDc6ZmWMfzgNhYena-gkYyH8MYQWeifQPjJUL1o/edit?tab=t.0,,春日部つむぎ,"00:00　道の駅あさひかわ
 00:19　春志内トンネル
 00:54　直線道路日本一モニュメント
@@ -4555,7 +4554,7 @@ No.7
 　森本沙希 さん
 　パワハム さん
 　ななし さん",
-2024-06-07,トヨタ　ノア,晴,2024-10-12,【VOICEVOX車載】ほな1人でどっかいこか（道央編4日目）,https://www.nicovideo.jp/watch/sm44206743,https://www.youtube.com/watch?v=gDTPbL99jis,ほな1人でどっかいこか,"走る理由は見つかったか？
+73,2024-06-07,トヨタ　ノア,晴,2024-10-12,【VOICEVOX車載】ほな1人でどっかいこか（道央編4日目）,https://www.nicovideo.jp/watch/sm44206743,https://www.youtube.com/watch?v=gDTPbL99jis,ほな1人でどっかいこか,"走る理由は見つかったか？
 相棒",https://docs.google.com/document/d/1lIDdaDc6ZmWMfzgNhYena-gkYyH8MYQWeifQPjJUL1o/edit?tab=t.0,,春日部つむぎ,"00:00　地球岬
 00:52　かに太郎
 01:29　大滝ナイアガラ
@@ -4573,8 +4572,7 @@ No.7
 08:59　幸福の黄色いハンカチ想い出ひろば
 09:22　ヤリキレナイ川
 09:29　ヴァルハラ（ジンギスカン）
-10:15　エンディング
-",347,6893,0,6690,3575,0,0,0,9540,547,0,0,0,27.5,27272.5,"画像：
+10:15　エンディング",347,6893,0,6690,3575,0,0,0,9540,547,0,0,0,27.5,27272.5,"画像：
 　春日部つむぎ立ち絵　春日部つむぎ公式　https://seiga.nicovideo.jp/seiga/im10842587
 　春日部つむぎ動画　春日部つむぎ公式　https://www.nicovideo.jp/watch/sm39656626
 
@@ -4629,7 +4627,7 @@ No.7
 　アロニアねじり | 北海道産新鮮野菜をおいしくをお届け｜ピュアフーズとうや
 　　https://pure-foodstoya.com/products/1544-2/ 
 　お知らせ
-　　http://www.circle-city.ne.jp/yurara/plan.html ","広告者の方々：
+　　http://www.circle-city.ne.jp/yurara/plan.html","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -4684,7 +4682,7 @@ No.7
 　パワハム さん
 　ななし さん
 　南わらび さん",
-2024-06-16,MAZDA　CX-30 2000,晴,2024-12-09,【VOICEVOX車載】ほなどっかいこか（麺屋あがら・戸田ボートレース場・造幣さいたま博物館・東京競馬場・山田屋）,https://www.nicovideo.jp/watch/sm44410135,https://www.youtube.com/watch?v=cUMk8R6YAZE,ほなどっかいこか,"勝ったらいいなじゃない
+74,2024-06-16,MAZDA　CX-30 2000,晴,2024-12-09,【VOICEVOX車載】ほなどっかいこか（麺屋あがら・戸田ボートレース場・造幣さいたま博物館・東京競馬場・山田屋）,https://www.nicovideo.jp/watch/sm44410135,https://www.youtube.com/watch?v=cUMk8R6YAZE,ほなどっかいこか,"勝ったらいいなじゃない
 勝たなきゃダメなんだ",,,"春日部つむぎ
 ずんだもん","01:18　麺屋あがら
 01:55　ペットショップ
@@ -4737,7 +4735,7 @@ No.7
 　無音の中に放り込まれると、人は45分以内に発狂する | ギズモード・ジャパン
 　　https://www.gizmodo.jp/2016/09/re-quietest-place-insane.html 
 　主要なグループ会社一覧 | グループ事業 | 青山商事
-　　https://www.aoyama-syouji.co.jp/group/groupcompany/ ","広告者の方々：
+　　https://www.aoyama-syouji.co.jp/group/groupcompany/","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -4821,7 +4819,7 @@ No.7
 　空調ふくどころかペルチェ素子をつけた服がワークマンにあるらしい
 　デジタルデトックスは何もなくなったときに思いつくことがありそうでやる
 　お風呂で何をすると時間が無駄にならないんだろう"
-2024-09-14,ダイハツ　ウェイク,晴,2024-12-21,【VOICEVOX車載】ほなどっかいこか（海老名SA・トウモロコシ畑の巨大迷路・丹那断層公園・火雷神社・木曽路藤沢店）,https://www.nicovideo.jp/watch/sm44447466,https://www.youtube.com/watch?v=pUs8f76kOMQ,ほなどっかいこか,"軽自動車の揺れ
+75,2024-09-14,ダイハツ　ウェイク,晴,2024-12-21,【VOICEVOX車載】ほなどっかいこか（海老名SA・トウモロコシ畑の巨大迷路・丹那断層公園・火雷神社・木曽路藤沢店）,https://www.nicovideo.jp/watch/sm44447466,https://www.youtube.com/watch?v=pUs8f76kOMQ,ほなどっかいこか,"軽自動車の揺れ
 軽自動車の加速
 軽自動車の硝子",,,"春日部つむぎ
 ずんだもん","01:20　海老名SA
@@ -4975,7 +4973,7 @@ No.7
 　総裁選の候補者全員言える？　言えないなあ
 　なぜか富山の動画がYouTubeでだけやたら再生される謎
 　成田空港って昔新東京国際空港って言ってたよね。千葉なのに"
-2024-11-04,MAZDA　CX-30 2000,晴,2024-12-25,【VOICEVOX車載】ほなどっかいこか（鈴廣かまぼこ博物館・仙石原すすき草原・ラーメン山岡家・ドリームベーカリー）,https://www.nicovideo.jp/watch/sm44464366,https://www.youtube.com/watch?v=5_1hzSKw_7M,ほなどっかいこか,ガツンと来て、くせになる,,,"春日部つむぎ
+76,2024-11-04,MAZDA　CX-30 2000,晴,2024-12-25,【VOICEVOX車載】ほなどっかいこか（鈴廣かまぼこ博物館・仙石原すすき草原・ラーメン山岡家・ドリームベーカリー）,https://www.nicovideo.jp/watch/sm44464366,https://www.youtube.com/watch?v=5_1hzSKw_7M,ほなどっかいこか,ガツンと来て、くせになる,,,"春日部つむぎ
 ずんだもん","00:07　麦のトリコ
 02:47　鈴廣かまぼこ博物館
 05:30　大涌谷
@@ -5007,7 +5005,7 @@ No.7
 　「カー！」ビブラスラップ 残響つき - ニコニ・コモンズ
 　　https://commons.nicovideo.jp/works/nc295973 
 　The screaming marmot - YouTube
-　　https://www.youtube.com/watch?v=wmRU50azMRI ","参考文献：
+　　https://www.youtube.com/watch?v=wmRU50azMRI","参考文献：
 　文化審議会 著作権分科会 法制問題小委員会（第2回）議事録・配付資料 ［資料5］－文部科学省 
 　　https://www.mext.go.jp/b_menu/shingi/bunka/gijiroku/013/07042304/004.htm 
 　へずまりゅうの両親が胸中を吐露「それでもこの地で生きていくしかない」 | 週刊女性PRIME
@@ -5043,7 +5041,7 @@ No.7
 　Amazon | パルミジャーノ・レッジャーノ ホール 約35Kg | アンブロシア | ナチュラルチーズ 通販
 　　https://www.amazon.co.jp/dp/B00N70LV44/
 　昆虫と光の関係
-　　http://pest-kanri.com/category1/entry35.html ","広告者の方々：
+　　http://pest-kanri.com/category1/entry35.html","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -5143,9 +5141,9 @@ No.7
 　山手線の駅で全然行かない駅の話と、そもそも山手線を使わない話
 　倉庫のトラックヤードってなぜか照明が黄色いよね。虫除け？
 　アクアラインのマラソンって徒歩で渡れる機会としてはおもしろそう"
-,,,2024-12-31,HONADOKKAIKOKA2024,https://www.nicovideo.jp/watch/sm44486227,https://www.youtube.com/watch?v=C_ZhgJSstIQ,,"ほなどっかいこか
+77,,,,2024-12-31,HONADOKKAIKOKA2024,https://www.nicovideo.jp/watch/sm44486227,https://www.youtube.com/watch?v=C_ZhgJSstIQ,,"ほなどっかいこか
 2024年のまとめ",,,,,,,,,,,,,,,,,,,,,,,
-2025-01-12,MAZDA　MAZDA3 5HB 1500,曇,2025-02-02,【VOICEVOX車載】ほなどっかいこか（佐倉きのこ園・わんわんランド・シャトレーゼ・道の駅さかい・江戸川流頭部・ワンカルビ）,https://www.nicovideo.jp/watch/sm44606554,https://www.youtube.com/watch?v=x_lpnAB2A1I,ほなどっかいこか,"1月だからとワンを求めて
+78,2025-01-12,MAZDA　MAZDA3 5HB 1500,曇,2025-02-02,【VOICEVOX車載】ほなどっかいこか（佐倉きのこ園・わんわんランド・シャトレーゼ・道の駅さかい・江戸川流頭部・ワンカルビ）,https://www.nicovideo.jp/watch/sm44606554,https://www.youtube.com/watch?v=x_lpnAB2A1I,ほなどっかいこか,"1月だからとワンを求めて
 くっさい犬とドリアンを享受",,,"春日部つむぎ
 ずんだもん
 冥鳴ひまり","02:08　佐倉きのこ園
@@ -5358,7 +5356,7 @@ No.7
 　死にたくないし老いたくない。衰えたくない。
 　身動きが取れないとか、原因不明の腹痛は怖い。制御したい
 　興味がないものに対しては常識がなくてそれで死ぬかもしれない怖さ"
-2025-02-25,トヨタ　シエンタ,曇,,,,,,,https://docs.google.com/document/d/1KsAZqaaErN3PxP_dq7h1OIFDhth1V9auNlIo2keIUh8/edit?tab=t.0,,春日部つむぎ,,40,4699,0,300,3300,480,0,0,0,10408,260,0,0,275,19722,,"参考文献：
+79,2025-02-25,トヨタ　シエンタ,曇,,,,,,,https://docs.google.com/document/d/1KsAZqaaErN3PxP_dq7h1OIFDhth1V9auNlIo2keIUh8/edit?tab=t.0,,春日部つむぎ,,40,4699,0,300,3300,480,0,0,0,10408,260,0,0,275,19722,,"参考文献：
 　イタリアン (新潟) - Wikipedia
 　　https://ja.wikipedia.org/wiki/イタリアン (新潟) 
 　みかづき| 新潟で「イタリアン」と言えばコレ！
@@ -5374,8 +5372,8 @@ No.7
 　小岩井乳業株式会社｜商品紹介｜牛乳・乳飲料|小岩井 コーヒー 500ml
 　　https://product.koiwaimilk.com/product/milk/_500ml_1.html 
 　雪印コーヒー | 商品のご案内 | 雪印メグミルク
-　　https://www.meg-snow.com/products/detail.php?p=yuki-coffee ",,
-2025-02-26,トヨタ　シエンタ,雨〜曇,2025-03-17,【VOICEVOX車載】ほな1人でどっかいこか（みかづき・Befcoばかうけ展望室・自称日本一まずい温泉・瓢湖水きん公園・交通量日本一の一般道・湾曲標識・バスセンターのカレー・日本一国道の集まる交差点）,https://www.nicovideo.jp/watch/sm44772551,https://www.youtube.com/watch?v=xGTAX2j8R9k,ほな1人でどっかいこか,"あの長いヤツに乗るときは
+　　https://www.meg-snow.com/products/detail.php?p=yuki-coffee",,
+80,2025-02-26,トヨタ　シエンタ,雨〜曇,2025-03-17,【VOICEVOX車載】ほな1人でどっかいこか（みかづき・Befcoばかうけ展望室・自称日本一まずい温泉・瓢湖水きん公園・交通量日本一の一般道・湾曲標識・バスセンターのカレー・日本一国道の集まる交差点）,https://www.nicovideo.jp/watch/sm44772551,https://www.youtube.com/watch?v=xGTAX2j8R9k,ほな1人でどっかいこか,"あの長いヤツに乗るときは
 大抵何か理由がある",https://docs.google.com/document/d/1KsAZqaaErN3PxP_dq7h1OIFDhth1V9auNlIo2keIUh8/edit?tab=t.0,,春日部つむぎ,"00:05　みかづき（イタリアン）
 00:30　みなとのマルシェピアBandai・廻転寿司佐渡弁慶
 00:47　朱鷺メッセ・Befcoばかうけ展望室
@@ -5473,7 +5471,7 @@ No.7
 　やまだ さん
 　もういません さん
 　さとん さん",
-2025-03-04,トヨタ　ヤリスクロス,雨,2025-03-23,【VOICEVOX車載】ほな1人でどっかいこか（広島編第1日）,https://www.nicovideo.jp/watch/sm44798590 ,https://www.youtube.com/watch?v=kInL2qImQ80,ほな1人でどっかいこか,"Travel is one percent schedule,
+81,2025-03-04,トヨタ　ヤリスクロス,雨,2025-03-23,【VOICEVOX車載】ほな1人でどっかいこか（広島編第1日）,https://www.nicovideo.jp/watch/sm44798590,https://www.youtube.com/watch?v=kInL2qImQ80,ほな1人でどっかいこか,"Travel is one percent schedule,
 ninety-nine percent weather.",https://docs.google.com/document/d/1gyvIYfZrp_7BxzgC7RTxGADde6K4Haf6q5TFZywZ02w/edit?tab=t.0,,春日部つむぎ,"00:00　オープニング
 01:08　大山祇神社
 02:00　道の駅御島
@@ -5591,7 +5589,7 @@ ninety-nine percent weather.",https://docs.google.com/document/d/1gyvIYfZrp_7Bxz
 　仁方駅 - Wikipedia
 　　https://ja.wikipedia.org/wiki/仁方駅
 　Steam：Freeways
-　　https://store.steampowered.com/app/780210/Freeways/ ","広告者の方々：
+　　https://store.steampowered.com/app/780210/Freeways/","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -5654,7 +5652,7 @@ ninety-nine percent weather.",https://docs.google.com/document/d/1gyvIYfZrp_7Bxz
 　やまだ さん
 　もういません さん
 　さとん さん",
-2025-03-05,トヨタ　ヤリスクロス,曇,2025-04-02,【VOICEVOX車載】ほな1人でどっかいこか（広島編第2日）,https://www.nicovideo.jp/watch/sm44834607,https://www.youtube.com/watch?v=RM0G-GL_FxQ,ほな1人でどっかいこか,"景色と食事といろんな想定外
+82,2025-03-05,トヨタ　ヤリスクロス,曇,2025-04-02,【VOICEVOX車載】ほな1人でどっかいこか（広島編第2日）,https://www.nicovideo.jp/watch/sm44834607,https://www.youtube.com/watch?v=RM0G-GL_FxQ,ほな1人でどっかいこか,"景色と食事といろんな想定外
 旅行って、それらで出来てる。",https://docs.google.com/document/d/1gyvIYfZrp_7BxzgC7RTxGADde6K4Haf6q5TFZywZ02w/edit?tab=t.0,エイプリルフール,春日部つむぎ,"00:05　ルーエぶらじる
 01:02　マツダ株式会社広島本社
 01:19　国道31号
@@ -5728,7 +5726,7 @@ ninety-nine percent weather.",https://docs.google.com/document/d/1gyvIYfZrp_7Bxz
 　広島のお好み焼き店 5年間で15%減 - Yahoo!ニュース
 　　https://news.yahoo.co.jp/pickup/6530303 
 　ウニホーレン | 日本の食べ物用語辞典
-　　https://japan-word.com/uni-houren ","広告者の方々：
+　　https://japan-word.com/uni-houren","広告者の方々：
 　sgt さん
 　エンテー さん
 　副隊長 さん
@@ -5793,7 +5791,7 @@ ninety-nine percent weather.",https://docs.google.com/document/d/1gyvIYfZrp_7Bxz
 　さとん さん
 　輪廻 さん
 　マグラ さん",
-2025-03-24,トヨタ　ノア,,,,,,ほな1人でどっかいこか,,https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/,,春日部つむぎ,,275,7682,0,5163,4766.666667,500,0,0,8870,535,0,0,0,183.3333333,27700,,"https://x.com/arakencloud/status/1903658552192799073
+83,2025-03-24,トヨタ　ノア,,,,,,ほな1人でどっかいこか,,https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/,,春日部つむぎ,,275,7682,0,5163,4766.666667,500,0,0,8870,535,0,0,0,183.3333333,27700,,"https://x.com/arakencloud/status/1903658552192799073
 道路：道路統計年報2023 トンネルの現況 - 国土交通省 https://www.mlit.go.jp/road/ir/ir-data/tokei-nen/2023/nenpo04.html  大分はトンネルの数が日本一
 東北イタコはライダーとの夢をみる　～別府でお食事編～ - ニコニコ動画 https://www.nicovideo.jp/watch/sm39406551 プリン
 かんたん - Wikipedia https://ja.wikipedia.org/wiki/%E3%81%8B%E3%82%93%E3%81%9F%E3%82%93 
@@ -5801,13 +5799,13 @@ ninety-nine percent weather.",https://docs.google.com/document/d/1gyvIYfZrp_7Bxz
 あかりと九州ツーリング　大阪～大分編【気晴らしのポケット旅】 - ニコニコ動画 https://www.nicovideo.jp/watch/sm43928512 関サバ
 【九州天然海水風呂】佐伯ランチは新鮮な魚介たっぷりの海鮮丼！佐伯湾を望む絶景の塩湯家族風呂！ミネラルたっぷりでお肌リフレッシュ！オモウマい店でも紹介された行列のできる店！佐伯旅行と佐伯観光の参考に - YouTube https://www.youtube.com/watch?v=ys6VDFnki7Q 
 GSI-menseki20241001.pdf https://www.gsi.go.jp/KOKUJYOHO/MENCHO/backnumber/GSI-menseki20241001.pdf 　佐伯市は九州で面積最大
-気象庁｜気象情報 https://www.jma.go.jp/bosai/information/#area_type=japan&info_id=20250323071549_0_VPZJ50_010000&format=text&area_code=010000 ",,
-2025-03-25,トヨタ　ノア,,,,,,ほな1人でどっかいこか,,https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/,,春日部つむぎ,,355,5412,1000,6665,4766.666667,1000,0,0,0,0,0,4100,0,283.3333333,23227,,"ゆかりとあかりのダムに行きましょう ver.16.0【白水ダム】 - ニコニコ動画 https://www.nicovideo.jp/watch/sm41174950  白水溜池堰堤
+気象庁｜気象情報 https://www.jma.go.jp/bosai/information/#area_type=japan&info_id=20250323071549_0_VPZJ50_010000&format=text&area_code=010000",,
+84,2025-03-25,トヨタ　ノア,,,,,,ほな1人でどっかいこか,,https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/,,春日部つむぎ,,355,5412,1000,6665,4766.666667,1000,0,0,0,0,0,4100,0,283.3333333,23227,,"ゆかりとあかりのダムに行きましょう ver.16.0【白水ダム】 - ニコニコ動画 https://www.nicovideo.jp/watch/sm41174950  白水溜池堰堤
 【NM4-02】弦巻マキと名所探訪 part.103「熊本県・阿蘇火口」 - ニコニコ動画 https://www.nicovideo.jp/watch/sm33558641  砂千里を走る
-あまねく旅路の先に#H-01　特攻野郎A(so/ho)チーム、阿蘇に出撃です！【ソフトウェアトーク車載】 - ニコニコ動画 https://www.nicovideo.jp/watch/sm44774622 ",,
-2025-03-26,トヨタ　ノア,,,,,,ほな1人でどっかいこか,,https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/,,春日部つむぎ,,186,5448,0,3492,4766.666667,1000,300,0,9670,547,0,0,0,577.3333333,25801,,"GSRで九州・道の駅 完全制覇の旅 #5 耶馬渓の向こう側へ - ニコニコ動画 https://www.nicovideo.jp/watch/sm31692575 オランダ橋
+あまねく旅路の先に#H-01　特攻野郎A(so/ho)チーム、阿蘇に出撃です！【ソフトウェアトーク車載】 - ニコニコ動画 https://www.nicovideo.jp/watch/sm44774622",,
+85,2025-03-26,トヨタ　ノア,,,,,,ほな1人でどっかいこか,,https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/,,春日部つむぎ,,186,5448,0,3492,4766.666667,1000,300,0,9670,547,0,0,0,577.3333333,25801,,"GSRで九州・道の駅 完全制覇の旅 #5 耶馬渓の向こう側へ - ニコニコ動画 https://www.nicovideo.jp/watch/sm31692575 オランダ橋
 【ゆっくり】徒歩で日本一周part277【国東→杵築】 - ニコニコ動画 https://www.nicovideo.jp/watch/sm33050771 
 【VOICEVOX車載】ずんだもん&春日部つむぎと行く東椎屋の滝【ずんツー日記 #1】 - ニコニコ動画 https://www.nicovideo.jp/watch/sm40595604 
 京きな粉と羽二重餅粉のやわらか求肥　びったれ餅 サービス箱5個入り | 中津菓子 かねい https://kanei.thebase.in/items/9721555 
 【ゆっくり】徒歩で日本一周part274【行橋→中津】 - ニコニコ動画 https://www.nicovideo.jp/watch/sm33036209 　ぶんごや　からあげ
-【結月ゆかり車載】憧憬の彼方へ旅に行こう「九州一周編リターンズ」第2夜 - ニコニコ動画 https://www.nicovideo.jp/watch/sm42279715 ",,
+【結月ゆかり車載】憧憬の彼方へ旅に行こう「九州一周編リターンズ」第2夜 - ニコニコ動画 https://www.nicovideo.jp/watch/sm42279715",,

@@ -9,7 +9,7 @@ Papa.parse("data/summary_table.csv", {
   download: true,
   complete: function (results) {
     const trips = results.data
-      .filter((row) => row.date) // 空行除外
+      .filter((row) => row.id) // 空行除外
       .map((row) => {
         const converted = {};
         for (const key in row) {
@@ -54,6 +54,7 @@ function renderTable(data) {
     "places",
   ];
   const keys = [
+    "id",
     "date",
     "car_model",
     "weather",
@@ -183,7 +184,6 @@ function renderTable(data) {
     totalDistance.toFixed(1) + " km";
   document.getElementById("total-cost_meal").textContent =
     totalCost_meal.toFixed(1) + "円";
-  console.log(totalCost_meal.toFixed(1) + "円");
   document.getElementById("total-cost_toll_road").textContent =
     totalCost_toll_road.toFixed(1) + "円";
   document.getElementById("total-cost_fuel").textContent =
@@ -217,12 +217,14 @@ function renderTable(data) {
 // 🎥 埋め込み生成
 function getEmbedHTML(url) {
   if (!url || typeof url !== "string") return "なし";
-
+    url = url.trim();
   if (url.includes("youtube.com")) {
-    const videoId = url.includes("v=")
-      ? url.split("v=")[1].split("&")[0]
-      : url.split("/").pop();
-    return `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+    // urlをそのまま書き、埋め込まない
+    return `<a href="${url}" target="_blank">動画リンク</a>`;
+    // const videoId = url.includes("v=")
+    //   ? url.split("v=")[1].split("&")[0]
+    //   : url.split("/").pop();
+    // return `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
   } else if (url.includes("nicovideo.jp")) {
     const id = url.split("/").pop();
     return `<iframe src="https://embed.nicovideo.jp/watch/${id}" frameborder="0" allowfullscreen></iframe>`;
@@ -243,40 +245,43 @@ function setupSorting(trips) {
 
 // 🔃 ソート処理本体
 function sortTripsBy(data, key) {
-  const sorted = [...data];
-  const asc = currentSort.key === key ? !currentSort.asc : true;
-  currentSort = { key, asc };
-
-  sorted.sort((a, b) => {
-    let valA, valB;
-
-    if (key === "cost") {
-      valA = parseFloat(a.cost);
-      valB = parseFloat(b.cost);
-    } else if (key === "date") {
-      valA = new Date(a.date);
-      valB = new Date(b.date);
-    } else {
-      valA = a[key] ?? "";
-      valB = b[key] ?? "";
-    }
-
-    return asc ? (valA > valB ? 1 : -1) : valA < valB ? 1 : -1;
-  });
-
-  renderTable(sorted);
-  updateSortIcons(key, asc);
-}
+    const sorted = [...data];
+    const asc = currentSort.key === key ? !currentSort.asc : true;
+    currentSort = { key, asc };
+  
+    sorted.sort((a, b) => {
+      let valA, valB;
+  
+      if (key.startsWith("cost_") || key === "distance") {
+        valA = a[key] !== undefined && a[key] !== "" ? parseFloat(a[key]) : 0;
+        valB = b[key] !== undefined && b[key] !== "" ? parseFloat(b[key]) : 0;
+      } else if (key === "date") {
+        valA = new Date(a.date);
+        valB = new Date(b.date);
+      } else {
+        valA = a[key] ?? "";
+        valB = b[key] ?? "";
+      }
+  
+      if (valA === valB) return 0;
+      return asc ? (valA > valB ? 1 : -1) : valA < valB ? 1 : -1;
+    });
+  
+    renderTable(sorted);
+    updateSortIcons(key, asc);
+  }
+  
 
 // ⬆⬇ アイコン表示切替
-function updateSortIcons(activeKey, asc) {
-  document.querySelectorAll("th.sortable").forEach((th) => {
-    th.classList.remove("sorted-asc", "sorted-desc");
-    if (th.dataset.key === activeKey) {
-      th.classList.add(asc ? "sorted-asc" : "sorted-desc");
-    }
-  });
-}
+function updateSortIcons(key, asc) {
+    document.querySelectorAll("th.sortable").forEach(th => {
+      th.classList.remove("sorted-asc", "sorted-desc");
+      if (th.dataset.key === key) {
+        th.classList.add(asc ? "sorted-asc" : "sorted-desc");
+      }
+    });
+  }
+  
 function escapeHtml(str) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -292,7 +297,6 @@ function createCollapsibleCell(text) {
   const raw = (text || "").trim();
   const lines = raw.split(/\r?\n/).filter((line) => line.trim() !== "");
 
-  // 全行描画しておく（CSSで折りたたむ）
   content.innerHTML = lines.map((line) => escapeHtml(line)).join("<br>\n");
   wrapper.appendChild(content);
 
