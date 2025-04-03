@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>旅の記録ビューア</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #999;
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        .section-title {
+            font-weight: bold;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <select id="recordSelect"></select>
+    <br>
+    <br>
+    <div id="recordContainer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script>
+        const select = document.getElementById('recordSelect');
+        const container = document.getElementById('recordContainer');
+        let csvData = [];
+
+        // クエリ取得
+        function getIdFromUrl() {
+            const params = new URLSearchParams(location.search);
+            return params.get('id');
+        }
+
+        // 表示構築
+        function renderRecord(record) {
+            container.innerHTML = `
+        <table>
+          <colgroup>
+            <col style="width: 20%;">
+            <col style="width: 10%;">
+            <col style="width: 40%;">
+            <col style="width: 10%;">
+            <col style="width: 10%;">
+          </colgroup>
+          <tr>
+            <td>${record.date || ''}</td>
+            <td>${record.weather || ''}</td>
+            <td>${record.car_model || ''}</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td colspan="1">${record.series || ''}</td>
+            <td colspan="2">動画名: ${record.video_title || ''}</td>
+            <td colspan="2">参加者: ${renderParticipantsIcons(record.participants)}</td>
+          </tr>
+          <tr>
+            <td rowspan="15">${(record.places || '').replace(/\r?\n/g, '<br>')}</td>
+            <td rowspan="15" colspan="2">${(record.niconico)}</td>
+            <td class="section-title">走行距離</td>
+            <td align="right">${record.distance || ''} km</td>
+          </tr>
+          <tr>
+            <td class="section-title">食費</td>
+            <td align="right">${record.cost_meal || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">有料道路</td>
+            <td align="right">${record.cost_toll_road || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">燃料</td>
+            <td align="right">${record.cost_fuel || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">レンタカー</td>
+            <td align="right">${record.cost_rental_car || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">入場料</td>
+            <td align="right">${record.cost_entrance_fee || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">駐車場</td>
+            <td align="right">${record.cost_parking || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">宿泊料</td>
+            <td align="right">${record.cost_hotel || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">飛行機</td>
+            <td align="right">${record.cost_plane || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">電車</td>
+            <td align="right">${record.cost_train || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">バス</td>
+            <td align="right">${record.cost_bus || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">船</td>
+            <td align="right">${record.cost_ship || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">機材</td>
+            <td align="right">${record.cost_equipment || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">その他</td>
+            <td align="right">${record.cost_other || ''}円</td>
+          </tr>
+          <tr>
+            <td class="section-title">合計金額</td>
+            <td align="right">${record.cost_total || ''}円</td>
+          </tr>
+          <tr>
+            <td>${record.itinerary ? `<a href="${record.itinerary}" target="_blank" rel="noopener noreferrer">旅のしおり</a>` : ''}</td>
+            <td colspan="2">イベント: ${record.event || ''}</td>
+          </tr>
+          <tr>
+            <td colspan="5">${(record.material || '').replace(/\r?\n/g, '<br>')}</td>
+          </tr>
+          <tr>
+            <td colspan="5">${(record.reference || '').replace(/\r?\n/g, '<br>')}</td>
+          </tr>
+          <tr>
+            <td colspan="5">${record.advertiser || ''}</td>
+          </tr>
+          <tr>
+            <td colspan="5">${(record.topics || '').replace(/\r?\n/g, '<br>')}</td>
+          </tr>
+        </table>
+      `;
+        }
+
+        function updateUrl(id) {
+            history.pushState({}, '', `?id=${id}`);
+        }
+
+        select.addEventListener('change', () => {
+            const selectedId = select.value;
+            updateUrl(selectedId);
+            const record = csvData.find(r => r.id === selectedId);
+            renderRecord(record);
+        });
+
+        fetch('data/summary_table.csv')
+            .then(res => res.text())
+            .then(csvText => {
+                csvData = Papa.parse(csvText, { header: true }).data;
+
+                for (const row of csvData) {
+                    if (!row.id || !row.date) continue;
+                    const option = document.createElement('option');
+                    option.value = row.id;
+                    option.textContent = `${row.id} (${row.date}) 「${row.video_title || ''}」`;
+                    select.appendChild(option);
+                }
+
+                const initialId = getIdFromUrl() || csvData[0]?.id;
+                if (initialId) {
+                    select.value = initialId;
+                    const record = csvData.find(r => r.id === initialId);
+                    renderRecord(record);
+                }
+            });
+        function renderParticipantsIcons(participantsStr) {
+            if (!participantsStr) return '';
+
+            return participantsStr
+                .split(/\r?\n/)                  // 改行で分割
+                .map(name => name.trim())        // 前後の空白除去
+                .filter(name => name !== '')     // 空行除去
+                .map(name => `
+      <img
+        src="icons/${name}.png"
+        alt="${name}"
+        title="${name}"
+        style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"
+      >
+    `)
+                .join('');
+        }
+        function getEmbedHTML(url) {
+            if (!url || typeof url !== "string") return "なし";
+            url = url.trim();
+            if (url.includes("nicovideo.jp")) {
+                const id = url.split("/").pop();
+                return `
+      <iframe
+        src="https://embed.nicovideo.jp/watch/${id}"
+        frameborder="0"
+        allowfullscreen
+        style="width: 100%; height: 100%; min-height: 400px;"
+      ></iframe>`;
+            } else {
+                return `<a href="${url}" target="_blank">動画リンク</a>`;
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
