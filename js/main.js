@@ -155,8 +155,8 @@ class MapManager {
               icon: L.divIcon({
                 className: 'start-marker',
                 html: `<div class="marker-circle" style="background-color: ${color};">S</div>`,
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                iconSize: [12, 12],
+                iconAnchor: [6, 6]
               })
             }).addTo(this.map);
 
