@@ -199,7 +199,7 @@ class MapManager {
             ).addTo(this.map);
             this.polylines.push(mainLine);
 
-            const startCoord = coords[0];
+            const startCoord = coords[coords.length - 1];
             const marker = L.circleMarker([startCoord[1], startCoord[0]], {
               radius: 4,
               color: "black",
