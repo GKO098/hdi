@@ -208,8 +208,8 @@ class MapManager {
             }).addTo(this.map);
 
             marker.bindPopup(`
-              <b>${row.start}</b><br>
-              → ${row.end}<br>
+              ${row.start}<br>
+              → <b>${row.end}</b><br>
               ${row.time}秒 / ${row.distance}m<br>
               <small style="color: gray;">📅 ${row.arrival_date}</small>
             `);
