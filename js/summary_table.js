@@ -245,7 +245,17 @@ class SummaryTable {
     if (text) {
       const div = document.createElement("div");
       div.className = "collapsible-content";
-      div.textContent = text;
+      
+      // 改行で分割して各行を個別のdiv要素として追加
+      const lines = text.split('\n');
+      lines.forEach(line => {
+        if (line.trim()) {  // 空行は無視
+          const lineDiv = document.createElement("div");
+          lineDiv.textContent = line.trim();
+          div.appendChild(lineDiv);
+        }
+      });
+      
       td.appendChild(div);
     }
     return td;
