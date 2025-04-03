@@ -1,317 +1,257 @@
-let currentSort = {
-  key: null,
-  asc: true,
-};
+class SummaryTable {
+  constructor() {
+    this.currentSort = {
+      key: null,
+      asc: true,
+    };
+    this.costKeys = [
+      "cost_meal",
+      "cost_toll_road",
+      "cost_fuel",
+      "cost_rental_car",
+      "cost_entrance_fee",
+      "cost_parking",
+      "cost_hotel",
+      "cost_plane",
+      "cost_train",
+      "cost_bus",
+      "cost_ship",
+      "cost_equipment",
+      "cost_other",
+      "cost_total",
+    ];
+    this.collapsibleKeys = [
+      "summary",
+      "participants",
+      "material",
+      "reference",
+      "advertiser",
+      "topics",
+      "places",
+    ];
+    this.allKeys = [
+      "id",
+      "date",
+      "car_model",
+      "weather",
+      "upload_date",
+      "video_title",
+      "niconico",
+      "youtube",
+      "series",
+      "summary",
+      "itinerary",
+      "event",
+      "participants",
+      "places",
+      "distance",
+      ...this.costKeys,
+      "material",
+      "reference",
+      "advertiser",
+      "topics",
+    ];
+  }
 
-// 📦 CSV読み込み（PapaParse使用）
-Papa.parse("data/summary_table.csv", {
-  header: true,
-  download: true,
-  complete: function (results) {
-    const trips = results.data
-      .filter((row) => row.id) // 空行除外
-      .map((row) => {
-        const converted = {};
-        for (const key in row) {
-          converted[key] = row[key];
-        }
-        return converted;
+  initialize() {
+    Papa.parse("data/summary_table.csv", {
+      header: true,
+      download: true,
+      complete: (results) => {
+        const trips = results.data
+          .filter((row) => row.id)
+          .map((row) => {
+            const converted = {};
+            for (const key in row) {
+              converted[key] = row[key];
+            }
+            return converted;
+          });
+
+        this.renderTable(trips);
+        this.setupSorting(trips);
+      },
+    });
+  }
+
+  renderTable(data) {
+    const tbody = document.querySelector("#trip-table tbody");
+    tbody.innerHTML = "";
+
+    const totals = this.calculateTotals(data);
+
+    data.forEach((trip) => {
+      const tr = document.createElement("tr");
+      this.allKeys.forEach((key) => {
+        const cell = this.createCell(trip, key);
+        tr.appendChild(cell);
       });
+      tbody.appendChild(tr);
+    });
 
-    renderTable(trips);
-    setupSorting(trips);
-  },
-});
+    this.updateTotals(totals);
+    this.updateSortIcons(null, true);
+  }
 
-// 🧰 表描画
-function renderTable(data) {
-  const tbody = document.querySelector("#trip-table tbody");
-  tbody.innerHTML = "";
+  calculateTotals(data) {
+    const totals = {
+      distance: 0,
+      ...this.costKeys.reduce((acc, key) => {
+        acc[key] = 0;
+        return acc;
+      }, {}),
+    };
 
-  let totalCost_meal = 0;
-  let totalCost_toll_road = 0;
-  let totalCost_fuel = 0;
-  let totalCost_rental_car = 0;
-  let totalCost_entrance_fee = 0;
-  let totalCost_parking = 0;
-  let totalCost_hotel = 0;
-  let totalCost_plane = 0;
-  let totalCost_train = 0;
-  let totalCost_bus = 0;
-  let totalCost_ship = 0;
-  let totalCost_equipment = 0;
-  let totalCost_other = 0;
-  let totalCost_total = 0;
-  let totalDistance = 0;
+    data.forEach((trip) => {
+      totals.distance += parseFloat(trip.distance) || 0;
+      this.costKeys.forEach((key) => {
+        totals[key] += parseFloat(trip[key]) || 0;
+      });
+    });
 
-  const collapsibleKeys = [
-    "summary",
-    "participants",
-    "material",
-    "reference",
-    "advertiser",
-    "topics",
-    "places",
-  ];
-  const keys = [
-    "id",
-    "date",
-    "car_model",
-    "weather",
-    "upload_date",
-    "video_title",
-    "niconico",
-    "youtube",
-    "series",
-    "summary",
-    "itinerary",
-    "event",
-    "participants",
-    "places",
-    "distance",
-    "cost_meal",
-    "cost_toll_road",
-    "cost_fuel",
-    "cost_rental_car",
-    "cost_entrance_fee",
-    "cost_parking",
-    "cost_hotel",
-    "cost_plane",
-    "cost_train",
-    "cost_bus",
-    "cost_ship",
-    "cost_equipment",
-    "cost_other",
-    "cost_total",
-    "material",
-    "reference",
-    "advertiser",
-    "topics",
-  ];
+    return totals;
+  }
 
-  data.forEach((trip) => {
-    const tr = document.createElement("tr");
+  createCell(trip, key) {
+    if (key === "id") {
+      return this.createIdCell(trip.id);
+    } else if (key === "niconico" || key === "youtube") {
+      return this.createVideoLinkCell(trip[key], key);
+    } else if (this.collapsibleKeys.includes(key)) {
+      return this.createCollapsibleCell(trip[key]);
+    } else if (key === "itinerary") {
+      return this.createItineraryCell(trip[key]);
+    } else if (this.costKeys.includes(key) || key === "distance") {
+      return this.createNumericCell(trip[key], key);
+    } else {
+      return this.createTextCell(trip[key]);
+    }
+  }
 
-    keys.forEach((key) => {
-      let cell;
-      if (key === "id") {
-        // 単にidを入れる。
-        // trip_detail.html?id={id} へのリンク載せるも作る
-        const td = document.createElement("td");
-        const a = document.createElement("a");
-        a.href = `trip_detail.html?id=${trip.id}`;
-        a.textContent = trip.id;
-        a.className = "trip-link";
-        td.appendChild(a);
-        cell = td;
-      } else if (key === "niconico" || key === "youtube") {
-        // 動画リンクを生成
-        const td = document.createElement("td");
-        const url = trip[key];
-        if (url) {
-          const a = document.createElement("a");
-          a.href = url;
-          if (key === "niconico") {
-            a.textContent = url.split("https://www.nicovideo.jp/watch/")[1];
-          } else if (key === "youtube") {
-            a.textContent = url.split("https://www.youtube.com/watch?v=")[1];
-          }
-          a.target = "_blank";
-          td.appendChild(a);
-        } else {
-          td.textContent = "";
-        }
-        cell = td;
-      } else if (collapsibleKeys.includes(key)) {
-        cell = createCollapsibleCell(trip[key]);
-      } else if (key === "itinerary") {
-        const td = document.createElement("td");
-        // もしあればリンクを生成
-        const url = trip[key];
-        if (url) {
-          const a = document.createElement("a");
-          a.href = url;
-          a.textContent = "しおり";
-          a.target = "_blank";
-          td.appendChild(a);
-        } else {
-          td.textContent = "";
-        }
-        cell = td;
-      } else if (key.startsWith("cost_") || key === "distance") {
-        const td = document.createElement("td");
-        td.classList.add("right");
-        const value = parseFloat(trip[key]) || 0;
+  createIdCell(id) {
+    const td = document.createElement("td");
+    const a = document.createElement("a");
+    a.href = `trip_detail.html?id=${id}`;
+    a.textContent = id;
+    a.className = "trip-link";
+    td.appendChild(a);
+    return td;
+  }
+
+  createVideoLinkCell(url, type) {
+    const td = document.createElement("td");
+    if (url) {
+      const a = document.createElement("a");
+      a.href = url;
+      a.textContent = type === "niconico"
+        ? url.split("https://www.nicovideo.jp/watch/")[1]
+        : url.split("https://www.youtube.com/watch?v=")[1];
+      a.target = "_blank";
+      td.appendChild(a);
+    }
+    return td;
+  }
+
+  createItineraryCell(url) {
+    const td = document.createElement("td");
+    if (url) {
+      const a = document.createElement("a");
+      a.href = url;
+      a.textContent = "しおり";
+      a.target = "_blank";
+      td.appendChild(a);
+    }
+    return td;
+  }
+
+  createNumericCell(value, key) {
+    const td = document.createElement("td");
+    td.classList.add("right");
+    const numValue = parseFloat(value) || 0;
+    if (key === "cost_total") {
+      td.innerHTML = `<strong>${this.formatValue(numValue)}</strong>`;
+    } else {
+      td.innerHTML = this.formatValue(numValue);
+    }
+    return td;
+  }
+
+  createTextCell(value) {
+    const td = document.createElement("td");
+    td.textContent = value || "";
+    return td;
+  }
+
+  updateTotals(totals) {
+    document.getElementById("total-distance").textContent = totals.distance.toFixed(1);
+    this.costKeys.forEach((key) => {
+      const element = document.getElementById(`total-${key}`);
+      if (element) {
         if (key === "cost_total") {
-          td.innerHTML = `<strong>${formatValue(value)}</strong>`;
-          totalCost_total += value;
-        } else if (key === "cost_meal") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_meal += value;
-        } else if (key === "cost_toll_road") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_toll_road += value;
-        } else if (key === "cost_fuel") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_fuel += value;
-        } else if (key === "cost_rental_car") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_rental_car += value;
-        } else if (key === "cost_entrance_fee") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_entrance_fee += value;
-        } else if (key === "cost_parking") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_parking += value;
-        } else if (key === "cost_hotel") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_hotel += value;
-        } else if (key === "cost_plane") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_plane += value;
-        } else if (key === "cost_train") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_train += value;
-        } else if (key === "cost_bus") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_bus += value;
-        } else if (key === "cost_ship") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_ship += value;
-        } else if (key === "cost_equipment") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_equipment += value;
-        } else if (key === "cost_other") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_other += value;
-        } else if (key === "cost_total") {
-          td.innerHTML = `${formatValue(value)}`;
-          totalCost_total += value;
-        } else if (key === "distance") {
-          td.textContent = formatValue(value);
-          totalDistance += value;
+          element.innerHTML = `<strong>${totals[key].toFixed(1)}円</strong>`;
         } else {
-          td.textContent = value.toFixed(0);
+          element.textContent = totals[key].toFixed(1);
         }
-        cell = td;
-      } else {
-        const td = document.createElement("td");
-        td.textContent = trip[key] || "";
-        cell = td;
-      }
-      tr.appendChild(cell);
-    });
-
-    tbody.appendChild(tr);
-  });
-  document.getElementById("total-distance").textContent =
-    totalDistance.toFixed(1);
-  document.getElementById("total-cost_meal").textContent =
-    totalCost_meal.toFixed(1);
-  document.getElementById("total-cost_toll_road").textContent =
-    totalCost_toll_road.toFixed(1);
-  document.getElementById("total-cost_fuel").textContent =
-    totalCost_fuel.toFixed(1);
-  document.getElementById("total-cost_rental_car").textContent =
-    totalCost_rental_car.toFixed(1);
-  document.getElementById("total-cost_entrance_fee").textContent =
-    totalCost_entrance_fee.toFixed(1);
-  document.getElementById("total-cost_parking").textContent =
-    totalCost_parking.toFixed(1);
-  document.getElementById("total-cost_hotel").textContent =
-    totalCost_hotel.toFixed(1);
-  document.getElementById("total-cost_plane").textContent =
-    totalCost_plane.toFixed(1);
-  document.getElementById("total-cost_train").textContent =
-    totalCost_train.toFixed(1);
-  document.getElementById("total-cost_bus").textContent =
-    totalCost_bus.toFixed(1);
-  document.getElementById("total-cost_ship").textContent =
-    totalCost_ship.toFixed(1);
-  document.getElementById("total-cost_equipment").textContent =
-    totalCost_equipment.toFixed(1);
-  document.getElementById("total-cost_other").textContent =
-    totalCost_other.toFixed(1);
-  document.getElementById("total-cost_total").innerHTML =
-    "<strong>" + totalCost_total.toFixed(1) + "円</strong>";
-  // ソートアイコン初期化
-  updateSortIcons(null, true);
-}
-
-// 🔁 ソートイベント登録
-function setupSorting(trips) {
-  document.querySelectorAll("th.sortable").forEach((th) => {
-    th.addEventListener("click", () => {
-      const key = th.dataset.key;
-      if (key) sortTripsBy(trips, key);
-    });
-  });
-}
-
-// 🔃 ソート処理本体
-function sortTripsBy(data, key) {
-    const sorted = [...data];
-    const asc = currentSort.key === key ? !currentSort.asc : true;
-    currentSort = { key, asc };
-  
-    sorted.sort((a, b) => {
-      let valA, valB;
-  
-      if (key.startsWith("cost_") || key === "distance") {
-        valA = a[key] !== undefined && a[key] !== "" ? parseFloat(a[key]) : 0;
-        valB = b[key] !== undefined && b[key] !== "" ? parseFloat(b[key]) : 0;
-      } else if (key === "date") {
-        valA = new Date(a.date);
-        valB = new Date(b.date);
-      } else if (key === "id") {
-        valA = parseInt(a.id, 10);
-        valB = parseInt(b.id, 10);
-      } else {
-        valA = a[key] ?? "";
-        valB = b[key] ?? "";
-      }
-  
-      if (valA === valB) return 0;
-      return asc ? (valA > valB ? 1 : -1) : valA < valB ? 1 : -1;
-    });
-  
-    renderTable(sorted);
-    updateSortIcons(key, asc);
-  }
-  
-
-// ⬆⬇ アイコン表示切替
-function updateSortIcons(key, asc) {
-    document.querySelectorAll("th.sortable").forEach(th => {
-      th.classList.remove("sorted-asc", "sorted-desc");
-      if (th.dataset.key === key) {
-        th.classList.add(asc ? "sorted-asc" : "sorted-desc");
       }
     });
   }
-  
-function escapeHtml(str) {
-  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
 
-function createCollapsibleCell(text) {
-  const td = document.createElement("td");
-  const wrapper = document.createElement("div");
-  wrapper.className = "note-wrapper";
-
-  const content = document.createElement("div");
-  content.className = "note-content";
-
-  const raw = (text || "").trim();
-  const lines = raw.split(/\r?\n/).filter((line) => line.trim() !== "");
-
-  content.innerHTML = lines.map((line) => escapeHtml(line)).join("<br>\n");
-  wrapper.appendChild(content);
-
-  td.appendChild(wrapper);
-  return td;
-}
-function formatValue(val) {
-    return Number.isInteger(val) ? val.toString() : val.toFixed(1);
+  setupSorting(trips) {
+    document.querySelectorAll("th.sortable").forEach((th) => {
+      th.addEventListener("click", () => {
+        const key = th.dataset.key;
+        if (key) this.sortTripsBy(trips, key);
+      });
+    });
   }
+
+  sortTripsBy(data, key) {
+    const asc = this.currentSort.key === key ? !this.currentSort.asc : true;
+    data.sort((a, b) => {
+      const aVal = a[key];
+      const bVal = b[key];
+      if (this.costKeys.includes(key) || key === "distance") {
+        return asc
+          ? (parseFloat(aVal) || 0) - (parseFloat(bVal) || 0)
+          : (parseFloat(bVal) || 0) - (parseFloat(aVal) || 0);
+      }
+      return asc
+        ? String(aVal).localeCompare(String(bVal))
+        : String(bVal).localeCompare(String(aVal));
+    });
+    this.currentSort = { key, asc };
+    this.renderTable(data);
+    this.updateSortIcons(key, asc);
+  }
+
+  updateSortIcons(key, asc) {
+    document.querySelectorAll("th.sortable").forEach((th) => {
+      const icon = th.querySelector(".sort-icon");
+      if (icon) {
+        icon.textContent = th.dataset.key === key ? (asc ? "↑" : "↓") : "↕";
+      }
+    });
+  }
+
+  formatValue(val) {
+    if (typeof val === "number") {
+      return val.toFixed(0);
+    }
+    return val;
+  }
+
+  createCollapsibleCell(text) {
+    const td = document.createElement("td");
+    if (text) {
+      const div = document.createElement("div");
+      div.className = "collapsible-content";
+      div.textContent = text;
+      td.appendChild(div);
+    }
+    return td;
+  }
+}
+
+const summaryTable = new SummaryTable();
+summaryTable.initialize();
   

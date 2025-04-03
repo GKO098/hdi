@@ -179,6 +179,11 @@
           </tr>
         </table>
       `;
+
+            // 地図の初期化をHTML生成後に実行
+            window.dateForMap = record.date || 'all';
+            mapManager.initializeMap();
+            mapManager.attachControlEvents();
         }
 
         function updateUrl(id) {
@@ -189,8 +194,6 @@
             updateUrl(selectedId);
             const record = csvData.find(r => r.id === selectedId);
             renderRecord(record);
-            window.dateForMap = record.date || 'all';
-            initializeMap();
         });
 
         fetch('data/summary_table.csv')
@@ -211,9 +214,6 @@
                     select.value = initialId;
                     const record = csvData.find(r => r.id === initialId);
                     renderRecord(record);
-                    window.dateForMap = record.date || 'all';
-                    initializeMap();
-                    attachControlEvents();
                 }
             });
         function renderParticipantsIcons(participantsStr) {

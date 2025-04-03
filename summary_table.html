@@ -8,10 +8,8 @@
   <style>
     table {
       border-collapse: collapse;
-      width: 400%;
-      /* ✅ 幅をウィンドウ幅に追従させる */
-      table-layout: auto;
-      /* or fixed（内容に合わせて選べる） */
+      width: 100%;
+      table-layout: fixed;
     }
 
     td {
@@ -23,12 +21,10 @@
 
     iframe {
       width: 100%;
-      /* ✅ 動画も列幅にフィットさせる */
       height: 200px;
       border: none;
     }
 
-    /* ✅ スマホ対策で横スクロール対応（オプション） */
     .table-wrapper {
       overflow-x: auto;
       margin-top: 80px;
@@ -56,7 +52,6 @@
 
     .note-content {
       max-height: 12em;
-      /* 約5行分 */
       overflow: hidden;
       white-space: normal;
       word-break: break-word;
@@ -82,114 +77,111 @@
       text-align: right;
     }
   </style>
-
 </head>
 
 <body>
-
-  <body>
-    <h1>旅の記録一覧</h1>
-    <div style="overflow-x: auto;">
-      <table id="trip-table">
-        <colgroup>
-          <col style="width: 4ch;"> <!-- id -->
-          <col style="width: 6ch;"> <!-- 日付 -->
-          <col style="width: 5ch;"> <!-- 車種 -->
-          <col style="width: 2ch;"> <!-- 天気 -->
-          <col style="width: 6ch;"> <!-- アップロード日 -->
-          <col style="width: 20ch;"> <!-- 動画タイトル -->
-          <col style="width: 8ch;"> <!-- ニコニコ -->
-          <col style="width: 8ch;"> <!-- YouTube -->
-          <col style="width: 8ch;"> <!-- シリーズ -->
-          <col style="width: 10ch;"> <!-- 概要 -->
-          <col style="width: 6ch;"> <!-- 行程 -->
-          <col style="width: 12ch;"> <!-- イベント -->
-          <col style="width: 8ch;"> <!-- 同行者 -->
-          <col style="width: 16ch;"> <!-- 訪問地 -->
-          <col style="width: 6ch;"> <!-- 距離 -->
-          <!-- 以下、費用カラム -->
-          <col style="width: 6ch;"> <!-- cost_meal -->
-          <col style="width: 6ch;"> <!-- cost_toll_road -->
-          <col style="width: 6ch;"> <!-- cost_fuel -->
-          <col style="width: 6ch;"> <!-- cost_rental_car -->
-          <col style="width: 6ch;"> <!-- cost_entrance_fee -->
-          <col style="width: 6ch;"> <!-- cost_parking -->
-          <col style="width: 6ch;"> <!-- cost_hotel -->
-          <col style="width: 6ch;"> <!-- cost_plane -->
-          <col style="width: 6ch;"> <!-- cost_train -->
-          <col style="width: 6ch;"> <!-- cost_bus -->
-          <col style="width: 6ch;"> <!-- cost_ship -->
-          <col style="width: 6ch;"> <!-- cost_equipment -->
-          <col style="width: 6ch;"> <!-- cost_other -->
-          <col style="width: 8ch;"> <!-- cost_total -->
-          <!-- その他 -->
-          <col style="width: 50ch;"> <!-- material -->
-          <col style="width: 60ch;"> <!-- reference -->
-          <col style="width: 20ch;"> <!-- advertiser -->
-          <col style="width: 40ch;"> <!-- topics -->
-        </colgroup>
-        <thead>
-          <tr>
-            <th class="sortable" data-key="id">id</th>
-            <th>日付</th>
-            <th>車種</th>
-            <th>天気</th>
-            <th>アップロード日</th>
-            <th>動画タイトル</th>
-            <th>ニコニコ</th>
-            <th>YouTube</th>
-            <th>シリーズ</th>
-            <th>概要欄</th>
-            <th>旅のしおり</th>
-            <th>イベント</th>
-            <th>参加者</th>
-            <th>訪問地</th>
-            <th class="sortable" data-key="distance">距離[km]</th>
-            <th class="sortable" data-key="cost_meal">食費[円]</th>
-            <th class="sortable" data-key="cost_toll_road">有料道路[円]</th>
-            <th class="sortable" data-key="cost_fuel">燃料[円]</th>
-            <th class="sortable" data-key="cost_rental_car">レンタカー[円]</th>
-            <th class="sortable" data-key="cost_entrance_fee">入場料[円]</th>
-            <th class="sortable" data-key="cost_parking">駐車場[円]</th>
-            <th class="sortable" data-key="cost_hotel">宿泊費[円]</th>
-            <th class="sortable" data-key="cost_plane">飛行機[円]</th>
-            <th class="sortable" data-key="cost_train">電車[円]</th>
-            <th class="sortable" data-key="cost_bus">バス[円]</th>
-            <th class="sortable" data-key="cost_ship">船[円]</th>
-            <th class="sortable" data-key="cost_equipment">機材[円]</th>
-            <th class="sortable" data-key="cost_other">その他[円]</th>
-            <th class="sortable" data-key="cost_total">合計費用[円]</th>
-            <th>素材</th>
-            <th>参考文献</th>
-            <th>広告者</th>
-            <th>話題</th>
-          </tr>
-          <tr>
-            <td><strong>合計</strong></td>
-            <td colspan="13"></td>
-            <td id="total-distance" style="text-align: right;"></td>
-            <td id="total-cost_meal" style="text-align: right;"></td>
-            <td id="total-cost_toll_road" style="text-align: right;"></td>
-            <td id="total-cost_fuel" style="text-align: right;"></td>
-            <td id="total-cost_rental_car" style="text-align: right;"></td>
-            <td id="total-cost_entrance_fee" style="text-align: right;"></td>
-            <td id="total-cost_parking" style="text-align: right;"></td>
-            <td id="total-cost_hotel" style="text-align: right;"></td>
-            <td id="total-cost_plane" style="text-align: right;"></td>
-            <td id="total-cost_train" style="text-align: right;"></td>
-            <td id="total-cost_bus" style="text-align: right;"></td>
-            <td id="total-cost_ship" style="text-align: right;"></td>
-            <td id="total-cost_equipment" style="text-align: right;"></td>
-            <td id="total-cost_other" style="text-align: right;"></td>
-            <td id="total-cost_total" style="text-align: right;"></td>
-            <td colspan="4"><strong></strong></td>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-    <script src="js/summary_table.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-  </body>
+  <h1>旅の記録一覧</h1>
+  <div class="table-wrapper">
+    <table id="trip-table">
+      <colgroup>
+        <col style="width: 4ch;"> <!-- id -->
+        <col style="width: 6ch;"> <!-- 日付 -->
+        <col style="width: 5ch;"> <!-- 車種 -->
+        <col style="width: 2ch;"> <!-- 天気 -->
+        <col style="width: 6ch;"> <!-- アップロード日 -->
+        <col style="width: 20ch;"> <!-- 動画タイトル -->
+        <col style="width: 8ch;"> <!-- ニコニコ -->
+        <col style="width: 8ch;"> <!-- YouTube -->
+        <col style="width: 8ch;"> <!-- シリーズ -->
+        <col style="width: 10ch;"> <!-- 概要 -->
+        <col style="width: 6ch;"> <!-- 行程 -->
+        <col style="width: 12ch;"> <!-- イベント -->
+        <col style="width: 8ch;"> <!-- 同行者 -->
+        <col style="width: 16ch;"> <!-- 訪問地 -->
+        <col style="width: 6ch;"> <!-- 距離 -->
+        <!-- 以下、費用カラム -->
+        <col style="width: 6ch;"> <!-- cost_meal -->
+        <col style="width: 6ch;"> <!-- cost_toll_road -->
+        <col style="width: 6ch;"> <!-- cost_fuel -->
+        <col style="width: 6ch;"> <!-- cost_rental_car -->
+        <col style="width: 6ch;"> <!-- cost_entrance_fee -->
+        <col style="width: 6ch;"> <!-- cost_parking -->
+        <col style="width: 6ch;"> <!-- cost_hotel -->
+        <col style="width: 6ch;"> <!-- cost_plane -->
+        <col style="width: 6ch;"> <!-- cost_train -->
+        <col style="width: 6ch;"> <!-- cost_bus -->
+        <col style="width: 6ch;"> <!-- cost_ship -->
+        <col style="width: 6ch;"> <!-- cost_equipment -->
+        <col style="width: 6ch;"> <!-- cost_other -->
+        <col style="width: 8ch;"> <!-- cost_total -->
+        <!-- その他 -->
+        <col style="width: 50ch;"> <!-- material -->
+        <col style="width: 60ch;"> <!-- reference -->
+        <col style="width: 20ch;"> <!-- advertiser -->
+        <col style="width: 40ch;"> <!-- topics -->
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="sortable" data-key="id">id</th>
+          <th>日付</th>
+          <th>車種</th>
+          <th>天気</th>
+          <th>アップロード日</th>
+          <th>動画タイトル</th>
+          <th>ニコニコ</th>
+          <th>YouTube</th>
+          <th>シリーズ</th>
+          <th>概要欄</th>
+          <th>旅のしおり</th>
+          <th>イベント</th>
+          <th>参加者</th>
+          <th>訪問地</th>
+          <th class="sortable" data-key="distance">距離[km]</th>
+          <th class="sortable" data-key="cost_meal">食費[円]</th>
+          <th class="sortable" data-key="cost_toll_road">有料道路[円]</th>
+          <th class="sortable" data-key="cost_fuel">燃料[円]</th>
+          <th class="sortable" data-key="cost_rental_car">レンタカー[円]</th>
+          <th class="sortable" data-key="cost_entrance_fee">入場料[円]</th>
+          <th class="sortable" data-key="cost_parking">駐車場[円]</th>
+          <th class="sortable" data-key="cost_hotel">宿泊費[円]</th>
+          <th class="sortable" data-key="cost_plane">飛行機[円]</th>
+          <th class="sortable" data-key="cost_train">電車[円]</th>
+          <th class="sortable" data-key="cost_bus">バス[円]</th>
+          <th class="sortable" data-key="cost_ship">船[円]</th>
+          <th class="sortable" data-key="cost_equipment">機材[円]</th>
+          <th class="sortable" data-key="cost_other">その他[円]</th>
+          <th class="sortable" data-key="cost_total">合計費用[円]</th>
+          <th>素材</th>
+          <th>参考文献</th>
+          <th>広告者</th>
+          <th>話題</th>
+        </tr>
+        <tr>
+          <td><strong>合計</strong></td>
+          <td colspan="13"></td>
+          <td id="total-distance" style="text-align: right;"></td>
+          <td id="total-cost_meal" style="text-align: right;"></td>
+          <td id="total-cost_toll_road" style="text-align: right;"></td>
+          <td id="total-cost_fuel" style="text-align: right;"></td>
+          <td id="total-cost_rental_car" style="text-align: right;"></td>
+          <td id="total-cost_entrance_fee" style="text-align: right;"></td>
+          <td id="total-cost_parking" style="text-align: right;"></td>
+          <td id="total-cost_hotel" style="text-align: right;"></td>
+          <td id="total-cost_plane" style="text-align: right;"></td>
+          <td id="total-cost_train" style="text-align: right;"></td>
+          <td id="total-cost_bus" style="text-align: right;"></td>
+          <td id="total-cost_ship" style="text-align: right;"></td>
+          <td id="total-cost_equipment" style="text-align: right;"></td>
+          <td id="total-cost_other" style="text-align: right;"></td>
+          <td id="total-cost_total" style="text-align: right;"></td>
+          <td colspan="4"><strong></strong></td>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="js/summary_table.js" defer></script>
+</body>
 
 </html>
