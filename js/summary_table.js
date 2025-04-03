@@ -94,7 +94,35 @@ function renderTable(data) {
 
     keys.forEach((key) => {
       let cell;
-      if (collapsibleKeys.includes(key)) {
+      if (key === "id") {
+        // 単にidを入れる。
+        // trip_detail.html?id={id} へのリンク載せるも作る
+        const td = document.createElement("td");
+        const a = document.createElement("a");
+        a.href = `trip_detail.html?id=${trip.id}`;
+        a.textContent = trip.id;
+        a.className = "trip-link";
+        td.appendChild(a);
+        cell = td;
+      } else if (key === "niconico" || key === "youtube") {
+        // 動画リンクを生成
+        const td = document.createElement("td");
+        const url = trip[key];
+        if (url) {
+          const a = document.createElement("a");
+          a.href = url;
+          if (key === "niconico") {
+            a.textContent = url.split("https://www.nicovideo.jp/watch/")[1];
+          } else if (key === "youtube") {
+            a.textContent = url.split("https://www.youtube.com/watch?v=")[1];
+          }
+          a.target = "_blank";
+          td.appendChild(a);
+        } else {
+          td.textContent = "";
+        }
+        cell = td;
+      } else if (collapsibleKeys.includes(key)) {
         cell = createCollapsibleCell(trip[key]);
       } else if (key === "itinerary") {
         const td = document.createElement("td");
@@ -104,6 +132,7 @@ function renderTable(data) {
           const a = document.createElement("a");
           a.href = url;
           a.textContent = "しおり";
+          a.target = "_blank";
           td.appendChild(a);
         } else {
           td.textContent = "";
