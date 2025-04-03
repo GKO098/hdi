@@ -210,11 +210,22 @@ class SummaryTable {
     data.sort((a, b) => {
       const aVal = a[key];
       const bVal = b[key];
-      if (this.costKeys.includes(key) || key === "distance") {
-        return asc
-          ? (parseFloat(aVal) || 0) - (parseFloat(bVal) || 0)
-          : (parseFloat(bVal) || 0) - (parseFloat(aVal) || 0);
+
+      // IDの場合は数値として比較
+      if (key === 'id') {
+        const aNum = parseInt(aVal, 10);
+        const bNum = parseInt(bVal, 10);
+        return asc ? aNum - bNum : bNum - aNum;
       }
+
+      // 数値項目の場合はfloatとして比較
+      if (this.costKeys.includes(key) || key === 'distance') {
+        const aNum = parseFloat(aVal) || 0;
+        const bNum = parseFloat(bVal) || 0;
+        return asc ? aNum - bNum : bNum - aNum;
+      }
+
+      // その他の列は文字列として比較
       return asc
         ? String(aVal).localeCompare(String(bVal))
         : String(bVal).localeCompare(String(aVal));
