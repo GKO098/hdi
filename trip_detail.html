@@ -104,6 +104,17 @@
             background: #f0f0f0;
             vertical-align: top;
         }
+
+        /* 順位の色分けスタイル */
+        .rank-high {
+            color: #ff0000;
+            font-weight: bold;
+        }
+
+        .rank-low {
+            color: #0000ff;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -300,18 +311,42 @@
                 // 数値に変換してソート（未記入は0として扱う）
                 const sortedData = data
                     .filter(row => row.id)
-                    .sort((a, b) => {
-                        const valueA = parseFloat(a[field]) || 0;
-                        const valueB = parseFloat(b[field]) || 0;
-                        return valueB - valueA;
-                    });
+                    .map(row => ({
+                        ...row,
+                        value: parseFloat(row[field]) || 0
+                    }))
+                    .sort((a, b) => b.value - a.value);
+
+                // 同率順位を計算
+                let currentRank = 1;
+                let currentValue = sortedData[0]?.value;
+                let skipCount = 0;
+
+                for (let i = 0; i < sortedData.length; i++) {
+                    if (sortedData[i].value !== currentValue) {
+                        currentRank += skipCount;
+                        currentValue = sortedData[i].value;
+                        skipCount = 1;
+                    } else {
+                        skipCount++;
+                    }
+                    sortedData[i].rank = currentRank;
+                }
 
                 // 現在のレコードの順位を取得
-                const rank = sortedData.findIndex(row => row.id === currentRecord.id) + 1;
+                const currentRecordRank = sortedData.find(row => row.id === currentRecord.id)?.rank || 1;
                 const total = sortedData.length;
 
-                // 順位と総件数を文字列として保存
-                rankings[field] = `${rank}位/${total}件中`;
+                // 順位に応じてクラスを設定
+                let rankClass = '';
+                if (currentRecordRank <= 10) {
+                    rankClass = 'rank-high';
+                } else if (currentRecordRank >= total - 9) {
+                    rankClass = 'rank-low';
+                }
+
+                // 順位と総件数を文字列として保存（クラス付き）
+                rankings[field] = `<span class="${rankClass}">${currentRecordRank}位</span>/${total}件中`;
             });
 
             return rankings;
