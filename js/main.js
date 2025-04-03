@@ -165,6 +165,7 @@ class MapManager {
               → ${firstEntry.end}<br>
               ${firstEntry.time}秒 / ${firstEntry.distance}m<br>
               <small style="color: gray;">📅 ${firstEntry.arrival_date}</small>
+              <small>ID: <a href="trip_detail.html?id=${firstEntry.trip_id}">${firstEntry.trip_id}</a></small>
             `);
 
             this.markers.push(startMarker);
