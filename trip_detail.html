@@ -144,6 +144,13 @@
             // 各項目の順位を計算
             const rankings = calculateRankings(csvData, record);
 
+            // 数値を小数点以下1桁にフォーマットする関数
+            const formatNumber = (value) => {
+                const num = parseFloat(value) || 0;
+                // 整数の場合は小数点以下を表示しない
+                return Number.isInteger(num) ? num.toString() : num.toFixed(1);
+            };
+
             container.innerHTML = `
         <table>
           <colgroup>
@@ -165,83 +172,83 @@
           <tr>
             <td colspan="1">${record.series || ''}</td>
             <td colspan="2">動画名: ${record.video_title || ''}</td>
-            <td colspan="3">参加者: ${renderParticipantsIcons(record.participants)}</td>
+            <td  class="section-title" colspan="3">参加者: ${renderParticipantsIcons(record.participants)}</td>
           </tr>
           <tr>
             <td rowspan="15">${(record.places || '').replace(/\r?\n/g, '<br>')}</td>
             <td rowspan="15" colspan="2">${(record.niconico)}</td>
             <td class="section-title">走行距離</td>
-            <td align="right">${record.distance || ''} km</td>
+            <td align="right">${formatNumber(record.distance || '0')} km</td>
             <td align="right">${rankings.distance}</td>
           </tr>
           <tr>
             <td class="section-title">食費</td>
-            <td align="right">${record.cost_meal || ''}円</td>
+            <td align="right">${formatNumber(record.cost_meal || '0')}円</td>
             <td align="right">${rankings.cost_meal}</td>
           </tr>
           <tr>
             <td class="section-title">有料道路</td>
-            <td align="right">${record.cost_toll_road || ''}円</td>
+            <td align="right">${formatNumber(record.cost_toll_road || '0')}円</td>
             <td align="right">${rankings.cost_toll_road}</td>
           </tr>
           <tr>
             <td class="section-title">燃料</td>
-            <td align="right">${record.cost_fuel || ''}円</td>
+            <td align="right">${formatNumber(record.cost_fuel || '0')}円</td>
             <td align="right">${rankings.cost_fuel}</td>
           </tr>
           <tr>
             <td class="section-title">レンタカー</td>
-            <td align="right">${record.cost_rental_car || ''}円</td>
+            <td align="right">${formatNumber(record.cost_rental_car || '0')}円</td>
             <td align="right">${rankings.cost_rental_car}</td>
           </tr>
           <tr>
             <td class="section-title">入場料</td>
-            <td align="right">${record.cost_entrance_fee || ''}円</td>
+            <td align="right">${formatNumber(record.cost_entrance_fee || '0')}円</td>
             <td align="right">${rankings.cost_entrance_fee}</td>
           </tr>
           <tr>
             <td class="section-title">駐車場</td>
-            <td align="right">${record.cost_parking || ''}円</td>
+            <td align="right">${formatNumber(record.cost_parking || '0')}円</td>
             <td align="right">${rankings.cost_parking}</td>
           </tr>
           <tr>
             <td class="section-title">宿泊料</td>
-            <td align="right">${record.cost_hotel || ''}円</td>
+            <td align="right">${formatNumber(record.cost_hotel || '0')}円</td>
             <td align="right">${rankings.cost_hotel}</td>
           </tr>
           <tr>
             <td class="section-title">飛行機</td>
-            <td align="right">${record.cost_plane || ''}円</td>
+            <td align="right">${formatNumber(record.cost_plane || '0')}円</td>
             <td align="right">${rankings.cost_plane}</td>
           </tr>
           <tr>
             <td class="section-title">電車</td>
-            <td align="right">${record.cost_train || ''}円</td>
+            <td align="right">${formatNumber(record.cost_train || '0')}円</td>
             <td align="right">${rankings.cost_train}</td>
           </tr>
           <tr>
             <td class="section-title">バス</td>
-            <td align="right">${record.cost_bus || ''}円</td>
+            <td align="right">${formatNumber(record.cost_bus || '0')}円</td>
             <td align="right">${rankings.cost_bus}</td>
           </tr>
           <tr>
             <td class="section-title">船</td>
-            <td align="right">${record.cost_ship || ''}円</td>
+            <td align="right">${formatNumber(record.cost_ship || '0')}円</td>
             <td align="right">${rankings.cost_ship}</td>
           </tr>
           <tr>
             <td class="section-title">機材</td>
-            <td align="right">${record.cost_equipment || ''}円</td>
+            <td align="right">${formatNumber(record.cost_equipment || '0')}円</td>
             <td align="right">${rankings.cost_equipment}</td>
           </tr>
           <tr>
             <td class="section-title">その他</td>
-            <td align="right">${record.cost_other || ''}円</td>
+            <td align="right">${formatNumber(record.cost_other || '0')}円</td>
             <td align="right">${rankings.cost_other}</td>
           </tr>
           <tr>
             <td class="section-title">合計金額</td>
-            <td align="right">${record.cost_total || ''}円</td>
+            <td align="right">${formatNumber(record.cost_total || '0')}円</td>
             <td align="right">${rankings.cost_total}</td>
           </tr>
           <tr>
@@ -336,10 +343,16 @@
                 // 現在のレコードの順位を取得
                 const currentRecordRank = sortedData.find(row => row.id === currentRecord.id)?.rank || 1;
                 const total = sortedData.length;
+                const recordValue = parseFloat(currentRecord[field]) || 0;
 
                 // 順位に応じてクラスを設定
                 let rankClass = '';
-                if (currentRecordRank <= 10) {
+                if (recordValue === 0) {
+                    // 0円の場合は最下位扱い
+                    if (currentRecordRank >= total - 9) {
+                        rankClass = 'rank-low';
+                    }
+                } else if (currentRecordRank <= 10) {
                     rankClass = 'rank-high';
                 } else if (currentRecordRank >= total - 9) {
                     rankClass = 'rank-low';
@@ -371,7 +384,7 @@
                     if (!row.id) continue;
                     const option = document.createElement('option');
                     option.value = row.id;
-                    option.textContent = `${row.id} (${row.date}) 「${row.video_title || ''}」`;
+                    option.textContent = `${row.id} (${row.date}) 「${row.video_title || (row.places || '↓').replace(/\r?\n/g, '・')}」`;
                     select.appendChild(option);
                 }
 
