@@ -7,7 +7,7 @@
     <title>旅の記録ビューア</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         table {
             border-collapse: collapse;
@@ -115,6 +115,31 @@
             color: #0000ff;
             font-weight: bold;
         }
+
+        /* 場所の表示スタイル */
+        .places-container {
+            max-height: 45em;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .places-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .places-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .places-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .places-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     </style>
 </head>
 
@@ -126,7 +151,8 @@
     <div id="recordContainer"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-arrowheads@1.2.0/dist/leaflet-arrowheads.js"></script>
     <script src="js/main.js"></script>
     <script>
         const select = document.getElementById('record-select');
@@ -156,10 +182,10 @@
           <colgroup>
             <col style="width: 20%;">
             <col style="width: 10%;">
-            <col style="width: 40%;">
-            <col style="width: 10%;">
-            <col style="width: 10%;">
-            <col style="width: 10%;">
+            <col style="width: 49%;">
+            <col style="width: 7%;">
+            <col style="width: 7%;">
+            <col style="width: 7%;">
           </colgroup>
           <tr>
             <td>${record.date || ''}</td>
@@ -175,7 +201,11 @@
             <td  class="section-title" colspan="3">参加者: ${renderParticipantsIcons(record.participants)}</td>
           </tr>
           <tr>
-            <td rowspan="15">${(record.places || '').replace(/\r?\n/g, '<br>')}</td>
+            <td rowspan="15">
+              <div class="places-container">
+                ${(record.places || '').replace(/\r?\n/g, '<br>')}
+              </div>
+            </td>
             <td rowspan="15" colspan="2">${(record.niconico)}</td>
             <td class="section-title">走行距離</td>
             <td align="right">${formatNumber(record.distance || '0')} km</td>
