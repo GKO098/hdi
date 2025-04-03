@@ -94,13 +94,8 @@ function renderTable(data) {
 
     keys.forEach((key) => {
       let cell;
-
       if (collapsibleKeys.includes(key)) {
         cell = createCollapsibleCell(trip[key]);
-      } else if (key === "niconico" || key === "youtube") {
-        const td = document.createElement("td");
-        td.innerHTML = getEmbedHTML(trip[key]);
-        cell = td;
       } else if (key === "itinerary") {
         const td = document.createElement("td");
         // もしあればリンクを生成
@@ -175,7 +170,6 @@ function renderTable(data) {
         td.textContent = trip[key] || "";
         cell = td;
       }
-
       tr.appendChild(cell);
     });
 
@@ -213,25 +207,6 @@ function renderTable(data) {
     "<strong>" + totalCost_total.toFixed(1) + "円</strong>";
   // ソートアイコン初期化
   updateSortIcons(null, true);
-}
-
-// 🎥 埋め込み生成
-function getEmbedHTML(url) {
-  if (!url || typeof url !== "string") return "なし";
-    url = url.trim();
-  if (url.includes("youtube.com")) {
-    // urlをそのまま書き、埋め込まない
-    return `<a href="${url}" target="_blank">動画リンク</a>`;
-    // const videoId = url.includes("v=")
-    //   ? url.split("v=")[1].split("&")[0]
-    //   : url.split("/").pop();
-    // return `<iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
-  } else if (url.includes("nicovideo.jp")) {
-    const id = url.split("/").pop();
-    return `<iframe src="https://embed.nicovideo.jp/watch/${id}" frameborder="0" allowfullscreen></iframe>`;
-  } else {
-    return `<a href="${url}" target="_blank">動画リンク</a>`;
-  }
 }
 
 // 🔁 ソートイベント登録

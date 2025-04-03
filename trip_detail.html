@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>旅の記録ビューア</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         table {
             border-collapse: collapse;
@@ -21,16 +24,33 @@
             font-weight: bold;
             background: #f0f0f0;
         }
+
+        #map {
+            height: 50vh;
+        }
+
+        #controls {
+            margin: 10px;
+        }
+
+        .date-checkbox {
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        button {
+            margin: 5px;
+        }
     </style>
 </head>
 
 <body>
     <select id="recordSelect"></select>
-    <br>
-    <br>
     <div id="recordContainer"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="js/main.js"></script>
     <script>
         const select = document.getElementById('recordSelect');
         const container = document.getElementById('recordContainer');
@@ -132,6 +152,19 @@
             <td colspan="2">イベント: ${record.event || ''}</td>
           </tr>
           <tr>
+            <td colspan="5">
+              <details>
+                <summary>日付の選択</summary>
+                <div id="controls">
+                  <div id="checkboxes"></div>
+                  <button id="selectAll">すべて選択</button>
+                  <button id="clearAll">すべて解除</button>
+                </div>
+              </details>
+              <div id="map"></div>
+            </td>
+          </tr>
+          <tr>
             <td colspan="5">${(record.material || '').replace(/\r?\n/g, '<br>')}</td>
           </tr>
           <tr>
@@ -150,12 +183,13 @@
         function updateUrl(id) {
             history.pushState({}, '', `?id=${id}`);
         }
-
         select.addEventListener('change', () => {
             const selectedId = select.value;
             updateUrl(selectedId);
             const record = csvData.find(r => r.id === selectedId);
             renderRecord(record);
+            window.dateForMap = record.date || 'all';
+            initializeMap();
         });
 
         fetch('data/summary_table.csv')
@@ -164,7 +198,7 @@
                 csvData = Papa.parse(csvText, { header: true }).data;
 
                 for (const row of csvData) {
-                    if (!row.id || !row.date) continue;
+                    if (!row.id) continue;
                     const option = document.createElement('option');
                     option.value = row.id;
                     option.textContent = `${row.id} (${row.date}) 「${row.video_title || ''}」`;
@@ -176,6 +210,9 @@
                     select.value = initialId;
                     const record = csvData.find(r => r.id === initialId);
                     renderRecord(record);
+                    window.dateForMap = record.date || 'all';
+                    initializeMap();
+                    attachControlEvents();
                 }
             });
         function renderParticipantsIcons(participantsStr) {
@@ -186,13 +223,8 @@
                 .map(name => name.trim())        // 前後の空白除去
                 .filter(name => name !== '')     // 空行除去
                 .map(name => `
-      <img
-        src="icons/${name}.png"
-        alt="${name}"
-        title="${name}"
-        style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;"
-      >
-    `)
+                    <img src="icons/${name}.png" alt="${name}" title="${name}" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;">`
+                )
                 .join('');
         }
         function getEmbedHTML(url) {
@@ -200,19 +232,16 @@
             url = url.trim();
             if (url.includes("nicovideo.jp")) {
                 const id = url.split("/").pop();
-                return `
-      <iframe
-        src="https://embed.nicovideo.jp/watch/${id}"
-        frameborder="0"
-        allowfullscreen
-        style="width: 100%; height: 100%; min-height: 400px;"
-      ></iframe>`;
+                return `<iframe
+                        src="https://embed.nicovideo.jp/watch/${id}"
+                        frameborder="0"
+                        allowfullscreen
+                        style="width: 100%; height: 100%; min-height: 400px;"
+                    ></iframe>`;
             } else {
                 return `<a href="${url}" target="_blank">動画リンク</a>`;
             }
         }
-
-
     </script>
 </body>
 

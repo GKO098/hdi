@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>旅の記録マップ</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
-    #map { height: 95vh; }
-    #controls { margin: 10px; }
-    .date-checkbox { margin-right: 10px; display: inline-block; }
-    button { margin: 5px; }
+    #map {
+      height: 95vh;
+    }
+
+    #controls {
+      margin: 10px;
+    }
+
+    .date-checkbox {
+      margin-right: 10px;
+      display: inline-block;
+    }
+
+    button {
+      margin: 5px;
+    }
   </style>
 </head>
+
 <body>
   <div id="controls">
     <p>表示する日：</p>
@@ -20,9 +34,14 @@
     <button id="clearAll">すべて解除</button>
   </div>
   <div id="map"></div>
-
+  <script>window.dateForMap = "all";</script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    initializeMap();
+    attachControlEvents();
+  </script>
 </body>
+
 </html>
