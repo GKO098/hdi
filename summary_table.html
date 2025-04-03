@@ -76,6 +76,31 @@
     td.right {
       text-align: right;
     }
+
+    /* スクロール可能なコンテナのスタイル */
+    .scrollable-container {
+      max-height: 7.5em;  /* 5行分の高さ */
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .scrollable-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .scrollable-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+
+    .scrollable-container::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+
+    .scrollable-container::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
   </style>
 </head>
 

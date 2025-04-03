@@ -22,7 +22,6 @@ class SummaryTable {
     ];
     this.collapsibleKeys = [
       "summary",
-      "participants",
       "material",
       "reference",
       "advertiser",
@@ -117,6 +116,8 @@ class SummaryTable {
       return this.createIdCell(trip.id);
     } else if (key === "niconico" || key === "youtube") {
       return this.createVideoLinkCell(trip[key], key);
+    } else if (key === "participants") {
+      return this.createParticipantsCell(trip[key]);
     } else if (this.collapsibleKeys.includes(key)) {
       return this.createCollapsibleCell(trip[key]);
     } else if (key === "itinerary") {
@@ -152,6 +153,35 @@ class SummaryTable {
     return td;
   }
 
+  createParticipantsCell(text) {
+    const td = document.createElement("td");
+    td.style.verticalAlign = 'top';
+    
+    if (text) {
+      const div = document.createElement("div");
+      div.className = "collapsible-content";
+      
+      const participants = text.split('\n')
+        .map(name => name.trim())
+        .filter(name => name !== '');
+      
+      participants.forEach(name => {
+        const icon = document.createElement('img');
+        icon.src = `icons/${name}.png`;
+        icon.alt = name;
+        icon.title = name;
+        icon.style.width = '24px';
+        icon.style.height = '24px';
+        icon.style.verticalAlign = 'middle';
+        icon.style.marginRight = '4px';
+        div.appendChild(icon);
+      });
+      
+      td.appendChild(div);
+    }
+    return td;
+  }
+
   createItineraryCell(url) {
     const td = document.createElement("td");
     if (url) {
@@ -178,6 +208,7 @@ class SummaryTable {
 
   createTextCell(value) {
     const td = document.createElement("td");
+    td.style.verticalAlign = 'top';
     td.textContent = value || "";
     return td;
   }
@@ -253,11 +284,12 @@ class SummaryTable {
 
   createCollapsibleCell(text) {
     const td = document.createElement("td");
+    td.style.verticalAlign = 'top';
+    
     if (text) {
       const div = document.createElement("div");
       div.className = "collapsible-content";
       
-      // 改行で分割して各行を個別のdiv要素として追加
       const lines = text.split('\n');
       lines.forEach(line => {
         if (line.trim()) {  // 空行は無視
@@ -267,7 +299,15 @@ class SummaryTable {
         }
       });
       
-      td.appendChild(div);
+      // 5行以上の場合はスクロール可能なコンテナに
+      if (lines.length > 5) {
+        const container = document.createElement("div");
+        container.className = "scrollable-container";
+        container.appendChild(div);
+        td.appendChild(container);
+      } else {
+        td.appendChild(div);
+      }
     }
     return td;
   }
