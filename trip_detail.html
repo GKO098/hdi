@@ -159,6 +159,24 @@
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
             border: 2px solid black;
         }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9のアスペクト比 */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 1em;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 
@@ -225,7 +243,7 @@
                 ${(record.places || '').replace(/\r?\n/g, '<br>')}
               </div>
             </td>
-            <td rowspan="15" colspan="2">${(record.niconico)}</td>
+            <td rowspan="15" colspan="2">${getEmbedHTML(record.niconico)}</td>
             <td class="section-title">走行距離</td>
             <td align="right">${formatNumber(record.distance || '0')} km</td>
             <td align="right">${rankings.distance}</td>
@@ -461,12 +479,13 @@
             url = url.trim();
             if (url.includes("nicovideo.jp")) {
                 const id = url.split("/").pop();
-                return `<iframe
+                return `<div class="video-container">
+                    <iframe
                         src="https://embed.nicovideo.jp/watch/${id}"
                         frameborder="0"
                         allowfullscreen
-                        style="width: 100%; height: 100%; min-height: 400px;"
-                    ></iframe>`;
+                    ></iframe>
+                </div>`;
             } else {
                 return `<a href="${url}" target="_blank">動画リンク</a>`;
             }
