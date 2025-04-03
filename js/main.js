@@ -144,6 +144,36 @@ class MapManager {
       const color = this.dateColors[date] || "gray";
       const entries = this.allDataByDate[date];
 
+      // 日付ごとの最初のエントリーの開始点に「S」マーカーを追加
+      if (entries.length > 0) {
+        const firstEntry = entries[0];
+        try {
+          const firstCoords = JSON.parse(firstEntry["list of coordinates"]);
+          if (firstCoords.length > 0) {
+            const startCoord = firstCoords[0];
+            const startMarker = L.marker([startCoord[1], startCoord[0]], {
+              icon: L.divIcon({
+                className: 'start-marker',
+                html: `<div class="marker-circle" style="background-color: ${color};">S</div>`,
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+              })
+            }).addTo(this.map);
+
+            startMarker.bindPopup(`
+              <b>${firstEntry.start}</b><br>
+              → ${firstEntry.end}<br>
+              ${firstEntry.time}秒 / ${firstEntry.distance}m<br>
+              <small style="color: gray;">📅 ${firstEntry.arrival_date}</small>
+            `);
+
+            this.markers.push(startMarker);
+          }
+        } catch (e) {
+          console.warn("ルート読み込みエラー:", firstEntry, e);
+        }
+      }
+
       entries.forEach((row) => {
         try {
           const coords = JSON.parse(row["list of coordinates"]);
