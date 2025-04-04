@@ -186,7 +186,13 @@
 
 <body>
     <div class="selector-container">
-        <a href="summary_table.html">旅の記録一覧</a>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5em;">
+            <a href="summary_table.html">旅の記録一覧</a>
+            <div>
+                <span id="prev-trip"></span>
+                <span id="next-trip"></span>
+            </div>
+        </div>
         <select id="record-select"></select>
     </div>
     <div id="recordContainer"></div>
@@ -439,11 +445,35 @@
         function updateUrl(id) {
             history.pushState({}, '', `?id=${id}`);
         }
+
+        function updateNavigationLinks(currentId) {
+            const currentIndex = csvData.findIndex(r => r.id === currentId);
+            const prevTrip = document.getElementById('prev-trip');
+            const nextTrip = document.getElementById('next-trip');
+
+            // 前の旅へのリンク
+            if (currentIndex > 0) {
+                const prevId = csvData[currentIndex - 1].id;
+                prevTrip.innerHTML = `<a href="?id=${prevId}">← 前の旅</a>`;
+            } else {
+                prevTrip.textContent = '← 前の旅';
+            }
+
+            // 次の旅へのリンク
+            if (currentIndex < csvData.length - 1 && csvData[currentIndex + 1].id) {
+                const nextId = csvData[currentIndex + 1].id;
+                nextTrip.innerHTML = `<a href="?id=${nextId}">次の旅 →</a>`;
+            } else {
+                nextTrip.textContent = '次の旅 →';
+            }
+        }
+
         select.addEventListener('change', () => {
             const selectedId = select.value;
             updateUrl(selectedId);
             const record = csvData.find(r => r.id === selectedId);
             renderRecord(record);
+            updateNavigationLinks(selectedId);
         });
 
         fetch('data/summary_table.csv')
@@ -464,6 +494,7 @@
                     select.value = initialId;
                     const record = csvData.find(r => r.id === initialId);
                     renderRecord(record);
+                    updateNavigationLinks(initialId);
                 }
             });
         function renderParticipantsIcons(participantsStr) {
