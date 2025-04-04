@@ -8,7 +8,8 @@
   <style>
     table {
       border-collapse: collapse;
-      width: 200%;
+      max-width: 200%;
+      width: 110%;
       table-layout: fixed;
     }
 
@@ -40,7 +41,7 @@
 
     .table-wrapper {
       overflow-x: auto;
-      margin-top: 80px;
+      margin-top: 20px;
     }
 
     .note-wrapper {
@@ -114,16 +115,59 @@
     .scrollable-container::-webkit-scrollbar-thumb:hover {
       background: #555;
     }
+
+    /* 詳細カラムのスタイル */
+    .collapsed {
+      width: 5ch !important;
+    }
+
+    .collapsed td {
+      white-space: nowrap;
+      overflow-x: auto;
+      max-width: 5ch;
+    }
+
+    .collapsed td::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .collapsed td::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 2px;
+    }
+
+    .collapsed td::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 2px;
+    }
+
+    .collapsed td::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    .expanded {
+      width: 50ch !important;
+    }
+
+    .expanded td {
+      white-space: normal;
+      overflow-x: visible;
+    }
+
+    .expanded-table {
+      width: 200% !important;
+    }
   </style>
 </head>
 
 <body>
   <h1>旅の記録一覧</h1>
   <div class="table-wrapper">
+    <button id="toggle-details" style="margin-bottom: 10px; padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">詳細を展開</button>
     <table id="trip-table">
       <colgroup>
         <col style="width: 4ch;"> <!-- id -->
-        <col style="width: 10ch;"> <!-- 日付 -->
+        <col style="width: 9ch;"> <!-- 日付 -->
         <col style="width: 4ch;"> <!-- 同行者 -->
         <col style="width: 16ch;"> <!-- 訪問地 -->
         <col style="width: 6ch;"> <!-- 距離 -->
@@ -143,10 +187,10 @@
         <col style="width: 6ch;"> <!-- cost_other -->
         <col style="width: 8ch;"> <!-- cost_total -->
         <!-- その他 -->
-        <col style="width: 50ch;"> <!-- material -->
-        <col style="width: 60ch;"> <!-- reference -->
-        <col style="width: 20ch;"> <!-- advertiser -->
-        <col style="width: 40ch;"> <!-- topics -->
+        <col style="width: 5ch;" class="detail-column"> <!-- material -->
+        <col style="width: 5ch;" class="detail-column"> <!-- reference -->
+        <col style="width: 5ch;" class="detail-column"> <!-- advertiser -->
+        <col style="width: 5ch;" class="detail-column"> <!-- topics -->
       </colgroup>
       <thead>
         <tr>
@@ -175,8 +219,7 @@
           <th>話題</th>
         </tr>
         <tr>
-          <td><strong>合計</strong></td>
-          <td colspan="3"></td>
+          <td colspan="4"><strong>合計</strong></td>
           <td id="total-distance" style="text-align: right;"></td>
           <td id="total-cost_meal" style="text-align: right;"></td>
           <td id="total-cost_toll_road" style="text-align: right;"></td>
@@ -200,6 +243,27 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="js/summary_table.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleButton = document.getElementById('toggle-details');
+      const detailColumns = document.querySelectorAll('.detail-column');
+      const table = document.getElementById('trip-table');
+
+      toggleButton.addEventListener('click', function() {
+        detailColumns.forEach(col => {
+          col.classList.toggle('collapsed');
+          col.classList.toggle('expanded');
+        });
+        table.classList.toggle('expanded-table');
+        
+        if (toggleButton.textContent === '詳細を展開') {
+          toggleButton.textContent = '詳細を収納';
+        } else {
+          toggleButton.textContent = '詳細を展開';
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
