@@ -395,7 +395,7 @@
             numericFields.forEach(field => {
                 // 数値に変換してソート（未記入は0として扱う）
                 const sortedData = data
-                    .filter(row => row.id)
+                    .filter(row => row.id && (row.date?.length !== 4)) // dateが4文字のレコードを除外
                     .map(row => ({
                         ...row,
                         value: parseFloat(row[field]) || 0
@@ -425,19 +425,27 @@
 
                 // 順位に応じてクラスを設定
                 let rankClass = '';
-                if (recordValue === 0) {
-                    // 0円の場合は最下位扱い
-                    if (currentRecordRank >= total - 9) {
+                let rankText = '';
+
+                // dateが4桁の場合は順位を表示しない
+                if (currentRecord.date?.length === 4) {
+                    rankText = `-/${total}件中`;
+                } else {
+                    if (recordValue === 0) {
+                        // 0円の場合は最下位扱い
+                        if (currentRecordRank >= total - 9) {
+                            rankClass = 'rank-low';
+                        }
+                    } else if (currentRecordRank <= 10) {
+                        rankClass = 'rank-high';
+                    } else if (currentRecordRank >= total - 9) {
                         rankClass = 'rank-low';
                     }
-                } else if (currentRecordRank <= 10) {
-                    rankClass = 'rank-high';
-                } else if (currentRecordRank >= total - 9) {
-                    rankClass = 'rank-low';
+                    rankText = `${currentRecordRank}位/${total}件中`;
                 }
 
                 // 順位と総件数を文字列として保存（クラス付き）
-                rankings[field] = `<span class="${rankClass}">${currentRecordRank}位</span>/${total}件中`;
+                rankings[field] = `<span class="${rankClass}">${rankText}</span>`;
             });
 
             return rankings;
