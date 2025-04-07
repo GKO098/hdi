@@ -168,6 +168,44 @@ def parse_material(material_str: str) -> Dict[str, List[Dict[str, str]]]:
     # 空のリストを持つキーを削除
     return {k: v for k, v in categorized.items() if v}
 
+def parse_references(reference_str: str) -> List[Dict[str, str]]:
+    """
+    参考文献の文字列を構造化されたリストに変換する
+    例: "参考文献：\n　名前\n　　URL" -> [{"name": "名前", "source": "URL"}]
+    """
+    if not reference_str:
+        return []
+    
+    references = []
+    current_ref = {}
+    
+    # 行ごとに処理
+    for line in reference_str.split('\n'):
+        if not line or line == '参考文献：':
+            continue
+            
+        # 行頭の全角スペースの数を数える
+        indent = 0
+        while line.startswith('　'):
+            indent += 1
+            line = line[1:]
+        
+        if indent == 1:
+            # 前の参考文献があれば保存
+            if current_ref:
+                references.append(current_ref)
+            # 新しい参考文献を開始
+            current_ref = {'name': line.strip()}
+        elif indent == 2 and current_ref:
+            # URLを追加
+            current_ref['source'] = line.strip()
+    
+    # 最後の参考文献を保存
+    if current_ref:
+        references.append(current_ref)
+    
+    return references
+
 def convert_csv_to_json(csv_path: str, output_path: str):
     trips = []
     
@@ -223,7 +261,7 @@ def convert_csv_to_json(csv_path: str, output_path: str):
                 'itinerary': row['itinerary'] if row['itinerary'] else None,
                 'event': row['event'] if row['event'] else None,
                 'material': parse_material(row['material']),
-                'reference': row['reference'].split('\n') if row['reference'] else [],
+                'reference': parse_references(row['reference']),
                 'advertiser': parse_advertisers(row['advertiser']),
                 'topics': parse_topics(row['topics'])
             }
