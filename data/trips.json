@@ -2050,9 +2050,13 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "VOICEVOX:ずんだもん",
-              "source": "VOICEVOX:四国めたん"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
             }
           ],
           "music": [
@@ -2215,9 +2219,13 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "VOICEVOX:ずんだもん",
-              "source": "VOICEVOX:四国めたん"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
             }
           ],
           "music": [
@@ -2375,8 +2383,10 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "VOICEVOX:ずんだもん"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
             }
           ],
           "music": [
@@ -2634,9 +2644,6 @@
               "name": "自然薯・米粉・砂糖・モッツァレラチーズのイラスト",
               "creator": "いらすとや",
               "source": "https://www.irasutoya.com/"
-            },
-            {
-              "name": "（かるかんの画像としてモッツァレラチーズのイラストを使いました）"
             }
           ],
           "voice": [
@@ -2878,8 +2885,10 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "玄野武宏"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:玄野武宏"
             }
           ],
           "music": [
@@ -3130,8 +3139,10 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "玄野武宏"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:玄野武宏"
             }
           ],
           "music": [
@@ -3345,9 +3356,13 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "VOICEVOX:ずんだもん",
-              "source": "VOICEVOX:玄野武宏"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:玄野武宏"
             }
           ],
           "music": [
@@ -3604,9 +3619,16 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん",
-              "source": "冥鳴ひまり"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:冥鳴ひまり"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
             }
           ],
           "music": [
@@ -3862,9 +3884,19 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "波音リツ",
-              "source": "雨晴はう"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:波音リツ"
+            },
+            {
+              "name": "VOICEVOX:雨晴はう"
+            },
+            {
+              "name": "VOICEVOX:もち子(cv 明日葉よもぎ)"
+            },
+            {
+              "name": "VOICEVOX:No.7"
             }
           ],
           "music": [
@@ -4077,9 +4109,13 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "VOICEVOX:ずんだもん",
-              "source": "VOICEVOX:中国うさぎ"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:中国うさぎ"
             }
           ],
           "music": [
@@ -4271,9 +4307,13 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "VOICEVOX:ずんだもん",
-              "source": "VOICEVOX:中国うさぎ"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:中国うさぎ"
             }
           ],
           "music": [
@@ -4519,9 +4559,16 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん",
-              "source": "中国うさぎ"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:中国うさぎ"
+            },
+            {
+              "name": "VOICEVOX:玄野武宏"
             }
           ],
           "music": [
@@ -4780,8 +4827,10 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "VOICEVOX:ずんだもん"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
             }
           ],
           "music": [
@@ -5036,9 +5085,13 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "VOICEVOX:ずんだもん",
-              "source": "VOICEVOX:中国うさぎ"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:中国うさぎ"
             }
           ],
           "music": [
@@ -6276,8 +6329,10 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "VOICEVOX:ずんだもん"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
             }
           ],
           "music": [
@@ -6553,9 +6608,19 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "波音リツ",
-              "source": "雨晴はう"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:波音リツ"
+            },
+            {
+              "name": "VOICEVOX:雨晴はう"
+            },
+            {
+              "name": "VOICEVOX:もち子(cv 明日葉よもぎ)"
+            },
+            {
+              "name": "VOICEVOX:No.7"
             }
           ],
           "music": [
@@ -6886,9 +6951,19 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "波音リツ",
-              "source": "雨晴はう"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:波音リツ"
+            },
+            {
+              "name": "VOICEVOX:雨晴はう"
+            },
+            {
+              "name": "VOICEVOX:もち子(cv 明日葉よもぎ)"
+            },
+            {
+              "name": "VOICEVOX:No.7"
             }
           ],
           "music": [
@@ -7472,8 +7547,10 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "VOICEVOX:ずんだもん"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
             }
           ],
           "music": [
@@ -7723,9 +7800,16 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん",
-              "source": "中国うさぎ"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:中国うさぎ"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
             }
           ],
           "music": [
@@ -8017,9 +8101,13 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん",
-              "source": "四国めたん"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
             }
           ],
           "music": [
@@ -9747,9 +9835,16 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん",
-              "source": "中国うさぎ"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:中国うさぎ"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
             }
           ],
           "music": [
@@ -10042,9 +10137,13 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん",
-              "source": "中国うさぎ"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:中国うさぎ"
             }
           ],
           "music": [
@@ -10388,9 +10487,16 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん",
-              "source": "中国うさぎ"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:中国うさぎ"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
             }
           ],
           "music": [
@@ -10639,9 +10745,13 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "中国うさぎ",
-              "source": "四国めたん"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:中国うさぎ"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
             }
           ],
           "music": [
@@ -10884,8 +10994,10 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "玄野武宏"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:玄野武宏"
             }
           ],
           "music": [
@@ -12339,9 +12451,19 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん",
-              "source": "中国うさぎ"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:中国うさぎ"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
+            },
+            {
+              "name": "VOICEVOX:玄野武宏"
             }
           ],
           "music": [
@@ -12600,8 +12722,10 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
             }
           ],
           "music": [
@@ -12892,8 +13016,10 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
             }
           ],
           "music": [
@@ -13236,9 +13362,16 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "ずんだもん",
-              "source": "冥鳴ひまり"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:ずんだもん"
+            },
+            {
+              "name": "VOICEVOX:冥鳴ひまり"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
             }
           ],
           "music": [
@@ -13934,8 +14067,10 @@
           ],
           "voice": [
             {
-              "name": "VOICEVOX:春日部つむぎ",
-              "creator": "玄野武宏"
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:玄野武宏"
             }
           ],
           "music": [
