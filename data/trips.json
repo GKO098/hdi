@@ -2196,7 +2196,8 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
               "name": "ずんだもん立ち絵",
@@ -2363,7 +2364,8 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
               "name": "ずんだもん立ち絵",
@@ -2637,7 +2639,8 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
               "name": "自然薯・米粉・砂糖・モッツァレラチーズのイラスト",
@@ -4031,10 +4034,8 @@
             },
             {
               "name": "のほほんとした感じのスローテンポギター曲",
-              "creator": "TEtoTE_Music"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc235189"
+              "creator": "TEtoTE_Music",
+              "source": "https://commons.nicovideo.jp/material/nc235189"
             },
             {
               "name": "【off vocal】可愛くてごめん／HoneyWorks【公式】"
@@ -4726,10 +4727,8 @@
             },
             {
               "name": "のほほんとした感じのスローテンポギター曲",
-              "creator": "TEtoTE_Music"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc235189"
+              "creator": "TEtoTE_Music",
+              "source": "https://commons.nicovideo.jp/material/nc235189"
             },
             {
               "name": "夕焼けレモンティー",
@@ -4981,7 +4980,8 @@
           ],
           "video": [
             {
-              "name": "クーネルダンスずんだもんBB - ニコニコ動画 https://www.nicovideo.jp/watch/sm40406970"
+              "name": "クーネルダンスずんだもんBB - ニコニコ動画",
+              "creator": "https://www.nicovideo.jp/watch/sm40406970"
             }
           ],
           "voice": [
@@ -5238,10 +5238,12 @@
               "source": "https://www.irasutoya.com/"
             },
             {
-              "name": "LINE風トーク画面メーカー https://hi0a.com/demo/-js/js-talk-line/"
+              "name": "LINE風トーク画面メーカー",
+              "creator": "https://hi0a.com/demo/-js/js-talk-line/"
             },
             {
-              "name": "🤔 Thinking Face emoji Meaning | Dictionary.com https://www.dictionary.com/e/emoji/thinking-face-emoji/"
+              "name": "🤔 Thinking Face emoji Meaning | Dictionary.com",
+              "creator": "https://www.dictionary.com/e/emoji/thinking-face-emoji/"
             },
             {
               "name": "同行者が撮影した画像"
@@ -5249,10 +5251,8 @@
           ],
           "video": [
             {
-              "name": "踊ってない夜を知らないずんだもんBB.oddloop - ニコニコ動画"
-            },
-            {
-              "name": "https://www.nicovideo.jp/watch/sm40521213"
+              "name": "踊ってない夜を知らないずんだもんBB.oddloop - ニコニコ動画",
+              "creator": "https://www.nicovideo.jp/watch/sm40521213"
             }
           ],
           "voice": [
@@ -5289,10 +5289,8 @@
             },
             {
               "name": "のほほんとした感じのスローテンポギター曲",
-              "creator": "TEtoTE_Music"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc235189"
+              "creator": "TEtoTE_Music",
+              "source": "https://commons.nicovideo.jp/material/nc235189"
             },
             {
               "name": "O・KA・SHI Time",
@@ -5652,10 +5650,8 @@
             },
             {
               "name": "のほほんとした感じのスローテンポギター曲",
-              "creator": "TEtoTE_Music"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc235189"
+              "creator": "TEtoTE_Music",
+              "source": "https://commons.nicovideo.jp/material/nc235189"
             },
             {
               "name": "孤独のツンドラ",
@@ -5668,7 +5664,8 @@
               "source": "https://commons.nicovideo.jp/material/nc101995"
             },
             {
-              "name": "Moonlight Shadow (2021)        Maggie Reilly"
+              "name": "Moonlight Shadow (2021)",
+              "creator": "Maggie Reilly"
             }
           ],
           "effect": [
@@ -6033,10 +6030,8 @@
             },
             {
               "name": "のほほんとした感じのスローテンポギター曲",
-              "creator": "TEtoTE_Music"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc235189"
+              "creator": "TEtoTE_Music",
+              "source": "https://commons.nicovideo.jp/material/nc235189"
             },
             {
               "name": "O・KA・SHI Time",
@@ -6410,7 +6405,8 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             }
           ],
           "voice": [
@@ -6730,7 +6726,8 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
               "name": "ずんだもん立ち絵",
@@ -6744,7 +6741,8 @@
             },
             {
               "name": "【素材】ニコニコダム祭り ロゴ",
-              "creator": "https://commons.nicovideo.jp/works/nc315170"
+              "creator": "瑞梅寺穣司",
+              "source": "https://commons.nicovideo.jp/works/nc315170"
             }
           ],
           "voice": [
@@ -7030,17 +7028,18 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
               "name": "【公式立ち絵素材】模型娘のもち子さん",
-              "creator": "もちぞら模型店"
+              "creator": "もちぞら模型店",
+              "source": "https://seiga.nicovideo.jp/seiga/im10972243"
             },
             {
-              "name": "https://seiga.nicovideo.jp/seiga/im10972243"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc273508"
+              "name": "【公式立ち絵素材】模型娘のもち子さん",
+              "creator": "もちぞら模型店",
+              "source": "https://commons.nicovideo.jp/material/nc273508"
             },
             {
               "name": "ちゃろ式波音リツ",
@@ -7410,17 +7409,18 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
               "name": "【公式立ち絵素材】模型娘のもち子さん",
-              "creator": "もちぞら模型店"
+              "creator": "もちぞら模型店",
+              "source": "https://seiga.nicovideo.jp/seiga/im10972243"
             },
             {
-              "name": "https://seiga.nicovideo.jp/seiga/im10972243"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc273508"
+              "name": "【公式立ち絵素材】模型娘のもち子さん",
+              "creator": "もちぞら模型店",
+              "source": "https://commons.nicovideo.jp/material/nc273508"
             },
             {
               "name": "ちゃろ式波音リツ",
@@ -7752,7 +7752,8 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
               "name": "ずんだもん立ち絵素材改",
@@ -7770,16 +7771,14 @@
           ],
           "video": [
             {
-              "name": "How German Sounds Compared To Other Languages || CopyCatChannel - YouTube"
+              "name": "How German Sounds Compared To Other Languages || CopyCatChannel - YouTube",
+              "creator": "CopyCatChannel",
+              "source": "https://www.youtube.com/watch?v=-_xUIDRxdmc"
             },
             {
-              "name": "https://www.youtube.com/watch?v=-_xUIDRxdmc"
-            },
-            {
-              "name": "正露丸CM - YouTube"
-            },
-            {
-              "name": "https://www.youtube.com/watch?v=x6MK9pCWkG4"
+              "name": "正露丸CM - YouTube",
+              "creator": "大幸薬品株式会社",
+              "source": "https://www.youtube.com/watch?v=x6MK9pCWkG4"
             }
           ],
           "music": [
@@ -7805,10 +7804,8 @@
             },
             {
               "name": "のほほんとした感じのスローテンポギター曲",
-              "creator": "TEtoTE_Music"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc235189"
+              "creator": "TEtoTE_Music",
+              "source": "https://commons.nicovideo.jp/material/nc235189"
             },
             {
               "name": "また明日",
@@ -8099,7 +8096,8 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
               "name": "ずんだもん立ち絵",
@@ -8112,7 +8110,9 @@
           ],
           "video": [
             {
-              "name": "元静岡のテレビっ子が反応する動画集 - ニコニコ動画 https://www.nicovideo.jp/watch/sm11049133"
+              "name": "元静岡のテレビっ子が反応する動画集 - ニコニコ動画",
+              "creator": "ごはんですぞ",
+              "source": "https://www.nicovideo.jp/watch/sm11049133"
             }
           ],
           "voice": [
@@ -8152,7 +8152,9 @@
               "source": "https://soundeffect-lab.info/"
             },
             {
-              "name": "ドラえもんが秘密道具を出すときの効果音（今と昔の違い）https://www.youtube.com/watch?v=8PCLcvDnuh0"
+              "name": "ドラえもんが秘密道具を出すときの効果音（今と昔の違い）",
+              "creator": "りのるる",
+              "source": "https://www.youtube.com/watch?v=8PCLcvDnuh0"
             }
           ]
         },
@@ -8368,7 +8370,8 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
               "name": "ずんだもん立ち絵",
@@ -8480,7 +8483,8 @@
             "source": "https://ja.wikipedia.org/wiki/ハイダイナミックレンジビデオ"
           },
           {
-            "name": "影山任佐『心の病と精神医学』ナツメ社"
+            "name": "『心の病と精神医学』",
+            "source": "影山任佐　ナツメ社"
           },
           {
             "name": "【TKM】太麺にたまご絡ませてズルッといったら美味いに決まってる をすする【飯テロ】SUSURU TV.第1277回 - YouTube",
@@ -8491,7 +8495,8 @@
             "source": "https://tabelog.com/tokyo/A1318/A131801/13248599/"
           },
           {
-            "name": "ル・パーキンス『DIE WITH ZERO』ダイヤモンド社"
+            "name": "『DIE WITH ZERO』",
+            "source": "ル・パーキンス　ダイヤモンド社"
           }
         ],
         "advertiser": [
@@ -8698,7 +8703,8 @@
             },
             {
               "name": "春日部つむぎ動画",
-              "creator": "春日部つむぎ公式"
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
               "name": "ずんだもん立ち絵",
@@ -8714,7 +8720,9 @@
               "source": "https://www.irasutoya.com/"
             },
             {
-              "name": "Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
+              "name": "Point Nappa Rhett MT L",
+              "creator": "Theory",
+              "source": "https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
             }
           ],
           "voice": [
@@ -8731,11 +8739,12 @@
           "music": [
             {
               "name": "ilodolly",
-              "creator": "宮城道雄「春の海」 https://commons.nicovideo.jp/material/nc149951"
+              "creator": "宮城道雄「春の海」",
+              "source": "https://commons.nicovideo.jp/material/nc149951"
             },
             {
-              "name": "【高音質】",
-              "creator": "キューピー3分クッキング - ニコニコ https://www.nicovideo.jp/watch/nm18882289"
+              "name": "【高音質】キューピー3分クッキング - ニコニコ",
+              "creator": "https://www.nicovideo.jp/watch/nm18882289"
             },
             {
               "name": "青空空港",
@@ -9094,10 +9103,14 @@
               "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
-              "name": "Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
+              "name": "Point Nappa Rhett MT L",
+              "creator": "Theory",
+              "source": "https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
             },
             {
-              "name": "くまみね工房: 😺猫の顔配布します😺（タイトル変更しました） https://kumamine.blogspot.com/2019/12/blog-post_27.html"
+              "name": "仕事猫",
+              "creator": "くまみね工房: 😺猫の顔配布します😺（タイトル変更しました）",
+              "source": "https://kumamine.blogspot.com/2019/12/blog-post_27.html"
             }
           ],
           "voice": [
@@ -9108,10 +9121,8 @@
           "music": [
             {
               "name": "朝の訪れ",
-              "creator": "まんぼう二等兵"
-            },
-            {
-              "name": "https://dova-s.jp/bgm/play4809.html"
+              "creator": "まんぼう二等兵",
+              "source": "https://dova-s.jp/bgm/play4809.html"
             },
             {
               "name": "I will always",
@@ -9119,7 +9130,9 @@
               "source": "https://commons.nicovideo.jp/material/nc133333"
             },
             {
-              "name": "ショパン：ノクターン 第2番 変ホ長調 Op.9-2 http://classical-sound.seesaa.net/article/314008303.html"
+              "name": "ノクターン 第2番 変ホ長調 Op.9-2",
+              "creator": "ショパン",
+              "source": "http://classical-sound.seesaa.net/article/314008303.html"
             }
           ]
         },
@@ -9502,7 +9515,9 @@
               "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
-              "name": "Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
+              "name": "Point Nappa Rhett MT L",
+              "creator": "Theory",
+              "source": "https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
             }
           ],
           "voice": [
@@ -9779,15 +9794,19 @@
               "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
-              "name": "Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
+              "name": "Point Nappa Rhett MT L",
+              "creator": "Theory",
+              "source": "https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
             },
             {
-              "name": "Xユーザーの兎野りえさん",
-              "creator": "https://twitter.com/rie20030713/status/1208510374003146752"
+              "name": "謎の光",
+              "creator": "Xユーザーの兎野りえさん",
+              "source": "https://twitter.com/rie20030713/status/1208510374003146752"
             },
             {
               "name": "フォークとナイフの食事マークのシルエット",
-              "creator": "https://www.silhouette-illust.com/illust/9375"
+              "creator": "SILHOUETTE ILLUST",
+              "source": "https://www.silhouette-illust.com/illust/9375"
             }
           ],
           "voice": [
@@ -9798,7 +9817,8 @@
           "music": [
             {
               "name": "オーバーライド - 重音テトSV[吉田夜世]",
-              "creator": "https://www.nicovideo.jp/watch/sm43083649"
+              "creator": "吉田夜世",
+              "source": "https://www.nicovideo.jp/watch/sm43083649"
             }
           ]
         },
@@ -9981,14 +10001,19 @@
               "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
-              "name": "Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
+              "name": "Point Nappa Rhett MT L",
+              "creator": "Theory",
+              "source": "https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
             },
             {
-              "name": "通潤橋 - 心も潤す虹の架け橋 https://tsujunbridge.jp/"
+              "name": "通潤橋 - 心も潤す虹の架け橋",
+              "creator": "山都町役場 商工観光課",
+              "source": "https://tsujunbridge.jp/"
             },
             {
               "name": "温泉｜【公式】純和風旅館 泉屋｜熊本県杖立温泉 創業140年の宿",
-              "creator": "https://izumiyaryokan.co.jp/hotspring/"
+              "creator": "泉屋",
+              "source": "https://izumiyaryokan.co.jp/hotspring/"
             }
           ],
           "voice": [
@@ -10259,10 +10284,14 @@
               "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
-              "name": "Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
+              "name": "Point Nappa Rhett MT L",
+              "creator": "Theory",
+              "source": "https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
             },
             {
-              "name": "大任町（もみじ館） http://www.town.oto.fukuoka.jp/info/prev.asp?fol_id=1746"
+              "name": "大任町（もみじ館）",
+              "creator": "大任町",
+              "source": "http://www.town.oto.fukuoka.jp/info/prev.asp?fol_id=1746"
             }
           ],
           "voice": [
@@ -10487,7 +10516,9 @@
               "source": "https://www.nicovideo.jp/watch/sm39656626"
             },
             {
-              "name": "Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
+              "name": "Point Nappa Rhett MT L",
+              "creator": "Theory",
+              "source": "https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
             }
           ],
           "voice": [
@@ -10752,7 +10783,9 @@
               "source": "https://seiga.nicovideo.jp/seiga/im11190166"
             },
             {
-              "name": "Point Nappa Rhett MT L Theory https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
+              "name": "Point Nappa Rhett MT L",
+              "creator": "Theory",
+              "source": "https://www.theory.co.jp/img/item/023360003/023360003_c050_a001_pz.jpg"
             }
           ],
           "voice": [
@@ -11133,10 +11166,8 @@
             },
             {
               "name": "のほほんとした感じのスローテンポギター曲",
-              "creator": "TEtoTE_Music"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc235189"
+              "creator": "TEtoTE_Music",
+              "source": "https://commons.nicovideo.jp/material/nc235189"
             },
             {
               "name": "海を見に行こうよ！",
@@ -11786,7 +11817,9 @@
               "source": "https://seiga.nicovideo.jp/seiga/im11190166"
             },
             {
-              "name": "【米騒動発祥の地】 富山の遊び場！ https://toyama-asbb.com/archives/9312"
+              "name": "【米騒動発祥の地】",
+              "creator": "富山の遊び場！",
+              "source": "https://toyama-asbb.com/archives/9312"
             }
           ],
           "voice": [
@@ -12048,7 +12081,8 @@
           "video": [
             {
               "name": "Ace Combat zero OP 字幕なし",
-              "creator": "https://www.nicovideo.jp/watch/sm22759437"
+              "creator": "硝石",
+              "source": "https://www.nicovideo.jp/watch/sm22759437"
             }
           ],
           "voice": [
@@ -12061,7 +12095,9 @@
           ],
           "music": [
             {
-              "name": "黒曜の羽根舞う - なぐもりずの音楽室 https://nagumorizu.com/musicmaterials/musicmaterials-936"
+              "name": "黒曜の羽根舞う",
+              "creator": "なぐもりずの音楽室",
+              "source": "https://nagumorizu.com/musicmaterials/musicmaterials-936"
             },
             {
               "name": "コーヒーでまったり",
@@ -13021,7 +13057,8 @@
           "video": [
             {
               "name": "おさんぽ北一硝子",
-              "creator": "https://www.youtube.com/watch?v=FHGc7viLSYo"
+              "creator": "北一硝子KITAICHI GLASS OTARU",
+              "source": "https://www.youtube.com/watch?v=FHGc7viLSYo"
             }
           ],
           "voice": [
@@ -13032,7 +13069,8 @@
           "music": [
             {
               "name": "《ペール・ギュント》第1組曲 「朝」 (グリーグ) - YouTube",
-              "creator": "https://www.youtube.com/watch?v=nwpMg-xuyTE"
+              "creator": "エドヴァルド・グリーグ",
+              "source": "https://www.youtube.com/watch?v=nwpMg-xuyTE"
             },
             {
               "name": "爽やかな朝",
@@ -13041,11 +13079,13 @@
             },
             {
               "name": "フリーBGM | クラシック | モーツァルト アヴェ・マリア - YouTube",
-              "creator": "https://www.youtube.com/watch?v=VtFuN7q2nAE（シューベルト？）"
+              "creator": "モーツァルト",
+              "source": "https://www.youtube.com/watch?v=VtFuN7q2nAE（シューベルト？）"
             },
             {
               "name": "U.N.オーエンは彼女なのか？/ZUN(上海アリス幻樂団)【オルゴール】 - YouTube",
-              "creator": "https://www.youtube.com/watch?v=prOv__cGjB8"
+              "creator": "ZUN(上海アリス幻樂団)",
+              "source": "https://www.youtube.com/watch?v=prOv__cGjB8"
             },
             {
               "name": "O・KA・SHI Time",
@@ -13059,7 +13099,8 @@
             },
             {
               "name": "20mシャトルラン - ニコニコ動画",
-              "creator": "https://www.nicovideo.jp/watch/sm7092517"
+              "creator": "n-topia",
+              "source": "https://www.nicovideo.jp/watch/sm7092517"
             },
             {
               "name": "TALK and WALK",
@@ -13068,8 +13109,8 @@
             },
             {
               "name": "TAKIO'S SOHRAN 2",
-              "creator": "伊藤多喜雄＆TAKIO BAND",
-              "source": "NIPPONESE SONG～産土～"
+              "creator": "伊藤多喜雄＆TAKIO BAND NIPPONESE SONG～産土～",
+              "source": "https://www.youtube.com/watch?v=hKvQaQ46cQs"
             },
             {
               "name": "カフェにて朝食を",
@@ -13522,7 +13563,9 @@
           ],
           "video": [
             {
-              "name": "【4K】エースコンバットZERO ミッション 18 ZERO - YouTube https://www.youtube.com/watch?v=WBlBccWza-k"
+              "name": "【4K】エースコンバットZERO ミッション 18 ZERO - YouTube",
+              "creator": "C太 ゲームズ",
+              "source": "https://www.youtube.com/watch?v=WBlBccWza-k"
             }
           ],
           "voice": [
@@ -13553,10 +13596,8 @@
             },
             {
               "name": "のほほんとした感じのスローテンポギター曲",
-              "creator": "TEtoTE_Music"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc235189"
+              "creator": "TEtoTE_Music",
+              "source": "https://commons.nicovideo.jp/material/nc235189"
             }
           ],
           "effect": [
@@ -14133,8 +14174,8 @@
               "source": "https://commons.nicovideo.jp/material/nc134822"
             },
             {
-              "name": "玉置成実",
-              "creator": "Reason"
+              "name": "Reason",
+              "creator": "玉置成実"
             }
           ],
           "effect": [
@@ -14462,16 +14503,14 @@
               "source": "https://soundeffect-lab.info/"
             },
             {
-              "name": "「カー！」ビブラスラップ 残響つき - ニコニ・コモンズ"
+              "name": "「カー！」ビブラスラップ 残響つき - ニコニ・コモンズ",
+              "creator": "ArcTracks",
+              "source": "https://commons.nicovideo.jp/works/nc295973"
             },
             {
-              "name": "https://commons.nicovideo.jp/works/nc295973"
-            },
-            {
-              "name": "The screaming marmot - YouTube"
-            },
-            {
-              "name": "https://www.youtube.com/watch?v=wmRU50azMRI"
+              "name": "The screaming marmot - YouTube",
+              "creator": "andreanicolalarosa",
+              "source": "https://www.youtube.com/watch?v=wmRU50azMRI"
             }
           ]
         },
@@ -14795,7 +14834,9 @@
           ],
           "video": [
             {
-              "name": "のだ / ずんだもん・初音ミク・重音テト - YouTube https://www.youtube.com/watch?v=vY8iwpN3GXQ"
+              "name": "のだ / ずんだもん・初音ミク・重音テト - YouTube",
+              "creator": "大漠波新",
+              "source": "https://www.youtube.com/watch?v=vY8iwpN3GXQ"
             }
           ],
           "voice": [
@@ -14820,10 +14861,8 @@
             },
             {
               "name": "のほほんとした感じのスローテンポギター曲",
-              "creator": "TEtoTE_Music"
-            },
-            {
-              "name": "https://commons.nicovideo.jp/material/nc235189"
+              "creator": "TEtoTE_Music",
+              "source": "https://commons.nicovideo.jp/material/nc235189"
             },
             {
               "name": "Stay Alone",
@@ -14836,16 +14875,14 @@
               "source": "https://commons.nicovideo.jp/material/nc252426"
             },
             {
-              "name": "サイレントヒル2 犬エンドBGM"
+              "name": "サイレントヒル2 犬エンドBGM",
+              "creator": "コナミデジタルエンタテインメント",
+              "source": "https://www.nicovideo.jp/watch/sm10968781"
             },
             {
-              "name": "（https://www.nicovideo.jp/watch/sm10968781）"
-            },
-            {
-              "name": "QUEEN - おジャ魔女カーニバル!! (LIVE) AI COVER - YouTube"
-            },
-            {
-              "name": "https://www.youtube.com/watch?v=MKBsGfszwu8&ab_channel=KM_BONELAB"
+              "name": "QUEEN - おジャ魔女カーニバル!! (LIVE) AI COVER - YouTube",
+              "creator": "KM_BONELAB",
+              "source": "https://www.youtube.com/watch?v=MKBsGfszwu8&ab_channel=KM_BONELAB"
             },
             {
               "name": "レッツお散歩",
@@ -15620,10 +15657,9 @@
               "source": "https://commons.nicovideo.jp/material/nc126625"
             },
             {
-              "name": "槇原敬之「どんなときも。」を野球選手名で歌ってみた - ニコニコ動画"
-            },
-            {
-              "name": "https://www.nicovideo.jp/watch/sm21573542"
+              "name": "槇原敬之「どんなときも。」を野球選手名で歌ってみた - ニコニコ動画",
+              "creator": "ヤキューブ（せるじお苺）",
+              "source": "https://www.nicovideo.jp/watch/sm21573542"
             },
             {
               "name": "Stay Alone",
