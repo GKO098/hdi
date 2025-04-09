@@ -4078,7 +4078,7 @@
           },
           {
             "name": "発熱など体調不良時の対応について　東京都福祉保健局",
-            "source": "tamakodaira/kansen/singatakoronauirusu/taityouhuryoujinotaiou.html"
+            "source": "https://www.fukushihoken.metro.tokyo.lg.jp/tamakodaira/kansen/singatakoronauirusu/taityouhuryoujinotaiou.html"
           },
           {
             "name": "広報誌「厚生労働」2021年９月号　新型コロナウイルス最前線",
@@ -14451,7 +14451,8 @@
               "source": "https://commons.nicovideo.jp/material/nc121187"
             },
             {
-              "name": "Thunder        Gabry Ponte x LUM!X x Prezioso"
+              "name": "Thunder",
+              "creator": "Gabry Ponte x LUM!X x Prezioso"
             }
           ],
           "effect": [
