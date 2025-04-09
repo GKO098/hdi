@@ -251,7 +251,7 @@
           <tr>
             <td rowspan="15">
               <div class="places-container">
-                ${(record.places || '').replace(/\r?\n/g, '<br>')}
+                ${formatPlacesWithTimestamp(record.places)}
               </div>
             </td>
             <td rowspan="15" colspan="2">${getEmbedHTML(record.niconico)}</td>
@@ -525,6 +525,7 @@
                 const id = url.split("/").pop();
                 return `<div class="video-container">
                     <iframe
+                        id="niconico-player"
                         src="https://embed.nicovideo.jp/watch/${id}"
                         frameborder="0"
                         allowfullscreen
@@ -532,6 +533,34 @@
                 </div>`;
             } else {
                 return `<a href="${url}" target="_blank">動画リンク</a>`;
+            }
+        }
+
+        function convertTimeToSeconds(timeStr) {
+            const [minutes, seconds] = timeStr.split(':').map(Number);
+            return minutes * 60 + seconds;
+        }
+
+        function formatPlacesWithTimestamp(places) {
+            if (!places) return '';
+            
+            return places.split('\n').map(place => {
+                const timeMatch = place.match(/^(\d{1,2}:\d{2})\s+(.+)$/);
+                if (timeMatch) {
+                    const [_, time, placeName] = timeMatch;
+                    const seconds = convertTimeToSeconds(time);
+                    return `<span class="place-with-time" data-time="${seconds}"><a href="#" onclick="seekVideo(${seconds}); return false;">${time}</a> ${placeName}</span>`;
+                }
+                return place;
+            }).join('<br>');
+        }
+
+        function seekVideo(seconds) {
+            const iframe = document.getElementById('niconico-player');
+            if (iframe) {
+                const currentSrc = iframe.src;
+                const baseUrl = currentSrc.split('?')[0];
+                iframe.src = `${baseUrl}?from=${seconds}`;
             }
         }
     </script>
