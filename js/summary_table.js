@@ -43,24 +43,96 @@ class SummaryTable {
   }
 
   initialize() {
-    Papa.parse("data/summary_table.csv", {
-      header: true,
-      download: true,
-      complete: (results) => {
-        const trips = results.data
-          .filter((row) => row.id)
-          .map((row) => {
-            const converted = {};
-            for (const key in row) {
-              converted[key] = row[key];
-            }
-            return converted;
+    fetch("data/trips.json")
+      .then(response => response.json())
+      .then(data => {
+        const trips = data.trips.map(trip => {
+          // メタデータフィールドを直接のプロパティとしてフラット化
+          const flatTrip = {
+            ...trip,
+            ...trip.metadata,
+          };
+          delete flatTrip.metadata;
+
+          // コストフィールドを直接のプロパティとしてフラット化
+          this.costKeys.forEach(key => {
+            const costKey = key.replace('cost_', ''); // 'cost_meal' -> 'meal'
+            flatTrip[key] = trip.costs && trip.costs[costKey] !== undefined ? trip.costs[costKey] : 0;
           });
+          delete flatTrip.costs;
+
+          // 場所フィールドを文字列に変換
+          flatTrip.places = trip.places
+            .map(place => {
+              if (place.timestamp) {
+                return `${place.timestamp} ${place.name}`;
+              }
+              return place.name;
+            })
+            .join('\n');
+
+          // 参加者フィールドを文字列に変換
+          flatTrip.participants = trip.participants ? trip.participants.join('\n') : '';
+
+          // 広告者フィールドを文字列に変換
+          flatTrip.advertiser = trip.metadata.advertiser ? trip.metadata.advertiser.join('\n') : '';
+
+          // トピックフィールドを文字列に変換
+          flatTrip.topics = trip.metadata.topics ? trip.metadata.topics.join('\n') : '';
+
+          // 参考文献フィールドを文字列に変換
+          flatTrip.reference = trip.metadata.reference
+            ? trip.metadata.reference.map(ref => `　${ref.name}\n　　${ref.source}`).join('\n')
+            : '';
+
+          // 素材フィールドを文字列に変換
+          flatTrip.material = trip.metadata.material ? this.convertMaterialToString(trip.metadata.material) : '';
+
+          // 車両情報をフラット化
+          flatTrip.car_model = `${trip.vehicle.manufacturer}　${trip.vehicle.model}`.trim();
+          delete flatTrip.vehicle;
+
+          return flatTrip;
+        });
 
         this.renderTable(trips);
         this.setupSorting(trips);
-      },
-    });
+      });
+  }
+
+  convertMaterialToString(material) {
+    if (!material) return '';
+
+    const sections = [];
+    const typeNames = {
+      'image': '画像：',
+      'video': '動画：',
+      'voice': '音声：',
+      'music': '音楽：',
+      'effect': '効果音：'
+    };
+
+    for (const [type, items] of Object.entries(material)) {
+      if (items && items.length > 0) {
+        sections.push(typeNames[type] || `${type}：`);
+        
+        items.forEach(item => {
+          if (type === 'voice') {
+            // 音声の場合は名前のみ
+            sections.push(`　${item.name}`);
+          } else {
+            // その他の場合は名前、作者、ソースを結合
+            const parts = [];
+            if (item.name) parts.push(item.name);
+            if (item.creator) parts.push(item.creator);
+            if (item.source) parts.push(item.source);
+            sections.push(`　${parts.join('　')}`);
+          }
+        });
+      }
+    }
+
+    return sections.join('\n');
   }
 
   renderTable(data) {

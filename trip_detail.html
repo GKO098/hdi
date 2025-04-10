@@ -230,18 +230,20 @@
     <script>
         const select = document.getElementById('record-select');
         const container = document.getElementById('recordContainer');
-        let csvData = [];
+        let jsonData = [];
 
         // クエリ取得
         function getIdFromUrl() {
             const params = new URLSearchParams(location.search);
-            return params.get('id');
+            const id = params.get('id');
+            return id ? parseInt(id, 10) : null;  // 文字列を数値に変換
         }
 
         // 表示構築
         function renderRecord(record) {
+            console.log('Rendering record:', record); // デバッグ用にrecordを出力
             // 各項目の順位を計算
-            const rankings = calculateRankings(csvData, record);
+            const rankings = calculateRankings(jsonData, record);
 
             // 数値を小数点以下1桁にフォーマットする関数
             const formatNumber = (value) => {
@@ -262,101 +264,101 @@
           </colgroup>
           <tr>
             <td>${record.date || ''}</td>
-            <td>${record.weather || ''}</td>
-            <td>${record.car_model || ''}</td>
+            <td>${record.metadata.weather || ''}</td>
+            <td>${record.vehicle.manufacturer} ${record.vehicle.model}</td>
             <td></td>
             <td></td>
             <td></td>
           </tr>
           <tr>
-            <td colspan="1">${record.series || ''}</td>
-            <td colspan="2">動画名: ${record.video_title || ''}</td>
+            <td colspan="1">${record.metadata.series || ''}</td>
+            <td colspan="2">動画名: ${record.metadata.video_title || ''}</td>
             <td  class="section-title" colspan="3">参加者: ${renderParticipantsIcons(record.participants)}</td>
           </tr>
           <tr>
             <td rowspan="15">
               <div class="places-container">
-                ${formatPlacesWithTimestamp(record.places)}
+                ${formatPlacesWithTimestamp(record.places.map(place => `${place.timestamp} ${place.name}`).join('\n'))}
               </div>
             </td>
-            <td rowspan="15" colspan="2">${getEmbedHTML(record.niconico)}</td>
+            <td rowspan="15" colspan="2">${getEmbedHTML(record.metadata.niconico)}</td>
             <td class="section-title">走行距離</td>
             <td align="right">${formatNumber(record.distance || '0')} km</td>
             <td align="right">${rankings.distance}</td>
           </tr>
           <tr>
             <td class="section-title">食費</td>
-            <td align="right">${formatNumber(record.cost_meal || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.meal || '0')}円</td>
             <td align="right">${rankings.cost_meal}</td>
           </tr>
           <tr>
             <td class="section-title">有料道路</td>
-            <td align="right">${formatNumber(record.cost_toll_road || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.toll_road || '0')}円</td>
             <td align="right">${rankings.cost_toll_road}</td>
           </tr>
           <tr>
             <td class="section-title">燃料</td>
-            <td align="right">${formatNumber(record.cost_fuel || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.fuel || '0')}円</td>
             <td align="right">${rankings.cost_fuel}</td>
           </tr>
           <tr>
             <td class="section-title">レンタカー</td>
-            <td align="right">${formatNumber(record.cost_rental_car || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.rental_car || '0')}円</td>
             <td align="right">${rankings.cost_rental_car}</td>
           </tr>
           <tr>
             <td class="section-title">入場料</td>
-            <td align="right">${formatNumber(record.cost_entrance_fee || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.entrance_fee || '0')}円</td>
             <td align="right">${rankings.cost_entrance_fee}</td>
           </tr>
           <tr>
             <td class="section-title">駐車場</td>
-            <td align="right">${formatNumber(record.cost_parking || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.parking || '0')}円</td>
             <td align="right">${rankings.cost_parking}</td>
           </tr>
           <tr>
             <td class="section-title">宿泊料</td>
-            <td align="right">${formatNumber(record.cost_hotel || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.hotel || '0')}円</td>
             <td align="right">${rankings.cost_hotel}</td>
           </tr>
           <tr>
             <td class="section-title">飛行機</td>
-            <td align="right">${formatNumber(record.cost_plane || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.plane || '0')}円</td>
             <td align="right">${rankings.cost_plane}</td>
           </tr>
           <tr>
             <td class="section-title">電車</td>
-            <td align="right">${formatNumber(record.cost_train || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.train || '0')}円</td>
             <td align="right">${rankings.cost_train}</td>
           </tr>
           <tr>
             <td class="section-title">バス</td>
-            <td align="right">${formatNumber(record.cost_bus || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.bus || '0')}円</td>
             <td align="right">${rankings.cost_bus}</td>
           </tr>
           <tr>
             <td class="section-title">船</td>
-            <td align="right">${formatNumber(record.cost_ship || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.ship || '0')}円</td>
             <td align="right">${rankings.cost_ship}</td>
           </tr>
           <tr>
             <td class="section-title">機材</td>
-            <td align="right">${formatNumber(record.cost_equipment || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.equipment || '0')}円</td>
             <td align="right">${rankings.cost_equipment}</td>
           </tr>
           <tr>
             <td class="section-title">その他</td>
-            <td align="right">${formatNumber(record.cost_other || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.other || '0')}円</td>
             <td align="right">${rankings.cost_other}</td>
           </tr>
           <tr>
             <td class="section-title">合計金額</td>
-            <td align="right">${formatNumber(record.cost_total || '0')}円</td>
+            <td align="right">${formatNumber(record.costs.total || '0')}円</td>
             <td align="right">${rankings.cost_total}</td>
           </tr>
           <tr>
-            <td>${record.itinerary ? `<a href="${record.itinerary}" target="_blank" rel="noopener noreferrer">旅のしおり</a>` : ''}</td>
-            <td colspan="2">イベント: ${record.event || ''}</td>
+            <td>${record.metadata.itinerary ? `<a href="${record.metadata.itinerary}" target="_blank" rel="noopener noreferrer">旅のしおり</a>` : ''}</td>
+            <td colspan="2">イベント: ${record.metadata.event || ''}</td>
             <td colspan="3"></td>
           </tr>
           <tr>
@@ -373,16 +375,16 @@
             </td>
           </tr>
           <tr>
-            <td colspan="6">${(record.material || '').replace(/\r?\n/g, '<br>')}</td>
+            <td colspan="6">${record.metadata.material ? convertMaterialToString(record.metadata.material) : ''}</td>
           </tr>
           <tr>
-            <td colspan="6">${(record.reference || '').replace(/\r?\n/g, '<br>')}</td>
+            <td colspan="6">${record.metadata.reference ? record.metadata.reference.map(ref => `　${ref.name}<br>　　${ref.source}`).join('<br>') : ''}</td>
           </tr>
           <tr>
-            <td colspan="6">${record.advertiser || ''}</td>
+            <td colspan="6">${record.metadata.advertiser ? record.metadata.advertiser.join(' ') : ''}</td>
           </tr>
           <tr>
-            <td colspan="6">${(record.topics || '').replace(/\r?\n/g, '<br>')}</td>
+            <td colspan="6">${record.metadata.topics ? record.metadata.topics.join('<br>') : ''}</td>
           </tr>
         </table>
       `;
@@ -423,7 +425,7 @@
                     .filter(row => row.id && (row.date?.length !== 4)) // dateが4文字のレコードを除外
                     .map(row => ({
                         ...row,
-                        value: parseFloat(row[field]) || 0
+                        value: parseFloat(row.costs[field.replace('cost_', '')]) || 0
                     }))
                     .sort((a, b) => b.value - a.value);
 
@@ -446,7 +448,7 @@
                 // 現在のレコードの順位を取得
                 const currentRecordRank = sortedData.find(row => row.id === currentRecord.id)?.rank || 1;
                 const total = sortedData.length;
-                const recordValue = parseFloat(currentRecord[field]) || 0;
+                const recordValue = parseFloat(currentRecord.costs[field.replace('cost_', '')]) || 0;
 
                 // 順位に応じてクラスを設定
                 let rankClass = '';
@@ -481,21 +483,21 @@
         }
 
         function updateNavigationLinks(currentId) {
-            const currentIndex = csvData.findIndex(r => r.id === currentId);
+            const currentIndex = jsonData.findIndex(r => r.id === currentId);
             const prevTrip = document.getElementById('prev-trip');
             const nextTrip = document.getElementById('next-trip');
 
             // 前の旅へのリンク
             if (currentIndex > 0) {
-                const prevId = csvData[currentIndex - 1].id;
+                const prevId = jsonData[currentIndex - 1].id;
                 prevTrip.innerHTML = `<a href="?id=${prevId}">← 前の旅</a>`;
             } else {
                 prevTrip.textContent = '← 前の旅';
             }
 
             // 次の旅へのリンク
-            if (currentIndex < csvData.length - 1 && csvData[currentIndex + 1].id) {
-                const nextId = csvData[currentIndex + 1].id;
+            if (currentIndex < jsonData.length - 1 && jsonData[currentIndex + 1].id) {
+                const nextId = jsonData[currentIndex + 1].id;
                 nextTrip.innerHTML = `<a href="?id=${nextId}">次の旅 →</a>`;
             } else {
                 nextTrip.textContent = '次の旅 →';
@@ -505,37 +507,52 @@
         select.addEventListener('change', () => {
             const selectedId = select.value;
             updateUrl(selectedId);
-            const record = csvData.find(r => r.id === selectedId);
+            const record = jsonData.find(r => r.id === selectedId);
             renderRecord(record);
             updateNavigationLinks(selectedId);
         });
 
-        fetch('data/summary_table.csv')
-            .then(res => res.text())
-            .then(csvText => {
-                csvData = Papa.parse(csvText, { header: true }).data;
+        fetch('data/trips.json')
+            .then(res => res.json())
+            .then(data => {
+                jsonData = data.trips || [];
+                console.log('Loaded JSON data:', jsonData); // デバッグ用にjsonDataを出力
 
-                for (const row of csvData) {
-                    if (!row.id) continue;
+                for (const trip of jsonData) {
+                    if (!trip.id) continue;
                     const option = document.createElement('option');
-                    option.value = row.id;
-                    option.textContent = `${row.id} (${row.date}) 「${row.video_title || (row.places || '↓').replace(/\r?\n/g, '・')}」`;
+                    option.value = trip.id;
+                    option.textContent = `${trip.id} (${trip.date}) 「${trip.metadata.video_title || (trip.places.map(place => place.name).join('・'))}」`;
                     select.appendChild(option);
                 }
 
-                const initialId = getIdFromUrl() || csvData[0]?.id;
+                const initialId = getIdFromUrl() || (jsonData.length > 0 ? jsonData[0].id : null);
+                console.log('Initial ID:', initialId, 'Type:', typeof initialId); // initialIdの型を出力
                 if (initialId) {
                     select.value = initialId;
-                    const record = csvData.find(r => r.id === initialId);
-                    renderRecord(record);
-                    updateNavigationLinks(initialId);
+                    console.log('JSON data id type example:', typeof jsonData[0].id); // jsonDataのidの型を出力
+                    const record = jsonData.find(r => {
+                        console.log('Comparing:', r.id, typeof r.id, 'with', initialId, typeof initialId); // 比較時の型を出力
+                        return r.id === initialId;
+                    });
+                    console.log('Found record:', record);
+                    if (record) {
+                        renderRecord(record);
+                        updateNavigationLinks(initialId);
+                    }
                 }
-            });
-        function renderParticipantsIcons(participantsStr) {
-            if (!participantsStr) return '';
+            })
+            .catch(error => console.error('Error loading JSON data:', error));
 
-            return participantsStr
-                .split(/\r?\n/)                  // 改行で分割
+        function renderParticipantsIcons(participants) {
+            if (!participants) return '';
+
+            // 配列の場合はそのまま使用し、文字列の場合は分割する
+            const participantsList = Array.isArray(participants)
+                ? participants
+                : participants.split(/\r?\n/);
+
+            return participantsList
                 .map(name => name.trim())        // 前後の空白除去
                 .filter(name => name !== '')     // 空行除去
                 .map(name => `
@@ -543,6 +560,7 @@
                 )
                 .join('');
         }
+
         function getEmbedHTML(url) {
             if (!url || typeof url !== "string") return "なし";
             url = url.trim();
@@ -587,6 +605,36 @@
                 const baseUrl = currentSrc.split('?')[0];
                 iframe.src = `${baseUrl}?from=${seconds}`;
             }
+        }
+
+        function convertMaterialToString(material) {
+            if (!material) return '';
+
+            const sections = [];
+
+            // 画像の処理
+            if (material.image && material.image.length > 0) {
+                const imageList = material.image.map(img => 
+                    `${img.name}${img.creator ? `（${img.creator}）` : ''}${img.source ? `（${img.source}）` : ''}`
+                ).join('　');
+                sections.push(`画像：${imageList}`);
+            }
+
+            // 音声の処理
+            if (material.voice && material.voice.length > 0) {
+                const voiceList = material.voice.map(voice => voice.name).join('、');
+                sections.push(`音声：${voiceList}`);
+            }
+
+            // 音楽の処理
+            if (material.music && material.music.length > 0) {
+                const musicList = material.music.map(music => 
+                    `${music.name}${music.creator ? `（${music.creator}）` : ''}${music.source ? `（${music.source}）` : ''}`
+                ).join('　');
+                sections.push(`音楽：${musicList}`);
+            }
+
+            return sections.join('<br>');
         }
     </script>
 </body>
