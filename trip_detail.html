@@ -378,13 +378,13 @@
             <td colspan="6">${record.metadata.material ? convertMaterialToString(record.metadata.material) : ''}</td>
           </tr>
           <tr>
-            <td colspan="6">${record.metadata.reference ? record.metadata.reference.map(ref => `　${ref.name}<br>　　${ref.source}`).join('<br>') : ''}</td>
+            <td colspan="6">${record.metadata.reference ? '参考文献：<br>' + record.metadata.reference.map(ref => `　${ref.name}　${ref.source}`).join('<br>') : ''}</td>
           </tr>
           <tr>
-            <td colspan="6">${record.metadata.advertiser ? record.metadata.advertiser.join(' ') : ''}</td>
+            <td colspan="6">${record.metadata.advertiser ? '広告主：<br>' + record.metadata.advertiser.map(adv => `　${adv} さん`).join('') : ''}</td>
           </tr>
           <tr>
-            <td colspan="6">${record.metadata.topics ? record.metadata.topics.join('<br>') : ''}</td>
+            <td colspan="6">${record.metadata.topics ? '車内での会話：<br>' + record.metadata.topics.map(topic => `　${topic}`).join('<br>') : ''}</td>
           </tr>
         </table>
       `;
@@ -615,9 +615,9 @@
             // 画像の処理
             if (material.image && material.image.length > 0) {
                 const imageList = material.image.map(img => 
-                    `${img.name}${img.creator ? `（${img.creator}）` : ''}${img.source ? `（${img.source}）` : ''}`
-                ).join('　');
-                sections.push(`画像：${imageList}`);
+                    `　${img.name}${img.creator ? `（${img.creator}）` : ''}${img.source ? `（${img.source}）` : ''}`
+                ).join('<br>');
+                sections.push(`画像：<br>${imageList}`);
             }
 
             // 音声の処理
@@ -629,12 +629,12 @@
             // 音楽の処理
             if (material.music && material.music.length > 0) {
                 const musicList = material.music.map(music => 
-                    `${music.name}${music.creator ? `（${music.creator}）` : ''}${music.source ? `（${music.source}）` : ''}`
-                ).join('　');
-                sections.push(`音楽：${musicList}`);
+                    `　${music.name}${music.creator ? `（${music.creator}）` : ''}${music.source ? `（${music.source}）` : ''}`
+                ).join('<br>');
+                sections.push(`音楽：<br>${musicList}`);
             }
 
-            return sections.join('<br>');
+            return sections.join('<br><br>');
         }
     </script>
 </body>
