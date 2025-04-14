@@ -129,7 +129,7 @@
         },
         {
           "name": "ムーミンバレーパーク",
-          "type": "park"
+          "type": "amusement_park"
         },
         {
           "name": "バイク弁当（営業終了後）",
@@ -1192,8 +1192,16 @@
       ],
       "places": [
         {
+          "name": "シャトレーゼ 日高店",
+          "type": "shopping"
+        },
+        {
+          "name": "豆腐厨房日高店",
+          "type": "shopping"
+        },
+        {
           "name": "巾着田曼珠沙華",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "高麗神社",
@@ -1205,15 +1213,15 @@
         },
         {
           "name": "ムーミンバレーパーク",
-          "type": "park"
+          "type": "amusement_park"
         },
         {
           "name": "がってん寿司",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "喜楽里別邸",
-          "type": "other"
+          "type": "hot_spring"
         },
         {
           "name": "三芳PA",
@@ -1253,14 +1261,14 @@
       "places": [
         {
           "name": "ほうとう歩成",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "ぷくぷく温泉",
           "type": "hot_spring"
         },
         {
-          "name": "奥多摩の道",
+          "name": "柳沢峠",
           "type": "other"
         }
       ],
@@ -1296,16 +1304,20 @@
       ],
       "places": [
         {
-          "name": "美野里SA",
+          "name": "美野里PA",
           "type": "road_facility"
         },
         {
           "name": "栗の家",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "小澤栗園",
-          "type": "other"
+          "type": "shopping"
+        },
+        {
+          "name": "回転すし まるくに 水戸見川店",
+          "type": "restaurant"
         },
         {
           "name": "水戸駅",
@@ -1313,11 +1325,15 @@
         },
         {
           "name": "水戸芸術館のタワー",
-          "type": "other"
+          "type": "museum"
         },
         {
           "name": "ゆにろーず（にんたまラーメン）",
           "type": "restaurant"
+        },
+        {
+          "name": "道の駅 いたこ",
+          "type": "road_facility"
         }
       ],
       "distance": 324.0,
@@ -1361,11 +1377,11 @@
         },
         {
           "name": "きのこ茶屋",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "水沢うどん街道",
-          "type": "restaurant"
+          "type": "other"
         },
         {
           "name": "ふくみそば",
@@ -1413,7 +1429,7 @@
       "places": [
         {
           "name": "みんなのグリル",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "道の駅ごか",
@@ -1421,11 +1437,11 @@
         },
         {
           "name": "三県境",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "山田うどん",
-          "type": "nature"
+          "type": "restaurant"
         },
         {
           "name": "おがわ温泉",
@@ -1437,7 +1453,7 @@
         },
         {
           "name": "清川寺温泉",
-          "type": "nature"
+          "type": "hot_spring"
         }
       ],
       "distance": 219.0,
@@ -1473,15 +1489,15 @@
       "places": [
         {
           "name": "釜めしなかい",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "奥多摩周遊道路入口",
-          "type": "other"
+          "type": "road_facility"
         },
         {
           "name": "とんでん",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "イオン",
@@ -1524,16 +1540,16 @@
           "type": "nature"
         },
         {
-          "name": "吉田うどん",
+          "name": "吉田のうどん 玉喜亭",
           "type": "restaurant"
         },
         {
-          "name": "御殿場アウトレット",
+          "name": "御殿場プレミアム・アウトレット",
           "type": "shopping"
         },
         {
           "name": "ジョリーパスタ",
-          "type": "other"
+          "type": "restaurant"
         }
       ],
       "distance": 322.0,
@@ -1617,7 +1633,7 @@
         },
         {
           "name": "小荒井製菓",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "土合駅",
@@ -1625,19 +1641,19 @@
         },
         {
           "name": "育風堂精肉店",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "ジャック・ザ・タルトファンタジー",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "かみごはん",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "大とろ牛乳",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "赤城高原SA",
@@ -1683,7 +1699,7 @@
         },
         {
           "name": "炭鳥 蔵 筏 IKADA",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "留浦浮橋",
@@ -1691,7 +1707,7 @@
         },
         {
           "name": "奥多摩周遊道路",
-          "type": "other"
+          "type": "road_facility"
         },
         {
           "name": "藤野PA",
@@ -1731,35 +1747,35 @@
       "places": [
         {
           "name": "ごま福堂",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "近江屋長兵衛商店",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "甘味茶房かすが（芋そうめん）",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "エース大松",
-          "type": "other"
+          "type": "restaurant"
         },
         {
-          "name": "伊香保温泉",
+          "name": "食の駅伊香保店",
+          "type": "shopping"
+        },
+        {
+          "name": "黄金の湯",
           "type": "hot_spring"
         },
         {
-          "name": "食の駅　伊香保",
-          "type": "station"
-        },
-        {
-          "name": "亀屋栄泉",
-          "type": "other"
-        },
-        {
           "name": "登利平（鶏めし）",
-          "type": "other"
+          "type": "restaurant"
+        },
+        {
+          "name": "赤城高原SA",
+          "type": "road_facility"
         }
       ],
       "distance": 346.0,
@@ -1795,7 +1811,7 @@
       "places": [
         {
           "name": "セルリアンタワー",
-          "type": "other"
+          "type": "road_facility"
         },
         {
           "name": "海老名SA",
@@ -1807,15 +1823,15 @@
         },
         {
           "name": "西伊豆スカイライン",
-          "type": "other"
+          "type": "road_facility"
         },
         {
           "name": "韮山反射炉",
-          "type": "nature"
+          "type": "historical"
         },
         {
-          "name": "さわやか",
-          "type": "other"
+          "name": "さわやか函南店",
+          "type": "restaurant"
         },
         {
           "name": "海老名SA",
@@ -1855,15 +1871,19 @@
       "places": [
         {
           "name": "岩下の新生姜",
-          "type": "other"
+          "type": "amusement_park"
         },
         {
           "name": "大谷資料館",
           "type": "museum"
         },
         {
+          "name": "大谷観音",
+          "type": "historical"
+        },
+        {
           "name": "ベルテラシェ大谷",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "道の駅うつのみや　ろまんちっく村",
@@ -1871,11 +1891,11 @@
         },
         {
           "name": "宇都宮みんみん",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "さくらみくら便利店",
-          "type": "other"
+          "type": "convenience_store"
         },
         {
           "name": "蓮田SA",
@@ -1919,7 +1939,7 @@
         },
         {
           "name": "三毳不動尊",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "道の駅みかも",
@@ -1927,7 +1947,7 @@
         },
         {
           "name": "隠れ川原のかりんとう",
-          "type": "nature"
+          "type": "shopping"
         },
         {
           "name": "道の駅壬生",
@@ -1939,7 +1959,7 @@
         },
         {
           "name": "こぶ観音",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "冠稲荷神社",
@@ -1951,7 +1971,7 @@
         },
         {
           "name": "川口ハイウェイオアシス",
-          "type": "nature"
+          "type": "road_facility"
         }
       ],
       "distance": 277.0,
@@ -1988,23 +2008,23 @@
       "places": [
         {
           "name": "夢庵",
-          "type": "other"
+          "type": "restaurant"
         },
         {
-          "name": "石の卓球台",
-          "type": "other"
+          "name": "石の卓球台（新田神社）",
+          "type": "historical"
         },
         {
           "name": "川崎人道",
-          "type": "nature"
+          "type": "other"
         },
         {
           "name": "コディーズ",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "ドンキホーテ",
-          "type": "other"
+          "type": "shopping"
         }
       ],
       "distance": 130.0,
@@ -2041,12 +2061,12 @@
         {
           "name": "ライコランド出発",
           "timestamp": "00:18",
-          "type": "park"
+          "type": "shopping"
         },
         {
           "name": "おさしみ天国",
           "timestamp": "02:30",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "理想郷",
@@ -2061,7 +2081,7 @@
         {
           "name": "湘南平新展望台",
           "timestamp": "05:48",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "ゴリラ公園",
@@ -2246,7 +2266,7 @@
         {
           "name": "中村農場",
           "timestamp": "04:48",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "まきばレストラン",
@@ -2404,7 +2424,7 @@
         {
           "name": "清泉寮ジャージーハット",
           "timestamp": "00:45",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "本栖湖",
@@ -2558,22 +2578,22 @@
         {
           "name": "鹿児島空港・導入",
           "timestamp": "00:00",
-          "type": "nature"
+          "type": "talk"
         },
         {
           "name": "オープニング",
           "timestamp": "00:17",
-          "type": "other"
+          "type": "opening"
         },
         {
           "name": "山田の凱旋門・招魂社",
           "timestamp": "01:58",
-          "type": "nature"
+          "type": "historical"
         },
         {
           "name": "山田のかかし公園",
           "timestamp": "02:57",
-          "type": "nature"
+          "type": "park"
         },
         {
           "name": "（桐野利秋開墾地跡）",
@@ -2583,17 +2603,17 @@
         {
           "name": "日置市伊集院都市農村交流施設チェスト館",
           "timestamp": "03:59",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "シラス壁の坂",
           "timestamp": "04:30",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "鹿児島市街（天文館通・国道の碑・西郷隆盛像・味のとんかつ丸一）",
           "timestamp": "05:50",
-          "type": "nature"
+          "type": "restaurant"
         },
         {
           "name": "こせ渓谷",
@@ -2603,7 +2623,7 @@
         {
           "name": "くじらの眠る丘",
           "timestamp": "07:54",
-          "type": "other"
+          "type": "museum"
         },
         {
           "name": "展望所（高崎山展望所の近く）",
@@ -2618,7 +2638,7 @@
         {
           "name": "枕崎お魚センター",
           "timestamp": "09:11",
-          "type": "nature"
+          "type": "shopping"
         },
         {
           "name": "枕崎駅",
@@ -2628,12 +2648,12 @@
         {
           "name": "勇気の木ヤッシー",
           "timestamp": "10:06",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "開聞岳展望所",
           "timestamp": "10:41",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "西大山駅",
@@ -2648,7 +2668,7 @@
         {
           "name": "砂むし会館砂楽",
           "timestamp": "13:04",
-          "type": "other"
+          "type": "hot_spring"
         },
         {
           "name": "セントラルパーク指宿",
@@ -2663,7 +2683,7 @@
         {
           "name": "サンライフパーク鹿児島",
           "timestamp": "15:03",
-          "type": "nature"
+          "type": "shopping"
         },
         {
           "name": "照國神社前",
@@ -2678,22 +2698,22 @@
         {
           "name": "名代かつ屋万さく",
           "timestamp": "16:40",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "日当山温泉センター",
           "timestamp": "17:57",
-          "type": "nature"
+          "type": "hot_spring"
         },
         {
           "name": "快活CLUB都城店",
           "timestamp": "18:38",
-          "type": "historical"
+          "type": "hotel"
         },
         {
           "name": "エンディングなど",
           "timestamp": "18:52",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 326.0,
@@ -2852,7 +2872,7 @@
         {
           "name": "オープニング",
           "timestamp": "00:00",
-          "type": "other"
+          "type": "opening"
         },
         {
           "name": "資さんうどん",
@@ -2872,7 +2892,7 @@
         {
           "name": "惑星ロード・宙の家",
           "timestamp": "02:51",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "内之浦宇宙空間観測所・宇宙科学資料館",
@@ -2912,7 +2932,7 @@
         {
           "name": "黒神埋没鳥居",
           "timestamp": "09:52",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "道の駅たるみず",
@@ -2932,7 +2952,7 @@
         {
           "name": "鵜戸千畳敷奇岩・鵜戸神宮",
           "timestamp": "12:34",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "子供の国駅",
@@ -2942,7 +2962,7 @@
         {
           "name": "味のおぐら",
           "timestamp": "14:25",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "しんとみ温泉サンルピナス",
@@ -2952,22 +2972,22 @@
         {
           "name": "ナガノヤ新富店・爆音センター",
           "timestamp": "15:33",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "コメント返し",
           "timestamp": "16:11",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "快活CLUB",
           "timestamp": "16:50",
-          "type": "other"
+          "type": "hotel"
         },
         {
           "name": "エンディングなど",
           "timestamp": "17:05",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 469.0,
@@ -3146,7 +3166,7 @@
         {
           "name": "オープニング",
           "timestamp": "00:00",
-          "type": "other"
+          "type": "opening"
         },
         {
           "name": "快活CLUB・おくのうどん店",
@@ -3161,27 +3181,27 @@
         {
           "name": "西澤養蜂場",
           "timestamp": "02:24",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "高岡ダム",
           "timestamp": "02:57",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "茶畑・岩瀬ダム",
           "timestamp": "03:34",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "のじりこぴあ",
           "timestamp": "04:10",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "小林地鶏の里",
           "timestamp": "04:40",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "御池展望台",
@@ -3191,7 +3211,7 @@
         {
           "name": "霧島神宮",
           "timestamp": "05:42",
-          "type": "nature"
+          "type": "historical"
         },
         {
           "name": "霧島神水峡",
@@ -3201,12 +3221,12 @@
         {
           "name": "高千穂河原・天孫降臨神籬斎場",
           "timestamp": "07:09",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "えびの高原・コメント返し",
           "timestamp": "08:47",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "硫黄谷噴気地帯公園",
@@ -3226,12 +3246,12 @@
         {
           "name": "霧島高原国民休養地",
           "timestamp": "12:21",
-          "type": "nature"
+          "type": "park"
         },
         {
           "name": "熊襲穴",
           "timestamp": "13:07",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "鹿児島湾・住吉大明神",
@@ -3241,12 +3261,12 @@
         {
           "name": "エンディング",
           "timestamp": "16:04",
-          "type": "other"
+          "type": "ending"
         },
         {
           "name": "住吉大明神に行った理由の答え",
           "timestamp": "19:39",
-          "type": "other"
+          "type": "talk"
         }
       ],
       "distance": 228.0,
@@ -3455,12 +3475,12 @@
         {
           "name": "コメント返し",
           "timestamp": "01:45",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "解説コーナー",
           "timestamp": "03:12",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "島戸倉隧道",
@@ -3485,12 +3505,12 @@
         {
           "name": "湯楽城",
           "timestamp": "15:09",
-          "type": "historical"
+          "type": "amusement_park"
         },
         {
           "name": "とんQ",
           "timestamp": "16:04",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "国道356号",
@@ -3500,7 +3520,7 @@
         {
           "name": "夏目漱石旧居跡",
           "timestamp": "18:20",
-          "type": "other"
+          "type": "historical"
         }
       ],
       "distance": 329.0,
@@ -3707,17 +3727,17 @@
         {
           "name": "オープニング（と、新キャラ）",
           "timestamp": "00:00",
-          "type": "other"
+          "type": "opening"
         },
         {
           "name": "長明寺の桜餅と桜",
           "timestamp": "02:07",
-          "type": "historical"
+          "type": "restaurant"
         },
         {
           "name": "ウェカピポ",
           "timestamp": "02:50",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "猿島",
@@ -3727,12 +3747,12 @@
         {
           "name": "よこすかポートマーケット",
           "timestamp": "05:38",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "鮮味楽",
           "timestamp": "06:41",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "セブンイレブン",
@@ -3742,7 +3762,7 @@
         {
           "name": "三ツ池公園",
           "timestamp": "08:30",
-          "type": "nature"
+          "type": "park"
         },
         {
           "name": "うどんウエスト",
@@ -3757,7 +3777,7 @@
         {
           "name": "エンディング",
           "timestamp": "11:08",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 260.0,
@@ -3974,22 +3994,21 @@
         {
           "name": "連休の予定",
           "timestamp": "00:01",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "出発&オタクの会話",
           "timestamp": "00:30",
-          "type": "other"
+          "type": "talk"
         },
         {
-          "name": "談合坂サービスエリア",
-          "timestamp": "01:11",
+          "name": "藤野PA",
           "type": "road_facility"
         },
         {
           "name": "ぶどうの丘",
           "timestamp": "01:35",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "フルーツ公園・ガイア",
@@ -4002,29 +4021,33 @@
           "type": "hot_spring"
         },
         {
+          "name": "双葉SA",
+          "type": "road_facility"
+        },
+        {
           "name": "浜の湯",
           "timestamp": "06:57",
-          "type": "nature"
+          "type": "hotel"
         },
         {
           "name": "ごん太",
           "timestamp": "07:19",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "宿飲み",
           "timestamp": "07:28",
-          "type": "other"
+          "type": "hotel"
         },
         {
           "name": "2日目開始",
           "timestamp": "07:42",
-          "type": "other"
+          "type": "opening"
         },
         {
           "name": "エンディング",
           "timestamp": "08:26",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 176.0,
@@ -4232,7 +4255,7 @@
         {
           "name": "新キャラ",
           "timestamp": "00:37",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "道の駅どまんなかたぬま",
@@ -4247,7 +4270,7 @@
         {
           "name": "唐沢山神社（城）",
           "timestamp": "03:51",
-          "type": "nature"
+          "type": "historical"
         },
         {
           "name": "謎の青い池",
@@ -4262,7 +4285,7 @@
         {
           "name": "ゐをり",
           "timestamp": "05:57",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "北浦和公園",
@@ -4272,12 +4295,12 @@
         {
           "name": "セイコーマート",
           "timestamp": "08:01",
-          "type": "other"
+          "type": "convenience_store"
         },
         {
           "name": "エンディング",
           "timestamp": "09:09",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 254.0,
@@ -4435,22 +4458,22 @@
         {
           "name": "ETCカード挿し忘れ",
           "timestamp": "00:31",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "長瀞岩畳",
           "timestamp": "01:24",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "合角ダム",
           "timestamp": "02:40",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "毘沙門水",
           "timestamp": "02:55",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "道の駅はなぞの",
@@ -4460,12 +4483,12 @@
         {
           "name": "焼肉きんぐ",
           "timestamp": "05:04",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "エンディング",
           "timestamp": "05:59",
-          "type": "other"
+          "type": "ending"
         },
         {
           "name": "おまけ",
@@ -4676,32 +4699,36 @@
         {
           "name": "きのこ茶屋",
           "timestamp": "01:24",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "八ッ場ダム見放台",
           "timestamp": "03:41",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "八ッ場ふるさと館",
           "timestamp": "04:05",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "オヤマボクチ？",
           "timestamp": "05:07",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "殺生河原付近",
           "timestamp": "05:35",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "日本国道最高地点",
           "timestamp": "06:55",
-          "type": "other"
+          "type": "road_facility"
+        },
+        {
+          "name": "横手山ドライブイン",
+          "type": "road_facility"
         },
         {
           "name": "西の河原温泉",
@@ -4716,22 +4743,22 @@
         {
           "name": "運転者共同休憩所",
           "timestamp": "09:47",
-          "type": "other"
+          "type": "road_facility"
         },
         {
           "name": "高速巡航（コメント返し）",
           "timestamp": "09:58",
-          "type": "other"
+          "type": "talk"
         },
         {
-          "name": "上里サービスエリア",
+          "name": "上里SA",
           "timestamp": "12:26",
           "type": "road_facility"
         },
         {
           "name": "エンディング",
           "timestamp": "12:49",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 484.0,
@@ -4985,7 +5012,7 @@
         {
           "name": "一ノ倉沢",
           "timestamp": "01:39",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "道の駅川場田園プラザ",
@@ -5000,7 +5027,7 @@
         {
           "name": "馬鹿旨（行ってない）",
           "timestamp": "05:07",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "赤城高原SA",
@@ -5010,12 +5037,12 @@
         {
           "name": "セイコーマート",
           "timestamp": "07:30",
-          "type": "other"
+          "type": "convenience_store"
         },
         {
           "name": "エンディング",
           "timestamp": "08:15",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 416.0,
@@ -5243,7 +5270,7 @@
         {
           "name": "小澤栗園",
           "timestamp": "02:41",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "石切山脈",
@@ -5258,17 +5285,21 @@
         {
           "name": "飯田ダム",
           "timestamp": "04:33",
-          "type": "other"
+          "type": "park"
+        },
+        {
+          "name": "かさま歴史交流館 井筒屋",
+          "type": "museum"
         },
         {
           "name": "偕楽園",
           "timestamp": "05:59",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "びっくりとんかつ",
           "timestamp": "06:19",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "朝日峠",
@@ -5276,14 +5307,18 @@
           "type": "nature"
         },
         {
-          "name": "守谷サービスエリア",
+          "name": "谷田部東PA",
+          "type": "road_facility"
+        },
+        {
+          "name": "守谷SA",
           "timestamp": "09:57",
           "type": "road_facility"
         },
         {
           "name": "エンディング",
           "timestamp": "10:06",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 369.0,
@@ -5578,12 +5613,12 @@
         {
           "name": "オープニング",
           "timestamp": "00:00",
-          "type": "other"
+          "type": "opening"
         },
         {
           "name": "てん新",
           "timestamp": "02:10",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "道の駅長崎街道鈴田峠",
@@ -5603,22 +5638,22 @@
         {
           "name": "浦上ダム・長崎振興局",
           "timestamp": "04:31",
-          "type": "nature"
+          "type": "park"
         },
         {
           "name": "長崎くんち",
           "timestamp": "05:56",
-          "type": "nature"
+          "type": "historical"
         },
         {
           "name": "吉宗",
           "timestamp": "06:30",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "出島",
           "timestamp": "06:56",
-          "type": "nature"
+          "type": "historical"
         },
         {
           "name": "眼鏡橋・ハートストーン",
@@ -5633,7 +5668,7 @@
         {
           "name": "山王神社（二の鳥居）",
           "timestamp": "08:48",
-          "type": "nature"
+          "type": "historical"
         },
         {
           "name": "きゃあまぐる坂",
@@ -5653,17 +5688,17 @@
         {
           "name": "祈念坂・祈りの三角ゾーン・大浦天主堂",
           "timestamp": "12:39",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "四海楼",
           "timestamp": "12:57",
-          "type": "nature"
+          "type": "restaurant"
         },
         {
           "name": "雲龍亭",
           "timestamp": "13:40",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "稲佐山山頂展望台",
@@ -5673,12 +5708,12 @@
         {
           "name": "稲佐山温泉ふくの湯",
           "timestamp": "15:22",
-          "type": "nature"
+          "type": "hot_spring"
         },
         {
           "name": "エンディング",
           "timestamp": "15:51",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 126.0,
@@ -5922,17 +5957,17 @@
         {
           "name": "西海の丘",
           "timestamp": "00:00",
-          "type": "nature"
+          "type": "park"
         },
         {
           "name": "針尾送信所",
           "timestamp": "00:32",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "潮之目・観潮橋",
           "timestamp": "01:05",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "展海峰",
@@ -5942,17 +5977,21 @@
         {
           "name": "佐世保バーガーミュージアム",
           "timestamp": "02:02",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "船越展望所",
           "timestamp": "02:18",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "神崎鼻公園",
           "timestamp": "02:45",
-          "type": "nature"
+          "type": "park"
+        },
+        {
+          "name": "道の駅 昆虫の里·たびら",
+          "type": "road_facility"
         },
         {
           "name": "平戸大橋",
@@ -5972,7 +6011,7 @@
         {
           "name": "あじ彩",
           "timestamp": "04:28",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "伊万里湾大橋",
@@ -5982,7 +6021,7 @@
         {
           "name": "大浦の棚田",
           "timestamp": "05:50",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "浜野浦の棚田",
@@ -5992,7 +6031,7 @@
         {
           "name": "玄海エネルギーパーク",
           "timestamp": "06:24",
-          "type": "nature"
+          "type": "amusement_park"
         },
         {
           "name": "道の駅桃山天下一",
@@ -6012,37 +6051,37 @@
         {
           "name": "マリンパル呼子",
           "timestamp": "08:15",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "七ツ釜",
           "timestamp": "08:31",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "湊の立神岩",
           "timestamp": "09:19",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "虹の松原",
           "timestamp": "09:44",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "瑞梅寺ダム",
           "timestamp": "10:23",
-          "type": "historical"
+          "type": "park"
         },
         {
           "name": "ドライブイン鳥",
           "timestamp": "11:09",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "井手ちゃんぽん",
           "timestamp": "11:33",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "宝乃湯",
@@ -6057,7 +6096,7 @@
         {
           "name": "エンディング",
           "timestamp": "12:55",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 374.0,
@@ -6389,7 +6428,7 @@
         {
           "name": "淡島神社",
           "timestamp": "02:06",
-          "type": "nature"
+          "type": "historical"
         },
         {
           "name": "浜の川湧水",
@@ -6399,7 +6438,7 @@
         {
           "name": "がまだすドーム",
           "timestamp": "02:50",
-          "type": "other"
+          "type": "museum"
         },
         {
           "name": "道の駅ひまわり",
@@ -6414,27 +6453,27 @@
         {
           "name": "別所ダム",
           "timestamp": "03:46",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "雲仙地獄",
           "timestamp": "04:04",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "蒸し釜や",
           "timestamp": "05:09",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "ほっとふっと105",
           "timestamp": "05:43",
-          "type": "other"
+          "type": "hot_spring"
         },
         {
           "name": "千々石観光センター",
           "timestamp": "06:00",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "島原の赤土畑",
@@ -6444,7 +6483,7 @@
         {
           "name": "ガラスの砂浜",
           "timestamp": "06:47",
-          "type": "nature"
+          "type": "park"
         },
         {
           "name": "給油・返却",
@@ -6454,12 +6493,12 @@
         {
           "name": "長崎空港",
           "timestamp": "07:20",
-          "type": "nature"
+          "type": "other"
         },
         {
           "name": "エンディング",
           "timestamp": "07:30",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 162.0,
@@ -6740,27 +6779,27 @@
         {
           "name": "オギノパン",
           "timestamp": "02:07",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "宮ヶ瀬ダム",
           "timestamp": "02:27",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "水とエネルギー館",
           "timestamp": "03:43",
-          "type": "other"
+          "type": "amusement_park"
         },
         {
           "name": "旅館みはる",
           "timestamp": "05:31",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "シャトレーゼ",
           "timestamp": "06:38",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "慶應義塾大学　湘南藤沢キャンパス",
@@ -6775,12 +6814,12 @@
         {
           "name": "水の大切さ",
           "timestamp": "07:51",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "エンディング",
           "timestamp": "09:25",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 197.0,
@@ -7037,7 +7076,7 @@
         {
           "name": "酒のこんちきたい",
           "timestamp": "00:55",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "千里浜なぎさドライブウェイ",
@@ -7047,7 +7086,7 @@
         {
           "name": "能登千里浜レストハウス",
           "timestamp": "01:46",
-          "type": "nature"
+          "type": "restaurant"
         },
         {
           "name": "羽咋駅と擬音モニュメント",
@@ -7062,7 +7101,7 @@
         {
           "name": "トトロ岩",
           "timestamp": "04:17",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "鴨ヶ浦（輪島崎層石灰質砂岩）",
@@ -7072,17 +7111,17 @@
         {
           "name": "白米千枚田",
           "timestamp": "06:03",
-          "type": "other"
+          "type": "road_facility"
         },
         {
           "name": "いろり庵　藤六",
           "timestamp": "06:48",
-          "type": "other"
+          "type": "hotel"
         },
         {
           "name": "夕飯",
           "timestamp": "07:12",
-          "type": "other"
+          "type": "restaurant"
         }
       ],
       "distance": 154.0,
@@ -7388,7 +7427,7 @@
         {
           "name": "二日目",
           "timestamp": "09:14",
-          "type": "other"
+          "type": "opening"
         },
         {
           "name": "道の駅すず塩田村",
@@ -7398,7 +7437,7 @@
         {
           "name": "ゴジラ岩",
           "timestamp": "09:58",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "道の駅狼煙・日本列島ここが中心",
@@ -7408,12 +7447,12 @@
         {
           "name": "青の洞窟",
           "timestamp": "11:09",
-          "type": "other"
+          "type": "amusement_park"
         },
         {
           "name": "イタリアンカフェこだま",
           "timestamp": "12:12",
-          "type": "cafe"
+          "type": "restaurant"
         },
         {
           "name": "倒スギ（さかさすぎ）",
@@ -7433,12 +7472,12 @@
         {
           "name": "イカキング（九十九湾観光交流センター）",
           "timestamp": "14:08",
-          "type": "other"
+          "type": "amusement_park"
         },
         {
           "name": "ボラ待ち櫓",
           "timestamp": "14:35",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "道の駅なかじまロマン峠",
@@ -7458,12 +7497,12 @@
         {
           "name": "ファミリーすしもりもり",
           "timestamp": "16:59",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "エンディング",
           "timestamp": "17:33",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 212.0,
@@ -7766,17 +7805,17 @@
         {
           "name": "麺庭つむぎ",
           "timestamp": "00:43",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "熱川バナナワニ園",
           "timestamp": "02:29",
-          "type": "nature"
+          "type": "amusement_park"
         },
         {
           "name": "黒根岩風呂",
           "timestamp": "03:35",
-          "type": "other"
+          "type": "hot_spring"
         },
         {
           "name": "かんのん浜ポットホール",
@@ -7791,12 +7830,12 @@
         {
           "name": "さわやか・薬局・給油",
           "timestamp": "05:37",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "正露丸クイックC",
           "timestamp": "07:44",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "海老名SA",
@@ -7806,7 +7845,7 @@
         {
           "name": "エンディング",
           "timestamp": "08:28",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 348.0,
@@ -8096,7 +8135,7 @@
         {
           "name": "うな一",
           "timestamp": "00:49",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "御前崎灯台",
@@ -8136,7 +8175,7 @@
         {
           "name": "アピタ（天神屋）",
           "timestamp": "05:49",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "蓬莱橋",
@@ -8385,17 +8424,17 @@
         {
           "name": "醤遊王国",
           "timestamp": "00:34",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "吉見百穴",
           "timestamp": "02:50",
-          "type": "other"
+          "type": "park"
         },
         {
           "name": "吉見観音",
           "timestamp": "03:26",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "鬼鎮神社",
@@ -8410,7 +8449,7 @@
         {
           "name": "ゴールデンタイガー",
           "timestamp": "05:34",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "蓮田SA",
@@ -8420,12 +8459,12 @@
         {
           "name": "スシロー",
           "timestamp": "07:25",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "エンディング",
           "timestamp": "08:42",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 225.0,
@@ -8718,17 +8757,17 @@
         {
           "name": "小山屋食堂",
           "timestamp": "02:08",
-          "type": "nature"
+          "type": "restaurant"
         },
         {
           "name": "川幅日本一",
           "timestamp": "02:55",
-          "type": "nature"
+          "type": "other"
         },
         {
           "name": "五千頭の龍が昇る聖天宮",
           "timestamp": "04:13",
-          "type": "other"
+          "type": "historical"
         },
         {
           "name": "美女木",
@@ -8743,22 +8782,22 @@
         {
           "name": "越谷レイクタウン",
           "timestamp": "07:55",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "ジャンクガレッジ",
           "timestamp": "09:07",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "セイコーマート",
           "timestamp": "10:48",
-          "type": "other"
+          "type": "convenience_store"
         },
         {
           "name": "エンディング",
           "timestamp": "11:36",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 191.0,
@@ -9053,7 +9092,7 @@
         {
           "name": "オープニング",
           "timestamp": "00:00",
-          "type": "other"
+          "type": "opening"
         },
         {
           "name": "零のつく踏切たち（零番通り・秩父別零条通り・秩父別零丁目）",
@@ -9073,7 +9112,7 @@
         {
           "name": "（ローソク岩）",
           "timestamp": "03:30",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "オロロン鳥モニュメント",
@@ -9081,9 +9120,13 @@
           "type": "other"
         },
         {
+          "name": "初山別郵便局",
+          "type": "other"
+        },
+        {
           "name": "道の駅えんべつ富士見（ホタテ天丼）",
           "timestamp": "04:27",
-          "type": "road_facility"
+          "type": "restaurant"
         },
         {
           "name": "道の駅てしお・ポケふた",
@@ -9113,7 +9156,7 @@
         {
           "name": "稚内駅・道の駅わっかない・ポケふた",
           "timestamp": "08:26",
-          "type": "road_facility"
+          "type": "station"
         },
         {
           "name": "稚内港北防波堤ドーム",
@@ -9128,12 +9171,12 @@
         {
           "name": "大王本店のチャーメン",
           "timestamp": "09:10",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "日本最北のマクドナルド",
           "timestamp": "09:27",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "日本最北の銭湯　みどり湯",
@@ -9143,12 +9186,12 @@
         {
           "name": "日本最北のセイコーマート",
           "timestamp": "10:18",
-          "type": "other"
+          "type": "convenience_store"
         },
         {
           "name": "人生",
           "timestamp": "10:26",
-          "type": "other"
+          "type": "talk"
         },
         {
           "name": "宗谷岬",
@@ -16090,12 +16133,12 @@
         {
           "name": "ウニホーレン",
           "timestamp": "08:05",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "エンディング",
           "timestamp": "08:21",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 188.0,
