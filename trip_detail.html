@@ -279,22 +279,45 @@
               <div class="places-container">
                 ${record.places.map(place => {
                   const typeEmoji = {
+                    // 自然・観光系
                     'nature': '🌳',
                     'park': '⛲',
                     'hot_spring': '♨️',
-                    'restaurant': '🍽️',
                     'historical': '⛩️',
-                    'road_facility': '🅿️',
-                    'station': '🚉',
+                    'monument': '🗿',
+                    'amusement_park': '🎡',
+
+                    // 食事・買い物系
+                    'restaurant': '🍽️',
                     'cafe': '☕',
                     'convenience_store': '🏪',
                     'shopping': '🛍️',
-                    'amusement_park': '🎡',
+
+                    // 交通・移動手段系
+                    'train': '🚆',
+                    'bus': '🚌',
+                    'cable_car': '🚞',
+                    'ropeway': '🚡',
+                    'ferry': '⛴️',
+                    'airplane': '✈️',
+
+                    // 道路・施設系
+                    'road_facility': '🅿️',
+                    'highway': '🛣️',
+                    'road': '🚗',
+                    'bridge': '🌉',
+                    'station': '🚉',
+
+                    // 宿泊系
                     'hotel': '🛏️',
-                    'other': '📍',
+
+                    // 特殊用途系
+                    'opening': '🎬',
                     'ending': '🏁',
                     'talk': '💬',
-                    'opening': '🎬'
+
+                    // その他
+                    'other': '📍'
                   };
                   const emoji = typeEmoji[place.type] || '📍';
                   return formatPlacesWithTimestamp(emoji + ' ' + (place.timestamp || '') + ' ' + place.name);
