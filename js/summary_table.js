@@ -63,12 +63,7 @@ class SummaryTable {
 
           // 場所フィールドを文字列に変換
           flatTrip.places = trip.places
-            .map(place => {
-              if (place.timestamp) {
-                return `${place.timestamp} ${place.name}`;
-              }
-              return place.name;
-            })
+            .map(place => place.name)
             .join('\n');
 
           // 参加者フィールドを文字列に変換

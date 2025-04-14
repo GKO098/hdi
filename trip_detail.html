@@ -277,25 +277,28 @@
           <tr>
             <td rowspan="15">
               <div class="places-container">
-                ${formatPlacesWithTimestamp(record.places.map(place => {
+                ${record.places.map(place => {
                   const typeEmoji = {
                     'nature': '🌳',
-                    'park': '🏞️',
+                    'park': '⛲',
                     'hot_spring': '♨️',
                     'restaurant': '🍽️',
                     'historical': '⛩️',
-                    'road_facility': '🛣️',
+                    'road_facility': '🅿️',
                     'station': '🚉',
                     'cafe': '☕',
                     'convenience_store': '🏪',
                     'shopping': '🛍️',
                     'amusement_park': '🎡',
-                    'other': '📍'
+                    'hotel': '🛏️',
+                    'other': '📍',
+                    'ending': '🏁',
+                    'talk': '💬',
+                    'opening': '🎬'
                   };
                   const emoji = typeEmoji[place.type] || '📍';
-                  const timestamp = place.timestamp ? `${place.timestamp} ` : '';
-                  return `${emoji} ${timestamp}${place.name}`;
-                }).join('\n'))}
+                  return formatPlacesWithTimestamp(emoji + ' ' + (place.timestamp || '') + ' ' + place.name);
+                }).join('<br>')}
               </div>
             </td>
             <td rowspan="15" colspan="2">${getEmbedHTML(record.metadata.niconico)}</td>
@@ -467,7 +470,9 @@
                 // 現在のレコードの順位を取得
                 const currentRecordRank = sortedData.find(row => row.id === currentRecord.id)?.rank || 1;
                 const total = sortedData.length;
-                const recordValue = parseFloat(currentRecord.costs[field.replace('cost_', '')]) || 0;
+                const recordValue = field === 'distance' 
+                    ? parseFloat(currentRecord.distance) || 0 
+                    : parseFloat(currentRecord.costs[field.replace('cost_', '')]) || 0;
 
                 // 順位に応じてクラスを設定
                 let rankClass = '';
@@ -607,18 +612,16 @@
             return minutes * 60 + seconds;
         }
 
-        function formatPlacesWithTimestamp(places) {
-            if (!places) return '';
+        function formatPlacesWithTimestamp(place) {
+            if (!place) return '';
             
-            return places.split('\n').map(place => {
-                const timeMatch = place.match(/^(\d{1,2}:\d{2})\s+(.+)$/);
-                if (timeMatch) {
-                    const [_, time, placeName] = timeMatch;
-                    const seconds = convertTimeToSeconds(time);
-                    return `<span class="place-with-time" data-time="${seconds}"><a href="#" onclick="seekVideo(${seconds}); return false;">${time}</a> ${placeName}</span>`;
-                }
-                return place;
-            }).join('<br>');
+            const timeMatch = place.match(/^(.*?)(\d{1,2}:\d{2})\s+(.+)$/);
+            if (timeMatch) {
+                const [_, emoji, time, placeName] = timeMatch;
+                const seconds = convertTimeToSeconds(time);
+                return `<span class="place-with-time" data-time="${seconds}">${emoji}<a href="#" onclick="seekVideo(${seconds}); return false;">${time}</a>${placeName}</span>`;
+            }
+            return place;
         }
 
         function seekVideo(seconds) {
