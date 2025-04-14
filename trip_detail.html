@@ -278,7 +278,23 @@
           <tr>
             <td rowspan="15">
               <div class="places-container">
-                ${formatPlacesWithTimestamp(record.places.map(place => `${place.timestamp} ${place.name}`).join('\n'))}
+                ${formatPlacesWithTimestamp(record.places.map(place => {
+                  const typeEmoji = {
+                    'nature': '🌳',
+                    'park': '🏞️',
+                    'hot_spring': '♨️',
+                    'restaurant': '🍽️',
+                    'historical': '⛩️',
+                    'highway_facility': '🛣️',
+                    'station': '🚉',
+                    'cafe': '☕',
+                    'convenience_store': '🏪',
+                    'shopping': '🛍️',
+                    'other': '📍'
+                  };
+                  const emoji = typeEmoji[place.type] || '📍';
+                  return `${emoji} ${place.timestamp} ${place.name}`;
+                }).join('\n'))}
               </div>
             </td>
             <td rowspan="15" colspan="2">${getEmbedHTML(record.metadata.niconico)}</td>
