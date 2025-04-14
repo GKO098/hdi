@@ -26,6 +26,16 @@
       margin: 5px;
     }
 
+    .fiction-notice {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 8px 15px;
+      margin: 10px;
+      border-radius: 4px;
+      color: #666;
+      font-size: 14px;
+      border-left: 3px solid #4CAF50;
+    }
+
     /* スタートマーカーのスタイル */
     .start-marker {
       background: none;
@@ -48,11 +58,15 @@
 </head>
 
 <body>
+  <div class="fiction-notice">
+    ※ 登場する人物・かかった金額・時刻や経路等は、実在のものとは限りません。
+  </div>
   <div id="controls">
     <p>表示する日：</p>
     <div id="checkboxes"></div>
     <button id="selectAll">すべて選択</button>
     <button id="clearAll">すべて解除</button>
+    <a href="summary_table.html" style="margin-left: 20px; text-decoration: none; color: #4CAF50;">📋 一覧表を見る</a>
   </div>
   <div id="map"></div>
   <script>window.dateForMap = "all";</script>
