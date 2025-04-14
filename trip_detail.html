@@ -241,7 +241,6 @@
 
         // 表示構築
         function renderRecord(record) {
-            console.log('Rendering record:', record); // デバッグ用にrecordを出力
             // 各項目の順位を計算
             const rankings = calculateRankings(jsonData, record);
 
@@ -293,7 +292,8 @@
                     'other': '📍'
                   };
                   const emoji = typeEmoji[place.type] || '📍';
-                  return `${emoji} ${place.timestamp} ${place.name}`;
+                  const timestamp = place.timestamp ? `${place.timestamp} ` : '';
+                  return `${emoji} ${timestamp}${place.name}`;
                 }).join('\n'))}
               </div>
             </td>
@@ -441,7 +441,9 @@
                     .filter(row => row.id && (row.date?.length !== 4)) // dateが4文字のレコードを除外
                     .map(row => ({
                         ...row,
-                        value: parseFloat(row.costs[field.replace('cost_', '')]) || 0
+                        value: field === 'distance' 
+                            ? parseFloat(row.distance) || 0 
+                            : parseFloat(row.costs[field.replace('cost_', '')]) || 0
                     }))
                     .sort((a, b) => b.value - a.value);
 
@@ -521,18 +523,26 @@
         }
 
         select.addEventListener('change', () => {
-            const selectedId = select.value;
+            const selectedId = parseInt(select.value, 10);  // 文字列を数値に変換
             updateUrl(selectedId);
-            const record = jsonData.find(r => r.id === selectedId);
-            renderRecord(record);
-            updateNavigationLinks(selectedId);
+            // データを再取得してから表示を更新
+            fetch('data/trips.json')
+                .then(res => res.json())
+                .then(data => {
+                    jsonData = data.trips || [];
+                    const record = jsonData.find(r => r.id === selectedId);
+                    if (record) {
+                        renderRecord(record);
+                        updateNavigationLinks(selectedId);
+                    }
+                })
+                .catch(error => console.error('Error loading JSON data:', error));
         });
 
         fetch('data/trips.json')
             .then(res => res.json())
             .then(data => {
                 jsonData = data.trips || [];
-                console.log('Loaded JSON data:', jsonData); // デバッグ用にjsonDataを出力
 
                 for (const trip of jsonData) {
                     if (!trip.id) continue;
@@ -543,15 +553,11 @@
                 }
 
                 const initialId = getIdFromUrl() || (jsonData.length > 0 ? jsonData[0].id : null);
-                console.log('Initial ID:', initialId, 'Type:', typeof initialId); // initialIdの型を出力
                 if (initialId) {
                     select.value = initialId;
-                    console.log('JSON data id type example:', typeof jsonData[0].id); // jsonDataのidの型を出力
                     const record = jsonData.find(r => {
-                        console.log('Comparing:', r.id, typeof r.id, 'with', initialId, typeof initialId); // 比較時の型を出力
                         return r.id === initialId;
                     });
-                    console.log('Found record:', record);
                     if (record) {
                         renderRecord(record);
                         updateNavigationLinks(initialId);
