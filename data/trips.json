@@ -15,11 +15,11 @@
       "places": [
         {
           "name": "海ほたる",
-          "type": "nature"
+          "type": "highway_facility"
         },
         {
           "name": "ブロンコビリー",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "桜ヶ岡公園",
@@ -59,8 +59,16 @@
       ],
       "places": [
         {
+          "name": "湯～トピアかんなみ",
+          "type": "hot_spring"
+        },
+        {
+          "name": "ルピア函南",
+          "type": "shopping"
+        },
+        {
           "name": "さわやか",
-          "type": "other"
+          "type": "restaurant"
         },
         {
           "name": "百笑の湯",
@@ -104,8 +112,20 @@
       ],
       "places": [
         {
-          "name": "膝折",
-          "type": "other"
+          "name": "ホンダドリーム板橋",
+          "type": "shopping"
+        },
+        {
+          "name": "ファミリーマート朝霞膝折二丁目店",
+          "type": "convenience_store"
+        },
+        {
+          "name": "ファミリーマート飯能青木店",
+          "type": "convenience_store"
+        },
+        {
+          "name": "ラーメンショップ宮沢湖店",
+          "type": "restaurant"
         },
         {
           "name": "ムーミンバレーパーク",
@@ -120,8 +140,12 @@
           "type": "historical"
         },
         {
+          "name": "二瀬ダム",
+          "type": "park"
+        },
+        {
           "name": "グラッチェガーデンズ",
-          "type": "other"
+          "type": "restaurant"
         }
       ],
       "distance": 315.0,
