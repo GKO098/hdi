@@ -310,7 +310,7 @@
         },
         {
           "name": "意味のない移動",
-          "type": "other"
+          "type": "road"
         },
         {
           "name": "マクドナルド三浦海岸店",
@@ -322,7 +322,7 @@
         },
         {
           "name": "横浜中華街（通過）",
-          "type": "other"
+          "type": "road"
         }
       ],
       "distance": 253.0,
@@ -1269,7 +1269,7 @@
         },
         {
           "name": "柳沢峠",
-          "type": "other"
+          "type": "road"
         }
       ],
       "distance": 315.0,
@@ -1381,7 +1381,7 @@
         },
         {
           "name": "水沢うどん街道",
-          "type": "other"
+          "type": "road"
         },
         {
           "name": "ふくみそば",
@@ -1393,7 +1393,7 @@
         },
         {
           "name": "国道17号",
-          "type": "other"
+          "type": "road"
         }
       ],
       "distance": 295.0,
@@ -1703,7 +1703,7 @@
         },
         {
           "name": "留浦浮橋",
-          "type": "other"
+          "type": "bridge"
         },
         {
           "name": "奥多摩周遊道路",
@@ -3515,7 +3515,7 @@
         {
           "name": "国道356号",
           "timestamp": "17:07",
-          "type": "other"
+          "type": "road"
         },
         {
           "name": "夏目漱石旧居跡",
@@ -5658,7 +5658,7 @@
         {
           "name": "眼鏡橋・ハートストーン",
           "timestamp": "07:31",
-          "type": "other"
+          "type": "bridge"
         },
         {
           "name": "平和公園（平和の泉・平和祈念像・浦上天主堂・原爆資料館）",
@@ -5996,7 +5996,7 @@
         {
           "name": "平戸大橋",
           "timestamp": "03:13",
-          "type": "other"
+          "type": "bridge"
         },
         {
           "name": "たびら平戸口駅",
@@ -6016,7 +6016,7 @@
         {
           "name": "伊万里湾大橋",
           "timestamp": "05:36",
-          "type": "other"
+          "type": "bridge"
         },
         {
           "name": "大浦の棚田",
@@ -6041,7 +6041,7 @@
         {
           "name": "呼子大橋",
           "timestamp": "07:41",
-          "type": "other"
+          "type": "bridge"
         },
         {
           "name": "風の見える丘公園",
@@ -6423,7 +6423,7 @@
         {
           "name": "雲仙多良シーライン",
           "timestamp": "01:39",
-          "type": "other"
+          "type": "road"
         },
         {
           "name": "淡島神社",
@@ -6493,7 +6493,7 @@
         {
           "name": "長崎空港",
           "timestamp": "07:20",
-          "type": "other"
+          "type": "airplane"
         },
         {
           "name": "エンディング",
@@ -7457,7 +7457,7 @@
         {
           "name": "倒スギ（さかさすぎ）",
           "timestamp": "12:45",
-          "type": "other"
+          "type": "nature"
         },
         {
           "name": "見附島",
@@ -8145,7 +8145,7 @@
         {
           "name": "潮騒橋",
           "timestamp": "02:12",
-          "type": "other"
+          "type": "bridge"
         },
         {
           "name": "岩谷隧道",
@@ -8180,7 +8180,7 @@
         {
           "name": "蓬莱橋",
           "timestamp": "06:01",
-          "type": "other"
+          "type": "bridge"
         },
         {
           "name": "足柄SA",
@@ -8190,7 +8190,7 @@
         {
           "name": "エンディング",
           "timestamp": "07:13",
-          "type": "other"
+          "type": "ending"
         }
       ],
       "distance": 569.0,
@@ -9117,7 +9117,7 @@
         {
           "name": "オロロン鳥モニュメント",
           "timestamp": "04:05",
-          "type": "other"
+          "type": "monument"
         },
         {
           "name": "初山別郵便局",
@@ -9141,7 +9141,7 @@
         {
           "name": "北緯45度モニュメント",
           "timestamp": "06:41",
-          "type": "other"
+          "type": "monument"
         },
         {
           "name": "浜里パーキングシェルター",
@@ -9513,7 +9513,7 @@
         {
           "name": "エサヌカ線",
           "timestamp": "01:53",
-          "type": "other"
+          "type": "road"
         },
         {
           "name": "鹿",
@@ -9877,7 +9877,7 @@
         {
           "name": "ルフィ像",
           "timestamp": "00:56",
-          "type": "other"
+          "type": "monument"
         },
         {
           "name": "湯らっくす",
@@ -10024,7 +10024,7 @@
         {
           "name": "通潤橋",
           "timestamp": "04:14",
-          "type": "other"
+          "type": "bridge"
         },
         {
           "name": "小笹円形分水",
@@ -11898,7 +11898,7 @@
         {
           "name": "米騒動発祥の地",
           "timestamp": "02:32",
-          "type": "other"
+          "type": "monument"
         },
         {
           "name": "吉宗（カレーうどん）",
@@ -12137,7 +12137,7 @@
         {
           "name": "出発（羽田空港）",
           "timestamp": "05:28",
-          "type": "other"
+          "type": "airplane"
         },
         {
           "name": "新千歳空港",
@@ -13916,7 +13916,7 @@
         {
           "name": "ペットショップ",
           "timestamp": "01:55",
-          "type": "other"
+          "type": "shopping"
         },
         {
           "name": "戸田ボートレース場",
@@ -13946,7 +13946,7 @@
         {
           "name": "おまけ（帰路）",
           "timestamp": "10:32",
-          "type": "other"
+          "type": "road"
         }
       ],
       "distance": 199.0,
@@ -14558,7 +14558,7 @@
         {
           "name": "おまけ",
           "timestamp": "11:40",
-          "type": "other"
+          "type": "road"
         }
       ],
       "distance": 321.0,
