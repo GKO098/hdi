@@ -162,10 +162,7 @@ class MapManager {
 
             startMarker.bindPopup(`
               <b>${firstEntry.start}</b><br>
-              → ${firstEntry.end}<br>
-              ${firstEntry.time}秒 / ${firstEntry.distance}m<br>
-              <small style="color: gray;">📅 ${firstEntry.arrival_date}</small>
-              <small>ID: <a href="trip_detail.html?id=${firstEntry.trip_id}">${firstEntry.trip_id}</a></small>
+              <small style="color: gray;">📅 <a href="trip_detail.html?id=${firstEntry.trip_id}">${firstEntry.trip_id}</a></small>
             `);
 
             this.markers.push(startMarker);
@@ -200,8 +197,14 @@ class MapManager {
             ).addTo(this.map);
             this.polylines.push(mainLine);
 
-            const startCoord = coords[coords.length - 1];
-            const marker = L.circleMarker([startCoord[1], startCoord[0]], {
+            mainLine.bindPopup(`
+              ${row.start} → ${row.end}<br>
+              ${Math.floor(row.time / 60)}分 / ${(row.distance / 1000).toFixed(1)} km<br>
+              <small style="color: gray;">📅 <a href="trip_detail.html?id=${row.trip_id}">${row.trip_id}</a></small>
+            `);
+
+            const endCoord = coords[coords.length - 1];
+            const marker = L.circleMarker([endCoord[1], endCoord[0]], {
               radius: 4,
               color: "black",
               fillColor: color,
@@ -209,10 +212,8 @@ class MapManager {
             }).addTo(this.map);
 
             marker.bindPopup(`
-              ${row.start}<br>
-              → <b>${row.end}</b><br>
-              ${row.time}秒 / ${row.distance}m<br>
-              <small style="color: gray;">📅 ${row.arrival_date}</small>
+              <b>${row.end}</b><br>
+              <small style="color: gray;">📅 <a href="trip_detail.html?id=${row.trip_id}">${row.trip_id}</a></small>
             `);
 
             this.markers.push(marker);
