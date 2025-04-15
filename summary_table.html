@@ -170,8 +170,7 @@
     <button id="toggle-details" style="margin-bottom: 10px; padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">詳細を展開</button>
     <table id="trip-table">
       <colgroup>
-        <col style="width: 4ch;"> <!-- id -->
-        <col style="width: 9ch;"> <!-- 日付 -->
+        <col style="width: 11ch;"> <!-- id -->
         <col style="width: 4ch;"> <!-- 同行者 -->
         <col style="width: 16ch;"> <!-- 訪問地 -->
         <col style="width: 6ch;"> <!-- 距離 -->
@@ -199,7 +198,6 @@
       <thead>
         <tr>
           <th class="sortable" data-key="id">ID</th>
-          <th class="sortable" data-key="date">日付</th>
           <th class="sortable" data-key="participants">参加者</th>
           <th class="sortable" data-key="places">訪問地</th>
           <th class="sortable" data-key="distance">距離</th>
@@ -223,7 +221,7 @@
           <th>話題</th>
         </tr>
         <tr>
-          <td colspan="4"><strong>合計</strong></td>
+          <td colspan="3"><strong>合計</strong></td>
           <td id="total-distance" style="text-align: right;"></td>
           <td id="total-cost_meal" style="text-align: right;"></td>
           <td id="total-cost_toll_road" style="text-align: right;"></td>

@@ -30,7 +30,6 @@ class SummaryTable {
     ];
     this.allKeys = [
       "id",
-      "date",
       "participants",
       "places",
       "distance",
