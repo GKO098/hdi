@@ -236,7 +236,7 @@
         function getIdFromUrl() {
             const params = new URLSearchParams(location.search);
             const id = params.get('id');
-            return id ? parseInt(id, 10) : null;  // 文字列を数値に変換
+            return id ? id : null;
         }
 
         // 表示構築
@@ -552,7 +552,7 @@
         }
 
         select.addEventListener('change', () => {
-            const selectedId = parseInt(select.value, 10);  // 文字列を数値に変換
+            const selectedId = select.value;  // 文字列を数値に変換
             updateUrl(selectedId);
             // データを再取得してから表示を更新
             fetch('data/trips.json')
@@ -577,7 +577,7 @@
                     if (!trip.id) continue;
                     const option = document.createElement('option');
                     option.value = trip.id;
-                    option.textContent = `${trip.id} (${trip.date}) 「${trip.metadata.video_title || (trip.places.map(place => place.name).join('・'))}」`;
+                    option.textContent = `${trip.date} 「${trip.metadata.video_title || (trip.places.map(place => place.name).join('・'))}」`;
                     select.appendChild(option);
                 }
 
