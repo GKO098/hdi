@@ -298,13 +298,6 @@ class SummaryTable {
       const aVal = a[key];
       const bVal = b[key];
 
-      // IDの場合は数値として比較
-      if (key === 'id') {
-        const aNum = parseInt(aVal, 10);
-        const bNum = parseInt(bVal, 10);
-        return asc ? aNum - bNum : bNum - aNum;
-      }
-
       // 数値項目の場合はfloatとして比較
       if (this.costKeys.includes(key) || key === 'distance') {
         const aNum = parseFloat(aVal) || 0;
