@@ -58,6 +58,11 @@ class SummaryTable {
             const costKey = key.replace('cost_', ''); // 'cost_meal' -> 'meal'
             flatTrip[key] = trip.costs && trip.costs[costKey] !== undefined ? trip.costs[costKey] : 0;
           });
+
+          // 合計コストを計算
+          flatTrip.cost_total = this.costKeys
+            .reduce((sum, key) => sum + (flatTrip[key] || 0), 0);
+
           delete flatTrip.costs;
 
           // 場所フィールドを文字列に変換

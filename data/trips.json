@@ -46,10 +46,9 @@
         "plane": 0,
         "train": 452,
         "bus": 0,
-        "ship": 0,
+        "ship": 10500,
         "equipment": 0,
-        "other": 0,
-        "total": 37475
+        "other": 0
       },
       "metadata": {
         "series": "ほなどっかいこか",
@@ -112,8 +111,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 35460
+        "other": 0
       },
       "metadata": {
         "series": "ほなどっかいこか",
@@ -172,8 +170,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 35855
+        "other": 0
       },
       "metadata": {
         "series": "ほなどっかいこか",
@@ -228,8 +225,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 36172
+        "other": 0
       },
       "metadata": {
         "series": "ほなどっかいこか",
@@ -296,8 +292,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": -42,
-        "total": 14879
+        "other": -42
       },
       "metadata": {
         "series": "ほなどっかいこか",
@@ -366,8 +361,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": -5,
-        "total": 26660
+        "other": -5
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -440,8 +434,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 15353
+        "other": 0
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -530,8 +523,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 15798
+        "other": 0
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -584,8 +576,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 14201
+        "other": 0
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -632,8 +623,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 18334
+        "other": 0
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -687,8 +677,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 32332
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -758,8 +747,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 19826
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -809,8 +797,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 18489
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -874,8 +861,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 26146
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -941,8 +927,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 18208
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1012,8 +997,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 20538
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1070,8 +1054,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 17973
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1132,8 +1115,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 26080
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1183,8 +1165,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 18610
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1264,8 +1245,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 24862
+        "other": 0
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -1378,8 +1358,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 18836
+        "other": 0
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -1456,8 +1435,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 21867
+        "other": 0
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -1515,8 +1493,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 24176
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1594,8 +1571,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 18046
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1653,8 +1629,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 24437
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1720,8 +1695,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 1730,
-        "total": 45216
+        "other": 1730
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1778,8 +1752,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 31784
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1833,8 +1806,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 23424
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1883,8 +1855,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 7310
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1941,8 +1912,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 23420
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -1995,8 +1965,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 21066
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -2077,8 +2046,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 43871
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -2202,8 +2170,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 24852.25
+        "other": 0
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -2364,8 +2331,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 26252.25
+        "other": 0
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -2478,8 +2444,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 21526.25
+        "other": 0
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -2584,8 +2549,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 24211.25
+        "other": 0
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -2656,8 +2620,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 20802
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -2702,8 +2665,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 21540
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -2768,8 +2730,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 21759
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -2830,8 +2791,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 18075
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -2892,8 +2852,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 15677
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -2942,8 +2901,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 18661
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -2992,8 +2950,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 90635,
-        "total": 111533
+        "other": 90635
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -3038,8 +2995,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 1000
+        "other": 0
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -3104,8 +3060,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 335,
-        "total": 31028
+        "other": 335
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -3160,8 +3115,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 2725
+        "other": 330
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -3226,8 +3180,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 30950
+        "other": 0
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -3288,8 +3241,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 3903,
-        "total": 32972
+        "other": 3903
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -3354,8 +3306,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 5,
-        "total": 26248
+        "other": 5
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -3428,8 +3379,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 347,
-        "total": 18847
+        "other": 347
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -3483,8 +3433,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 335,
-        "total": 15364
+        "other": 335
       },
       "metadata": {
         "series": "ほなどっかいこか"
@@ -3547,8 +3496,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 5500,
-        "other": 0,
-        "total": 31217
+        "other": 0
       },
       "metadata": {
         "weather": "晴",
@@ -3732,8 +3680,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 34725,
-        "other": 0,
-        "total": 52609
+        "other": 0
       },
       "metadata": {
         "weather": "晴",
@@ -3900,8 +3847,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 34725,
-        "other": 0,
-        "total": 47053
+        "other": 0
       },
       "metadata": {
         "weather": "晴",
@@ -4174,8 +4120,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 1735.333333,
-        "other": 230,
-        "total": 23597.66667
+        "other": 230
       },
       "metadata": {
         "weather": "雨",
@@ -4448,8 +4393,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 1735.333333,
-        "other": 740,
-        "total": 20678.66667
+        "other": 740
       },
       "metadata": {
         "weather": "雨",
@@ -4727,8 +4671,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 1735.333333,
-        "other": 230,
-        "total": 26858.66667
+        "other": 230
       },
       "metadata": {
         "weather": "晴",
@@ -4981,8 +4924,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 29184
+        "other": 0
       },
       "metadata": {
         "weather": "晴",
@@ -5238,8 +5180,7 @@
         "bus": 0,
         "ship": 4500,
         "equipment": 0,
-        "other": 2130,
-        "total": 36406
+        "other": 2130
       },
       "metadata": {
         "weather": "晴",
@@ -5508,8 +5449,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 26430
+        "other": 0
       },
       "metadata": {
         "weather": "晴",
@@ -5761,8 +5701,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 19592
+        "other": 330
       },
       "metadata": {
         "weather": "晴",
@@ -5954,8 +5893,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 19850
+        "other": 330
       },
       "metadata": {
         "weather": "晴",
@@ -6219,8 +6157,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 31006
+        "other": 330
       },
       "metadata": {
         "weather": "晴〜雨",
@@ -6503,8 +6440,7 @@
         "bus": 500,
         "ship": 0,
         "equipment": 470,
-        "other": 330,
-        "total": 30222
+        "other": 330
       },
       "metadata": {
         "weather": "晴",
@@ -6779,8 +6715,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 22223
+        "other": 330
       },
       "metadata": {
         "weather": "晴",
@@ -7174,8 +7109,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 110,
-        "total": 28908.33333
+        "other": 110
       },
       "metadata": {
         "weather": "晴",
@@ -7557,8 +7491,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 120,
-        "total": 16878.33333
+        "other": 120
       },
       "metadata": {
         "weather": "晴",
@@ -7959,8 +7892,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 110,
-        "total": 37402.33333
+        "other": 110
       },
       "metadata": {
         "weather": "晴",
@@ -8280,8 +8212,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 630,
-        "total": 21458
+        "other": 630
       },
       "metadata": {
         "weather": "晴",
@@ -8582,8 +8513,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 165,
-        "total": 43358
+        "other": 165
       },
       "metadata": {
         "weather": "曇",
@@ -8963,8 +8893,7 @@
         "bus": 4500,
         "ship": 0,
         "equipment": 0,
-        "other": 165,
-        "total": 18378
+        "other": 165
       },
       "metadata": {
         "weather": "曇",
@@ -9306,8 +9235,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 32288
+        "other": 330
       },
       "metadata": {
         "weather": "曇",
@@ -9651,8 +9579,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 29741
+        "other": 330
       },
       "metadata": {
         "weather": "晴",
@@ -9925,8 +9852,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 19636
+        "other": 330
       },
       "metadata": {
         "weather": "晴",
@@ -10174,8 +10100,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 0
+        "other": 0
       },
       "metadata": {
         "upload_date": "2023-12-31",
@@ -10258,8 +10183,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 330,
-        "total": 17356
+        "other": 330
       },
       "metadata": {
         "weather": "晴",
@@ -10657,8 +10581,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 168,
-        "total": 25188
+        "other": 168
       },
       "metadata": {
         "weather": "曇〜雪",
@@ -11069,8 +10992,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 165,
-        "total": 26917
+        "other": 165
       },
       "metadata": {
         "weather": "曇",
@@ -11348,8 +11270,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 137.5,
-        "total": 17347.5
+        "other": 137.5
       },
       "metadata": {
         "weather": "雪・雨",
@@ -11555,8 +11476,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 137.5,
-        "total": 20957.5
+        "other": 137.5
       },
       "metadata": {
         "weather": "晴",
@@ -11846,8 +11766,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 137.5,
-        "total": 23072.5
+        "other": 137.5
       },
       "metadata": {
         "weather": "雨",
@@ -12078,8 +11997,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 137.5,
-        "total": 23025.5
+        "other": 137.5
       },
       "metadata": {
         "weather": "晴",
@@ -12328,8 +12246,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 550,
-        "total": 18829
+        "other": 550
       },
       "metadata": {
         "weather": "晴",
@@ -12696,8 +12613,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 550,
-        "total": 19052
+        "other": 550
       },
       "metadata": {
         "weather": "晴",
@@ -13082,8 +12998,7 @@
         "bus": 6850,
         "ship": 0,
         "equipment": 0,
-        "other": 12445,
-        "total": 35239
+        "other": 12445
       },
       "metadata": {
         "weather": "晴",
@@ -13379,8 +13294,7 @@
         "bus": 2700,
         "ship": 0,
         "equipment": 0,
-        "other": 275,
-        "total": 15894
+        "other": 275
       },
       "metadata": {
         "weather": "晴",
@@ -13643,8 +13557,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 27.5,
-        "total": 19024.5
+        "other": 27.5
       },
       "metadata": {
         "weather": "曇",
@@ -14071,8 +13984,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 27.5,
-        "total": 18137.5
+        "other": 27.5
       },
       "metadata": {
         "weather": "曇〜雨",
@@ -14624,8 +14536,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 27.5,
-        "total": 22853.5
+        "other": 27.5
       },
       "metadata": {
         "weather": "雨〜晴〜曇",
@@ -15131,8 +15042,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 27.5,
-        "total": 27272.5
+        "other": 27.5
       },
       "metadata": {
         "weather": "晴",
@@ -15407,8 +15317,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 1020,
-        "total": 21090
+        "other": 1020
       },
       "metadata": {
         "weather": "晴",
@@ -15701,8 +15610,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 550,
-        "total": 27845
+        "other": 550
       },
       "metadata": {
         "weather": "晴",
@@ -16019,8 +15927,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 550,
-        "total": 22789
+        "other": 550
       },
       "metadata": {
         "weather": "晴",
@@ -16319,8 +16226,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 0,
-        "total": 0
+        "other": 0
       },
       "metadata": {
         "upload_date": "2024-12-31",
@@ -16394,8 +16300,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 550,
-        "total": 46777
+        "other": 550
       },
       "metadata": {
         "weather": "曇",
@@ -16812,8 +16717,7 @@
         "bus": 260,
         "ship": 0,
         "equipment": 0,
-        "other": 275,
-        "total": 19722
+        "other": 275
       },
       "metadata": {
         "weather": "曇",
@@ -16926,8 +16830,7 @@
         "bus": 260,
         "ship": 0,
         "equipment": 0,
-        "other": 275,
-        "total": 16953
+        "other": 275
       },
       "metadata": {
         "weather": "雨〜曇",
@@ -17201,8 +17104,7 @@
         "bus": 0,
         "ship": 230,
         "equipment": 0,
-        "other": 275,
-        "total": 30642
+        "other": 275
       },
       "metadata": {
         "weather": "雨",
@@ -17624,8 +17526,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 275,
-        "total": 26305
+        "other": 275
       },
       "metadata": {
         "weather": "曇",
@@ -18005,8 +17906,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 183.3333333,
-        "total": 27700
+        "other": 183.3333333
       },
       "metadata": {
         "weather": "晴→雨→晴",
@@ -18206,8 +18106,7 @@
         "bus": 0,
         "ship": 4100,
         "equipment": 0,
-        "other": 283.3333333,
-        "total": 23227
+        "other": 283.3333333
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",
@@ -18239,8 +18138,7 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 577.3333333,
-        "total": 25801
+        "other": 577.3333333
       },
       "metadata": {
         "series": "ほな1人でどっかいこか",

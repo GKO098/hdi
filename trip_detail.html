@@ -241,6 +241,11 @@
 
         // 表示構築
         function renderRecord(record) {
+            // コストの合計を計算
+            const costTotal = Object.entries(record.costs)
+                .filter(([key]) => key !== 'total')
+                .reduce((sum, [_, value]) => sum + (value || 0), 0);
+
             // 各項目の順位を計算
             const rankings = calculateRankings(jsonData, record);
 
@@ -396,7 +401,7 @@
           </tr>
           <tr>
             <td class="section-title">合計金額</td>
-            <td align="right">${formatNumber(record.costs.total || '0')}円</td>
+            <td align="right">${formatNumber(costTotal)}円</td>
             <td align="right">${rankings.cost_total}</td>
           </tr>
           <tr>
@@ -470,7 +475,11 @@
                         ...row,
                         value: field === 'distance' 
                             ? parseFloat(row.distance) || 0 
-                            : parseFloat(row.costs[field.replace('cost_', '')]) || 0
+                            : field === 'cost_total'
+                                ? Object.entries(row.costs)
+                                    .filter(([key]) => key !== 'total')
+                                    .reduce((sum, [_, value]) => sum + (parseFloat(value) || 0), 0)
+                                : parseFloat(row.costs[field.replace('cost_', '')]) || 0
                     }))
                     .sort((a, b) => b.value - a.value);
 
