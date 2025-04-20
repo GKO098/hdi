@@ -430,7 +430,15 @@
             <td colspan="6">${record.metadata.material ? convertMaterialToString(record.metadata.material) : ''}</td>
           </tr>
           <tr>
-            <td colspan="6">${record.metadata.reference ? '参考文献：<br>' + record.metadata.reference.map(ref => `　${ref.name}　${ref.source}`).join('<br>') : ''}</td>
+            <td colspan="6">${record.metadata.reference ? '参考文献：<br>' + record.metadata.reference.map(ref => {
+              const nameText = ref.source?.startsWith('http') 
+                ? `<a href="${ref.source}" target="_blank" rel="noopener noreferrer">${ref.name}</a>`
+                : ref.name;
+              const sourceText = ref.source?.startsWith('http')
+                ? `　<small>${ref.source}</small>`
+                : `　${ref.source}`;
+              return `　${nameText}${sourceText}`;
+            }).join('<br>') : ''}</td>
           </tr>
           <tr>
             <td colspan="6">${record.metadata.advertiser ? '広告主：<br>' + record.metadata.advertiser.map(adv => `　${adv} さん`).join('') : ''}</td>
@@ -676,9 +684,15 @@
 
             // 画像の処理
             if (material.image && material.image.length > 0) {
-                const imageList = material.image.map(img => 
-                    `　${img.name}${img.creator ? `（${img.creator}）` : ''}${img.source ? `（${img.source}）` : ''}`
-                ).join('<br>');
+                const imageList = material.image.map(img => {
+                    const nameText = img.source?.startsWith('http') 
+                        ? `<a href="${img.source}" target="_blank" rel="noopener noreferrer">${img.name}</a>`
+                        : img.name;
+                    const sourceText = img.source?.startsWith('http')
+                        ? `<small>（${img.source}）</small>`
+                        : img.source ? `（${img.source}）` : '';
+                    return `　${nameText}${img.creator ? `（${img.creator}）` : ''}${sourceText}`;
+                }).join('<br>');
                 sections.push(`画像：<br>${imageList}`);
             }
 
@@ -690,9 +704,15 @@
 
             // 音楽の処理
             if (material.music && material.music.length > 0) {
-                const musicList = material.music.map(music => 
-                    `　${music.name}${music.creator ? `（${music.creator}）` : ''}${music.source ? `（${music.source}）` : ''}`
-                ).join('<br>');
+                const musicList = material.music.map(music => {
+                    const nameText = music.source?.startsWith('http') 
+                        ? `<a href="${music.source}" target="_blank" rel="noopener noreferrer">${music.name}</a>`
+                        : music.name;
+                    const sourceText = music.source?.startsWith('http')
+                        ? `<small>（${music.source}）</small>`
+                        : music.source ? `（${music.source}）` : '';
+                    return `　${nameText}${music.creator ? `（${music.creator}）` : ''}${sourceText}`;
+                }).join('<br>');
                 sections.push(`音楽：<br>${musicList}`);
             }
 
