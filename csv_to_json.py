@@ -6,7 +6,7 @@ from typing import Dict, List, Any
 def parse_place_with_timestamp(place_str: str) -> Dict[str, Any]:
     """
     場所の文字列から再生時間と場所名を分離する
-    例: "10:55 道の駅たるみず" -> {"name": "道の駅たるみず", "timestamp": "10:55", "type": "highway_facility"}
+    例: "10:55 道の駅たるみず" -> {"name": "道の駅たるみず", "timestamp": "10:55", "type": "road_facility"}
     """
     # 時間表記（HH:MM）のパターン
     time_pattern = r'^(\d{1,2}:\d{2})\s+(.+)$'
@@ -28,7 +28,7 @@ def parse_place_with_timestamp(place_str: str) -> Dict[str, Any]:
 def determine_place_type(place_name: str) -> str:
     """場所の名前からタイプを推測する"""
     patterns = {
-        'highway_facility': r'(SA|PA|道の駅|パーキング|サービスエリア)',
+        'road_facility': r'(SA|PA|道の駅|パーキング|サービスエリア)',
         'station': r'(駅|ステーション)',
         'nature': r'(山|川|湖|滝|渓谷|峠|海|池|沼|岬|崎|浜|島)',
         'historical': r'(神社|寺|城|古墳|史跡)',

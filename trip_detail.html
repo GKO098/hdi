@@ -297,6 +297,7 @@
                     'cafe': '☕',
                     'convenience_store': '🏪',
                     'shopping': '🛍️',
+                    'museum': '🏛️',
 
                     // 交通・移動手段系
                     'train': '🚆',
@@ -324,8 +325,11 @@
                     // その他
                     'other': '📍'
                   };
-                  const emoji = typeEmoji[place.type] || '📍';
-                  return formatPlacesWithTimestamp(emoji + ' ' + (place.timestamp || '') + ' ' + place.name);
+                  const emoji = typeEmoji[place.type];
+                  if (!emoji) {
+                    console.error(`未定義の場所タイプです: ${place.type}`);
+                  }
+                  return formatPlacesWithTimestamp((emoji || '📍') + ' ' + (place.timestamp || '') + ' ' + place.name);
                 }).join('<br>')}
               </div>
             </td>

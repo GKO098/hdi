@@ -17792,6 +17792,11 @@
           "type": "hot_spring"
         },
         {
+          "name": "温泉閣カフェ",
+          "timestamp": "02:45",
+          "type": "cafe"
+        },
+        {
           "name": "（冷麺の胡月・亀正くるくる寿司）",
           "timestamp": "03:00",
           "type": "restaurant"
@@ -17819,7 +17824,7 @@
         {
           "name": "道の駅さがのせき",
           "timestamp": "05:49",
-          "type": "highway_facility"
+          "type": "road_facility"
         },
         {
           "name": "関あじ関さば通り",
