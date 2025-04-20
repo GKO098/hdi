@@ -288,4 +288,4 @@ def convert_csv_to_json(csv_path: str, output_path: str):
         json.dump({'trips': trips}, f, ensure_ascii=False, indent=2)
 
 # 使用例
-convert_csv_to_json('data/summary_table.csv', 'data/trips.json')
+convert_csv_to_json('data/summary_table.csv', 'data/trips_new.json')

@@ -17854,7 +17854,143 @@
       "participants": [
         "春日部つむぎ"
       ],
-      "places": [],
+      "places": [
+        {
+          "name": "オープニング",
+          "timestamp": "00:00",
+          "type": "opening"
+        },
+        {
+          "name": "杵築城・城下町",
+          "timestamp": "01:01",
+          "type": "historical"
+        },
+        {
+          "name": "回天大神訓練基地記念公園",
+          "timestamp": "01:27",
+          "type": "park"
+        },
+        {
+          "name": "回天神社",
+          "timestamp": "01:40",
+          "type": "historical"
+        },
+        {
+          "name": "南光物産",
+          "timestamp": "01:54",
+          "type": "shopping"
+        },
+        {
+          "name": "鉄輪温泉眺望所",
+          "timestamp": "02:07",
+          "type": "hot_spring"
+        },
+        {
+          "name": "温泉閣・鉄輪温泉",
+          "timestamp": "02:13",
+          "type": "hot_spring"
+        },
+        {
+          "name": "（冷麺の胡月・亀正くるくる寿司）",
+          "timestamp": "03:00",
+          "type": "restaurant"
+        },
+        {
+          "name": "竹瓦小路アーケード・竹瓦温泉",
+          "timestamp": "03:37",
+          "type": "historical"
+        },
+        {
+          "name": "鳴門うどん",
+          "timestamp": "04:11",
+          "type": "restaurant"
+        },
+        {
+          "name": "かんたん（菡萏）",
+          "timestamp": "04:35",
+          "type": "other"
+        },
+        {
+          "name": "柞原八幡宮",
+          "timestamp": "05:02",
+          "type": "historical"
+        },
+        {
+          "name": "道の駅さがのせき",
+          "timestamp": "05:49",
+          "type": "highway_facility"
+        },
+        {
+          "name": "関あじ関さば通り",
+          "timestamp": "06:32",
+          "type": "road"
+        },
+        {
+          "name": "関崎灯台",
+          "timestamp": "06:59",
+          "type": "nature"
+        },
+        {
+          "name": "関崎みらい海星館",
+          "timestamp": "07:29",
+          "type": "museum"
+        },
+        {
+          "name": "黒ヶ浜・ビシャゴ浦姉妹岩",
+          "timestamp": "07:46",
+          "type": "nature"
+        },
+        {
+          "name": "あまべの郷 関あじ関さば館",
+          "timestamp": "08:10",
+          "type": "restaurant"
+        },
+        {
+          "name": "臼杵港フェリーターミナル",
+          "timestamp": "08:53",
+          "type": "ferry"
+        },
+        {
+          "name": "セメント町",
+          "timestamp": "09:08",
+          "type": "other"
+        },
+        {
+          "name": "床木ダム",
+          "timestamp": "09:30",
+          "type": "park"
+        },
+        {
+          "name": "空の展望所",
+          "timestamp": "10:08",
+          "type": "nature"
+        },
+        {
+          "name": "ユーマート海崎店",
+          "timestamp": "11:05",
+          "type": "shopping"
+        },
+        {
+          "name": "塩湯",
+          "timestamp": "11:20",
+          "type": "restaurant"
+        },
+        {
+          "name": "塩湯",
+          "timestamp": "11:50",
+          "type": "hot_spring"
+        },
+        {
+          "name": "鳥料理由布",
+          "timestamp": "12:19",
+          "type": "restaurant"
+        },
+        {
+          "name": "エンディング",
+          "timestamp": "13:03",
+          "type": "ending"
+        }
+      ],
       "distance": 275,
       "costs": {
         "meal": 7682,
@@ -17873,8 +18009,176 @@
         "total": 27700
       },
       "metadata": {
+        "weather": "晴→雨→晴",
+        "upload_date": "2025-04-20",
+        "video_title": "【VOICEVOX車載】ほな1人でどっかいこか（大分編第1日）",
+        "niconico": "https://www.nicovideo.jp/watch/sm44896561",
+        "youtube": "https://www.youtube.com/watch?v=qh8xd8IcVSM",
         "series": "ほな1人でどっかいこか",
-        "itinerary": "https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/"
+        "summary": "大分の市区町村を制覇しよう\nただし九州本土に限る",
+        "itinerary": "https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/",
+        "material": {
+          "image": [
+            {
+              "name": "春日部つむぎ立ち絵",
+              "creator": "春日部つむぎ公式",
+              "source": "https://seiga.nicovideo.jp/seiga/im10842587"
+            },
+            {
+              "name": "春日部つむぎ動画",
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
+            }
+          ],
+          "voice": [
+            {
+              "name": "VOICEVOX:春日部つむぎ"
+            }
+          ],
+          "music": [
+            {
+              "name": "大分県のトキハで17時に流れる曲／エレクトーン演奏／ペルシャの市場にて",
+              "creator": "りっちゃんの音楽channel",
+              "source": "https://www.youtube.com/watch?v=SEikJ9wcOAs"
+            },
+            {
+              "name": "HIRAHIRA",
+              "creator": "もっぴーさうんど",
+              "source": "https://commons.nicovideo.jp/material/nc98619"
+            },
+            {
+              "name": "夕焼けレモンティー",
+              "creator": "もっぴーさうんど",
+              "source": "https://commons.nicovideo.jp/material/nc101995"
+            },
+            {
+              "name": "まどろむ時間",
+              "creator": "まんぼう二等兵",
+              "source": "https://commons.nicovideo.jp/material/nc126625"
+            },
+            {
+              "name": "レッツお散歩",
+              "creator": "MATSU",
+              "source": "https://commons.nicovideo.jp/material/nc95117"
+            }
+          ],
+          "effect": [
+            {
+              "name": "効果音ラボ",
+              "creator": "https://soundeffect-lab.info/"
+            }
+          ]
+        },
+        "reference": [
+          {
+            "name": "大分県杵築の「サンドイッチ型城下町」ってどういうもの？石畳の街並みを散策しよう！｜トリドリ",
+            "source": "https://tori-dori.com/kyushu/2019/12/17/46099/"
+          },
+          {
+            "name": "回天特別攻撃隊・大神神社",
+            "source": "http://oitamt.nyanko.org/z51-kaiten.htm"
+          },
+          {
+            "name": "お寺の隣の温泉宿に、こだわりのぷるるんプリンのカフェと何故かオタク部屋が！鉄輪温泉「カフェ温泉閣」（泉よしか） - エキスパート - Yahoo!ニュース",
+            "source": "https://news.yahoo.co.jp/expert/articles/6adde327823bfec69eb9edecddeb3f6843133c93"
+          },
+          {
+            "name": "東北イタコはライダーとの夢をみる　～別府でお食事編～ - ニコニコ動画",
+            "source": "https://www.nicovideo.jp/watch/sm39406551"
+          },
+          {
+            "name": "【ぶらり別府361】竹瓦小路とロジウラ　BEPPU - YouTube",
+            "source": "https://www.youtube.com/watch?v=C1rBvcpadmc"
+          },
+          {
+            "name": "鳴門うどん｜公式ウェブサイト",
+            "source": "https://kfs-naruto.com/"
+          },
+          {
+            "name": "菡萏(かんたん)とは？ 意味や使い方 - コトバンク",
+            "source": "https://kotobank.jp/word/菡萏-1754177"
+          },
+          {
+            "name": "かんたん - Wikipedia",
+            "source": "https://ja.wikipedia.org/wiki/かんたん"
+          },
+          {
+            "name": "『角川日本地名大辞典』",
+            "source": "「角川日本地名大辞典」編纂委員会 編"
+          },
+          {
+            "name": "「幸福の黄色いハンカチ」今年も新調　大分・日田市｜【西日本新聞me】",
+            "source": "https://www.nishinippon.co.jp/item/n/953048/"
+          },
+          {
+            "name": "道路：道路統計年報2023 トンネルの現況 - 国土交通省",
+            "source": "https://www.mlit.go.jp/road/ir/ir-data/tokei-nen/2023/nenpo04.html"
+          },
+          {
+            "name": "わたしのふるさと便：お国トリビア　大分県　地形と歴史が生んだ「トンネル数日本一」 | 毎日新聞",
+            "source": "https://mainichi.jp/articles/20221016/ddm/013/040/003000c"
+          },
+          {
+            "name": "全国道路構造物マップシリーズについて | 全国Q地図",
+            "source": "https://info.qchizu.xyz/qchizu/tile/mlit_road/"
+          },
+          {
+            "name": "トンネル ～ 自動車にとって重要なインフラ ～ | 市場動向詳細 | TechEyesOnline",
+            "source": "https://www.techeyesonline.com/article/tech-eyes/detail/TechnologyTrends-2406/"
+          },
+          {
+            "name": "[第12食 冷麺]すいとーと！ - 沖野ユイ | 少年ジャンプ＋",
+            "source": "https://shonenjumpplus.com/episode/10834108156766327248"
+          },
+          {
+            "name": "黒ヶ浜 | 日本一の「おんせん県」大分県の観光情報公式サイト",
+            "source": "https://www.visit-oita.jp/spots/detail/9243"
+          },
+          {
+            "name": "関埼灯台 - おおいた市観光ナビ OITA CITY TOURIST NAVI",
+            "source": "https://www.oishiimati-oita.jp/spot/2872"
+          },
+          {
+            "name": "あかりと九州ツーリング　大阪～大分編【気晴らしのポケット旅】 - ニコニコ動画",
+            "source": "https://www.nicovideo.jp/watch/sm43928512"
+          },
+          {
+            "name": "大分市／関あじ・関さば",
+            "source": "https://www.city.oita.oita.jp/o157/bunkasports/guide/1014022357237.html"
+          },
+          {
+            "name": "九四航路 2025年5月17日より、臼杵港 移転のお知らせ | 九四航路 | オレンジフェリーからのお知らせ | 四国開発フェリー株式会社",
+            "source": "https://www.orange-ferry.co.jp/7100.html"
+          },
+          {
+            "name": "津久見産石灰岩・胡麻柄山の採掘現場 - 大分県ホームページ",
+            "source": "https://www.pref.oita.jp/site/archive/201577.html"
+          },
+          {
+            "name": "津久見の石灰鉱山｜おおいた遺産｜大分を彩る120の美しき遺産",
+            "source": "https://oitaisan.com/heritage/津久見の石灰鉱山"
+          },
+          {
+            "name": "セメントのまち・津久見で大人の社会科見学！ | edit Oita エディット大分",
+            "source": "https://edit.pref.oita.jp/news-columns/1942/"
+          },
+          {
+            "name": "セメント町 (津久見市) - Wikipedia",
+            "source": "https://ja.wikipedia.org/wiki/セメント町_(津久見市)"
+          },
+          {
+            "name": "床木ダム -さいきの桜 - | 観光スポット | 佐伯市観光ナビ",
+            "source": "https://www.visit-saiki.jp/spots/detail/96398d08-17e1-4165-8c58-4762ccb06dd9"
+          },
+          {
+            "name": "【九州天然海水風呂】佐伯ランチは新鮮な魚介たっぷりの海鮮丼！佐伯湾を望む絶景の塩湯家族風呂！ミネラルたっぷりでお肌リフレッシュ！オモウマい店でも紹介された行列のできる店！佐伯旅行と佐伯観光の参考に - YouTube",
+            "source": "https://www.youtube.com/watch?v=ys6VDFnki7Q"
+          },
+          {
+            "name": "GSI-menseki20241001.pdf　令和6年　全国都道府県市区町村別面積調　（10月1日時点）",
+            "source": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO/backnumber/GSI-menseki20241001.pdf"
+          }
+        ]
       }
     },
     {
