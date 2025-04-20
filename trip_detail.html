@@ -474,16 +474,16 @@
             numericFields.forEach(field => {
                 // 数値に変換してソート（未記入は0として扱う）
                 const sortedData = data
-                    .filter(row => row.id && (row.date?.length !== 4)) // dateが4文字のレコードを除外
+                    .filter(row => row?.id && (row?.date?.length !== 4)) // dateが4文字のレコードを除外
                     .map(row => ({
                         ...row,
                         value: field === 'distance' 
-                            ? parseFloat(row.distance) || 0 
+                            ? parseFloat(row?.distance) || 0 
                             : field === 'cost_total'
-                                ? Object.entries(row.costs)
+                                ? (Object.entries(row?.costs ?? {})
                                     .filter(([key]) => key !== 'total')
-                                    .reduce((sum, [_, value]) => sum + (parseFloat(value) || 0), 0)
-                                : parseFloat(row.costs[field.replace('cost_', '')]) || 0
+                                    .reduce((sum, [_, value]) => sum + (parseFloat(value) || 0), 0))
+                                : parseFloat(row?.costs?.[field.replace('cost_', '')] ?? 0)
                     }))
                     .sort((a, b) => b.value - a.value);
 
