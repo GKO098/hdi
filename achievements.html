@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="achievements.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -31,10 +32,62 @@
         </div>
     </div>
 
-    <script src="./data/achievements_data.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         let map = null;
+        let achievementsData = {};
+
+        // CSVファイルを読み込んでパースする関数
+        async function loadAchievementsData() {
+            try {
+                const response = await fetch('./data/achievements.csv');
+                const csvText = await response.text();
+                
+                // PapaParseを使用してCSVをパース
+                const parseResult = Papa.parse(csvText, {
+                    header: true,
+                    skipEmptyLines: true
+                });
+
+                // カテゴリーごとにデータを整理
+                achievementsData = parseResult.data.reduce((acc, row) => {
+                    const category = row.category;
+                    const name = row.name;
+                    const noInCategory = row.no_in_category;
+                    const latitude = parseFloat(row.latitude);
+                    const longitude = parseFloat(row.longitude);
+                    const visitedDates = row.visited_dates ? row.visited_dates.split(',').map(date => date.trim()).filter(date => date) : [];
+                    
+                    if (!acc[category]) {
+                        acc[category] = {
+                            title: category,
+                            type: "list",
+                            spots: []
+                        };
+                    }
+
+                    // 既に同じIDのスポットが存在するかチェック
+                    const spotId = `${category}-${noInCategory}`;
+                    const existingSpot = acc[category].spots.find(spot => spot.id === spotId);
+                    if (!existingSpot) {
+                        acc[category].spots.push({
+                            id: spotId,
+                            name: name,
+                            coordinates: [latitude, longitude],
+                            dates: visitedDates
+                        });
+                    }
+
+                    return acc;
+                }, {});
+
+                updateAchievements();
+            } catch (error) {
+                console.error('データの読み込みに失敗しました:', error);
+                document.getElementById('achievements-container').innerHTML = 
+                    '<p class="error">データの読み込みに失敗しました。</p>';
+            }
+        }
 
         // 実績項目を生成する関数
         function createAchievementItem(id, spot) {
@@ -64,15 +117,11 @@
 
         // 実績セクションを生成する関数
         function createAchievementSection(key, data) {
-            const spots = data.type === 'list' ? data.spots : {};
-            const items = Array.isArray(spots)
-                ? spots.map(spot => createAchievementItem(spot.id, spot))
-                : Object.entries(spots).map(([id, spot]) => createAchievementItem(id, spot));
+            const spots = data.spots;
+            const items = spots.map(spot => createAchievementItem(spot.id, spot));
             
-            const totalCount = Array.isArray(spots) ? spots.length : Object.keys(spots).length;
-            const visitedCount = Array.isArray(spots)
-                ? spots.filter(spot => spot.dates && spot.dates.length > 0).length
-                : Object.values(spots).filter(spot => spot.dates && spot.dates.length > 0).length;
+            const totalCount = spots.length;
+            const visitedCount = spots.filter(spot => spot.dates && spot.dates.length > 0).length;
 
             return `
                 <div class="achievement-section">
@@ -129,40 +178,22 @@
                 iconAnchor: [6, 6]
             });
 
-            const spots = data.type === 'list' ? data.spots : {};
             const coordinates = [];
             
-            if (Array.isArray(spots)) {
-                spots.forEach(spot => {
-                    if (spot.coordinates) {
-                        coordinates.push(spot.coordinates);
-                        const isVisited = spot.dates && spot.dates.length > 0;
-                        L.marker(spot.coordinates, {
-                            icon: isVisited ? visitedIcon : unvisitedIcon
-                        })
-                        .bindPopup(`
-                            <strong>${spot.name}</strong><br>
-                            ${isVisited ? '訪問済み' : '未訪問'}
-                        `)
-                        .addTo(map);
-                    }
-                });
-            } else {
-                Object.values(spots).forEach(spot => {
-                    if (spot.coordinates) {
-                        coordinates.push(spot.coordinates);
-                        const isVisited = spot.dates && spot.dates.length > 0;
-                        L.marker(spot.coordinates, {
-                            icon: isVisited ? visitedIcon : unvisitedIcon
-                        })
-                        .bindPopup(`
-                            <strong>${spot.name}</strong><br>
-                            ${isVisited ? '訪問済み' : '未訪問'}
-                        `)
-                        .addTo(map);
-                    }
-                });
-            }
+            data.spots.forEach(spot => {
+                if (spot.coordinates) {
+                    coordinates.push(spot.coordinates);
+                    const isVisited = spot.dates && spot.dates.length > 0;
+                    L.marker(spot.coordinates, {
+                        icon: isVisited ? visitedIcon : unvisitedIcon
+                    })
+                    .bindPopup(`
+                        <strong>${spot.name}</strong><br>
+                        ${isVisited ? '訪問済み' : '未訪問'}
+                    `)
+                    .addTo(map);
+                }
+            });
 
             if (coordinates.length > 0) {
                 const bounds = L.latLngBounds(coordinates);
@@ -188,8 +219,8 @@
             }
         }
 
-        // 初期表示
-        updateAchievements();
+        // データを読み込んで初期表示
+        loadAchievementsData();
     </script>
 </body>
 </html> 
