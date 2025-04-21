@@ -1,0 +1,59 @@
+/* 地図関連のスタイル */
+.clickable {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.clickable:hover {
+    color: #0066cc;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .achievement-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* モーダルのスタイル */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #555;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 4px;
+} 

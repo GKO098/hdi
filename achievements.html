@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実績</title>
+    <link rel="icon" type="image/png" href="icons/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="achievements.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>実績</h1>
+        <div class="description" style="margin-bottom: 20px;">
+            <small>※河川や広域な場所の座標は、代表的な地点を選んでいます。</small>
+            <small>※日付を思い出せない場所はxxxx-xx-xxとしています。</small>
+        </div>
+        <div id="achievements-container">
+            <!-- JavaScriptで動的に生成 -->
+        </div>
+    </div>
+
+    <!-- 地図表示用モーダル -->
+    <div id="mapModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMap()">&times;</span>
+            <h2 id="mapTitle"></h2>
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <script src="achievements_data.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        let map = null;
+
+        // 実績項目を生成する関数
+        function createAchievementItem(id, spot) {
+            const visited = spot.dates && spot.dates.length > 0;
+            const mapLink = spot.coordinates
+                ? `<div class="map-link">
+                    <a href="https://www.google.com/maps?q=${spot.coordinates[0]},${spot.coordinates[1]}" target="_blank" rel="noopener noreferrer">
+                        <small>📍地図を開く</small>
+                    </a>
+                   </div>`
+                : '';
+
+            const datesHtml = visited
+                ? spot.dates.map(date => `<div class="visit-date">${date}</div>`).join('')
+                : '<div class="visit-date unvisited">未訪問</div>';
+
+            return `
+                <div class="achievement-item ${visited ? 'achieved' : ''}">
+                    <h3>${spot.name}</h3>
+                    <div class="achievement-dates" id="${id}-dates">
+                        ${datesHtml}
+                    </div>
+                    ${mapLink}
+                </div>
+            `;
+        }
+
+        // 実績セクションを生成する関数
+        function createAchievementSection(key, data) {
+            const spots = data.type === 'list' ? data.spots : {};
+            const items = Array.isArray(spots)
+                ? spots.map(spot => createAchievementItem(spot.id, spot))
+                : Object.entries(spots).map(([id, spot]) => createAchievementItem(id, spot));
+            
+            const totalCount = Array.isArray(spots) ? spots.length : Object.keys(spots).length;
+            const visitedCount = Array.isArray(spots)
+                ? spots.filter(spot => spot.dates && spot.dates.length > 0).length
+                : Object.values(spots).filter(spot => spot.dates && spot.dates.length > 0).length;
+
+            return `
+                <div class="achievement-section">
+                    <h2 class="clickable" onclick="showMapForCategory('${key}')">${data.title}</h2>
+                    <div class="achievement-list" id="${key}-list">
+                        ${items.join('')}
+                    </div>
+                    <div class="achievement-progress">
+                        進捗状況: <span id="${key}-progress">${visitedCount}</span>/${totalCount}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 実績の更新関数
+        function updateAchievements() {
+            const container = document.getElementById('achievements-container');
+            container.innerHTML = Object.entries(achievementsData)
+                .map(([key, data]) => createAchievementSection(key, data))
+                .join('');
+        }
+
+        // 地図を表示する関数
+        function showMapForCategory(key) {
+            const data = achievementsData[key];
+            const modal = document.getElementById('mapModal');
+            const mapTitle = document.getElementById('mapTitle');
+            
+            mapTitle.textContent = data.title;
+            modal.style.display = 'block';
+
+            if (map) {
+                map.remove();
+            }
+
+            map = L.map('map');
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap & CartoDB',
+                subdomains: 'abcd'
+            }).addTo(map);
+
+            // 訪問済みと未訪問のマーカーアイコンを定義
+            const visitedIcon = L.divIcon({
+                className: 'custom-marker',
+                html: `<div class="marker-circle" style="background-color: green;">✓</div>`,
+                iconSize: [12, 12],
+                iconAnchor: [6, 6]
+            });
+
+            const unvisitedIcon = L.divIcon({
+                className: 'custom-marker',
+                html: `<div class="marker-circle" style="background-color: red;">×</div>`,
+                iconSize: [12, 12],
+                iconAnchor: [6, 6]
+            });
+
+            const spots = data.type === 'list' ? data.spots : {};
+            const coordinates = [];
+            
+            if (Array.isArray(spots)) {
+                spots.forEach(spot => {
+                    if (spot.coordinates) {
+                        coordinates.push(spot.coordinates);
+                        const isVisited = spot.dates && spot.dates.length > 0;
+                        L.marker(spot.coordinates, {
+                            icon: isVisited ? visitedIcon : unvisitedIcon
+                        })
+                        .bindPopup(`
+                            <strong>${spot.name}</strong><br>
+                            ${isVisited ? '訪問済み' : '未訪問'}
+                        `)
+                        .addTo(map);
+                    }
+                });
+            } else {
+                Object.values(spots).forEach(spot => {
+                    if (spot.coordinates) {
+                        coordinates.push(spot.coordinates);
+                        const isVisited = spot.dates && spot.dates.length > 0;
+                        L.marker(spot.coordinates, {
+                            icon: isVisited ? visitedIcon : unvisitedIcon
+                        })
+                        .bindPopup(`
+                            <strong>${spot.name}</strong><br>
+                            ${isVisited ? '訪問済み' : '未訪問'}
+                        `)
+                        .addTo(map);
+                    }
+                });
+            }
+
+            if (coordinates.length > 0) {
+                const bounds = L.latLngBounds(coordinates);
+                map.fitBounds(bounds, { padding: [50, 50] });
+            }
+        }
+
+        // 地図を閉じる関数
+        function closeMap() {
+            const modal = document.getElementById('mapModal');
+            modal.style.display = 'none';
+            if (map) {
+                map.remove();
+                map = null;
+            }
+        }
+
+        // モーダルの外側をクリックしたときに閉じる
+        window.onclick = function(event) {
+            const modal = document.getElementById('mapModal');
+            if (event.target == modal) {
+                closeMap();
+            }
+        }
+
+        // 初期表示
+        updateAchievements();
+    </script>
+</body>
+</html> 
