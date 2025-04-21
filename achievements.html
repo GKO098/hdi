@@ -187,12 +187,15 @@
                 if (spot.coordinates) {
                     coordinates.push(spot.coordinates);
                     const isVisited = spot.dates && spot.dates.length > 0;
+                    const visitInfo = isVisited 
+                        ? `訪問済み<br>${spot.dates.map(date => `・${date}`).join('<br>')}`
+                        : '未訪問';
                     L.marker(spot.coordinates, {
                         icon: isVisited ? visitedIcon : unvisitedIcon
                     })
                     .bindPopup(`
                         <strong>${spot.name}</strong><br>
-                        ${isVisited ? '訪問済み' : '未訪問'}
+                        ${visitInfo}
                     `)
                     .addTo(map);
                 }

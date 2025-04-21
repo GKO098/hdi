@@ -30,10 +30,10 @@
 .modal-content {
     position: relative;
     background-color: #fefefe;
-    margin: 5% auto;
+    margin: 2% auto;
     padding: 20px;
-    width: 80%;
-    max-width: 800px;
+    width: 90%;
+    height: 90vh;
     border-radius: 8px;
 }
 
@@ -41,18 +41,18 @@
     position: absolute;
     right: 20px;
     top: 10px;
-    color: #aaa;
+    color: #666;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
 }
 
 .close:hover {
-    color: #555;
+    color: #333;
 }
 
 #map {
-    height: 500px;
+    height: calc(100% - 60px);
     width: 100%;
     margin-top: 1rem;
     border-radius: 4px;
