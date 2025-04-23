@@ -15,10 +15,12 @@
         <h1>実績</h1>
         <div style="margin-bottom: 20px;">
             <a href="index.html" style="text-decoration: none; color: #4CAF50;">🗺️ 旅の記録マップに戻る</a>
+            <button onclick="showAllLocations()" style="margin-left: 20px;" class="map-button">🗺️ 全ての場所を地図で見る</button>
         </div>
         <div class="description" style="margin-bottom: 20px;">
             <small>※河川や広域な場所の座標は、代表的な地点を選んでいます。</small>
             <small>※日付を思い出せない場所はxxxx-xx-xxとしています。</small>
+            <small>※夜景スポットなのに昼に行ったなど、楽しみ方が違う訪問日は括弧書きにしています。</small>
             <small>「<a href="https://100sen.cyber-ninja.jp/" target="_blank" rel="noopener noreferrer">日本百選と座標値（経緯度数値）</a>」などを参考にしています。</small>
         </div>
         <div id="achievements-container">
@@ -39,6 +41,89 @@
     <script>
         let map = null;
         let achievementsData = {};
+
+        // 全ての場所を地図に表示する関数
+        function showAllLocations() {
+            const modal = document.getElementById('mapModal');
+            const mapTitle = document.getElementById('mapTitle');
+            
+            mapTitle.textContent = '全ての実績の場所';
+            modal.style.display = 'block';
+
+            if (map) {
+                map.remove();
+            }
+
+            map = L.map('map');
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap & CartoDB',
+                subdomains: 'abcd'
+            }).addTo(map);
+
+            // マーカーアイコンを定義
+            const visitedIcon = L.divIcon({
+                className: 'custom-marker',
+                html: `<div class="marker-circle" style="background-color: green;">✓</div>`,
+                iconSize: [12, 12],
+                iconAnchor: [6, 6]
+            });
+
+            const partialIcon = L.divIcon({
+                className: 'custom-marker',
+                html: `<div class="marker-circle" style="background-color: #ffa000;">△</div>`,
+                iconSize: [12, 12],
+                iconAnchor: [6, 6]
+            });
+
+            const unvisitedIcon = L.divIcon({
+                className: 'custom-marker',
+                html: `<div class="marker-circle" style="background-color: red;">×</div>`,
+                iconSize: [12, 12],
+                iconAnchor: [6, 6]
+            });
+
+            const coordinates = [];
+            
+            // 全てのカテゴリーのスポットを処理
+            Object.entries(achievementsData).forEach(([category, data]) => {
+                data.spots.forEach(spot => {
+                    if (spot.coordinates) {
+                        coordinates.push(spot.coordinates);
+                        const hasConfirmedVisits = spot.confirmedDates && spot.confirmedDates.length > 0;
+                        const hasPartialVisits = spot.partialDates && spot.partialDates.length > 0;
+                        
+                        let visitInfo;
+                        let icon;
+                        if (hasConfirmedVisits) {
+                            visitInfo = `訪問済み<br>${spot.confirmedDates.map(date => `・${date}`).join('<br>')}`;
+                            if (hasPartialVisits) {
+                                visitInfo += `<br>参考記録<br>${spot.partialDates.map(date => `・${date}`).join('<br>')}`;
+                            }
+                            icon = visitedIcon;
+                        } else if (hasPartialVisits) {
+                            visitInfo = `参考記録<br>${spot.partialDates.map(date => `・${date}`).join('<br>')}`;
+                            icon = partialIcon;
+                        } else {
+                            visitInfo = '未訪問';
+                            icon = unvisitedIcon;
+                        }
+
+                        L.marker(spot.coordinates, { icon })
+                        .bindPopup(`
+                            <strong>${spot.name}</strong><br>
+                            <small>${category}</small><br>
+                            ${visitInfo}
+                        `)
+                        .addTo(map);
+                    }
+                });
+            });
+
+            if (coordinates.length > 0) {
+                const bounds = L.latLngBounds(coordinates);
+                map.fitBounds(bounds, { padding: [50, 50] });
+            }
+        }
 
         // CSVファイルを読み込んでパースする関数
         async function loadAchievementsData() {
@@ -61,6 +146,11 @@
                     const longitude = parseFloat(row.longitude);
                     const visitedDates = row.visited_dates ? row.visited_dates.split(',').map(date => date.trim()).filter(date => date) : [];
                     
+                    // 日付を確定訪問と部分訪問に分類
+                    const confirmedDates = visitedDates.filter(date => !date.startsWith('(') && !date.endsWith(')'));
+                    const partialDates = visitedDates.filter(date => date.startsWith('(') && date.endsWith(')'))
+                        .map(date => date.slice(1, -1)); // 括弧を除去
+                    
                     if (!acc[category]) {
                         acc[category] = {
                             title: category,
@@ -77,7 +167,8 @@
                             id: spotId,
                             name: name,
                             coordinates: [latitude, longitude],
-                            dates: visitedDates
+                            confirmedDates: confirmedDates,
+                            partialDates: partialDates
                         });
                     }
 
@@ -94,7 +185,9 @@
 
         // 実績項目を生成する関数
         function createAchievementItem(id, spot) {
-            const visited = spot.dates && spot.dates.length > 0;
+            const hasConfirmedVisits = spot.confirmedDates && spot.confirmedDates.length > 0;
+            const hasPartialVisits = spot.partialDates && spot.partialDates.length > 0;
+            
             const mapLink = spot.coordinates
                 ? `<div class="map-link">
                     <a href="https://www.google.com/maps?q=${spot.coordinates[0]},${spot.coordinates[1]}" target="_blank" rel="noopener noreferrer">
@@ -103,12 +196,24 @@
                    </div>`
                 : '';
 
-            const datesHtml = visited
-                ? spot.dates.map(date => `<div class="visit-date">${date}</div>`).join('')
+            let visitStatus = 'unvisited';
+            if (hasConfirmedVisits) visitStatus = 'achieved';
+            else if (hasPartialVisits) visitStatus = 'partial';
+
+            const confirmedDatesHtml = hasConfirmedVisits
+                ? spot.confirmedDates.map(date => `<div class="visit-date">${date}</div>`).join('')
+                : '';
+            
+            const partialDatesHtml = hasPartialVisits
+                ? spot.partialDates.map(date => `<div class="visit-date partial">(${date})</div>`).join('')
+                : '';
+
+            const datesHtml = hasConfirmedVisits || hasPartialVisits
+                ? confirmedDatesHtml + partialDatesHtml
                 : '<div class="visit-date unvisited">未訪問</div>';
 
             return `
-                <div class="achievement-item ${visited ? 'achieved' : ''}">
+                <div class="achievement-item ${visitStatus}">
                     <h3>${spot.name}</h3>
                     <div class="achievement-dates" id="${id}-dates">
                         ${datesHtml}
@@ -124,7 +229,11 @@
             const items = spots.map(spot => createAchievementItem(spot.id, spot));
             
             const totalCount = spots.length;
-            const visitedCount = spots.filter(spot => spot.dates && spot.dates.length > 0).length;
+            const confirmedCount = spots.filter(spot => spot.confirmedDates && spot.confirmedDates.length > 0).length;
+            const partialCount = spots.filter(spot => spot.partialDates && spot.partialDates.length > 0).length;
+            const progressText = partialCount > 0 
+                ? `${confirmedCount}(+${partialCount})/${totalCount}`
+                : `${confirmedCount}/${totalCount}`;
 
             return `
                 <div class="achievement-section">
@@ -133,7 +242,7 @@
                         ${items.join('')}
                     </div>
                     <div class="achievement-progress">
-                        進捗状況: <span id="${key}-progress">${visitedCount}</span>/${totalCount}
+                        進捗状況: <span id="${key}-progress">${progressText}</span>
                     </div>
                 </div>
             `;
@@ -166,10 +275,17 @@
                 subdomains: 'abcd'
             }).addTo(map);
 
-            // 訪問済みと未訪問のマーカーアイコンを定義
+            // 訪問済み、部分訪問、未訪問のマーカーアイコンを定義
             const visitedIcon = L.divIcon({
                 className: 'custom-marker',
                 html: `<div class="marker-circle" style="background-color: green;">✓</div>`,
+                iconSize: [12, 12],
+                iconAnchor: [6, 6]
+            });
+
+            const partialIcon = L.divIcon({
+                className: 'custom-marker',
+                html: `<div class="marker-circle" style="background-color: #ffa000;">△</div>`,
                 iconSize: [12, 12],
                 iconAnchor: [6, 6]
             });
@@ -186,13 +302,26 @@
             data.spots.forEach(spot => {
                 if (spot.coordinates) {
                     coordinates.push(spot.coordinates);
-                    const isVisited = spot.dates && spot.dates.length > 0;
-                    const visitInfo = isVisited 
-                        ? `訪問済み<br>${spot.dates.map(date => `・${date}`).join('<br>')}`
-                        : '未訪問';
-                    L.marker(spot.coordinates, {
-                        icon: isVisited ? visitedIcon : unvisitedIcon
-                    })
+                    const hasConfirmedVisits = spot.confirmedDates && spot.confirmedDates.length > 0;
+                    const hasPartialVisits = spot.partialDates && spot.partialDates.length > 0;
+                    
+                    let visitInfo;
+                    let icon;
+                    if (hasConfirmedVisits) {
+                        visitInfo = `訪問済み<br>${spot.confirmedDates.map(date => `・${date}`).join('<br>')}`;
+                        if (hasPartialVisits) {
+                            visitInfo += `<br>参考記録<br>${spot.partialDates.map(date => `・${date}`).join('<br>')}`;
+                        }
+                        icon = visitedIcon;
+                    } else if (hasPartialVisits) {
+                        visitInfo = `参考記録<br>${spot.partialDates.map(date => `・${date}`).join('<br>')}`;
+                        icon = partialIcon;
+                    } else {
+                        visitInfo = '未訪問';
+                        icon = unvisitedIcon;
+                    }
+
+                    L.marker(spot.coordinates, { icon })
                     .bindPopup(`
                         <strong>${spot.name}</strong><br>
                         ${visitInfo}

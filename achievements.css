@@ -10,6 +10,22 @@
     font-weight: bold;
 }
 
+/* 地図ボタンのスタイル */
+.map-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.map-button:hover {
+    background-color: #45a049;
+}
+
 /* 実績ページのスタイル */
 .achievement-section {
     margin-bottom: 2rem;
@@ -41,6 +57,10 @@
 
 .achievement-item.achieved {
     background-color: #e8f5e9;  /* 訪問済みは薄い緑 */
+}
+
+.achievement-item.partial {
+    background-color: #fff3e0;  /* 部分訪問は薄い黄色 */
 }
 
 .achievement-item h3 {
