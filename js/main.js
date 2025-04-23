@@ -14,7 +14,10 @@ class MapManager {
       return;
     }
 
-    this.map = L.map("map").setView([37, 138], 6);
+    this.map = L.map("map", {
+      preferCanvas: true  // Canvasレンダラーを使用（パフォーマンス向上）
+    }).setView([37, 138], 6);
+
     L.tileLayer(
       "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
       {
