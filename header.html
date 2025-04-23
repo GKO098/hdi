@@ -1,0 +1,25 @@
+<header class="header">
+    <nav class="nav-container">
+        <a href="/" class="site-title">hdi</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link" id="nav-index">🗺️ 俯瞰地図</a>
+            <a href="summary_table.html" class="nav-link" id="nav-summary_table">📋 旅の一覧</a>
+            <a href="trip_detail.html" class="nav-link" id="nav-trip_detail">🎬 個別の旅</a>
+            <a href="achievements.html" class="nav-link" id="nav-achievements">🏆 実績</a>
+        </div>
+    </nav>
+</header>
+
+<script>
+// 現在のページに応じてアクティブなリンクにクラスを追加
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPage = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        if (currentPage.includes(link.getAttribute('href'))) {
+            link.classList.add('active');
+        }
+    });
+});
+</script> 

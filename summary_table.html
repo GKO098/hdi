@@ -6,6 +6,7 @@
   <meta name="robots" content="noindex, nofollow, noarchive">
   <link rel="icon" href="icons/favicon.png">
   <title>旅の記録</title>
+  <link rel="stylesheet" href="header.css">
   <style>
     table {
       border-collapse: collapse;
@@ -94,7 +95,8 @@
 
     /* スクロール可能なコンテナのスタイル */
     .scrollable-container {
-      max-height: 7.5em;  /* 5行分の高さ */
+      max-height: 7.5em;
+      /* 5行分の高さ */
       overflow-y: auto;
       padding-right: 8px;
     }
@@ -162,12 +164,13 @@
 </head>
 
 <body>
+  <!-- ヘッダーを読み込み -->
+  <div id="header-placeholder"></div>
+
   <h1>旅の記録一覧</h1>
-  <div style="margin-bottom: 20px;">
-    <a href="index.html" style="text-decoration: none; color: #4CAF50;">🗺️ マップで見る</a>
-  </div>
   <div class="table-wrapper">
-    <button id="toggle-details" style="margin-bottom: 10px; padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">詳細を展開</button>
+    <button id="toggle-details"
+      style="margin-bottom: 10px; padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">詳細を展開</button>
     <table id="trip-table">
       <colgroup>
         <col style="width: 11ch;"> <!-- id -->
@@ -246,18 +249,37 @@
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="js/summary_table.js" defer></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    // ヘッダーを読み込む
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+
+        // ヘッダー読み込み後にアクティブリンクを設定
+        const currentPath = window.location.pathname;
+        const currentPage = currentPath.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === currentPage) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+    document.addEventListener('DOMContentLoaded', function () {
       const toggleButton = document.getElementById('toggle-details');
       const detailColumns = document.querySelectorAll('.detail-column');
       const table = document.getElementById('trip-table');
 
-      toggleButton.addEventListener('click', function() {
+      toggleButton.addEventListener('click', function () {
         detailColumns.forEach(col => {
           col.classList.toggle('collapsed');
           col.classList.toggle('expanded');
         });
         table.classList.toggle('expanded-table');
-        
+
         if (toggleButton.textContent === '詳細を展開') {
           toggleButton.textContent = '詳細を収納';
         } else {

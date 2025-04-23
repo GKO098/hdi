@@ -9,6 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="header.css">
     <style>
         table {
             border-collapse: collapse;
@@ -211,23 +212,47 @@
 </head>
 
 <body>
-    <div class="selector-container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5em;">
-            <a href="summary_table.html">旅の記録一覧</a>
-            <div>
-                <span id="prev-trip"></span>
-                <span id="next-trip"></span>
+    <!-- ヘッダーを読み込み -->
+    <div id="header-placeholder"></div>
+
+    <div class="container">
+        <div class="selector-container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5em;">
+                <a href="summary_table.html">旅の記録一覧</a>
+                <div>
+                    <span id="prev-trip"></span>
+                    <span id="next-trip"></span>
+                </div>
             </div>
+            <select id="record-select"></select>
         </div>
-        <select id="record-select"></select>
+        <div id="recordContainer"></div>
     </div>
-    <div id="recordContainer"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-arrowheads@1.2.0/dist/leaflet-arrowheads.js"></script>
     <script src="js/main.js"></script>
     <script>
+        // ヘッダーを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                
+                // ヘッダー読み込み後にアクティブリンクを設定
+                const currentPath = window.location.pathname;
+                const currentPage = currentPath.split('/').pop().split('?')[0] || 'index.html';
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href').split('?')[0];
+                    if (href === currentPage) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
         const select = document.getElementById('record-select');
         const container = document.getElementById('recordContainer');
         let jsonData = [];

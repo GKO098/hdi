@@ -6,17 +6,17 @@
     <title>実績</title>
     <link rel="icon" type="image/png" href="icons/favicon.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="achievements.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
 </head>
 <body>
+    <!-- ヘッダーを読み込み -->
+    <div id="header-placeholder"></div>
+
     <div class="container">
         <h1>実績</h1>
-        <div style="margin-bottom: 20px;">
-            <a href="index.html" style="text-decoration: none; color: #4CAF50;">🗺️ 旅の記録マップに戻る</a>
-            <button onclick="showAllLocations()" style="margin-left: 20px;" class="map-button">🗺️ 全ての場所を地図で見る</button>
-        </div>
         <div class="description" style="margin-bottom: 20px;">
             <small>※河川や広域な場所の座標は、代表的な地点を選んでいます。</small>
             <small>※日付を思い出せない場所はxxxx-xx-xxとしています。</small>
@@ -39,6 +39,25 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        // ヘッダーを読み込む
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                
+                // ヘッダー読み込み後にアクティブリンクを設定
+                const currentPath = window.location.pathname;
+                const currentPage = currentPath.split('/').pop() || 'index.html';
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === currentPage) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
         let map = null;
         let achievementsData = {};
 
@@ -358,4 +377,4 @@
         loadAchievementsData();
     </script>
 </body>
-</html> 
+</html>

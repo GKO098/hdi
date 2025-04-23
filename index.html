@@ -8,9 +8,20 @@
   <title>旅の記録マップ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="header.css">
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
     #map {
-      height: 95vh;
+      flex: 1;
+      min-height: calc(100vh - 50px); /* 最小でもビューポートの高さからヘッダー分を引いた高さを確保 */
+      height: 150vh; /* ビューポートの1.5倍の高さを設定 */
     }
 
     #controls {
@@ -58,6 +69,9 @@
 </head>
 
 <body>
+  <!-- ヘッダーを読み込み -->
+  <div id="header-placeholder"></div>
+
   <div class="fiction-notice">
     ※ 登場する人物・かかった金額・時刻や経路等は、実在のものとは限りません。
   </div>
@@ -66,8 +80,6 @@
     <div id="checkboxes"></div>
     <button id="selectAll">すべて選択</button>
     <button id="clearAll">すべて解除</button>
-    <a href="summary_table.html" style="margin-left: 20px; text-decoration: none; color: #4CAF50;">📋 一覧表を見る</a>
-    <a href="achievements.html" style="margin-left: 20px; text-decoration: none; color: #4CAF50;">🏆 実績を見る</a>
   </div>
   <div id="map"></div>
   <script>window.dateForMap = "all";</script>
@@ -75,6 +87,25 @@
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="js/main.js"></script>
   <script>
+    // ヘッダーを読み込む
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+            
+            // ヘッダー読み込み後にアクティブリンクを設定
+            const currentPath = window.location.pathname;
+            const currentPage = currentPath.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
     // 地図の初期化
     mapManager.initializeMap();
     mapManager.attachControlEvents();
