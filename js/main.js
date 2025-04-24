@@ -5,6 +5,8 @@ class MapManager {
     this.markers = [];
     this.polylines = [];
     this.dateColors = {};
+    this.locationMarker = null;
+    this.locationCircle = null;
   }
 
   initializeMap() {
@@ -25,6 +27,25 @@ class MapManager {
         subdomains: "abcd",
       }
     ).addTo(this.map);
+
+    // 位置情報ボタンを追加
+    const locationButton = L.control({ position: 'bottomright' });
+    locationButton.onAdd = () => {
+      const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+      div.innerHTML = `
+        <a href="#" title="現在地を表示" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: white; border-radius: 4px;">
+          <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;">
+            <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="currentColor"/>
+          </svg>
+        </a>
+      `;
+      div.onclick = (e) => {
+        e.preventDefault();
+        this.showCurrentLocation();
+      };
+      return div;
+    };
+    locationButton.addTo(this.map);
 
     const csvFile = "data/all_routes.csv";
     const checkboxesDiv = document.getElementById("checkboxes");
@@ -259,6 +280,81 @@ class MapManager {
         this.updateMap();
       });
     }
+  }
+
+  // 現在地を取得して表示する関数
+  showCurrentLocation() {
+    if (!navigator.geolocation) {
+      alert('お使いのブラウザでは位置情報の取得がサポートされていません。');
+      return;
+    }
+
+    // 位置情報の取得中表示
+    if (this.locationMarker) {
+      this.locationMarker.bindPopup('位置情報を取得中...').openPopup();
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const accuracy = position.coords.accuracy;
+
+        // 既存のマーカーとサークルを削除
+        if (this.locationMarker) this.map.removeLayer(this.locationMarker);
+        if (this.locationCircle) this.map.removeLayer(this.locationCircle);
+
+        // 現在地マーカーを作成
+        this.locationMarker = L.marker([lat, lng], {
+          icon: L.divIcon({
+            className: 'location-marker',
+            html: '<div style="background-color: #2196F3; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.5);"></div>',
+            iconSize: [16, 16],
+            iconAnchor: [8, 8]
+          })
+        }).addTo(this.map);
+
+        // 精度を示す円を作成
+        this.locationCircle = L.circle([lat, lng], {
+          radius: accuracy,
+          color: '#2196F3',
+          fillColor: '#2196F3',
+          fillOpacity: 0.15,
+          weight: 1
+        }).addTo(this.map);
+
+        // ポップアップで情報を表示
+        this.locationMarker.bindPopup(`
+          <b>現在地</b><br>
+          緯度: ${lat.toFixed(6)}<br>
+          経度: ${lng.toFixed(6)}<br>
+          精度: ${accuracy.toFixed(1)}m
+        `).openPopup();
+
+        // 現在地にズーム
+        this.map.setView([lat, lng], 15);
+      },
+      (error) => {
+        let errorMessage = '位置情報の取得に失敗しました。';
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            errorMessage = '位置情報の使用が許可されていません。';
+            break;
+          case error.POSITION_UNAVAILABLE:
+            errorMessage = '位置情報を取得できませんでした。';
+            break;
+          case error.TIMEOUT:
+            errorMessage = '位置情報の取得がタイムアウトしました。';
+            break;
+        }
+        alert(errorMessage);
+      },
+      {
+        enableHighAccuracy: true,  // 高精度の位置情報を要求
+        timeout: 10000,            // 10秒でタイムアウト
+        maximumAge: 0              // キャッシュした位置情報を使用しない
+      }
+    );
   }
 }
 

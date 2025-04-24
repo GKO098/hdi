@@ -82,6 +82,25 @@
                 subdomains: 'abcd'
             }).addTo(map);
 
+            // 位置情報ボタンを追加
+            const locationButton = L.control({ position: 'bottomright' });
+            locationButton.onAdd = () => {
+                const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+                div.innerHTML = `
+                    <a href="#" title="現在地を表示" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: white; border-radius: 4px;">
+                        <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;">
+                            <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                `;
+                div.onclick = (e) => {
+                    e.preventDefault();
+                    showCurrentLocation(map);
+                };
+                return div;
+            };
+            locationButton.addTo(map);
+
             // マーカーアイコンを定義
             const visitedIcon = L.divIcon({
                 className: 'custom-marker',
@@ -297,6 +316,25 @@
                 subdomains: 'abcd'
             }).addTo(map);
 
+            // 位置情報ボタンを追加
+            const locationButton = L.control({ position: 'bottomright' });
+            locationButton.onAdd = () => {
+                const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+                div.innerHTML = `
+                    <a href="#" title="現在地を表示" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: white; border-radius: 4px;">
+                        <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;">
+                            <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                `;
+                div.onclick = (e) => {
+                    e.preventDefault();
+                    showCurrentLocation(map);
+                };
+                return div;
+            };
+            locationButton.addTo(map);
+
             // 訪問済み、部分訪問、未訪問のマーカーアイコンを定義
             const visitedIcon = L.divIcon({
                 className: 'custom-marker',
@@ -378,6 +416,119 @@
 
         // データを読み込んで初期表示
         loadAchievementsData();
+
+        function showLocationOnMap(lat, lng, name) {
+            const modal = document.getElementById('mapModal');
+            const mapTitle = document.getElementById('mapTitle');
+            
+            mapTitle.textContent = name;
+            modal.style.display = 'block';
+
+            if (map) {
+                map.remove();
+            }
+
+            map = L.map('map').setView([lat, lng], 15);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap & CartoDB',
+                subdomains: 'abcd'
+            }).addTo(map);
+
+            // 位置情報ボタンを追加
+            const locationButton = L.control({ position: 'bottomright' });
+            locationButton.onAdd = () => {
+                const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+                div.innerHTML = `
+                    <a href="#" title="現在地を表示" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: white; border-radius: 4px;">
+                        <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;">
+                            <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                `;
+                div.onclick = (e) => {
+                    e.preventDefault();
+                    showCurrentLocation(map);
+                };
+                return div;
+            };
+            locationButton.addTo(map);
+
+            // 場所のマーカーを追加
+            L.marker([lat, lng]).addTo(map).bindPopup(name).openPopup();
+        }
+
+        // 現在地を取得して表示する関数
+        function showCurrentLocation(map) {
+            if (!navigator.geolocation) {
+                alert('お使いのブラウザでは位置情報の取得がサポートされていません。');
+                return;
+            }
+
+            let locationMarker = null;
+            let locationCircle = null;
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    const accuracy = position.coords.accuracy;
+
+                    // 既存のマーカーとサークルを削除
+                    if (locationMarker) map.removeLayer(locationMarker);
+                    if (locationCircle) map.removeLayer(locationCircle);
+
+                    // 現在地マーカーを作成
+                    locationMarker = L.marker([lat, lng], {
+                        icon: L.divIcon({
+                            className: 'location-marker',
+                            html: '<div style="background-color: #2196F3; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.5);"></div>',
+                            iconSize: [16, 16],
+                            iconAnchor: [8, 8]
+                        })
+                    }).addTo(map);
+
+                    // 精度を示す円を作成
+                    locationCircle = L.circle([lat, lng], {
+                        radius: accuracy,
+                        color: '#2196F3',
+                        fillColor: '#2196F3',
+                        fillOpacity: 0.15,
+                        weight: 1
+                    }).addTo(map);
+
+                    // ポップアップで情報を表示
+                    locationMarker.bindPopup(`
+                        <b>現在地</b><br>
+                        緯度: ${lat.toFixed(6)}<br>
+                        経度: ${lng.toFixed(6)}<br>
+                        精度: ${accuracy.toFixed(1)}m
+                    `).openPopup();
+
+                    // 現在地にズーム
+                    map.setView([lat, lng], 15);
+                },
+                (error) => {
+                    let errorMessage = '位置情報の取得に失敗しました。';
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage = '位置情報の使用が許可されていません。';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage = '位置情報を取得できませんでした。';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage = '位置情報の取得がタイムアウトしました。';
+                            break;
+                    }
+                    alert(errorMessage);
+                },
+                {
+                    enableHighAccuracy: true,  // 高精度の位置情報を要求
+                    timeout: 10000,            // 10秒でタイムアウト
+                    maximumAge: 0              // キャッシュした位置情報を使用しない
+                }
+            );
+        }
     </script>
 </body>
 </html>
