@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>日本の都道府県地図</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map { height: 100vh; width: 100vw; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div style="position:absolute;z-index:900;bottom:10px;left:10px;background:rgba(255,255,255,0.8);padding:6px 14px;border-radius:8px;font-size:13px;">
+    市区町村データの出典：国土交通省 国土数値情報
+  </div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // 地図の初期化（日本の中心付近）
+    var map = L.map('map').setView([36.2048, 138.2529], 5);
+
+    // OpenStreetMapのタイルレイヤー
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var geojsonLayer;
+    var geojsonDataCity;
+    var levelMapCity = {};
+
+    // 訪問レベルごとの色
+    function getColor(level) {
+      switch (level) {
+        case '5': return '#e87afd'; // ピンク
+        case '4': return '#f56d64'; // 赤
+        case '3': return '#faff79'; // 黄
+        case '2': return '#bbf59d'; // 緑
+        case '1': return '#b7ddfd'; // 青
+        default:  return '#ffffff'; // 白
+      }
+    }
+
+    // CSVをパースして都道府県名→訪問レベルのマップを作成
+    function parseCSV(csv) {
+      var lines = csv.trim().split(/\r?\n/);
+      var headers = lines[0].split(',');
+      var mapCity = {};
+      for (var i = 1; i < lines.length; i++) {
+        var cols = lines[i].split(',');
+        while (cols.length < headers.length) cols.push('');
+        var row = {};
+        headers.forEach(function(h, idx) {
+          row[h] = cols[idx];
+        });
+        if (row['区分'] === '市区町村') {
+          // mapCity[都道府県名][市区町村名] = 訪問レベル
+          if (!mapCity[row['都道府県']]) mapCity[row['都道府県']] = {}; // 都道府県名が存在しない場合は新しく作成
+          mapCity[row['都道府県']][row['名称']] = row['訪問レベル'] || '';
+        }
+      }
+      return {city: mapCity};
+    }
+
+    function getStyle(feature) {
+      var pref = feature.properties && feature.properties.N03_001;
+      var name1 = feature.properties && feature.properties.N03_003;
+      var name2 = feature.properties && feature.properties.N03_004;
+      var level = '';
+      if (pref && levelMapCity[pref]) {
+        if (name1 && levelMapCity[pref][name1]) {
+          level = levelMapCity[pref][name1];
+        } else if (name2 && levelMapCity[pref][name2]) {
+          level = levelMapCity[pref][name2];
+        }
+      }
+      return {
+        color: '#000',
+        weight: 1,
+        fillOpacity: 0.6,
+        fillColor: getColor(level)
+      };
+    }
+
+    function renderGeoJSON() {
+      if (geojsonLayer) {
+        map.removeLayer(geojsonLayer);
+      }
+      geojsonLayer = L.geoJSON(geojsonDataCity, {
+        style: getStyle,
+        onEachFeature: function (feature, layer) {
+          var pref = feature.properties && feature.properties.N03_001;
+          var name1 = feature.properties && feature.properties.N03_003;
+          var name2 = feature.properties && feature.properties.N03_004;
+          var level = '';
+          var dispName = name1 || name2 || '';
+          if (pref && levelMapCity[pref]) {
+            if (name1 && levelMapCity[pref][name1]) {
+              level = levelMapCity[pref][name1];
+              dispName = name1;
+            } else if (name2 && levelMapCity[pref][name2]) {
+              level = levelMapCity[pref][name2];
+              dispName = name2;
+            }
+          }
+          if (!level) level = '未設定';
+          layer.bindPopup(dispName + '<br>訪問レベル: ' + level);
+        }
+      }).addTo(map);
+    }
+
+    // CSVとGeoJSONを両方読み込んでから描画
+    Promise.all([
+      fetch('data/prefectures_municipalities.csv').then(r => r.text()),
+      fetch('data/N03-21_210101.json').then(r => r.json())
+    ]).then(function([csv, geojsonCity]) {
+      var parsed = parseCSV(csv);
+      levelMapCity = parsed.city;
+      geojsonDataCity = geojsonCity;
+      renderGeoJSON();
+    }).catch(function(error) {
+      alert('データの読み込みに失敗しました: ' + error);
+    });
+  </script>
+</body>
+</html> 
