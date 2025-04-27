@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>至区町村</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="header.css">
+  <style>
+    #map { height: 95vh; width: 100vw; }
+    .map-controls {
+      position: absolute;
+      top: 48px;
+      left: 60px;
+      z-index: 1200;
+      background: rgba(255,255,255,0.85);
+      padding: 10px 18px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      font-size: 15px;
+    }
+    .source-note {
+      position: absolute;
+      right: 0px;
+      bottom: 40px;
+      z-index: 1200;
+      background: rgba(255,255,255,0.8);
+      padding: 6px 0px 4px 8px;
+      border-radius: 8px;
+      font-size: 13px;
+      text-align: left;
+      max-width: 600px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダーを読み込み -->
+  <div id="header-placeholder"></div>
+  <!-- 市区町村のみ表示 -->
+  <div class="map-controls">
+    透明度：<input type="range" id="opacitySlider" min="0" max="1" step="0.01" value="0.6" style="vertical-align:middle;width:120px;">
+    <span id="opacityValue">0.60</span>
+    <label style="margin-left:1em;"><input type="checkbox" id="toggleBorder" checked> 境界を表示</label>
+  </div>
+  <div id="map"></div>
+  <div class="source-note">
+    市区町村データの出典：国土交通省 国土数値情報（2025-04-28）
+  </div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // ヘッダーを読み込む
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        // ヘッダー読み込み後にアクティブリンクを設定
+        const currentPath = window.location.pathname;
+        const currentPage = currentPath.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === currentPage) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+    // 地図の初期化（日本の中心付近）
+    var map = L.map('map').setView([36.2048, 138.2529], 6);
+
+    // OpenStreetMapのタイルレイヤー
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var geojsonLayer;
+    var geojsonDataCity;
+    var levelMap = {};
+    var currentOpacity = 0.6;
+    var prefBorderLayer = null;
+
+    // 訪問レベルごとの色
+    function getColor(level) {
+      switch (level) {
+        case '5': return '#e87afd'; // ピンク
+        case '4': return '#f56d64'; // 赤
+        case '3': return '#faff79'; // 黄
+        case '2': return '#bbf59d'; // 緑
+        case '1': return '#b7ddfd'; // 青
+        default:  return '#ffffff'; // 白
+      }
+    }
+
+    // ズームレベルに応じたweightを返す関数
+    function getWeightByZoom(zoom, visible = true) {
+      if (!visible) return 0;
+      if (zoom >= 7) return 1;
+      return 0.5;
+    }
+
+    function getWeightByZoomPref(zoom, visible = true) {
+      if (!visible) return 0;
+      if (zoom >= 7) return 4;
+      return 2;
+    }
+
+    // jis.csvをパースして { '団体コード5桁' : 訪問レベル } のマップを作成
+    function parseCSV(csv) {
+      var lines = csv.trim().split(/\r?\n/);
+      var headers = lines[0].split(',');
+      var map = {};
+      for (var i = 1; i < lines.length; i++) {
+        var cols = lines[i].split(',');
+        while (cols.length < headers.length) cols.push('');
+        var row = {};
+        headers.forEach(function(h, idx) {
+          row[h] = cols[idx];
+        });
+        if (row['団体コード'] && row['訪問レベル']) {
+          var key = row['団体コード'].slice(0, 5);
+          map[key] = row['訪問レベル'];
+        }
+      }
+      return map;
+    }
+
+    function getStyle(feature) {
+      var code5 = feature.properties && feature.properties.N03_007;
+      var level = code5 ? (levelMap[code5] || '') : '';
+      return {
+        color: '#000',
+        weight: getWeightByZoom(map.getZoom()),
+        fillOpacity: currentOpacity,
+        fillColor: getColor(level)
+      };
+    }
+
+    function renderGeoJSON() {
+      if (geojsonLayer) {
+        map.removeLayer(geojsonLayer);
+      }
+      geojsonLayer = L.geoJSON(geojsonDataCity, {
+        style: getStyle,
+        onEachFeature: function (feature, layer) {
+          var code5 = feature.properties && feature.properties.N03_007;
+          var name = (feature.properties.N03_001 || '') + ' ' +
+                     (feature.properties.N03_003 || '') + ' ' +
+                     (feature.properties.N03_004 || '') + ' ' +
+                     (feature.properties.N03_005 || '');
+          var level = code5 ? (levelMap[code5] || '') : '';
+          if (!level) level = '未設定';
+          layer.bindPopup(name + '<br>訪問レベル: ' + level);
+        }
+      }).addTo(map);
+    }
+
+    // ズーム変更時にweightを更新
+    map.on('zoomend', function() {
+      var visible = document.getElementById('toggleBorder').checked;
+      if (geojsonLayer) {
+        var newWeight = getWeightByZoom(map.getZoom(), visible);
+        geojsonLayer.eachLayer(function(layer) {
+          layer.setStyle({ weight: newWeight });
+        });
+      }
+      if (prefBorderLayer) {
+        var newWeight = getWeightByZoomPref(map.getZoom(), visible);
+        prefBorderLayer.setStyle({ weight: newWeight });
+      }
+    });
+
+    // 県境・市区町村の境界線の表示/非表示を切り替える関数
+    function setBordersVisible(visible) {
+      // 市区町村
+      if (geojsonLayer) {
+        geojsonLayer.eachLayer(function(layer) {
+          layer.setStyle({ weight: visible ? getWeightByZoom(map.getZoom()) : 0 });
+        });
+      }
+      // 県境
+      if (prefBorderLayer) {
+        prefBorderLayer.setStyle({ weight: getWeightByZoomPref(map.getZoom(), visible) });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var borderCheckbox = document.getElementById('toggleBorder');
+      borderCheckbox.addEventListener('change', function() {
+        setBordersVisible(this.checked);
+        drawPrefBorders();
+      });
+    });
+
+    // 県境GeoJSONを描画
+    function drawPrefBorders() {
+      // 既存の県境レイヤーを削除
+      if (prefBorderLayer) {
+        map.removeLayer(prefBorderLayer);
+        prefBorderLayer = null;
+      }
+      fetch('data/prefectures.json')
+        .then(r => r.json())
+        .then(geojson => {
+          var visible = document.getElementById('toggleBorder').checked;
+          prefBorderLayer = L.geoJSON(geojson, {
+            style: {
+              color: '#000',
+              weight: getWeightByZoomPref(map.getZoom(), visible),
+              fillOpacity: 0
+            },
+            interactive: false
+          }).addTo(map);
+        });
+    }
+
+    // 透明度スライダーのイベント
+    document.addEventListener('DOMContentLoaded', function() {
+      var slider = document.getElementById('opacitySlider');
+      var valueLabel = document.getElementById('opacityValue');
+      slider.addEventListener('input', function() {
+        currentOpacity = parseFloat(this.value);
+        valueLabel.textContent = currentOpacity.toFixed(2);
+        if (geojsonLayer) {
+          geojsonLayer.eachLayer(function(layer) {
+            layer.setStyle({ fillOpacity: currentOpacity });
+          });
+        }
+      });
+    });
+
+    // CSVとGeoJSONを両方読み込んでから描画
+    Promise.all([
+      fetch('data/jis.csv').then(r => r.text()),
+      fetch('data/N03-20240101.json').then(r => r.json())
+    ]).then(function([csv, geojsonCity]) {
+      levelMap = parseCSV(csv);
+      geojsonDataCity = geojsonCity;
+      renderGeoJSON();
+      drawPrefBorders();
+    }).catch(function(error) {
+      alert('データの読み込みに失敗しました: ' + error);
+    });
+  </script>
+</body>
+</html> 
