@@ -106,7 +106,7 @@
       return 2;
     }
 
-    // jis.csvをパースして { '団体コード5桁' : 訪問レベル } のマップを作成
+    // munistepalities.csvをパースして { '団体コード5桁' : 訪問レベル } のマップを作成
     function parseCSV(csv) {
       var lines = csv.trim().split(/\r?\n/);
       var headers = lines[0].split(',');
@@ -232,7 +232,7 @@
 
     // CSVとGeoJSONを両方読み込んでから描画
     Promise.all([
-      fetch('data/jis.csv').then(r => r.text()),
+      fetch('data/munistepalities.csv').then(r => r.text()),
       fetch('data/N03-20240101.json').then(r => r.json())
     ]).then(function([csv, geojsonCity]) {
       levelMap = parseCSV(csv);
