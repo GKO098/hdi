@@ -18096,7 +18096,163 @@
       "participants": [
         "春日部つむぎ"
       ],
-      "places": [],
+      "places": [
+        {
+          "name": "原尻の滝",
+          "timestamp": "00:00",
+          "type": "nature"
+        },
+        {
+          "name": "メロディーロード（荒城の月）",
+          "timestamp": "00:12",
+          "type": "road"
+        },
+        {
+          "name": "明正井路 一号幹線一号橋",
+          "timestamp": "01:05",
+          "type": "historical"
+        },
+        {
+          "name": "野生のモアイ（モアイ岩）",
+          "timestamp": "01:10",
+          "type": "nature"
+        },
+        {
+          "name": "白水溜池堰堤（白水ダム）",
+          "timestamp": "01:23",
+          "type": "park"
+        },
+        {
+          "name": "音無井路十二号円形分水",
+          "timestamp": "01:53",
+          "type": "historical"
+        },
+        {
+          "name": "天岩戸神社",
+          "timestamp": "02:42",
+          "type": "historical"
+        },
+        {
+          "name": "高千穂峡",
+          "timestamp": "03:09",
+          "type": "nature"
+        },
+        {
+          "name": "高千穂神社",
+          "timestamp": "04:22",
+          "type": "historical"
+        },
+        {
+          "name": "寧静ループ橋",
+          "timestamp": "04:37",
+          "type": "road"
+        },
+        {
+          "name": "高森展望所",
+          "timestamp": "05:03",
+          "type": "nature"
+        },
+        {
+          "name": "月廻り公園",
+          "timestamp": "05:07",
+          "type": "park"
+        },
+        {
+          "name": "上色見熊野座神社",
+          "timestamp": "05:19",
+          "type": "historical"
+        },
+        {
+          "name": "箱石峠展望所",
+          "timestamp": "05:53",
+          "type": "nature"
+        },
+        {
+          "name": "あか牛丼いわさき",
+          "timestamp": "06:26",
+          "type": "restaurant"
+        },
+        {
+          "name": "熊本地震震災ミュージアムKIOKU",
+          "timestamp": "07:06",
+          "type": "museum"
+        },
+        {
+          "name": "草千里ヶ浜",
+          "timestamp": "07:35",
+          "type": "nature"
+        },
+        {
+          "name": "中岳第一火口",
+          "timestamp": "07:50",
+          "type": "nature"
+        },
+        {
+          "name": "城山展望所",
+          "timestamp": "09:36",
+          "type": "nature"
+        },
+        {
+          "name": "大観峰",
+          "timestamp": "09:47",
+          "type": "nature"
+        },
+        {
+          "name": "阿蘇スカイライン展望所",
+          "timestamp": "10:06",
+          "type": "nature"
+        },
+        {
+          "name": "西湯浦園地展望所",
+          "timestamp": "10:10",
+          "type": "nature"
+        },
+        {
+          "name": "鍋ヶ滝",
+          "timestamp": "10:32",
+          "type": "nature"
+        },
+        {
+          "name": "九重\\“夢\\”大吊橋",
+          "timestamp": "11:06",
+          "type": "bridge"
+        },
+        {
+          "name": "玖珠駐屯地",
+          "timestamp": "13:21",
+          "type": "other"
+        },
+        {
+          "name": "青山レストラン",
+          "timestamp": "13:25",
+          "type": "restaurant"
+        },
+        {
+          "name": "道の駅 ゆふいん",
+          "timestamp": "14:09",
+          "type": "road_facility"
+        },
+        {
+          "name": "湯平温泉",
+          "timestamp": "14:15",
+          "type": "hot_spring"
+        },
+        {
+          "name": "乙丸温泉館",
+          "timestamp": "14:58",
+          "type": "hot_spring"
+        },
+        {
+          "name": "狭霧台",
+          "timestamp": "15:34",
+          "type": "nature"
+        },
+        {
+          "name": "エンディング",
+          "timestamp": "15:46",
+          "type": "ending"
+        }
+      ],
       "distance": 355,
       "costs": {
         "meal": 5412,
@@ -18114,8 +18270,234 @@
         "other": 283.3333333
       },
       "metadata": {
+        "weather": "晴",
+        "upload_date": "2025-04-27",
+        "video_title": "【VOICEVOX車載】ほな1人でどっかいこか（大分編第2日）",
+        "niconico": "https://www.nicovideo.jp/watch/sm44921203",
+        "youtube": "https://www.youtube.com/watch?v=pMkN0__PhdI",
         "series": "ほな1人でどっかいこか",
-        "itinerary": "https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/"
+        "summary": "朝の限界、夜の限界",
+        "itinerary": "https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/",
+        "material": {
+          "image": [
+            {
+              "name": "春日部つむぎ立ち絵",
+              "creator": "春日部つむぎ公式",
+              "source": "https://seiga.nicovideo.jp/seiga/im10842587"
+            },
+            {
+              "name": "春日部つむぎ動画",
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
+            },
+            {
+              "name": "ナビエリート 47都道府県 案内集(トヨタナビと同音声) - YouTube",
+              "creator": "にっぽん全国交通チャンネル",
+              "source": "https://www.youtube.com/watch?v=ZW-yelQPQRw"
+            },
+            {
+              "name": "ニコニコテレビちゃん【ver.2.0】 - ニコニ・コモンズ",
+              "creator": "ニコニコ公式",
+              "source": "https://commons.nicovideo.jp/works/nc177467"
+            },
+            {
+              "name": "四国めたん立ち絵",
+              "creator": "akihiyo",
+              "source": "https://seiga.nicovideo.jp/seiga/im10796593"
+            }
+          ],
+          "voice": [
+            {
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
+            }
+          ],
+          "music": [
+            {
+              "name": "《ペール・ギュント》第1組曲 「朝」 (グリーグ)",
+              "creator": "エドヴァルド・グリーグ",
+              "source": "https://www.youtube.com/watch?v=nwpMg-xuyTE"
+            },
+            {
+              "name": "TALK and WALK",
+              "creator": "かずち",
+              "source": "https://commons.nicovideo.jp/material/nc97874"
+            },
+            {
+              "name": "楽しく軽快に",
+              "creator": "yuki",
+              "source": "https://commons.nicovideo.jp/material/nc108008"
+            },
+            {
+              "name": "海を見に行こうよ！",
+              "creator": "こばっと",
+              "source": "https://commons.nicovideo.jp/material/nc221798"
+            },
+            {
+              "name": "夕焼けレモンティー",
+              "creator": "もっぴーさうんど",
+              "source": "https://commons.nicovideo.jp/material/nc101995"
+            },
+            {
+              "name": "青空空港",
+              "creator": "かずち",
+              "source": "https://commons.nicovideo.jp/material/nc124366"
+            },
+            {
+              "name": "カフェにて朝食を",
+              "creator": "Make a field Music",
+              "source": "https://commons.nicovideo.jp/material/nc175279"
+            },
+            {
+              "name": "Stay Alone",
+              "creator": "TheScreenTones",
+              "source": "孤独のグルメ劇中曲"
+            },
+            {
+              "name": "温泉街",
+              "creator": "Sparrow Tune",
+              "source": "https://commons.nicovideo.jp/material/nc216436"
+            },
+            {
+              "name": "また明日",
+              "creator": "MATSU",
+              "source": "https://commons.nicovideo.jp/material/nc134822"
+            }
+          ],
+          "effect": [
+            {
+              "name": "効果音ラボ",
+              "source": "https://soundeffect-lab.info/"
+            }
+          ]
+        },
+        "reference": [
+          {
+            "name": "岡城の歴史 – 国指定史跡 岡城跡",
+            "source": "https://okajou.jp/appeal/history/"
+          },
+          {
+            "name": "白水ため池（通称白水ダム）整備事業のお知らせ（更新） - 大分県ホームページ",
+            "source": "https://www.pref.oita.jp/soshiki/11607/hakusui-info.html"
+          },
+          {
+            "name": "ゆかりとあかりのダムに行きましょう ver.16.0【白水ダム】 - ニコニコ動画",
+            "source": "https://www.nicovideo.jp/watch/sm41174950"
+          },
+          {
+            "name": "くまモンを見たら死ぬゲームとは (クマモンヲミタラシヌゲームとは) [単語記事] - ニコニコ大百科",
+            "source": "https://dic.nicovideo.jp/a/くまモンを見たら死ぬゲーム"
+          },
+          {
+            "name": "「高千穂郷」通信　平成27年1月号",
+            "source": "https://www.pref.miyazaki.lg.jp/documents/85357/85357_20240226122544-1.pdf"
+          },
+          {
+            "name": "【NM4-02】弦巻マキと名所探訪 part.103「熊本県・阿蘇火口」 - ニコニコ動画",
+            "source": "https://www.nicovideo.jp/watch/sm33558641"
+          },
+          {
+            "name": "あまねく旅路の先に#H-01　特攻野郎A(so/ho)チーム、阿蘇に出撃です！【ソフトウェアトーク車載】 - ニコニコ動画",
+            "source": "https://www.nicovideo.jp/watch/sm44774622"
+          },
+          {
+            "name": "日本の地形千景　大分県：大野川が阿蘇火砕流を侵食したできた地形（竹田市）",
+            "source": "https://www.web-gis.jp/GM1000/LandMap/LandMap_19_017.html"
+          },
+          {
+            "name": "チバラギボイロ達何処へ行く？～モテギ・スプリング・ペーパーブッシュ～ - ニコニコ動画",
+            "source": "https://www.nicovideo.jp/watch/sm44879802"
+          },
+          {
+            "name": "コニラボ第17話『大分県のトンネルの数は日本一⁉どうしてそんなに多いの？』 - YouTube",
+            "source": "https://www.youtube.com/watch?v=k1d7LlVWUu8"
+          },
+          {
+            "name": "淮園だより～ほたるの里から2022～vol.8",
+            "source": "https://www.pref.oita.jp/uploaded/attachment/2195016.pdf"
+          },
+          {
+            "name": "大分県九重町／すべては“夢”から始まった～九重“夢”大吊橋から日本一の田舎づくりへ～ - 全国町村会",
+            "source": "https://www.zck.or.jp/site/forum/1167.html"
+          },
+          {
+            "name": "ピリカラくん(黒こしょうかりんとう) [ ひこばえ工房 ] ｜物産おおいた(物産大分) [大分県商工観光労働部]",
+            "source": "https://www.bussan-oita.jp/item-387-2079.html"
+          }
+        ],
+        "advertiser": [
+          "sgt",
+          "エンテー",
+          "副隊長",
+          "かもなす",
+          "DAIDAI",
+          "Hinamiya",
+          "keyblock",
+          "コウビカジ",
+          "ライコー",
+          "ヌイクン",
+          "匿名係長ただの人",
+          "ザコインベスター",
+          "beaver",
+          "セミ",
+          "ユーリ",
+          "panra",
+          "mkky",
+          "うととき",
+          "jko",
+          "霧島の人",
+          "あをき",
+          "藍色",
+          "panra",
+          "チー牛星人",
+          "二人は幸せな接吻をして終了",
+          "こばっと",
+          "tomo",
+          "ひげ",
+          "まくら",
+          "緑茶",
+          "フリィザー",
+          "終わった人",
+          "めぇぜな",
+          "ライチュー",
+          "バナナワニノコ",
+          "２５６８",
+          "風間　零",
+          "ひょんなげな人",
+          "さっぱり",
+          "ミューツー",
+          "紫.",
+          "ピカチュー",
+          "TORAKAZU",
+          "ちゃごみ",
+          "Yflether",
+          "ざんせつ",
+          "敏度",
+          "スイロ",
+          "アークビショップ太郎",
+          "なかじ",
+          "森本沙希",
+          "パワハム",
+          "ななし",
+          "南わらび",
+          "nopposan",
+          "ナツイチ",
+          "インドコアラ",
+          "通りすがり",
+          "悠雫",
+          "やまだ",
+          "もういません",
+          "さとん",
+          "輪廻",
+          "マグラ",
+          "鍵弾",
+          "esk",
+          "とくめい",
+          "hitaka",
+          "colnetto"
+        ]
       }
     },
     {
