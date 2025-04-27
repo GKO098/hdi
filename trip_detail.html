@@ -549,7 +549,7 @@
 
                 // dateが4桁の場合は順位を表示しない
                 if (currentRecord.date?.length === 4) {
-                    rankText = `-/${total}件中`;
+                    rankText = `-/${total}件`;
                 } else {
                     if (recordValue === 0) {
                         // 0円の場合は最下位扱い
@@ -561,7 +561,7 @@
                     } else if (currentRecordRank >= total - 9) {
                         rankClass = 'rank-low';
                     }
-                    rankText = `${currentRecordRank}位/${total}件中`;
+                    rankText = `${currentRecordRank}位/${total}件`;
                 }
 
                 // 順位と総件数を文字列として保存（クラス付き）
