@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Public Roads Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="header.css">
+  <style>
+    #map { height: 95vh; width: 100vw; }
+  </style>
+</head>
+<body>
+  <!-- ヘッダーを読み込み -->
+  <div id="header-placeholder"></div>
+  <details id="controls-container" style="margin:16px 60px 0 60px;z-index:1300;position:relative;">
+    <summary>表示する道路を選択（クリックで展開）</summary>
+    <div style="margin-bottom:8px;">
+      <button id="selectAllBtn" type="button">全てをチェック</button>
+      <button id="clearAllBtn" type="button">全てを解除</button>
+      <button id="selectShortBtn" type="button">2桁以下の国道を全てチェック</button>
+    </div>
+    <div id="controls"></div>
+  </details>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // ヘッダーを読み込む
+    fetch('header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        // ヘッダー読み込み後にアクティブリンクを設定
+        const currentPath = window.location.pathname;
+        const currentPage = currentPath.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === currentPage) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+    // 地図をシンプルに初期化
+    const map = L.map('map').setView([36.2048, 138.2529], 6);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    addLocationButtonToMap(map);
+
+    let allFeatures = [];
+    let geojsonLayer = null;
+
+    fetch('data/N01-07L-2K_Road_only2_merged.json')
+      .then(r => r.json())
+      .then(geojson => {
+        if (!geojson.features || !Array.isArray(geojson.features)) {
+          alert('GeoJSONのfeaturesが正しくありません');
+          return;
+        }
+        allFeatures = geojson.features.filter(f => f && f.properties && f.properties.N01_002);
+        // N01_002から数字部分のみ抽出し「139号」などの形に変換
+        const roadNamesRaw = [...new Set(allFeatures.map(f => f.properties.N01_002))];
+        const roadNames = roadNamesRaw.map(name => {
+          // 全角数字を半角に変換
+          const hankaku = name.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+          const match = hankaku.match(/(\d+)/);
+          return match ? match[1] + '号' : name;
+        });
+        // 元のN01_002値と変換後の表示名を紐付け
+        const roadNameMap = {};
+        roadNamesRaw.forEach((raw, i) => { roadNameMap[roadNames[i]] = raw; });
+        const controls = document.getElementById('controls');
+        controls.innerHTML = roadNames.map(displayName =>
+          `<label style="margin-right:1em;"><input type="checkbox" class="road-checkbox" value="${displayName}" checked> ${displayName}</label>`
+        ).join(' ');
+
+        // 全てをチェック・全てを解除ボタンのイベント
+        document.getElementById('selectAllBtn').onclick = () => {
+          document.querySelectorAll('.road-checkbox').forEach(cb => { cb.checked = true; });
+          updateMap();
+        };
+        document.getElementById('clearAllBtn').onclick = () => {
+          document.querySelectorAll('.road-checkbox').forEach(cb => { cb.checked = false; });
+          updateMap();
+        };
+        // 2桁以下の国道のみ全てチェック
+        document.getElementById('selectShortBtn').onclick = () => {
+          document.querySelectorAll('.road-checkbox').forEach(cb => {
+            // cb.valueは「139号」など。数字部分を抽出
+            const match = cb.value.match(/(\d+)/);
+            if (match && match[1].length <= 2) {
+              cb.checked = true;
+            } else {
+              cb.checked = false;
+            }
+          });
+          updateMap();
+        };
+
+        function updateMap() {
+          if (geojsonLayer) geojsonLayer.remove();
+          const checked = Array.from(document.querySelectorAll('.road-checkbox:checked')).map(cb => cb.value);
+          // チェックされた表示名から元のN01_002値を逆引き
+          const checkedRaw = checked.map(name => roadNameMap[name]);
+          const featuresToShow = allFeatures.filter(f => checkedRaw.includes(f.properties.N01_002));
+          geojsonLayer = L.geoJSON({
+            type: 'FeatureCollection',
+            features: featuresToShow
+          }, {
+            style: function(feature) {
+              // 国道番号を全角→半角変換し、数字部分を抽出
+              let weight = 2;
+              let color = '#3388ff';
+              if (feature.properties && feature.properties.N01_002) {
+                const hankaku = feature.properties.N01_002.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+                const match = hankaku.match(/(\d+)/);
+                if (match) {
+                  const num = match[1];
+                  if (num.length < 3) weight = 4;
+                  const lastDigit = num[num.length - 1];
+                  switch (lastDigit) {
+                    case '0': color = '#000000'; break; // 黒
+                    case '1': color = '#8B4513'; break; // 茶
+                    case '2': color = '#FF0000'; break; // 赤
+                    case '3': color = '#FF8000'; break; // 橙
+                    case '4': color = '#CCCC00'; break; // 黄
+                    case '5': color = '#00FF00'; break; // 緑
+                    case '6': color = '#0000FF'; break; // 青
+                    case '7': color = '#800080'; break; // 紫
+                    case '8': color = '#666666'; break; // 灰
+                    case '9': color = '#aaaaaa'; break; // 白
+                  }
+                }
+              }
+              // ズームレベルが7以下ならweightを半分に
+              let currentZoom = map.getZoom();
+              if (currentZoom <= 7) {
+                weight = weight / 2;
+              }
+              return {
+                color: color,
+                weight: weight,
+                opacity: 1
+              };
+            },
+            onEachFeature: function(feature, layer) {
+              if (feature.properties && feature.properties.N01_002) {
+                // 全角数字を半角に変換し、「139号」などの形に整形
+                const hankaku = feature.properties.N01_002.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+                const match = hankaku.match(/(\d+)/);
+                const displayName = match ? match[1] + '号' : feature.properties.N01_002;
+                layer.bindPopup('道路名: ' + displayName);
+              }
+              // 選択状態管理用
+              layer.selected = false;
+              layer.outlineLayer = null;
+              if (!window._allRoadLayers) window._allRoadLayers = [];
+              window._allRoadLayers.push(layer);
+
+              // マウスオーバーで黒い太線のアウトラインを下に重ねる
+              layer.on('mouseover', function(e) {
+                const baseWeight = layer.options.weight || 4;
+                if (!layer.selected) {
+                  layer.outlineLayer = L.polyline(layer.getLatLngs(), {
+                    color: 'black',
+                    weight: baseWeight + 4,
+                    opacity: 1,
+                    interactive: false
+                  }).addTo(map);
+                  layer.outlineLayer.bringToBack();
+                  layer.bringToFront();
+                }
+                layer.openPopup(e.latlng);
+              });
+              layer.on('mouseout', function(e) {
+                if (!layer.selected && layer.outlineLayer) {
+                  map.removeLayer(layer.outlineLayer);
+                  layer.outlineLayer = null;
+                  layer.closePopup();
+                }
+              });
+              // クリックで選択・選択解除
+              layer.on('click', function(e) {
+                // すべてのレイヤーの選択状態を解除
+                window._allRoadLayers.forEach(l => {
+                  if (l !== layer && l.selected) {
+                    l.selected = false;
+                    if (l.outlineLayer) {
+                      map.removeLayer(l.outlineLayer);
+                      l.outlineLayer = null;
+                    }
+                    l.closePopup && l.closePopup();
+                  }
+                });
+                // 自分の選択状態をトグル
+                if (layer.selected) {
+                  layer.selected = false;
+                  if (layer.outlineLayer) {
+                    map.removeLayer(layer.outlineLayer);
+                    layer.outlineLayer = null;
+                  }
+                  layer.closePopup();
+                } else {
+                  const baseWeight = layer.options.weight || 4;
+                  if (!layer.outlineLayer) {
+                    layer.outlineLayer = L.polyline(layer.getLatLngs(), {
+                      color: 'black',
+                      weight: baseWeight + 6,
+                      opacity: 1,
+                      interactive: false
+                    }).addTo(map);
+                    layer.outlineLayer.bringToBack();
+                  }
+                  layer.selected = true;
+                  layer.bringToFront();
+                  layer.openPopup(e.latlng);
+                }
+              });
+            }
+          }).addTo(map);
+          if (geojsonLayer.getLayers().length > 0) {
+            map.fitBounds(geojsonLayer.getBounds());
+          }
+        }
+        updateMap();
+        controls.addEventListener('change', updateMap);
+
+        // ズームレベル変更時に再描画
+        map.on('zoomend', function() {
+          if (geojsonLayer) geojsonLayer.setStyle(geojsonLayer.options.style);
+        });
+      })
+      .catch(function(error) {
+        alert('道路データの読み込みに失敗しました: ' + error);
+      });
+  </script>
+</body>
+</html> 
