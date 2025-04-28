@@ -47,7 +47,7 @@ class MapManager {
     };
     locationButton.addTo(this.map);
 
-    const csvFile = "data/all_routes.csv";
+    const csvFile = "data/travel_routes.csv";
     const checkboxesDiv = document.getElementById("checkboxes");
     const colorList = [
       "red",
@@ -360,3 +360,80 @@ class MapManager {
 
 const mapManager = new MapManager();
 // 初期化はtrip_detail.html側で行う
+
+// 任意のLeaflet地図インスタンスに現在地ボタンを追加する共通関数
+function addLocationButtonToMap(map) {
+  let locationMarker = null;
+  let locationCircle = null;
+  const locationButton = L.control({ position: 'bottomright' });
+  locationButton.onAdd = function(map) {
+    const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+    div.innerHTML = `
+      <a href="#" title="現在地を表示" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: white; border-radius: 4px;">
+        <svg viewBox="0 0 24 24" style="width: 18px; height: 18px;">
+          <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3A8.994 8.994 0 0 0 13 3.06V1h-2v2.06A8.994 8.994 0 0 0 3.06 11H1v2h2.06A8.994 8.994 0 0 0 11 20.94V23h2v-2.06A8.994 8.994 0 0 0 20.94 13H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="currentColor"/>
+        </svg>
+      </a>
+    `;
+    div.onclick = function(e) {
+      e.preventDefault();
+      if (!navigator.geolocation) {
+        alert('お使いのブラウザでは位置情報の取得がサポートされていません。');
+        return;
+      }
+      if (locationMarker) {
+        locationMarker.bindPopup('位置情報を取得中...').openPopup();
+      }
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          const accuracy = position.coords.accuracy;
+          if (locationMarker) map.removeLayer(locationMarker);
+          if (locationCircle) map.removeLayer(locationCircle);
+          locationMarker = L.marker([lat, lng], {
+            icon: L.divIcon({
+              className: 'location-marker',
+              html: '<div style="background-color: #2196F3; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.5);"></div>',
+              iconSize: [16, 16],
+              iconAnchor: [8, 8]
+            })
+          }).addTo(map);
+          locationCircle = L.circle([lat, lng], {
+            radius: accuracy,
+            color: '#2196F3',
+            fillColor: '#2196F3',
+            fillOpacity: 0.15,
+            weight: 1
+          }).addTo(map);
+          locationMarker.bindPopup(
+            '<b>現在地</b><br>緯度: ' + lat.toFixed(6) +
+            '<br>経度: ' + lng.toFixed(6) +
+            '<br>精度: ' + accuracy.toFixed(1) + 'm'
+          ).openPopup();
+          map.setView([lat, lng], 15);
+        },
+        function(error) {
+          let errorMessage = '位置情報の取得に失敗しました。';
+          switch(error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage = '位置情報の使用が許可されていません。'; break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage = '位置情報を取得できませんでした。'; break;
+            case error.TIMEOUT:
+              errorMessage = '位置情報の取得がタイムアウトしました。'; break;
+          }
+          alert(errorMessage);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
+        }
+      );
+    };
+    return div;
+  };
+  locationButton.addTo(map);
+}
+
