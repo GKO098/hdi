@@ -9,11 +9,19 @@
   <link rel="stylesheet" href="header.css">
   <style>
     #map { height: 95vh; width: 100vw; }
+    .notice-container {
+      margin: 16px 60px 8px 60px;
+      color: red;
+      font-size: 0.9em;
+    }
   </style>
 </head>
 <body>
   <!-- ヘッダーを読み込み -->
   <div id="header-placeholder"></div>
+  <div class="notice-container">
+    <p>※ 国道174号のデータが国土数値情報の道路データになさそうなので、自分で作成したデータです。国道450号（旭川紋別自動車道）・国道468号（圏央道）・国道475号（東海環状）・国道483号（北近畿道）・国道506号（那覇空港自動車道）には一般道の区間がありません</p>
+  </div>
   <details id="controls-container" style="margin:16px 60px 0 60px;z-index:1300;position:relative;">
     <summary>表示する道路を選択（クリックで展開）</summary>
     <div style="margin-bottom:8px;">
@@ -113,14 +121,14 @@
           }, {
             style: function(feature) {
               // 国道番号を全角→半角変換し、数字部分を抽出
-              let weight = 2;
+              let weight = 3;
               let color = '#3388ff';
               if (feature.properties && feature.properties.N01_002) {
                 const hankaku = feature.properties.N01_002.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
                 const match = hankaku.match(/(\d+)/);
                 if (match) {
                   const num = match[1];
-                  if (num.length < 3) weight = 4;
+                  if (num.length < 3) weight = 5;
                   const lastDigit = num[num.length - 1];
                   switch (lastDigit) {
                     case '0': color = '#000000'; break; // 黒
@@ -128,7 +136,7 @@
                     case '2': color = '#FF0000'; break; // 赤
                     case '3': color = '#FF8000'; break; // 橙
                     case '4': color = '#CCCC00'; break; // 黄
-                    case '5': color = '#00FF00'; break; // 緑
+                    case '5': color = '#00DD00'; break; // 緑
                     case '6': color = '#0000FF'; break; // 青
                     case '7': color = '#800080'; break; // 紫
                     case '8': color = '#666666'; break; // 灰
@@ -154,7 +162,31 @@
                 const match = hankaku.match(/(\d+)/);
                 const displayName = match ? match[1] + '号' : feature.properties.N01_002;
                 layer.bindPopup('道路名: ' + displayName);
+
+                // クリック用の透明な太い線を追加
+                const clickableLayer = L.polyline(layer.getLatLngs(), {
+                  color: '#ffffff',
+                  weight: 8,
+                  opacity: 0
+                }).addTo(map);
+
+                // クリック用レイヤーのイベントを本体レイヤーに転送
+                clickableLayer.on('click', function(e) {
+                  layer.fire('click', e);
+                });
+                clickableLayer.on('mouseover', function(e) {
+                  layer.fire('mouseover', e);
+                });
+                clickableLayer.on('mouseout', function(e) {
+                  layer.fire('mouseout', e);
+                });
+
+                // 選択状態管理用
+                layer.clickableLayer = clickableLayer;
+                if (!window._allClickableLayers) window._allClickableLayers = [];
+                window._allClickableLayers.push(clickableLayer);
               }
+
               // 選択状態管理用
               layer.selected = false;
               layer.outlineLayer = null;
@@ -173,6 +205,9 @@
                   }).addTo(map);
                   layer.outlineLayer.bringToBack();
                   layer.bringToFront();
+                  if (layer.clickableLayer) {
+                    layer.clickableLayer.bringToFront();
+                  }
                 }
                 layer.openPopup(e.latlng);
               });
@@ -217,13 +252,19 @@
                   }
                   layer.selected = true;
                   layer.bringToFront();
+                  if (layer.clickableLayer) {
+                    layer.clickableLayer.bringToFront();
+                  }
                   layer.openPopup(e.latlng);
                 }
               });
             }
           }).addTo(map);
-          if (geojsonLayer.getLayers().length > 0) {
+
+          // 初回表示時のみfitBoundsを実行
+          if (!window.initialBoundSet && geojsonLayer.getLayers().length > 0) {
             map.fitBounds(geojsonLayer.getBounds());
+            window.initialBoundSet = true;
           }
         }
         updateMap();
@@ -231,7 +272,41 @@
 
         // ズームレベル変更時に再描画
         map.on('zoomend', function() {
-          if (geojsonLayer) geojsonLayer.setStyle(geojsonLayer.options.style);
+          if (geojsonLayer) {
+            // クリック可能レイヤーをクリアして再作成
+            if (window._allClickableLayers) {
+              window._allClickableLayers.forEach(layer => {
+                if (layer) map.removeLayer(layer);
+              });
+              window._allClickableLayers = [];
+            }
+            // スタイルの更新のみ行う
+            geojsonLayer.setStyle(geojsonLayer.options.style);
+            // 新しいクリック可能レイヤーを作成
+            geojsonLayer.eachLayer(function(layer) {
+              if (layer.feature && layer.feature.properties && layer.feature.properties.N01_002) {
+                const clickableLayer = L.polyline(layer.getLatLngs(), {
+                  color: '#ffffff',
+                  weight: 8,
+                  opacity: 0
+                }).addTo(map);
+
+                clickableLayer.on('click', function(e) {
+                  layer.fire('click', e);
+                });
+                clickableLayer.on('mouseover', function(e) {
+                  layer.fire('mouseover', e);
+                });
+                clickableLayer.on('mouseout', function(e) {
+                  layer.fire('mouseout', e);
+                });
+
+                layer.clickableLayer = clickableLayer;
+                if (!window._allClickableLayers) window._allClickableLayers = [];
+                window._allClickableLayers.push(clickableLayer);
+              }
+            });
+          }
         });
       })
       .catch(function(error) {
