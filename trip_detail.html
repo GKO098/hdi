@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="header.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         table {
             border-collapse: collapse;
@@ -229,6 +230,21 @@
         <div id="recordContainer"></div>
     </div>
 
+    <!-- ヒストグラムモーダル -->
+    <div id="histogram-modal" style="display:none; position:fixed; z-index:1000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+        <div style="background:#fff; padding:0; border-radius:8px; max-width:80vw; max-height:80vh; width:80vw; height:80vh; position:relative; display:flex; flex-direction:column;">
+            <button id="close-histogram-modal" style="position:absolute; top:8px; right:8px; z-index:10;">閉じる</button>
+            <h2 style="margin:1em;">走行距離ヒストグラム</h2>
+            <div style="flex:1; display:flex; justify-content:center; align-items:center; overflow:auto; height:100%;">
+                <canvas id="distance-histogram-canvas"
+                    width="3000" height="2000"
+                    style="width:98vw; height:80vh; display:block;">
+                </canvas>
+                <div id="histogram-tripid-list" style="padding:1em; max-height:70vh; overflow:auto;"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-arrowheads@1.2.0/dist/leaflet-arrowheads.js"></script>
@@ -359,77 +375,77 @@
               </div>
             </td>
             <td rowspan="15" colspan="2">${getEmbedHTML(record.metadata.niconico)}</td>
-            <td class="section-title">走行距離</td>
+            <td class="section-title histogram-trigger" data-field="distance" id="distance-histogram-trigger">走行距離</td>
             <td align="right">${formatNumber(record.distance || '0')} km</td>
             <td align="right">${rankings.distance}</td>
           </tr>
           <tr>
-            <td class="section-title">食費</td>
+            <td class="section-title histogram-trigger" data-field="cost_meal" id="cost-meal-histogram-trigger">食費</td>
             <td align="right">${formatNumber(record.costs.meal || '0')}円</td>
             <td align="right">${rankings.cost_meal}</td>
           </tr>
           <tr>
-            <td class="section-title">有料道路</td>
+            <td class="section-title histogram-trigger" data-field="cost_toll_road" id="cost-toll-road-histogram-trigger">有料道路</td>
             <td align="right">${formatNumber(record.costs.toll_road || '0')}円</td>
             <td align="right">${rankings.cost_toll_road}</td>
           </tr>
           <tr>
-            <td class="section-title">燃料</td>
+            <td class="section-title histogram-trigger" data-field="cost_fuel" id="cost-fuel-histogram-trigger">燃料</td>
             <td align="right">${formatNumber(record.costs.fuel || '0')}円</td>
             <td align="right">${rankings.cost_fuel}</td>
           </tr>
           <tr>
-            <td class="section-title">レンタカー</td>
+            <td class="section-title histogram-trigger" data-field="cost_rental_car" id="cost-rental-car-histogram-trigger">レンタカー</td>
             <td align="right">${formatNumber(record.costs.rental_car || '0')}円</td>
             <td align="right">${rankings.cost_rental_car}</td>
           </tr>
           <tr>
-            <td class="section-title">入場料</td>
+            <td class="section-title histogram-trigger" data-field="cost_entrance_fee" id="cost-entrance-fee-histogram-trigger">入場料</td>
             <td align="right">${formatNumber(record.costs.entrance_fee || '0')}円</td>
             <td align="right">${rankings.cost_entrance_fee}</td>
           </tr>
           <tr>
-            <td class="section-title">駐車場</td>
+            <td class="section-title histogram-trigger" data-field="cost_parking" id="cost-parking-histogram-trigger">駐車場</td>
             <td align="right">${formatNumber(record.costs.parking || '0')}円</td>
             <td align="right">${rankings.cost_parking}</td>
           </tr>
           <tr>
-            <td class="section-title">宿泊料</td>
+            <td class="section-title histogram-trigger" data-field="cost_hotel" id="cost-hotel-histogram-trigger">宿泊料</td>
             <td align="right">${formatNumber(record.costs.hotel || '0')}円</td>
             <td align="right">${rankings.cost_hotel}</td>
           </tr>
           <tr>
-            <td class="section-title">飛行機</td>
+            <td class="section-title histogram-trigger" data-field="cost_plane" id="cost-plane-histogram-trigger">飛行機</td>
             <td align="right">${formatNumber(record.costs.plane || '0')}円</td>
             <td align="right">${rankings.cost_plane}</td>
           </tr>
           <tr>
-            <td class="section-title">電車</td>
+            <td class="section-title histogram-trigger" data-field="cost_train" id="cost-train-histogram-trigger">電車</td>
             <td align="right">${formatNumber(record.costs.train || '0')}円</td>
             <td align="right">${rankings.cost_train}</td>
           </tr>
           <tr>
-            <td class="section-title">バス</td>
+            <td class="section-title histogram-trigger" data-field="cost_bus" id="cost-bus-histogram-trigger">バス</td>
             <td align="right">${formatNumber(record.costs.bus || '0')}円</td>
             <td align="right">${rankings.cost_bus}</td>
           </tr>
           <tr>
-            <td class="section-title">船</td>
+            <td class="section-title histogram-trigger" data-field="cost_ship" id="cost-ship-histogram-trigger">船</td>
             <td align="right">${formatNumber(record.costs.ship || '0')}円</td>
             <td align="right">${rankings.cost_ship}</td>
           </tr>
           <tr>
-            <td class="section-title">機材</td>
+            <td class="section-title histogram-trigger" data-field="cost_equipment" id="cost-equipment-histogram-trigger">機材</td>
             <td align="right">${formatNumber(record.costs.equipment || '0')}円</td>
             <td align="right">${rankings.cost_equipment}</td>
           </tr>
           <tr>
-            <td class="section-title">その他</td>
+            <td class="section-title histogram-trigger" data-field="cost_other" id="cost-other-histogram-trigger">その他</td>
             <td align="right">${formatNumber(record.costs.other || '0')}円</td>
             <td align="right">${rankings.cost_other}</td>
           </tr>
           <tr>
-            <td class="section-title">合計金額</td>
+            <td class="section-title histogram-trigger" data-field="cost_total" id="cost-total-histogram-trigger">合計金額</td>
             <td align="right">${formatNumber(costTotal)}円</td>
             <td align="right">${rankings.cost_total}</td>
           </tr>
@@ -478,6 +494,162 @@
             window.dateForMap = record.date || 'all';
             mapManager.initializeMap();
             mapManager.attachControlEvents();
+
+            // ヒストグラムを描画する汎用関数
+            function drawHistogram(field, currentValue) {
+                const ctx = document.getElementById('distance-histogram-canvas').getContext('2d');
+                if (window.distanceHistogramChart) {
+                    window.distanceHistogramChart.destroy();
+                }
+                // データ抽出
+                let values = [];
+                if (field === 'distance') {
+                    values = jsonData.filter(row => row.distance && !isNaN(row.distance)).map(row => parseFloat(row.distance));
+                } else if (field === 'cost_total') {
+                    values = jsonData.map(row =>
+                        Object.entries(row.costs ?? {})
+                            .filter(([key]) => key !== 'total')
+                            .reduce((sum, [_, value]) => sum + (parseFloat(value) || 0), 0)
+                    );
+                } else {
+                    values = jsonData.map(row => parseFloat(row.costs?.[field.replace('cost_', '')] ?? 0));
+                }
+                // ヒストグラム用ビン
+                let binSize;
+                if (field === 'distance') {
+                    binSize = 25;
+                } else if (field === 'cost_total') {
+                    binSize = 2500;
+                } else if (['cost_entrance_fee', 'cost_parking', 'cost_train', 'cost_bus', 'cost_ship', 'cost_equipment'].includes(field)) {
+                    binSize = 250;
+                } else {
+                    binSize = 1000;
+                }
+                const maxValue = Math.max(...values, 0);
+                const bins = [];
+                for (let i = 0; i <= maxValue + binSize; i += binSize) {
+                    bins.push(i);
+                }
+                const counts = Array(bins.length - 1).fill(0);
+                values.forEach(v => {
+                    for (let i = 0; i < bins.length - 1; i++) {
+                        if (v >= bins[i] && v < bins[i + 1]) {
+                            counts[i]++;
+                            break;
+                        }
+                    }
+                });
+                const labels = [];
+                for (let i = 0; i < bins.length - 1; i++) {
+                    labels.push(`${bins[i]}-${bins[i + 1]}${field === 'distance' ? 'km' : '円'}`);
+                }
+                // 現在値のビン
+                let highlightIndex = -1;
+                if (typeof currentValue === 'number') {
+                    for (let i = 0; i < bins.length - 1; i++) {
+                        if (currentValue >= bins[i] && currentValue < bins[i + 1]) {
+                            highlightIndex = i;
+                            break;
+                        }
+                    }
+                }
+                const backgroundColors = counts.map((_, i) =>
+                    i === highlightIndex ? 'rgba(255,99,132,0.7)' : 'rgba(54,162,235,0.7)'
+                );
+                window.distanceHistogramChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '件数',
+                            data: counts,
+                            backgroundColor: backgroundColors,
+                            barPercentage: 1.0,
+                            categoryPercentage: 1.0,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: {
+                                title: { display: true, text: field === 'distance' ? '走行距離 (km)' : '金額 (円)' },
+                                barPercentage: 1.0,
+                                categoryPercentage: 1.0,
+                            },
+                            y: { title: { display: true, text: '件数' }, beginAtZero: true }
+                        },
+                        onClick: (evt, elements) => {
+                            const tripListDiv = document.getElementById('histogram-tripid-list');
+                            if (tripListDiv) tripListDiv.innerHTML = '';
+                            if (elements.length > 0) {
+                                const index = elements[0].index;
+                                const binStart = bins[index];
+                                const binEnd = bins[index + 1];
+                                let tripIds = [];
+                                if (field === 'distance') {
+                                    tripIds = jsonData.filter(row => {
+                                        const v = parseFloat(row.distance);
+                                        return v >= binStart && v < binEnd;
+                                    }).map(row => row.id);
+                                } else if (field === 'cost_total') {
+                                    tripIds = jsonData.filter(row => {
+                                        const v = Object.entries(row.costs ?? {})
+                                            .filter(([key]) => key !== 'total')
+                                            .reduce((sum, [_, value]) => sum + (parseFloat(value) || 0), 0);
+                                        return v >= binStart && v < binEnd;
+                                    }).map(row => row.id);
+                                } else {
+                                    tripIds = jsonData.filter(row => {
+                                        const v = parseFloat(row.costs?.[field.replace('cost_', '')] ?? 0);
+                                        return v >= binStart && v < binEnd;
+                                    }).map(row => row.id);
+                                }
+                                if (tripIds.length > 0) {
+                                    tripListDiv.innerHTML = '<b>このビンに該当する旅:</b><br>' +
+                                        tripIds.map(id => `<a href="trip_detail.html?id=${id}" target="_blank" style="margin-right:1em;">${id}</a>`).join('<br>');
+                                } else {
+                                    tripListDiv.innerHTML = '該当する旅はありません';
+                                }
+                            }
+                        }
+                    }
+                });
+                // タイトルも動的に
+                document.querySelector('#histogram-modal h2').textContent =
+                    field === 'distance' ? '走行距離ヒストグラム'
+                    : field === 'cost_meal' ? '食費ヒストグラム'
+                    : field === 'cost_total' ? '合計金額ヒストグラム'
+                    : 'ヒストグラム';
+            }
+
+            // ヒストグラムを描画するイベントリスナー
+            document.querySelectorAll('.histogram-trigger').forEach(cell => {
+                cell.style.cursor = 'pointer';
+                cell.title = 'クリックでヒストグラム表示';
+                cell.onclick = () => {
+                    const field = cell.getAttribute('data-field');
+                    let value = 0;
+                    if (field === 'distance') value = parseFloat(record.distance);
+                    else if (field === 'cost_total') {
+                        value = Object.entries(record.costs ?? {})
+                            .filter(([key]) => key !== 'total')
+                            .reduce((sum, [_, v]) => sum + (parseFloat(v) || 0), 0);
+                    } else {
+                        value = parseFloat(record.costs?.[field.replace('cost_', '')] ?? 0);
+                    }
+                    drawHistogram(field, value);
+                    showHistogramModal();
+                };
+            });
+
+            // モーダル閉じるボタン
+            document.getElementById('close-histogram-modal').onclick = hideHistogramModal;
+            document.getElementById('histogram-modal').onclick = function(e) {
+                if (e.target === this) hideHistogramModal();
+            };
         }
 
         // 各項目の順位を計算する関数
@@ -743,7 +915,16 @@
 
             return sections.join('<br><br>');
         }
+
+        // モーダル表示・非表示
+        function showHistogramModal() {
+            document.getElementById('histogram-modal').style.display = 'flex';
+        }
+        function hideHistogramModal() {
+            document.getElementById('histogram-modal').style.display = 'none';
+        }
     </script>
 </body>
 
 </html>
+
