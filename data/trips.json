@@ -18510,12 +18510,153 @@
       "participants": [
         "春日部つむぎ"
       ],
-      "places": [],
+      "places": [
+        {
+          "name": "金鱗湖",
+          "timestamp": "00:00",
+          "type": "nature"
+        },
+        {
+          "name": "湯の坪街道",
+          "timestamp": "00:15",
+          "type": "road"
+        },
+        {
+          "name": "由布院駅",
+          "timestamp": "00:25",
+          "type": "station"
+        },
+        {
+          "name": "宇奈岐日女神社",
+          "timestamp": "00:27",
+          "type": "historical"
+        },
+        {
+          "name": "おむすびCafe TABIMUSUBI",
+          "timestamp": "01:17",
+          "type": "restaurant"
+        },
+        {
+          "name": "塚原温泉",
+          "timestamp": "02:02",
+          "type": "hot_spring"
+        },
+        {
+          "name": "東椎屋の滝",
+          "timestamp": "03:08",
+          "type": "nature"
+        },
+        {
+          "name": "T字型の沈下橋",
+          "timestamp": "03:43",
+          "type": "road"
+        },
+        {
+          "name": "鳥居橋",
+          "timestamp": "03:59",
+          "type": "bridge"
+        },
+        {
+          "name": "鬼のミイラ",
+          "timestamp": "04:18",
+          "type": "historical"
+        },
+        {
+          "name": "耶馬溪橋",
+          "timestamp": "04:38",
+          "type": "bridge"
+        },
+        {
+          "name": "青の洞門",
+          "timestamp": "05:06",
+          "type": "nature"
+        },
+        {
+          "name": "耶馬トピア",
+          "timestamp": "06:01",
+          "type": "road_facility"
+        },
+        {
+          "name": "道の駅しんよしとみ",
+          "timestamp": "06:26",
+          "type": "road_facility"
+        },
+        {
+          "name": "変な路面標示（ゆっくり）",
+          "timestamp": "06:43",
+          "type": "road"
+        },
+        {
+          "name": "あげ処ぶんごや",
+          "timestamp": "07:05",
+          "type": "restaurant"
+        },
+        {
+          "name": "もり山",
+          "timestamp": "07:20",
+          "type": "restaurant"
+        },
+        {
+          "name": "道の駅なかつ",
+          "timestamp": "07:31",
+          "type": "road_facility"
+        },
+        {
+          "name": "宇佐神宮",
+          "timestamp": "08:10",
+          "type": "historical"
+        },
+        {
+          "name": "宇佐駅",
+          "timestamp": "09:08",
+          "type": "station"
+        },
+        {
+          "name": "富貴寺",
+          "timestamp": "09:30",
+          "type": "historical"
+        },
+        {
+          "name": "両子寺 仁王門",
+          "timestamp": "09:51",
+          "type": "historical"
+        },
+        {
+          "name": "行入ダム",
+          "timestamp": "10:26",
+          "type": "park"
+        },
+        {
+          "name": "おしり岩",
+          "timestamp": "10:41",
+          "type": "nature"
+        },
+        {
+          "name": "給油・洗車",
+          "timestamp": "11:03",
+          "type": "other"
+        },
+        {
+          "name": "なな瀬",
+          "timestamp": "11:18",
+          "type": "restaurant"
+        },
+        {
+          "name": "青物横丁",
+          "timestamp": "11:35",
+          "type": "station"
+        },
+        {
+          "name": "エンディング",
+          "timestamp": "12:05",
+          "type": "ending"
+        }
+      ],
       "distance": 186,
       "costs": {
         "meal": 5448,
         "toll_road": 0,
-        "fuel": 3492,
+        "fuel": 2720,
         "rental_car": 4766.666667,
         "entrance_fee": 1000,
         "parking": 300,
@@ -18525,11 +18666,238 @@
         "bus": 0,
         "ship": 0,
         "equipment": 0,
-        "other": 577.3333333
+        "other": 577.3333333,
+        "total": 25029
       },
       "metadata": {
+        "weather": "晴",
+        "upload_date": "2025-05-02",
+        "video_title": "【VOICEVOX車載】ほな1人でどっかいこか（大分編第3日）",
+        "niconico": "https://www.nicovideo.jp/watch/sm44940242",
+        "youtube": "https://www.youtube.com/watch?v=62tBlf_1fgA",
         "series": "ほな1人でどっかいこか",
-        "itinerary": "https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/"
+        "summary": "そんな風にそんな風に\nあーしは走りたいんだ\n走っていたいんだ",
+        "itinerary": "https://docs.google.com/document/d/1lRYtC027ur4XgtGbQJSTXgwKpGJGkd3x5cXDuYgPMlE/",
+        "event": "",
+        "material": {
+          "image": [
+            {
+              "name": "春日部つむぎ立ち絵",
+              "creator": "春日部つむぎ公式",
+              "source": "https://seiga.nicovideo.jp/seiga/im10842587"
+            },
+            {
+              "name": "春日部つむぎ動画",
+              "creator": "春日部つむぎ公式",
+              "source": "https://www.nicovideo.jp/watch/sm39656626"
+            },
+            {
+              "name": "ナビエリート 47都道府県 案内集(トヨタナビと同音声) - YouTube",
+              "creator": "にっぽん全国交通チャンネル",
+              "source": "https://www.youtube.com/watch?v=ZW-yelQPQRw"
+            },
+            {
+              "name": "四国めたん立ち絵",
+              "creator": "akihiyo",
+              "source": "https://seiga.nicovideo.jp/seiga/im10796593"
+            },
+            {
+              "name": "ゆっくり春日部つむぎ素材",
+              "creator": "ヒザフライ",
+              "source": "https://seiga.nicovideo.jp/seiga/im11150245"
+            },
+            {
+              "name": "OpenStreetMap",
+              "creator": "オープンストリートマップ財団",
+              "source": "openstreetmap.org/copyright"
+            }
+          ],
+          "voice": [
+            {
+              "name": "VOICEVOX:春日部つむぎ"
+            },
+            {
+              "name": "VOICEVOX:四国めたん"
+            }
+          ],
+          "music": [
+            {
+              "name": "まどろむ時間",
+              "creator": "まんぼう二等兵",
+              "source": "https://commons.nicovideo.jp/material/nc126625"
+            },
+            {
+              "name": "レッツお散歩",
+              "creator": "MATSU",
+              "source": "https://commons.nicovideo.jp/material/nc95117"
+            },
+            {
+              "name": "O・KA・SHI Time",
+              "creator": "Tenkichi",
+              "source": "https://commons.nicovideo.jp/material/nc121187"
+            },
+            {
+              "name": "秋薊",
+              "creator": "んぃん",
+              "source": "https://commons.nicovideo.jp/material/nc252426"
+            },
+            {
+              "name": "また明日",
+              "creator": "MATSU",
+              "source": "https://commons.nicovideo.jp/material/nc134822"
+            },
+            {
+              "name": "1/6の夢旅人2002",
+              "creator": "樋口了一",
+              "source": "水曜どうでしょう 原付ベトナム縦断1800キロ ED"
+            }
+          ],
+          "effect": [
+            {
+              "name": "効果音ラボ",
+              "creator": "https://soundeffect-lab.info/"
+            }
+          ]
+        },
+        "reference": [
+          {
+            "name": "宇奈岐日女神社（うなぎひめじんじゃ） | 日本一の「おんせん県」大分県の観光情報公式サイト",
+            "source": "https://www.visit-oita.jp/spots/detail/4384"
+          },
+          {
+            "name": "九州の神社：大分県・宇奈岐日女神社（由布市）",
+            "source": "https://www.kyushu-jinja.com/ohita/unaghihime-jinja/"
+          },
+          {
+            "name": "【VOICEVOX車載】ずんだもん&春日部つむぎと行く東椎屋の滝【ずんツー日記 #1】 - ニコニコ動画",
+            "source": "https://www.nicovideo.jp/watch/sm40595604"
+          },
+          {
+            "name": "大分の知られざる遺産　大水を受け流す「沈み橋」　日本で一番多いのは大分？　そのワケは…【大分】 | TOSオンライン",
+            "source": "https://tosonline.jp/news/20231109/00000003.html"
+          },
+          {
+            "name": "院内町の石橋群／宇佐市",
+            "source": "https://www.city.usa.oita.jp/tourist/touristspot/touristspot2/touristspot3/10178.html"
+          },
+          {
+            "name": "GSRで九州・道の駅 完全制覇の旅 #5 耶馬渓の向こう側へ - ニコニコ動画",
+            "source": "https://www.nicovideo.jp/watch/sm31692575"
+          },
+          {
+            "name": "土木遺産 in 九州：目録（耶馬渓橋（オランダ橋））",
+            "source": "https://dobokuisan.qscpua2.com/heritage/oita/oit5_yabakei/"
+          },
+          {
+            "name": "耶馬渓橋(オランダ橋) クチコミ・アクセス・営業時間｜耶馬溪・中津・玖珠【フォートラベル】",
+            "source": "https://4travel.jp/dm_shisetsu/11327279"
+          },
+          {
+            "name": "青の洞門 - Wikipedia",
+            "source": "https://ja.wikipedia.org/wiki/青の洞門"
+          },
+          {
+            "name": "【3月30日〜】八木山バイパス、4車線化と同時に再有料化されます - JAHIC 日本高速情報センター",
+            "source": "https://jahic-etc.com/2025/03/27/jahic_25_3_27/"
+          },
+          {
+            "name": "京きな粉と羽二重餅粉のやわらか求肥　びったれ餅 サービス箱5個入り | 中津菓子 かねい",
+            "source": "https://kanei.thebase.in/items/9721555"
+          },
+          {
+            "name": "【ゆっくり】徒歩で日本一周part274【行橋→中津】 - ニコニコ動画",
+            "source": "https://www.nicovideo.jp/watch/sm33036209"
+          },
+          {
+            "name": "富貴寺（ふきじ） | 日本一の「おんせん県」大分県の観光情報公式サイト",
+            "source": "https://www.visit-oita.jp/spots/detail/4796"
+          },
+          {
+            "name": "富貴寺（ふきじ） - 昭和の町・豊後高田市公式観光サイト - 豊後高田市ホームページ",
+            "source": "https://www.city.bungotakada.oita.jp/site/showanomachi/1251.html"
+          },
+          {
+            "name": "【結月ゆかり車載】憧憬の彼方へ旅に行こう「九州一周編リターンズ」第2夜 - ニコニコ動画",
+            "source": "https://www.nicovideo.jp/watch/sm42279715"
+          },
+          {
+            "name": "あのパタパタが、令和の時代にデジタルで復活！　反転フラップ式発車標みたいな液晶発車案内を見てきた　京急・青物横丁駅 - YouTube",
+            "source": "https://www.youtube.com/watch?v=KP17mWds1jA"
+          }
+        ],
+        "advertiser": [
+          "sgt",
+          "エンテー",
+          "副隊長",
+          "かもなす",
+          "DAIDAI",
+          "Hinamiya",
+          "keyblock",
+          "コウビカジ",
+          "ライコー",
+          "ヌイクン",
+          "匿名係長ただの人",
+          "ザコインベスター",
+          "beaver",
+          "セミ",
+          "ユーリ",
+          "panra",
+          "mkky",
+          "うととき",
+          "jko",
+          "霧島の人",
+          "あをき",
+          "藍色",
+          "panra",
+          "チー牛星人",
+          "二人は幸せな接吻をして終了",
+          "こばっと",
+          "tomo",
+          "ひげ",
+          "まくら",
+          "緑茶",
+          "フリィザー",
+          "終わった人",
+          "めぇぜな",
+          "ライチュー",
+          "バナナワニノコ",
+          "２５６８",
+          "風間　零",
+          "ひょんなげな人",
+          "さっぱり",
+          "ミューツー",
+          "紫.",
+          "ピカチュー",
+          "TORAKAZU",
+          "ちゃごみ",
+          "Yflether",
+          "ざんせつ",
+          "敏度",
+          "スイロ",
+          "アークビショップ太郎",
+          "なかじ",
+          "森本沙希",
+          "パワハム",
+          "ななし",
+          "南わらび",
+          "nopposan",
+          "ナツイチ",
+          "インドコアラ",
+          "通りすがり",
+          "悠雫",
+          "やまだ",
+          "もういません",
+          "さとん",
+          "輪廻",
+          "マグラ",
+          "鍵弾",
+          "esk",
+          "とくめい",
+          "hitaka",
+          "colnetto",
+          "ゲスト",
+          "sinyuuh"
+        ]
       }
     }
   ]
