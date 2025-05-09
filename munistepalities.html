@@ -41,16 +41,28 @@
   <div id="header-placeholder"></div>
   <!-- 市区町村のみ表示 -->
   <div class="map-controls">
-    透明度：<input type="range" id="opacitySlider" min="0" max="1" step="0.01" value="0.6" style="vertical-align:middle;width:120px;">
-    <span id="opacityValue">0.60</span>
-    <label style="margin-left:1em;"><input type="checkbox" id="toggleBorder" checked> 境界を表示</label>
+    <div style="display: flex; gap: 4px; flex-wrap: wrap; align-items: center;">
+      透明度：<input type="range" id="opacitySlider" min="0" max="1" step="0.01" value="0.6" style="vertical-align:middle;width:120px;">
+      <span id="opacityValue">0.60</span>
+      <label style="margin-left:0;"><input type="checkbox" id="toggleBorder" checked>境界を表示</label>
+      <label><input type="checkbox" id="toggleRoutes" checked>経路を表示</label>
+    </div>
+    <div style="margin-top: 4px;">
+      <a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2024.html">国土数値情報（行政区域データ）（国土交通省）</a>（2025年04月28日取得）を加工して作成
+    </div>
   </div>
   <div id="map"></div>
-  <div class="source-note">
-    「<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2024.html">国土数値情報（行政区域データ）（国土交通省）</a>」（2025年04月28日取得）を加工して作成
+  <div style="margin: 32px 0 0 0;">
+    <div style="margin-bottom: 8px;">
+      <label><input type="checkbox" id="showRate"> 割合（％）で表示</label>
+      <label style="margin-left:1em;"><input type="checkbox" id="sortByAvg"> 平均訪問レベルでソート</label>
+    </div>
+    <canvas id="pref-level-bar" width="800" height="600"></canvas>
   </div>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     // ヘッダーを読み込む
     fetch('header.html')
@@ -73,17 +85,12 @@
     function adjustOverlayPosition() {
       const header = document.querySelector('.header');
       const mapControls = document.querySelector('.map-controls');
-      const sourceNote = document.querySelector('.source-note');
-      if (!header || !mapControls || !sourceNote) return;
+      if (!header || !mapControls) return;
 
       // スライダの位置
       const headerHeight = header.offsetHeight;
       const controlsOffset = headerHeight + 16; // ヘッダー下余白
       mapControls.style.top = controlsOffset + 'px';
-
-      // 出典の位置
-      const sourceOffset = controlsOffset + mapControls.offsetHeight + 12; // スライダ下余白
-      sourceNote.style.top = sourceOffset + 'px';
     }
     window.addEventListener('DOMContentLoaded', adjustOverlayPosition);
     window.addEventListener('resize', adjustOverlayPosition);
@@ -101,6 +108,7 @@
     var levelMap = {};
     var currentOpacity = 0.6;
     var prefBorderLayer = null;
+    var travelRouteLayers = [];
 
     // 訪問レベルごとの色
     function getColor(level) {
@@ -267,6 +275,179 @@
       drawPrefBorders();
     }).catch(function(error) {
       alert('データの読み込みに失敗しました: ' + error);
+    });
+
+    // travel_routes.csvの経路を地図に描画
+    function drawTravelRoutesOnMap(map) {
+      // 既存の経路を削除
+      travelRouteLayers.forEach(layer => map.removeLayer(layer));
+      travelRouteLayers = [];
+
+      Papa.parse("data/travel_routes.csv", {
+        download: true,
+        header: true,
+        complete: function(results) {
+          results.data.forEach(function(row) {
+            if (!row["list of coordinates"]) return;
+            try {
+              const coords = JSON.parse(row["list of coordinates"]);
+              if (!Array.isArray(coords) || coords.length === 0) return;
+              const latlngs = coords.map(([lng, lat]) => [lat, lng]);
+              // ポリライン
+              const poly = L.polyline(latlngs, {color: 'blue', weight: 1, opacity: 1});
+              travelRouteLayers.push(poly);
+              // 始点
+              const start = latlngs[0];
+              const startMarker = L.circleMarker(start, {radius: 3, color: 'blue', fillColor: 'blue', fillOpacity: 1}).bindPopup(row.start || '始点');
+              travelRouteLayers.push(startMarker);
+              // 終点
+              const end = latlngs[latlngs.length - 1];
+              const endMarker = L.circleMarker(end, {radius: 3, color: 'blue', fillColor: 'blue', fillOpacity: 1}).bindPopup(row.end || '終点');
+              travelRouteLayers.push(endMarker);
+            } catch (e) {
+              console.warn("ルート描画エラー:", row, e);
+            }
+          });
+
+          // チェックボックスがONなら地図に追加
+          if (document.getElementById('toggleRoutes').checked) {
+            travelRouteLayers.forEach(layer => layer.addTo(map));
+          }
+        }
+      });
+    }
+
+    // チェックボックスのイベント
+    document.addEventListener('DOMContentLoaded', function() {
+      var cb = document.getElementById('toggleRoutes');
+      if (cb) {
+        cb.addEventListener('change', function() {
+          if (cb.checked) {
+            travelRouteLayers.forEach(layer => layer.addTo(map));
+          } else {
+            travelRouteLayers.forEach(layer => map.removeLayer(layer));
+          }
+        });
+      }
+      // 経路の初回描画もここで呼ぶ
+      drawTravelRoutesOnMap(map);
+    });
+
+    // 都道府県コード→都道府県名の対応表
+    const prefCodeToName = {
+      '01': '北海道', '02': '青森県', '03': '岩手県', '04': '宮城県', '05': '秋田県', '06': '山形県', '07': '福島県',
+      '08': '茨城県', '09': '栃木県', '10': '群馬県', '11': '埼玉県', '12': '千葉県', '13': '東京都', '14': '神奈川県',
+      '15': '新潟県', '16': '富山県', '17': '石川県', '18': '福井県', '19': '山梨県', '20': '長野県', '21': '岐阜県',
+      '22': '静岡県', '23': '愛知県', '24': '三重県', '25': '滋賀県', '26': '京都府', '27': '大阪府', '28': '兵庫県',
+      '29': '奈良県', '30': '和歌山県', '31': '鳥取県', '32': '島根県', '33': '岡山県', '34': '広島県', '35': '山口県',
+      '36': '徳島県', '37': '香川県', '38': '愛媛県', '39': '高知県', '40': '福岡県', '41': '佐賀県', '42': '長崎県',
+      '43': '熊本県', '44': '大分県', '45': '宮崎県', '46': '鹿児島県', '47': '沖縄県'
+    };
+
+    // munistepalities.csvだけで都道府県別・訪問レベル別の市区町村数を集計
+    function drawPrefLevelBarChart(showRate = false, sortByAvg = false) {
+      fetch('data/munistepalities.csv')
+        .then(r => r.text())
+        .then(csv => {
+          var lines = csv.trim().split(/\r?\n/);
+          var headers = lines[0].split(',');
+          var idxCode = headers.indexOf('団体コード');
+          var idxLevel = headers.indexOf('訪問レベル');
+          var prefMap = {};
+
+          for (var i = 1; i < lines.length; i++) {
+            var cols = lines[i].split(',');
+            var code = cols[idxCode];
+            var level = cols[idxLevel] || '0';
+            var prefCode = code.slice(0, 2);
+            var pref = prefCodeToName[prefCode];
+            if (!pref) continue;
+            if (!prefMap[pref]) prefMap[pref] = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0, '0': 0, total: 0, sum: 0 };
+            if (['5','4','3','2','1','0'].includes(level)) {
+              prefMap[pref][level]++;
+              prefMap[pref].sum += parseInt(level, 10);
+            } else {
+              prefMap[pref]['0']++;
+            }
+            prefMap[pref].total++;
+          }
+
+          // 平均訪問レベルを計算
+          var prefs = Object.keys(prefMap);
+          var avgLevels = {};
+          prefs.forEach(pref => {
+            avgLevels[pref] = prefMap[pref].total ? (prefMap[pref].sum / prefMap[pref].total) : 0;
+          });
+
+          // ソート
+          if (sortByAvg) {
+            prefs.sort((a, b) => avgLevels[b] - avgLevels[a]);
+          }
+
+          var levels = ['5', '4', '3', '2', '1', '0'];
+          var datasets = levels.map((level, i) => ({
+            label: 'レベル' + level,
+            data: prefs.map(pref => {
+              if (showRate) {
+                return prefMap[pref].total ? (prefMap[pref][level] / prefMap[pref].total * 100) : 0;
+              } else {
+                return prefMap[pref][level];
+              }
+            }),
+            backgroundColor: ['#e87afd','#f56d64','#faff79','#bbf59d','#b7ddfd','#cccccc'][i]
+          }));
+
+          // ラベルに平均値を付記
+          var labelsWithAvg = prefs.map(pref => `${pref}（${avgLevels[pref].toFixed(2)}）`);
+
+          var ctx = document.getElementById('pref-level-bar').getContext('2d');
+          if (window.prefLevelChart) window.prefLevelChart.destroy();
+          window.prefLevelChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: labelsWithAvg,
+              datasets: datasets
+            },
+            options: {
+              indexAxis: 'y',
+              responsive: true,
+              plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: '都道府県別 訪問レベル分布' },
+                tooltip: {
+                  callbacks: {
+                    label: function(context) {
+                      if (showRate) {
+                        return context.dataset.label + ': ' + context.parsed.x.toFixed(1) + '%';
+                      } else {
+                        return context.dataset.label + ': ' + context.parsed.x + '市区町村';
+                      }
+                    }
+                  }
+                }
+              },
+              scales: {
+                x: { 
+                  stacked: true,
+                  title: { display: showRate, text: showRate ? '割合（％）' : '市区町村数' },
+                  max: showRate ? 100 : undefined
+                },
+                y: { stacked: true }
+              }
+            }
+          });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      drawPrefLevelBarChart();
+      var cbRate = document.getElementById('showRate');
+      var cbSort = document.getElementById('sortByAvg');
+      function redraw() {
+        drawPrefLevelBarChart(cbRate && cbRate.checked, cbSort && cbSort.checked);
+      }
+      if (cbRate) cbRate.addEventListener('change', redraw);
+      if (cbSort) cbSort.addEventListener('change', redraw);
     });
   </script>
 </body>
