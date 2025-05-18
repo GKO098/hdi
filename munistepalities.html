@@ -305,10 +305,11 @@
       fetch('data/prefectures.json')
         .then(r => r.json())
         .then(geojson => {
+          const weight = getWeightByZoomPref(map.getZoom());
           prefBorderLayer = L.geoJSON(geojson, {
             style: {
               color: '#000',
-              weight: getWeightByZoomPref(map.getZoom()),
+              weight: weight,
               fillOpacity: 0
             },
             interactive: false
@@ -525,23 +526,27 @@
       var cbRate = document.getElementById('showRate');
       var cbSort = document.getElementById('sortByAvg');
       if (cbAggregate) cbAggregate.addEventListener('change', reloadMapAndChart);
-      if (cbRate) cbRate.addEventListener('change', reloadMapAndChart);
-      if (cbSort) cbSort.addEventListener('change', reloadMapAndChart);
+      if (cbRate) cbRate.addEventListener('change', redrawChart);
+      if (cbSort) cbSort.addEventListener('change', redrawChart);
     });
 
-    // reloadMapAndChartも同様にcityDataListとaggregateModeを更新
+    function updateStatsAndChart() {
+      aggregateMode = document.getElementById('aggregateMode') && document.getElementById('aggregateMode').checked;
+      var showRate = document.getElementById('showRate').checked;
+      var sortByAvg = document.getElementById('sortByAvg').checked;
+      var stats = getPrefStats(cityDataList, aggregateMode);
+      drawPrefLevelBarChart(stats, showRate, sortByAvg);
+    }
+
     function reloadMapAndChart() {
-      fetch('data/munistepalities.csv').then(r => r.text()).then(csv => {
-        aggregateMode = document.getElementById('aggregateMode').checked;
-        cityDataList = parseCSV(csv);
-        levelMap = getLevelMap(cityDataList, aggregateMode);
-        renderGeoJSON();
-        drawPrefBorders();
-        var showRate = document.getElementById('showRate') && document.getElementById('showRate').checked;
-        var sortByAvg = document.getElementById('sortByAvg') && document.getElementById('sortByAvg').checked;
-        var stats = getPrefStats(cityDataList, aggregateMode);
-        drawPrefLevelBarChart(stats, showRate, sortByAvg);
-      });
+      levelMap = getLevelMap(cityDataList, aggregateMode);
+      renderGeoJSON();
+      drawPrefBorders();
+      updateStatsAndChart();
+    }
+
+    function redrawChart() {
+      updateStatsAndChart();
     }
   </script>
 </body>
