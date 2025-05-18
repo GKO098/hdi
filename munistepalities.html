@@ -53,8 +53,12 @@
   </div>
   <div id="map"></div>
   <div style="margin: 32px 0 0 0;">
+    <div style="margin-bottom: 8px;">
+      <label><input type="checkbox" id="excludeRemote"> 離島を除く</label>
+    </div>
     <div id="level-count-summary" style="margin-bottom: 8px; font-weight: bold;"></div>
     <div style="margin-bottom: 8px;">
+      <label><input type="checkbox" id="aggregateMode"> 集約で表示</label>
       <label><input type="checkbox" id="showRate"> 割合（％）で表示</label>
       <label style="margin-left:1em;"><input type="checkbox" id="sortByAvg"> 平均訪問レベルでソート</label>
     </div>
@@ -107,6 +111,7 @@
     var geojsonLayer;
     var geojsonDataCity;
     var levelMap = {};
+    var levelMapForStats = {};
     var currentOpacity = 0.6;
     var prefBorderLayer = null;
     var travelRouteLayers = [];
@@ -136,34 +141,72 @@
       return 2;
     }
 
-    // munistepalities.csvをパースして { '団体コード5桁' : 訪問レベル } のマップを作成
-    function parseCSV(csv) {
+    // parseCSV: 地図描画用のlevelMap（団体コード→レベル）と、集計用levelMapForStats（集約ON時は集約団体コード→最大値、OFF時は団体コード→レベル）を返す
+    function parseCSV(csv, aggregateMode, excludeRemote) {
       var lines = csv.trim().split(/\r?\n/);
       var headers = lines[0].split(',');
-      var map = {};
-      for (var i = 1; i < lines.length; i++) {
-        var cols = lines[i].split(',');
-        while (cols.length < headers.length) cols.push('');
-        var row = {};
-        headers.forEach(function(h, idx) {
-          row[h] = cols[idx];
-        });
-        if (row['団体コード'] && row['訪問レベル']) {
-          var key = row['団体コード'].slice(0, 5);
-          map[key] = row['訪問レベル'];
+      var map = {}; // 地図描画用: 団体コード→レベル
+      var mapForStats = {}; // 集計用
+      var idxCode = headers.indexOf('団体コード');
+      var idxLevel = headers.indexOf('訪問レベル');
+      var idxAgg = headers.indexOf('集約団体コード');
+      var idxRemote = headers.indexOf('is離島');
+      if (aggregateMode) {
+        var aggMax = {};
+        for (var i = 1; i < lines.length; i++) {
+          var cols = lines[i].split(',');
+          var aggCode = cols[idxAgg];
+          var level = parseInt(cols[idxLevel] || '0', 10);
+          if (excludeRemote && cols[idxRemote] === '1') {
+            level = null;
+          }
+          if (!(aggCode in aggMax) || level > aggMax[aggCode]) {
+            aggMax[aggCode] = level;
+          }
+        }
+
+        for (var i = 1; i < lines.length; i++) {
+          var cols = lines[i].split(',');
+          var code = cols[idxCode].slice(0, 5);
+          var aggCode = cols[idxAgg];
+          if (aggCode && aggMax[aggCode] !== undefined) {
+            map[code] = aggMax[aggCode].toString();
+          }
+        }
+
+        for (var aggCode in aggMax) {
+          mapForStats[aggCode] = aggMax[aggCode].toString();
+        }
+      } else {
+        for (var i = 1; i < lines.length; i++) {
+          var cols = lines[i].split(',');
+          var code = cols[idxCode].slice(0, 5);
+          var level = cols[idxLevel];
+          if (excludeRemote && cols[idxRemote] === '1') {
+            level = null;
+          };
+          map[code] = level; // 地図用は常に全て
+          mapForStats[code] = level;
         }
       }
-      return map;
+      console.log(map['01700']);
+      console.log(mapForStats['01700']);
+      return { levelMap: map, levelMapForStats: mapForStats };
     }
 
     function getStyle(feature) {
       var code5 = feature.properties && feature.properties.N03_007;
-      var level = code5 ? (levelMap[code5] || '') : '';
+      var level = levelMap[code5];
+      var isRemote = (level === null);
+      if (feature.properties.N03_007 === '01700') {
+        console.log(level);
+        console.log(feature.properties, isRemote, level, code5, levelMap[code5]);
+      }
       return {
         color: '#000',
         weight: getWeightByZoom(map.getZoom()),
         fillOpacity: currentOpacity,
-        fillColor: getColor(level)
+        fillColor: isRemote ? '#888' : getColor(level)
       };
     }
 
@@ -180,7 +223,7 @@
                      (feature.properties.N03_004 || '') + ' ' +
                      (feature.properties.N03_005 || '');
           var level = code5 ? (levelMap[code5] || '') : '';
-          if (!level) level = '未設定';
+          if (level === null) level = '集計外';
           layer.bindPopup(name + '<br>訪問レベル: ' + level);
         }
       }).addTo(map);
@@ -270,10 +313,17 @@
       fetch('data/munistepalities.csv').then(r => r.text()),
       fetch('data/N03-20240101.json').then(r => r.json())
     ]).then(function([csv, geojsonCity]) {
-      levelMap = parseCSV(csv);
+      var aggregateMode = document.getElementById('aggregateMode') && document.getElementById('aggregateMode').checked;
+      var excludeRemote = document.getElementById('excludeRemote') && document.getElementById('excludeRemote').checked;
+      var parsed = parseCSV(csv, aggregateMode, excludeRemote);
+      levelMap = parsed.levelMap;
+      levelMapForStats = parsed.levelMapForStats;
       geojsonDataCity = geojsonCity;
       renderGeoJSON();
       drawPrefBorders();
+      var showRate = document.getElementById('showRate') && document.getElementById('showRate').checked;
+      var sortByAvg = document.getElementById('sortByAvg') && document.getElementById('sortByAvg').checked;
+      drawPrefLevelBarChart(levelMapForStats, showRate, sortByAvg);
     }).catch(function(error) {
       alert('データの読み込みに失敗しました: ' + error);
     });
@@ -346,130 +396,155 @@
     };
 
     // munistepalities.csvだけで都道府県別・訪問レベル別の市区町村数を集計
-    function drawPrefLevelBarChart(showRate = false, sortByAvg = false) {
-      fetch('data/munistepalities.csv')
-        .then(r => r.text())
-        .then(csv => {
-          var lines = csv.trim().split(/\r?\n/);
-          var headers = lines[0].split(',');
-          var idxLevel = headers.indexOf('訪問レベル');
+    function drawPrefLevelBarChart(levelMap, showRate = false, sortByAvg = false) {
+      // 都道府県ごとに集約
+      var prefMap = {};
+      Object.keys(levelMap).forEach(code => {
+        var level = levelMap[code];
+        if (level === null || level === undefined) return; // null/undefinedは除外
+        var prefCode = code.slice(0, 2);
+        var pref = prefCodeToName[prefCode];
+        if (!pref) return;
+        if (!prefMap[pref]) prefMap[pref] = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0, '0': 0, total: 0, sum: 0 };
+        if (['5','4','3','2','1','0'].includes(level)) {
+          prefMap[pref][level]++;
+          prefMap[pref].sum += parseInt(level, 10);
+        } else {
+          prefMap[pref]['0']++;
+        }
+        prefMap[pref].total++;
+      });
 
-          // 訪問レベルごとの市区町村数を集計
-          var levelCounts = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0, '0': 0 };
-          for (var i = 1; i < lines.length; i++) {
-            var cols = lines[i].split(',');
-            var level = cols[idxLevel] || '0';
-            if (levelCounts.hasOwnProperty(level)) {
-              levelCounts[level]++;
-            } else {
-              levelCounts['0']++;
-            }
+      // 訪問レベルごとの市区町村数を集計
+      var levelCounts = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0, '0': 0 };
+      Object.values(levelMap).forEach(level => {
+        if (level === null || level === undefined) return; // null/undefinedは除外
+        if (levelCounts.hasOwnProperty(level)) {
+          levelCounts[level]++;
+        } else {
+          levelCounts['0']++;
+        }
+      });
+      var total = Object.values(levelCounts).reduce((a, b) => a + b, 0);
+      // 合計点数を計算
+      var totalScore = 0;
+      for (var l = 0; l <= 5; l++) {
+        totalScore += levelCounts[l.toString()] * l;
+      }
+      // 表示用テキスト生成（パーセンテージ付き）
+      var summary = ['5','4','3','2','1','0'].map(l => `${l}: ${levelCounts[l]}（${total ? (levelCounts[l]/total*100).toFixed(1) : '0.0'}%）`).join('、');
+      document.getElementById('level-count-summary').innerHTML = `訪問レベル毎の市区町村数：` + summary + `<br>市区町村数：${total}｜合計点数：` + totalScore;
+
+      // 平均訪問レベルを計算
+      var prefs = Object.keys(prefMap);
+      var avgLevels = {};
+      prefs.forEach(pref => {
+        avgLevels[pref] = prefMap[pref].total ? (prefMap[pref].sum / prefMap[pref].total) : 0;
+      });
+
+      // デフォルトは都道府県番号順、平均レベルでソート時のみ平均値順
+      if (sortByAvg) {
+        prefs.sort((a, b) => avgLevels[b] - avgLevels[a]);
+      } else {
+        prefs.sort((a, b) => {
+          // prefCodeToNameのキー（都道府県番号2桁）で昇順
+          var codeA = Object.keys(prefCodeToName).find(code => prefCodeToName[code] === a);
+          var codeB = Object.keys(prefCodeToName).find(code => prefCodeToName[code] === b);
+          return (codeA || "99").localeCompare(codeB || "99");
+        });
+      }
+
+      var levels = ['5', '4', '3', '2', '1', '0'];
+      var datasets = levels.map((level, i) => ({
+        label: 'レベル' + level,
+        data: prefs.map(pref => {
+          if (showRate) {
+            return prefMap[pref].total ? (prefMap[pref][level] / prefMap[pref].total * 100) : 0;
+          } else {
+            return prefMap[pref][level];
           }
-          var total = Object.values(levelCounts).reduce((a, b) => a + b, 0);
-          // 合計点数を計算
-          var totalScore = 0;
-          for (var l = 0; l <= 5; l++) {
-            totalScore += levelCounts[l.toString()] * l;
-          }
-          // 表示用テキスト生成（パーセンテージ付き）
-          var summary = ['5','4','3','2','1','0'].map(l => `${l}: ${levelCounts[l]}（${total ? (levelCounts[l]/total*100).toFixed(1) : '0.0'}%）`).join('、');
-          document.getElementById('level-count-summary').textContent = `市区町村数：${total}訪問レベル毎の市区町村数：` + summary + `　｜　合計点数：` + totalScore;
+        }),
+        backgroundColor: ['#e87afd','#f56d64','#faff79','#bbf59d','#b7ddfd','#cccccc'][i]
+      }));
 
-          var prefMap = {};
+      // ラベルに平均値を付記
+      var labelsWithAvg = prefs.map(pref => `${pref}（${avgLevels[pref].toFixed(2)}）`);
 
-          for (var i = 1; i < lines.length; i++) {
-            var cols = lines[i].split(',');
-            var code = cols[0];
-            var level = cols[idxLevel] || '0';
-            var prefCode = code.slice(0, 2);
-            var pref = prefCodeToName[prefCode];
-            if (!pref) continue;
-            if (!prefMap[pref]) prefMap[pref] = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0, '0': 0, total: 0, sum: 0 };
-            if (['5','4','3','2','1','0'].includes(level)) {
-              prefMap[pref][level]++;
-              prefMap[pref].sum += parseInt(level, 10);
-            } else {
-              prefMap[pref]['0']++;
-            }
-            prefMap[pref].total++;
-          }
-
-          // 平均訪問レベルを計算
-          var prefs = Object.keys(prefMap);
-          var avgLevels = {};
-          prefs.forEach(pref => {
-            avgLevels[pref] = prefMap[pref].total ? (prefMap[pref].sum / prefMap[pref].total) : 0;
-          });
-
-          // ソート
-          if (sortByAvg) {
-            prefs.sort((a, b) => avgLevels[b] - avgLevels[a]);
-          }
-
-          var levels = ['5', '4', '3', '2', '1', '0'];
-          var datasets = levels.map((level, i) => ({
-            label: 'レベル' + level,
-            data: prefs.map(pref => {
-              if (showRate) {
-                return prefMap[pref].total ? (prefMap[pref][level] / prefMap[pref].total * 100) : 0;
-              } else {
-                return prefMap[pref][level];
-              }
-            }),
-            backgroundColor: ['#e87afd','#f56d64','#faff79','#bbf59d','#b7ddfd','#cccccc'][i]
-          }));
-
-          // ラベルに平均値を付記
-          var labelsWithAvg = prefs.map(pref => `${pref}（${avgLevels[pref].toFixed(2)}）`);
-
-          var ctx = document.getElementById('pref-level-bar').getContext('2d');
-          if (window.prefLevelChart) window.prefLevelChart.destroy();
-          window.prefLevelChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: labelsWithAvg,
-              datasets: datasets
-            },
-            options: {
-              indexAxis: 'y',
-              responsive: true,
-              plugins: {
-                legend: { position: 'top' },
-                title: { display: true, text: '都道府県別 訪問レベル分布' },
-                tooltip: {
-                  callbacks: {
-                    label: function(context) {
-                      if (showRate) {
-                        return context.dataset.label + ': ' + context.parsed.x.toFixed(1) + '%';
-                      } else {
-                        return context.dataset.label + ': ' + context.parsed.x + '市区町村';
-                      }
-                    }
+      var ctx = document.getElementById('pref-level-bar').getContext('2d');
+      if (window.prefLevelChart) window.prefLevelChart.destroy();
+      window.prefLevelChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labelsWithAvg,
+          datasets: datasets
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: '都道府県別 訪問レベル分布' },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  if (showRate) {
+                    return context.dataset.label + ': ' + context.parsed.x.toFixed(1) + '%';
+                  } else {
+                    return context.dataset.label + ': ' + context.parsed.x + '市区町村';
                   }
                 }
-              },
-              scales: {
-                x: { 
-                  stacked: true,
-                  title: { display: showRate, text: showRate ? '割合（％）' : '市区町村数' },
-                  max: showRate ? 100 : undefined
-                },
-                y: { stacked: true }
               }
             }
-          });
-        });
+          },
+          scales: {
+            x: { 
+              stacked: true,
+              title: { display: showRate, text: showRate ? '割合（％）' : '市区町村数' },
+              max: showRate ? 100 : undefined
+            },
+            y: { 
+              stacked: true,
+              ticks: { autoSkip: false }
+            }
+          }
+        }
+      });
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      drawPrefLevelBarChart();
       var cbRate = document.getElementById('showRate');
       var cbSort = document.getElementById('sortByAvg');
+      var cbRemote = document.getElementById('excludeRemote');
       function redraw() {
-        drawPrefLevelBarChart(cbRate && cbRate.checked, cbSort && cbSort.checked);
+        drawPrefLevelBarChart(levelMapForStats, cbRate && cbRate.checked, cbSort && cbSort.checked);
       }
       if (cbRate) cbRate.addEventListener('change', redraw);
       if (cbSort) cbSort.addEventListener('change', redraw);
+      if (cbRemote) cbRemote.addEventListener('change', reloadMapAndChart);
+    });
+
+    // チェックボックスの状態で再描画
+    function reloadMapAndChart() {
+      fetch('data/munistepalities.csv').then(r => r.text()).then(csv => {
+        var aggregateMode = document.getElementById('aggregateMode').checked;
+        var excludeRemote = document.getElementById('excludeRemote') && document.getElementById('excludeRemote').checked;
+        var parsed = parseCSV(csv, aggregateMode, excludeRemote);
+        levelMap = parsed.levelMap;
+        levelMapForStats = parsed.levelMapForStats;
+        renderGeoJSON();
+        drawPrefBorders();
+        var showRate = document.getElementById('showRate') && document.getElementById('showRate').checked;
+        var sortByAvg = document.getElementById('sortByAvg') && document.getElementById('sortByAvg').checked;
+        drawPrefLevelBarChart(levelMapForStats, showRate, sortByAvg);
+      });
+    }
+
+    // チェックボックスイベント
+    document.addEventListener('DOMContentLoaded', function() {
+      var cb = document.getElementById('aggregateMode');
+      if (cb) {
+        cb.addEventListener('change', reloadMapAndChart);
+      }
     });
   </script>
 </body>
