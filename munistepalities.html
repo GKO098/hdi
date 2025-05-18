@@ -55,8 +55,8 @@
   <div style="margin: 32px 0 0 0;">
     <div id="level-count-summary" style="margin-bottom: 8px; font-weight: bold;"></div>
     <div style="margin-bottom: 8px;">
-      <label><input type="checkbox" id="aggregateMode"> 集約で表示</label>
-      <label><input type="checkbox" id="showRate"> 割合（％）で表示</label>
+      <label><input type="checkbox" id="aggregateMode"> 政令指定都市を集約</label>
+      <label><input type="checkbox" id="showRate"> 割合で表示</label>
       <label style="margin-left:1em;"><input type="checkbox" id="sortByAvg"> 平均訪問レベルでソート</label>
     </div>
     <canvas id="pref-level-bar" width="800" height="600"></canvas>
@@ -205,7 +205,6 @@
                      (feature.properties.N03_004 || '') + ' ' +
                      (feature.properties.N03_005 || '');
           var level = code5 ? (levelMap[code5] || '') : '';
-          if (level === null) level = '集計外';
           layer.bindPopup(name + '<br>訪問レベル: ' + level);
         }
       }).addTo(map);
@@ -380,32 +379,28 @@
     function drawPrefLevelBarChart(levelMap, showRate = false, sortByAvg = false) {
       // 都道府県ごとに集約
       var prefMap = {};
+      var levelCounts = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0, '0': 0 };
       Object.keys(levelMap).forEach(code => {
         var level = levelMap[code];
-        if (level === null || level === undefined) return; // null/undefinedは除外
+        if (!level) return; // undefinedは除外
         var prefCode = code.slice(0, 2);
         var pref = prefCodeToName[prefCode];
         if (!pref) return;
         if (!prefMap[pref]) prefMap[pref] = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0, '0': 0, total: 0, sum: 0 };
-        if (['5','4','3','2','1','0'].includes(level)) {
+        if (prefMap[pref].hasOwnProperty(level)) {
           prefMap[pref][level]++;
           prefMap[pref].sum += parseInt(level, 10);
         } else {
           prefMap[pref]['0']++;
         }
-        prefMap[pref].total++;
-      });
-
-      // 訪問レベルごとの市区町村数を集計
-      var levelCounts = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0, '0': 0 };
-      Object.values(levelMap).forEach(level => {
-        if (level === null || level === undefined) return; // null/undefinedは除外
         if (levelCounts.hasOwnProperty(level)) {
           levelCounts[level]++;
         } else {
           levelCounts['0']++;
         }
+        prefMap[pref].total++;
       });
+
       var total = Object.values(levelCounts).reduce((a, b) => a + b, 0);
       // 合計点数を計算
       var totalScore = 0;
@@ -414,7 +409,7 @@
       }
       // 表示用テキスト生成（パーセンテージ付き）
       var summary = ['5','4','3','2','1','0'].map(l => `${l}: ${levelCounts[l]}（${total ? (levelCounts[l]/total*100).toFixed(1) : '0.0'}%）`).join('、');
-      document.getElementById('level-count-summary').innerHTML = `訪問レベル毎の市区町村数：` + summary + `<br>市区町村数：${total}｜合計点数：` + totalScore;
+      document.getElementById('level-count-summary').innerHTML = `訪問レベル毎の市区町村数：` + summary + `<br>市区町村数：${total}｜合計点数：` + totalScore + `｜平均点数：` + (totalScore / total).toFixed(2);
 
       // 平均訪問レベルを計算
       var prefs = Object.keys(prefMap);
