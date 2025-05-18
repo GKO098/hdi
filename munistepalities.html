@@ -342,16 +342,9 @@
       fetch('data/munistepalities.csv').then(r => r.text()),
       fetch('data/N03-20240101.json').then(r => r.json())
     ]).then(function ([csv, geojsonCity]) {
-      aggregateMode = document.getElementById('aggregateMode') && document.getElementById('aggregateMode').checked;
       cityDataList = parseCSV(csv);
-      levelMap = getLevelMap(cityDataList, aggregateMode);
       geojsonDataCity = geojsonCity;
-      renderGeoJSON();
-      drawPrefBorders();
-      var showRate = document.getElementById('showRate').checked;
-      var sortByAvg = document.getElementById('sortByAvg').checked;
-      var stats = getPrefStats(cityDataList, aggregateMode);
-      drawPrefLevelBarChart(stats, showRate, sortByAvg);
+      reloadMapAndChart();
     }).catch(function (error) {
       alert('データの読み込みに失敗しました: ' + error);
     });
@@ -522,16 +515,13 @@
     var aggregateMode = false;
 
     document.addEventListener('DOMContentLoaded', function () {
-      var cbAggregate = document.getElementById('aggregateMode');
-      var cbRate = document.getElementById('showRate');
-      var cbSort = document.getElementById('sortByAvg');
-      if (cbAggregate) cbAggregate.addEventListener('change', reloadMapAndChart);
-      if (cbRate) cbRate.addEventListener('change', redrawChart);
-      if (cbSort) cbSort.addEventListener('change', redrawChart);
+      document.getElementById('aggregateMode').addEventListener('change', reloadMapAndChart);
+      document.getElementById('showRate').addEventListener('change', redrawChart);
+      document.getElementById('sortByAvg').addEventListener('change', redrawChart);
     });
 
     function updateStatsAndChart() {
-      aggregateMode = document.getElementById('aggregateMode') && document.getElementById('aggregateMode').checked;
+      aggregateMode = document.getElementById('aggregateMode').checked;
       var showRate = document.getElementById('showRate').checked;
       var sortByAvg = document.getElementById('sortByAvg').checked;
       var stats = getPrefStats(cityDataList, aggregateMode);
