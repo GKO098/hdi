@@ -53,9 +53,6 @@
   </div>
   <div id="map"></div>
   <div style="margin: 32px 0 0 0;">
-    <div style="margin-bottom: 8px;">
-      <label><input type="checkbox" id="excludeRemote"> 離島を除く</label>
-    </div>
     <div id="level-count-summary" style="margin-bottom: 8px; font-weight: bold;"></div>
     <div style="margin-bottom: 8px;">
       <label><input type="checkbox" id="aggregateMode"> 集約で表示</label>
@@ -142,7 +139,7 @@
     }
 
     // parseCSV: 地図描画用のlevelMap（団体コード→レベル）と、集計用levelMapForStats（集約ON時は集約団体コード→最大値、OFF時は団体コード→レベル）を返す
-    function parseCSV(csv, aggregateMode, excludeRemote) {
+    function parseCSV(csv, aggregateMode) {
       var lines = csv.trim().split(/\r?\n/);
       var headers = lines[0].split(',');
       var map = {}; // 地図描画用: 団体コード→レベル
@@ -150,16 +147,12 @@
       var idxCode = headers.indexOf('団体コード');
       var idxLevel = headers.indexOf('訪問レベル');
       var idxAgg = headers.indexOf('集約団体コード');
-      var idxRemote = headers.indexOf('is離島');
       if (aggregateMode) {
         var aggMax = {};
         for (var i = 1; i < lines.length; i++) {
           var cols = lines[i].split(',');
           var aggCode = cols[idxAgg];
           var level = parseInt(cols[idxLevel] || '0', 10);
-          if (excludeRemote && cols[idxRemote] === '1') {
-            level = null;
-          }
           if (!(aggCode in aggMax) || level > aggMax[aggCode]) {
             aggMax[aggCode] = level;
           }
@@ -173,7 +166,6 @@
             map[code] = aggMax[aggCode].toString();
           }
         }
-
         for (var aggCode in aggMax) {
           mapForStats[aggCode] = aggMax[aggCode].toString();
         }
@@ -182,31 +174,21 @@
           var cols = lines[i].split(',');
           var code = cols[idxCode].slice(0, 5);
           var level = cols[idxLevel];
-          if (excludeRemote && cols[idxRemote] === '1') {
-            level = null;
-          };
           map[code] = level; // 地図用は常に全て
           mapForStats[code] = level;
         }
       }
-      console.log(map['01700']);
-      console.log(mapForStats['01700']);
       return { levelMap: map, levelMapForStats: mapForStats };
     }
 
     function getStyle(feature) {
       var code5 = feature.properties && feature.properties.N03_007;
       var level = levelMap[code5];
-      var isRemote = (level === null);
-      if (feature.properties.N03_007 === '01700') {
-        console.log(level);
-        console.log(feature.properties, isRemote, level, code5, levelMap[code5]);
-      }
       return {
         color: '#000',
         weight: getWeightByZoom(map.getZoom()),
         fillOpacity: currentOpacity,
-        fillColor: isRemote ? '#888' : getColor(level)
+        fillColor: getColor(level)
       };
     }
 
@@ -314,8 +296,7 @@
       fetch('data/N03-20240101.json').then(r => r.json())
     ]).then(function([csv, geojsonCity]) {
       var aggregateMode = document.getElementById('aggregateMode') && document.getElementById('aggregateMode').checked;
-      var excludeRemote = document.getElementById('excludeRemote') && document.getElementById('excludeRemote').checked;
-      var parsed = parseCSV(csv, aggregateMode, excludeRemote);
+      var parsed = parseCSV(csv, aggregateMode);
       levelMap = parsed.levelMap;
       levelMapForStats = parsed.levelMapForStats;
       geojsonDataCity = geojsonCity;
@@ -514,21 +495,18 @@
     document.addEventListener('DOMContentLoaded', function() {
       var cbRate = document.getElementById('showRate');
       var cbSort = document.getElementById('sortByAvg');
-      var cbRemote = document.getElementById('excludeRemote');
       function redraw() {
         drawPrefLevelBarChart(levelMapForStats, cbRate && cbRate.checked, cbSort && cbSort.checked);
       }
       if (cbRate) cbRate.addEventListener('change', redraw);
       if (cbSort) cbSort.addEventListener('change', redraw);
-      if (cbRemote) cbRemote.addEventListener('change', reloadMapAndChart);
     });
 
     // チェックボックスの状態で再描画
     function reloadMapAndChart() {
       fetch('data/munistepalities.csv').then(r => r.text()).then(csv => {
         var aggregateMode = document.getElementById('aggregateMode').checked;
-        var excludeRemote = document.getElementById('excludeRemote') && document.getElementById('excludeRemote').checked;
-        var parsed = parseCSV(csv, aggregateMode, excludeRemote);
+        var parsed = parseCSV(csv, aggregateMode);
         levelMap = parsed.levelMap;
         levelMapForStats = parsed.levelMapForStats;
         renderGeoJSON();
