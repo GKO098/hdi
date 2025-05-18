@@ -45,7 +45,7 @@
       透明度：<input type="range" id="opacitySlider" min="0" max="1" step="0.01" value="0.6" style="vertical-align:middle;width:120px;">
       <span id="opacityValue">0.60</span>
       <label style="margin-left:0;"><input type="checkbox" id="toggleBorder" checked>境界を表示</label>
-      <label><input type="checkbox" id="toggleRoutes" checked>経路を表示</label>
+      <label><input type="checkbox" id="toggleRoutes">経路を表示</label>
     </div>
     <div style="margin-top: 4px;">
       <a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2024.html">国土数値情報（行政区域データ）（国土交通省）</a>（2025年04月28日取得）を加工して作成
@@ -53,6 +53,7 @@
   </div>
   <div id="map"></div>
   <div style="margin: 32px 0 0 0;">
+    <div id="level-count-summary" style="margin-bottom: 8px; font-weight: bold;"></div>
     <div style="margin-bottom: 8px;">
       <label><input type="checkbox" id="showRate"> 割合（％）で表示</label>
       <label style="margin-left:1em;"><input type="checkbox" id="sortByAvg"> 平均訪問レベルでソート</label>
@@ -351,13 +352,34 @@
         .then(csv => {
           var lines = csv.trim().split(/\r?\n/);
           var headers = lines[0].split(',');
-          var idxCode = headers.indexOf('団体コード');
           var idxLevel = headers.indexOf('訪問レベル');
+
+          // 訪問レベルごとの市区町村数を集計
+          var levelCounts = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0, '0': 0 };
+          for (var i = 1; i < lines.length; i++) {
+            var cols = lines[i].split(',');
+            var level = cols[idxLevel] || '0';
+            if (levelCounts.hasOwnProperty(level)) {
+              levelCounts[level]++;
+            } else {
+              levelCounts['0']++;
+            }
+          }
+          var total = Object.values(levelCounts).reduce((a, b) => a + b, 0);
+          // 合計点数を計算
+          var totalScore = 0;
+          for (var l = 0; l <= 5; l++) {
+            totalScore += levelCounts[l.toString()] * l;
+          }
+          // 表示用テキスト生成（パーセンテージ付き）
+          var summary = ['5','4','3','2','1','0'].map(l => `${l}: ${levelCounts[l]}（${total ? (levelCounts[l]/total*100).toFixed(1) : '0.0'}%）`).join('、');
+          document.getElementById('level-count-summary').textContent = `市区町村数：${total}訪問レベル毎の市区町村数：` + summary + `　｜　合計点数：` + totalScore;
+
           var prefMap = {};
 
           for (var i = 1; i < lines.length; i++) {
             var cols = lines[i].split(',');
-            var code = cols[idxCode];
+            var code = cols[0];
             var level = cols[idxLevel] || '0';
             var prefCode = code.slice(0, 2);
             var pref = prefCodeToName[prefCode];
