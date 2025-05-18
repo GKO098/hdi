@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <title>Public Roads Map</title>
@@ -8,7 +9,11 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="header.css">
   <style>
-    #map { height: 95vh; width: 100vw; }
+    #map {
+      height: 95vh;
+      width: 100vw;
+    }
+
     .notice-container {
       margin: 16px 60px 8px 60px;
       color: red;
@@ -16,11 +21,14 @@
     }
   </style>
 </head>
+
 <body>
   <!-- ヘッダーを読み込み -->
   <div id="header-placeholder"></div>
   <div class="notice-container">
-    <p>※ 国道174号のデータが国土数値情報の道路データになさそうなので、自分で作成したデータです。国道450号（旭川紋別自動車道）・国道468号（圏央道）・国道475号（東海環状）・国道483号（北近畿道）・国道506号（那覇空港自動車道）には一般道の区間がありません</p>
+    <p>※
+      国道174号のデータが国土数値情報の道路データになさそうなので、自分で作成したデータです。国道450号（旭川紋別自動車道）・国道468号（圏央道）・国道475号（東海環状）・国道483号（北近畿道）・国道506号（那覇空港自動車道）には一般道の区間がありません
+    </p>
   </div>
   <details id="controls-container" style="margin:16px 60px 0 60px;z-index:1300;position:relative;">
     <summary>表示する道路を選択（クリックで展開）</summary>
@@ -28,6 +36,7 @@
       <button id="selectAllBtn" type="button">全てをチェック</button>
       <button id="clearAllBtn" type="button">全てを解除</button>
       <button id="selectShortBtn" type="button">2桁以下の国道を全てチェック</button>
+      <button id="selectUntraveledBtn" type="button">未走行国道のみをチェック</button>
     </div>
     <div id="controls"></div>
   </details>
@@ -108,9 +117,42 @@
           });
           updateMap();
         };
+        const untraveled = ['106号', '114号', '154号', '160号', '164号', '170号', '172号', '173号', '182号', '193号', '277号', '281号', '283号', '288号', '295号', '306号', '309号', '310号', '314号', '340号', '343号', '348号', '364号', '366号', '370号', '371号', '373号', '374号', '378号', '380号', '392号', '393号', '395号', '396号', '416号', '420号', '421号', '424号', '426号', '427号', '428号', '429号', '449号', '450号', '455号', '456号', '461号', '474号', '476号', '479号', '480号', '481号', '483号', '484号', '486号', '492号', '501号', '505号', '506号'];
+        document.getElementById('selectUntraveledBtn').onclick = () => {
+          document.querySelectorAll('.road-checkbox').forEach(cb => {
+            cb.checked = untraveled.includes(cb.value);
+          });
+          updateMap();
+        };
 
         function updateMap() {
-          if (geojsonLayer) geojsonLayer.remove();
+          // 既存のレイヤーを全てmapからremoveし、状態をリセット
+          if (window._allRoadLayers) {
+            window._allRoadLayers.forEach(layer => {
+              if (layer.selected && layer.outlineLayer) {
+                map.removeLayer(layer.outlineLayer);
+                layer.outlineLayer = null;
+              }
+              if (layer.clickableLayer) {
+                map.removeLayer(layer.clickableLayer);
+                layer.clickableLayer = null;
+              }
+              layer.off();
+              map.removeLayer(layer);
+            });
+            window._allRoadLayers = [];
+          }
+          if (window._allClickableLayers) {
+            window._allClickableLayers.forEach(layer => {
+              map.removeLayer(layer);
+            });
+            window._allClickableLayers = [];
+          }
+          if (geojsonLayer) {
+            geojsonLayer.remove();
+            geojsonLayer = null;
+          }
+
           const checked = Array.from(document.querySelectorAll('.road-checkbox:checked')).map(cb => cb.value);
           // チェックされた表示名から元のN01_002値を逆引き
           const checkedRaw = checked.map(name => roadNameMap[name]);
@@ -119,7 +161,7 @@
             type: 'FeatureCollection',
             features: featuresToShow
           }, {
-            style: function(feature) {
+            style: function (feature) {
               // 国道番号を全角→半角変換し、数字部分を抽出
               let weight = 3;
               let color = '#3388ff';
@@ -155,7 +197,7 @@
                 opacity: 1
               };
             },
-            onEachFeature: function(feature, layer) {
+            onEachFeature: function (feature, layer) {
               if (feature.properties && feature.properties.N01_002) {
                 // 全角数字を半角に変換し、「139号」などの形に整形
                 const hankaku = feature.properties.N01_002.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
@@ -171,13 +213,13 @@
                 }).addTo(map);
 
                 // クリック用レイヤーのイベントを本体レイヤーに転送
-                clickableLayer.on('click', function(e) {
+                clickableLayer.on('click', function (e) {
                   layer.fire('click', e);
                 });
-                clickableLayer.on('mouseover', function(e) {
+                clickableLayer.on('mouseover', function (e) {
                   layer.fire('mouseover', e);
                 });
-                clickableLayer.on('mouseout', function(e) {
+                clickableLayer.on('mouseout', function (e) {
                   layer.fire('mouseout', e);
                 });
 
@@ -194,7 +236,7 @@
               window._allRoadLayers.push(layer);
 
               // マウスオーバーで黒い太線のアウトラインを下に重ねる
-              layer.on('mouseover', function(e) {
+              layer.on('mouseover', function (e) {
                 const baseWeight = layer.options.weight || 4;
                 if (!layer.selected) {
                   layer.outlineLayer = L.polyline(layer.getLatLngs(), {
@@ -211,7 +253,7 @@
                 }
                 layer.openPopup(e.latlng);
               });
-              layer.on('mouseout', function(e) {
+              layer.on('mouseout', function (e) {
                 if (!layer.selected && layer.outlineLayer) {
                   map.removeLayer(layer.outlineLayer);
                   layer.outlineLayer = null;
@@ -219,7 +261,7 @@
                 }
               });
               // クリックで選択・選択解除
-              layer.on('click', function(e) {
+              layer.on('click', function (e) {
                 // すべてのレイヤーの選択状態を解除
                 window._allRoadLayers.forEach(l => {
                   if (l !== layer && l.selected) {
@@ -271,7 +313,7 @@
         controls.addEventListener('change', updateMap);
 
         // ズームレベル変更時に再描画
-        map.on('zoomend', function() {
+        map.on('zoomend', function () {
           if (geojsonLayer) {
             // クリック可能レイヤーをクリアして再作成
             if (window._allClickableLayers) {
@@ -283,7 +325,7 @@
             // スタイルの更新のみ行う
             geojsonLayer.setStyle(geojsonLayer.options.style);
             // 新しいクリック可能レイヤーを作成
-            geojsonLayer.eachLayer(function(layer) {
+            geojsonLayer.eachLayer(function (layer) {
               if (layer.feature && layer.feature.properties && layer.feature.properties.N01_002) {
                 const clickableLayer = L.polyline(layer.getLatLngs(), {
                   color: '#ffffff',
@@ -291,13 +333,13 @@
                   opacity: 0
                 }).addTo(map);
 
-                clickableLayer.on('click', function(e) {
+                clickableLayer.on('click', function (e) {
                   layer.fire('click', e);
                 });
-                clickableLayer.on('mouseover', function(e) {
+                clickableLayer.on('mouseover', function (e) {
                   layer.fire('mouseover', e);
                 });
-                clickableLayer.on('mouseout', function(e) {
+                clickableLayer.on('mouseout', function (e) {
                   layer.fire('mouseout', e);
                 });
 
@@ -309,9 +351,10 @@
           }
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         alert('道路データの読み込みに失敗しました: ' + error);
       });
   </script>
 </body>
-</html> 
+
+</html>
