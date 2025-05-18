@@ -76,6 +76,7 @@
   <script src="js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
   <script>
     var map;                 // Leaflet地図インスタンス
     var geojsonLayer = null; // 市区町村GeoJSONレイヤー
@@ -88,6 +89,9 @@
 
     var cityDataList = [];    // CSVからパースした市区町村データ配列
     var levelMap = {};        // 市区町村code→訪問レベルのマップ
+
+    // グローバル変数宣言部に追加
+    var aggUnionCache = {};
 
     // ヘッダーを読み込む
     fetch('header.html')
@@ -166,11 +170,18 @@
         var cols = lines[i].split(',');
         list.push({
           code: cols[idxCode].slice(0, 5),
-          aggCode: cols[idxAgg],
+          aggCode: cols[idxAgg].slice(0, 5),
           level: parseInt(cols[idxLevel] || '0', 10)
         });
       }
       return list;
+    }
+
+    function isSeireiShiteiToshiCity(row, cityDataList) {
+      if (!row.aggCode) return false;
+      // 「市本体」かつ、同じaggCodeを持つ他のレコード（区）が存在する
+      return row.code === row.aggCode &&
+        cityDataList.some(r => r.aggCode === row.aggCode && r.code !== row.code);
     }
 
     // 地図用: cityDataList→code→levelのMapを生成（集約ON時はaggCodeごとのmaxを全codeに割当て）
@@ -179,8 +190,9 @@
       var keyField = aggregateMode ? 'aggCode' : 'code';
       var maxMap = {};
 
-      // 集約キーごとに最大値・代表codeを求める
       cityDataList.forEach(row => {
+        // 集約OFF時は「市本体」をスキップ
+        if (!aggregateMode && isSeireiShiteiToshiCity(row, cityDataList)) return;
         var key = row[keyField];
         if (!key) return;
         var level = row.level;
@@ -189,8 +201,9 @@
         }
       });
 
-      // 各市区町村codeに最大値を割り当てる
       cityDataList.forEach(row => {
+        // 集約OFF時は「市本体」をスキップ
+        if (!aggregateMode && isSeireiShiteiToshiCity(row, cityDataList)) return;
         var key = row[keyField];
         if (key && maxMap[key] !== undefined) {
           map[row.code] = maxMap[key].level;
@@ -205,8 +218,9 @@
       var keyField = aggregateMode ? 'aggCode' : 'code';
       var maxMap = {};
 
-      // 1. 集約キーごとに最大値・代表codeを求める
       cityDataList.forEach(row => {
+        // 集約OFF時は「市本体」をスキップ
+        if (!aggregateMode && isSeireiShiteiToshiCity(row, cityDataList)) return;
         var key = row[keyField];
         if (!key) return;
         var level = row.level;
@@ -215,7 +229,6 @@
         }
       });
 
-      // 2. 都道府県ごとにカウント
       Object.values(maxMap).forEach(obj => {
         var prefCode = obj.code.slice(0, 2);
         var level = obj.level;
@@ -248,18 +261,77 @@
       if (geojsonLayer) {
         map.removeLayer(geojsonLayer);
       }
-      geojsonLayer = L.geoJSON(geojsonDataCity, {
-        style: getStyle,
-        onEachFeature: function (feature, layer) {
+      var aggregateMode = document.getElementById('aggregateMode').checked;
+      if (aggregateMode) {
+        // 1. codeとaggCodeが同じものはそのままaggFeaturesへ、異なるものだけグループ化
+        var aggFeatures = [];
+        var unionGroups = {};
+        geojsonDataCity.features.forEach(function (feature) {
           var code5 = feature.properties && feature.properties.N03_007;
-          var name = (feature.properties.N03_001 || '') + ' ' +
-            (feature.properties.N03_003 || '') + ' ' +
-            (feature.properties.N03_004 || '') + ' ' +
-            (feature.properties.N03_005 || '');
-          var level = code5 ? (levelMap[code5]) : '';
-          layer.bindPopup(name + '<br>訪問レベル: ' + level);
-        }
-      }).addTo(map);
+          var cityRow = cityDataList.find(row => row.code === code5);
+          var aggCode = cityRow && cityRow.aggCode;
+          if (!aggCode) return; // 集約コードなしはスキップ
+          if (code5 === aggCode) {
+            // 集約不要なものはそのまま
+            aggFeatures.push(feature);
+          } else {
+            // 合成対象
+            if (!unionGroups[aggCode]) unionGroups[aggCode] = [];
+            unionGroups[aggCode].push(feature);
+          }
+        });
+        // 2. 合成対象グループのみturf.union（キャッシュ利用）
+        Object.keys(unionGroups).forEach(function (aggCode) {
+          var features = unionGroups[aggCode];
+          if (features.length === 1) {
+            aggFeatures.push(features[0]);
+          } else if (aggUnionCache[aggCode]) {
+            aggFeatures.push(aggUnionCache[aggCode]);
+          } else {
+            var unioned = features.reduce(function (prev, curr) {
+              if (!prev) return curr;
+              try {
+                return turf.union(prev, curr);
+              } catch (e) {
+                return prev;
+              }
+            }, null);
+            if (unioned) {
+              unioned.properties = Object.assign({}, features[0].properties, { aggCode: aggCode });
+              aggUnionCache[aggCode] = unioned; // キャッシュ
+              aggFeatures.push(unioned);
+            }
+          }
+        });
+        var aggGeojson = { type: "FeatureCollection", features: aggFeatures };
+        geojsonLayer = L.geoJSON(aggGeojson, {
+          style: getStyle,
+          onEachFeature: function (feature, layer) {
+            var aggCode = feature.properties && feature.properties.aggCode;
+            // 代表codeをcityDataListから取得
+            var cityRow = cityDataList.find(row => row.aggCode === aggCode);
+            var level = cityRow ? levelMap[cityRow.code] : '';
+            var name = (feature.properties.N03_001 || '') + ' ' +
+              (feature.properties.N03_004 || '');
+            if (!cityRow) {  // 政令指定都市でないならN03_005を追加
+              name += ' ' + (feature.properties.N03_005 || '');
+            }
+            layer.bindPopup(name + '<br>訪問レベル: ' + level);
+          }
+        }).addTo(map);
+      } else {
+        geojsonLayer = L.geoJSON(geojsonDataCity, {
+          style: getStyle,
+          onEachFeature: function (feature, layer) {
+            var code5 = feature.properties && feature.properties.N03_007;
+            var name = (feature.properties.N03_001 || '') + ' ' +
+              (feature.properties.N03_004 || '') + ' ' +
+              (feature.properties.N03_005 || '');
+            var level = code5 ? (levelMap[code5]) : '';
+            layer.bindPopup(name + '<br>訪問レベル: ' + level);
+          }
+        }).addTo(map);
+      }
     }
 
     // ズーム変更時にweightを更新
@@ -349,6 +421,7 @@
     ]).then(function ([csv, geojsonCity]) {
       cityDataList = parseCSV(csv);
       geojsonDataCity = geojsonCity;
+      aggUnionCache = {}; // データ更新時はキャッシュをクリア
       reloadMapAndChart();
     }).catch(function (error) {
       alert('データの読み込みに失敗しました: ' + error);
