@@ -126,32 +126,7 @@
         };
 
         function updateMap() {
-          // 既存のレイヤーを全てmapからremoveし、状態をリセット
-          if (window._allRoadLayers) {
-            window._allRoadLayers.forEach(layer => {
-              if (layer.selected && layer.outlineLayer) {
-                map.removeLayer(layer.outlineLayer);
-                layer.outlineLayer = null;
-              }
-              if (layer.clickableLayer) {
-                map.removeLayer(layer.clickableLayer);
-                layer.clickableLayer = null;
-              }
-              layer.off();
-              map.removeLayer(layer);
-            });
-            window._allRoadLayers = [];
-          }
-          if (window._allClickableLayers) {
-            window._allClickableLayers.forEach(layer => {
-              map.removeLayer(layer);
-            });
-            window._allClickableLayers = [];
-          }
-          if (geojsonLayer) {
-            geojsonLayer.remove();
-            geojsonLayer = null;
-          }
+          resetAllLayers();
 
           const checked = Array.from(document.querySelectorAll('.road-checkbox:checked')).map(cb => cb.value);
           // チェックされた表示名から元のN01_002値を逆引き
@@ -314,46 +289,47 @@
 
         // ズームレベル変更時に再描画
         map.on('zoomend', function () {
-          if (geojsonLayer) {
-            // クリック可能レイヤーをクリアして再作成
-            if (window._allClickableLayers) {
-              window._allClickableLayers.forEach(layer => {
-                if (layer) map.removeLayer(layer);
-              });
-              window._allClickableLayers = [];
-            }
-            // スタイルの更新のみ行う
-            geojsonLayer.setStyle(geojsonLayer.options.style);
-            // 新しいクリック可能レイヤーを作成
-            geojsonLayer.eachLayer(function (layer) {
-              if (layer.feature && layer.feature.properties && layer.feature.properties.N01_002) {
-                const clickableLayer = L.polyline(layer.getLatLngs(), {
-                  color: '#ffffff',
-                  weight: 8,
-                  opacity: 0
-                }).addTo(map);
-
-                clickableLayer.on('click', function (e) {
-                  layer.fire('click', e);
-                });
-                clickableLayer.on('mouseover', function (e) {
-                  layer.fire('mouseover', e);
-                });
-                clickableLayer.on('mouseout', function (e) {
-                  layer.fire('mouseout', e);
-                });
-
-                layer.clickableLayer = clickableLayer;
-                if (!window._allClickableLayers) window._allClickableLayers = [];
-                window._allClickableLayers.push(clickableLayer);
-              }
-            });
-          }
+          updateMap();
         });
       })
       .catch(function (error) {
         alert('道路データの読み込みに失敗しました: ' + error);
       });
+
+    function resetAllLayers() {
+      if (window._allRoadLayers) {
+        window._allRoadLayers.forEach(layer => {
+          // アウトライン削除
+          if (layer.outlineLayer) {
+            map.removeLayer(layer.outlineLayer);
+            layer.outlineLayer = null;
+          }
+          // クリック用レイヤー削除
+          if (layer.clickableLayer) {
+            map.removeLayer(layer.clickableLayer);
+            layer.clickableLayer = null;
+          }
+          // 選択状態解除
+          layer.selected = false;
+          // イベント解除
+          layer.off();
+          // 本体レイヤー削除
+          map.removeLayer(layer);
+        });
+        window._allRoadLayers = [];
+      }
+      if (window._allClickableLayers) {
+        window._allClickableLayers.forEach(layer => {
+          map.removeLayer(layer);
+        });
+        window._allClickableLayers = [];
+      }
+      // geojsonLayerも削除
+      if (geojsonLayer) {
+        geojsonLayer.remove();
+        geojsonLayer = null;
+      }
+    }
   </script>
 </body>
 
