@@ -77,6 +77,18 @@
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    var map;                 // Leaflet地図インスタンス
+    var geojsonLayer = null; // 市区町村GeoJSONレイヤー
+    var geojsonDataCity = null; // 市区町村GeoJSONデータ
+    var prefBorderLayer = null; // 県境GeoJSONレイヤー
+    var travelRouteLayers = []; // 経路レイヤー群
+
+    var currentOpacity = 0.6; // 地図の塗りつぶし透明度
+    var borderVisible = true; // 境界線表示状態
+
+    var cityDataList = [];    // CSVからパースした市区町村データ配列
+    var levelMap = {};        // 市区町村code→訪問レベルのマップ
+
     // ヘッダーを読み込む
     fetch('header.html')
       .then(response => response.text())
@@ -109,19 +121,12 @@
     window.addEventListener('resize', adjustOverlayPosition);
 
     // 地図の初期化（日本の中心付近）
-    var map = L.map('map').setView([36.2048, 138.2529], 6);
+    map = L.map('map').setView([36.2048, 138.2529], 6);
 
     // OpenStreetMapのタイルレイヤー
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
-    var geojsonLayer;
-    var geojsonDataCity;
-    var currentOpacity = 0.6;
-    var prefBorderLayer = null;
-    var travelRouteLayers = [];
-    var borderVisible = true;
 
     // 訪問レベルごとの色
     function getColor(level) {
@@ -510,10 +515,6 @@
       });
     }
 
-    // グローバルで保持
-    var cityDataList = [];
-    var aggregateMode = false;
-
     document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('aggregateMode').addEventListener('change', reloadMapAndChart);
       document.getElementById('showRate').addEventListener('change', redrawChart);
@@ -521,7 +522,7 @@
     });
 
     function updateStatsAndChart() {
-      aggregateMode = document.getElementById('aggregateMode').checked;
+      var aggregateMode = document.getElementById('aggregateMode').checked;
       var showRate = document.getElementById('showRate').checked;
       var sortByAvg = document.getElementById('sortByAvg').checked;
       var stats = getPrefStats(cityDataList, aggregateMode);
@@ -529,6 +530,7 @@
     }
 
     function reloadMapAndChart() {
+      var aggregateMode = document.getElementById('aggregateMode').checked;
       levelMap = getLevelMap(cityDataList, aggregateMode);
       renderGeoJSON();
       drawPrefBorders();
